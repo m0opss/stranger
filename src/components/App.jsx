@@ -1,19 +1,31 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setCount } from "../reducers/reposReducer";
+import { setFetching } from "../reducers/reposReducer";
+import Loader from "./Loader/Loader";
+
 import "./app.scss";
 
 const App = () => {
   const dispatch = useDispatch();
-  const count = useSelector((state) => state.repos.count);
-  const onCountClick = () => {
-    dispatch(setCount(2));
+  const isFetching = useSelector((state) => state.repos.isFetching);
+  const onClickFetching = () => {
+    dispatch(setFetching(false));
   };
 
   return (
     <div className="app">
-      <button onClick={() => onCountClick()}>count</button>
-      <div className="">{count}</div>
+      <div className="container ">
+        {isFetching ? (
+          <div className="panel">
+            <Loader />
+            <button className="btn" onClick={onClickFetching}>
+              No Fetching!
+            </button>
+          </div>
+        ) : (
+          <div className="welcome">React!</div>
+        )}
+      </div>
     </div>
   );
 };

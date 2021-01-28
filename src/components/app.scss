@@ -1,0 +1,28 @@
+body {
+  background: radial-gradient(
+    ellipse farthest-corner at 100% 100%,
+    rgb(109, 107, 182),
+    rgb(4, 3, 20)
+  );
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  margin: auto;
+  width: 1280px;
+}
+
+.welcome {
+  margin: 20px;
+  width: 100%;
+}
+.panel {
+  margin: 30vh;
+}
+.btn {
+  padding: 5px;
+  margin: 20px auto;
+}
