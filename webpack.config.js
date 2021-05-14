@@ -10,10 +10,10 @@ module.exports = {
     filename: "[name].[hash].js",
   },
   devServer: {
-    port: 3000,
+    port: 3333,
   },
   resolve: {
-      extensions: ['.js', '.jsx']
+    extensions: [".js", ".jsx"],
   },
   plugins: [
     new HTMLWebpackPlugin({ template: "./src/index.html" }),
@@ -27,7 +27,10 @@ module.exports = {
       },
       {
         test: /\.(jpg|jpeg|png|svg)/,
-        use: ["file-loader"],
+        loader: "file-loader",
+        options: {
+          name: "assets/img/[name].[ext]",
+        },
       },
       {
         test: /\.m?js$/,

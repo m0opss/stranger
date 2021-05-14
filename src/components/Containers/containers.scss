@@ -1,0 +1,46 @@
+.dark-container {
+  --indent: 30vw;
+  --height: 136vh;
+  --size: 70%;
+
+  position: absolute;
+  left: calc(-1 * var(--indent));
+  right: calc(-1 * var(--indent));
+  top: 0;
+  padding-top: var(--height);
+  z-index: -1;
+  background: radial-gradient(
+      ellipse at 50% 40%,
+      rgba(0, 0, 0, 0.9) var(--size),
+      white calc(var(--size) + 0.1%)
+    )
+    no-repeat;
+}
+
+@media screen and (max-width: 1515px) {
+  .dark-container {
+    --indent: 41vw;
+    --height: 118vh;
+  }
+}
+
+@media screen and (max-width: 1140px) {
+  .dark-container {
+    --indent: 73vw;
+    --height: 128vh;
+  }
+}
+// .dark-container {
+//   position: absolute;
+//   left: -10%;
+//   right: -10%;
+//   top: 0;
+//   padding-top: 50%;
+//   z-index: -1;
+//   background: radial-gradient(
+//       ellipse at 50% 40%,
+//       rgba(0, 0, 0, 0.9) 70%,
+//       white 70.1%
+//     )
+//     no-repeat;
+// }

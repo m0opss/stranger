@@ -1,0 +1,136 @@
+.main-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 58px;
+  p {
+    font-weight: bold;
+    font-size: 38px;
+    line-height: 46px;
+    color: rgba(255, 255, 255, 0.9);
+    span {
+      color: #17ca9b;
+    }
+  }
+
+  img {
+    margin-top: 16px;
+    height: 484px;
+  }
+  .main-block__play-rules {
+    margin-top: 40px;
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 37px;
+    text-decoration-line: underline;
+    color: rgba(255, 255, 255, 0.95);
+    cursor: pointer;
+  }
+  .main-block__btn {
+    border-radius: 50.0656px;
+    border: 3px solid #17ca9b;
+    color: white;
+    font-weight: bold;
+    padding: 13px 95px;
+    font-size: 35px;
+  }
+}
+
+.wtf-block {
+  margin: auto;
+  margin-top: 195px;
+  max-width: 1486px;
+  p {
+    text-align: center;
+  }
+  .wtf-block__title {
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 59px;
+    color: #ffffff;
+    margin-bottom: 30px;
+  }
+  .wtf-block__descr {
+    font-size: 35px;
+    line-height: 43px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 60px;
+  }
+  .wtf-block__steps {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    // .step-card + .step-card {
+    //   margin-left: 30px;
+    // }
+    .step-card {
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: 0px 4.99463px 6.24329px rgba(0, 0, 0, 0.25);
+      border-radius: 18.7299px;
+      position: relative;
+      width: 23.5%;
+      height: 453px;
+      padding: 40px 35px;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      p {
+        &:first-child {
+          font-size: 28px;
+          line-height: 125.34%;
+          color: #000000;
+          white-space: nowrap;
+        }
+      }
+      .step-card__img-container {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          margin: 0;
+        }
+      }
+      .step-card__cnt {
+        display: flex;
+        font-weight: 600;
+        font-size: 87.4061px;
+        line-height: 75%;
+        color: #767676;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1515px) {
+  .wtf-block {
+    max-width: 1110px;
+    margin-top: 100px;
+    .wtf-block__steps {
+      .step-card {
+        height: 390px;
+        p:first-child {
+          font-size: 19px;
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 1140px) {
+  .wtf-block {
+    max-width: 740px;
+    margin-top: 100px;
+    .wtf-block__steps {
+      flex-wrap: wrap;
+      .step-card {
+        height: 430px;
+        width: 45%;
+        margin-top: 40px;
+        p:first-child {
+          font-size: 28px;
+        }
+      }
+    }
+  }
+}

@@ -1,28 +1,72 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+
 body {
-  background: radial-gradient(
-    ellipse farthest-corner at 100% 100%,
-    rgb(109, 107, 182),
-    rgb(4, 3, 20)
-  );
+  font-family: Montserrat;
+  font-style: normal;
+}
+
+a {
+  margin-right: 30px;
+  text-decoration: none;
+}
+
+.btn-text {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 219%;
+  color: #000000;
+}
+
+.btn {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.5s;
+  
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  text-align: center;
   margin: auto;
-  width: 1280px;
+  max-width: 1740px;
+  padding: 0 10px;
+  width: 100%;
+
 }
 
-.welcome {
-  margin: 20px;
+.page {
+  position: absolute;
   width: 100%;
+  height: 100%;
+  overflow-x: hidden;
 }
-.panel {
-  margin: 30vh;
+
+.page-enter-active {
+  animation: fade-in 0.5s forwards;
 }
-.btn {
-  padding: 5px;
-  margin: 20px auto;
+.page-exit-active {
+  animation: fade-out 0.5s forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(400px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
 }
