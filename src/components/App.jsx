@@ -37,7 +37,8 @@ const App = () => {
                 unmountOnExit
                 in={match != null}
               >
-                {loaded ? <Component /> : <>asdasd</>}
+                <Component />
+                {/* {loaded ?  : <>asdasd</>} */}
               </CSSTransition>
             )}
           </Route>
