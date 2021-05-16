@@ -233,6 +233,9 @@
     height: 67px;
     .container {
       justify-content: center;
+      .header__logo {
+        margin-right: 0;
+      }
     }
     .header__burger {
       display: flex; /* используем flex для центрирования содержимого */

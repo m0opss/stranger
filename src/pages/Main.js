@@ -31,7 +31,7 @@ const Main = () => {
           </p>
           <img src={alien} />
 
-          <div className="btn main-block__btn">НАЧАТЬ</div>
+          <a className="btn main-block__btn">НАЧАТЬ</a>
           <Link to="/rules" className="main-block__play-rules">
             Правила
           </Link>
