@@ -176,8 +176,27 @@
   .main-block img {
     height: 340px;
     margin-top: 0;
+    @media screen and (max-height: 775px) { 
+      height: 300px;
+    }
+    @media screen and (max-height: 712px) { 
+      height: 270px;
+    }
+    @media screen and (max-height: 669px) { 
+      height: 240px;
+    }
+    @media screen and (max-height: 631px) { 
+      height: 220px;
+    }
+    @media screen and (max-height: 607px) { 
+      height: 190px;
+    }
+
   }
   .wtf-block {
     display: none;
   }
+
+    
+
 }
