@@ -4,7 +4,7 @@ import DarkContainer from "./DarkContainer";
 
 const Container = ({ type, children }) => {
   return (
-    <>
+    <div className='main-container'>
       {type == "dark" ? (
         <DarkContainer>
           <Header />
@@ -21,7 +21,7 @@ const Container = ({ type, children }) => {
           {children}
         </DarkContainer>
       )}
-    </>
+    </div>
   );
 };
 

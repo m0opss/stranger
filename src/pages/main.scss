@@ -3,6 +3,8 @@
   flex-direction: column;
   align-items: center;
   margin-top: 58px;
+  // height: calc(100vh - 95px);
+
   p {
     font-weight: bold;
     font-size: 38px;
@@ -22,9 +24,12 @@
     font-weight: normal;
     font-size: 30px;
     line-height: 37px;
-    text-decoration-line: underline;
+    // text-decoration-line: underline;
     color: rgba(255, 255, 255, 0.95);
     cursor: pointer;
+    text-align: center;
+    margin-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.95);
   }
   .main-block__btn {
     border-radius: 50.0656px;
@@ -34,12 +39,27 @@
     padding: 13px 95px;
     font-size: 35px;
   }
+
+  animation: mainBlockAnima 1.2s;
+}
+
+@keyframes mainBlockAnima {
+  0% {
+    transform: translateY(400vh);
+  }
+  50% {
+    transform: translateY(400vh);
+  }
+  0% {
+    transform: translateY(0);
+  }
 }
 
 .wtf-block {
   margin: auto;
   margin-top: 195px;
   max-width: 1486px;
+  // height: calc(100vh - 95px);
   p {
     text-align: center;
   }

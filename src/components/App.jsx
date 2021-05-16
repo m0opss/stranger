@@ -16,15 +16,15 @@ const App = () => {
   // const onClickFetching = () => {
   //   dispatch(setFetching(false));
   // };
-  const [loaded, setLoaded] = React.useState(false);
+  // const [loaded, setLoaded] = React.useState(false);
   const routes = [
     { path: "/", Component: Main },
     { path: "/about", Component: About },
   ];
-  useEffect(() => {
-    setTimeout(() => setLoaded(true), 1000);
-    console.log(loaded);
-  });
+  // useEffect(() => {
+  //   setTimeout(() => setLoaded(true), 1000);
+  //   console.log(loaded);
+  // });
   return (
     <BrowserRouter>
       <div className="app">

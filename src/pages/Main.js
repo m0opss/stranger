@@ -31,15 +31,15 @@ const Main = () => {
           </p>
           <img src={alien} />
 
-          <div className="btn main-block__btn">НАЧАТЬ ИГРАТЬ</div>
+          <div className="btn main-block__btn">НАЧАТЬ</div>
           <Link to="/rules" className="main-block__play-rules">
-            Правила игры
+            Правила
           </Link>
         </div>
         <div className="wtf-block">
           <p className="wtf-block__title">ЧТО ЭТО ТАКОЕ?</p>
           <p className="wtf-block__descr">
-            Революционный метод для просмотра рекламы
+            Революционный метод просмотра рекламы
           </p>
           <div className="wtf-block__steps">
             <StepsItem title="Выбери рекламу" img={steps_1} i={1} />
