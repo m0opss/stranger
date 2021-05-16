@@ -2,6 +2,7 @@
   height: 95px;
   width: 100%;
   top: 0;
+  z-index: 5;
   position: sticky;
   display: flex;
   align-items: center;
@@ -11,6 +12,148 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  .header__burger {
+    display: none;
+    align-items: center; /* центрируем содержимое кнопки */
+    position: absolute;
+    top: 7px;
+    right: 20px;
+    width: 27px;
+    height: 19px;
+    cursor: pointer;
+    z-index: 10;
+    & > span,
+    & > span::before,
+    & > span::after {
+      display: flex;
+      position: absolute;
+      justify-content: flex-end;
+      width: 100%;
+      height: 2px;
+      background-color: black;
+    }
+    & > span::before {
+      content: "";
+      top: -8px;
+    }
+    & > span::after {
+      content: "";
+      width: 70%;
+      top: 8px;
+    }
+  }
+  .header__burger-menu {
+    position: absolute;
+    display: none;
+    animation: mobileMenuOpen 0.5s backwards;
+    height: 100vh;
+    width: 85%;
+    top: -18px;
+    left: 0;
+    background: #fffefe;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 60px 40px;
+    z-index: 10000;
+    li {
+      padding: 17px 0;
+      position: relative;
+      display: flex;
+      align-items: center;
+      &:nth-child(1) {
+        & a::before {
+          display: none;
+        }
+      }
+      &:nth-child(2) {
+        margin-bottom: 80px;
+        padding-bottom: 0;
+        & a::before {
+          display: none;
+        }
+      }
+      a {
+        &::before {
+          content: "";
+          position: absolute;
+          width: 3px;
+          height: 100%;
+          left: 0;
+          background: #ededed;
+        }
+        font-size: 14px;
+        line-height: 17px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: #000000;
+        padding-left: 15px;
+      }
+      a.active {
+        font-weight: bold;
+        &::before {
+          background-color: #17ca9b;
+        }
+      }
+    }
+    .header__burger-menu-logon {
+      margin-top: 60px;
+      .header__logon-login {
+        display: flex;
+        align-items: center;
+        p {
+          margin-left: 10px;
+          font-style: normal;
+          font-weight: 600;
+          font-size: 14px;
+          line-height: 17px;
+          color: #000000;
+        }
+      }
+      .header__logon-reg {
+        font-size: 12px;
+        line-height: 163.4%;
+        text-decoration-line: underline;
+        color: rgba(0, 0, 0, 0.5);
+        margin-left: 28px;
+      }
+    }
+    .header__close-menu-btn {
+      padding-bottom: 0;
+      display: flex; /* используем flex для центрирования содержимого */
+      align-items: center; /* центрируем содержимое кнопки */
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      z-index: 10;
+      span,
+      span::before,
+      span::after {
+        display: flex;
+        position: absolute;
+        justify-content: flex-end;
+        width: 100%;
+        height: 2px;
+        background-color: black;
+      }
+      span {
+        transform: rotate(45deg);
+      }
+      span::before {
+        content: "";
+        top: 0;
+        transform: rotate(0);
+      }
+      span::after {
+        content: "";
+        top: 0;
+        transform: rotate(90deg);
+      }
+    }
   }
   .header__logo {
     height: 30px;
@@ -43,7 +186,6 @@
           bottom: 0;
           width: 0;
           border-bottom: 1px solid #000;
-          
         }
         @media screen and (min-width: 768px) {
           &:hover::before {
@@ -67,9 +209,9 @@
       min-width: 122px;
       @media screen and (min-width: 768px) {
         &:hover {
-         background-color: #17CA9B;
-         color: white;
-         border: 1px solid #17CA9B
+          background-color: #17ca9b;
+          color: white;
+          border: 1px solid #17ca9b;
         }
       }
     }
@@ -86,7 +228,27 @@
   }
 }
 
+@media screen and (max-width: 1085px) {
+  .header {
+    height: 67px;
+    .container {
+      justify-content: center;
+    }
+    .header__burger {
+      display: flex; /* используем flex для центрирования содержимого */
+    }
+    .header__burger-menu.menu-open {
+      display: block;
+    }
+    .header__nav,
+    .header__logon {
+      display: none;
+    }
+  }
+}
+
 .header .container {
+  position: relative;
   .header__logo,
   .header__nav li,
   .header__logon-btn {
@@ -94,9 +256,17 @@
     animation: headerAnimaElem 1.4s backwards;
   }
 }
-
+@keyframes mobileMenuOpen {
+  0% {
+    left: -400vw;
+  }
+  100% {
+    left: 0;
+  }
+}
 @keyframes headerAnima {
-  0%, 70% {
+  0%,
+  70% {
     left: -300vh;
   }
   100% {
@@ -105,12 +275,7 @@
 }
 
 @keyframes headerAnimaElem {
-  // 0%, 20%, 50%, 80%, 100% {transform: rotate(0deg)}
-  // 40% {transform: rotate(-20deg);}
-  // 60% {transform: rotate(-15deg);}
-  // 85% {transform: rotate(-3deg);}
   0% {
-    // transform: rotate(0) scale(0);
     display: none;
   }
   50% {

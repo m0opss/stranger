@@ -1,19 +1,18 @@
 .main-container {
   position: relative;
   animation: darkAnima 0.5s linear backwards;
+  height: 100%;
 }
 
 .dark-container {
   --indent: 30vw;
   --height: 136vh;
   --size: 70%;
-
   position: absolute;
   left: calc(-1 * var(--indent));
   right: calc(-1 * var(--indent));
   top: 0;
   padding-top: var(--height);
-  z-index: -1;
   background: radial-gradient(
       ellipse at 50% 40%,
       rgba(0, 0, 0, 0.9) var(--size),
@@ -197,4 +196,20 @@
       display: none;
     }
   }
+}
+@media screen and (max-width: 820px) {
+  .dark-container {
+    --height: 75vh;
+    .main-background__circle1,
+    .main-background__circle2,
+    .main-background__circle3,
+    .main-background__circle4,
+    .main-background__rect2,
+    .main-background__rect3 {
+      display: none;
+    }
+  }
+}
+
+@media screen and (max-width: 767px) {
 }

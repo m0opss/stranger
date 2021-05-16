@@ -16,7 +16,10 @@ module.exports = {
     extensions: [".js", ".jsx"],
   },
   plugins: [
-    new HTMLWebpackPlugin({ template: "./src/index.html" }),
+    new HTMLWebpackPlugin({
+      template: "./src/index.html",
+      favicon: "./src/assets/img/favicon.svg",
+    }),
     new CleanWebpackPlugin(),
   ],
   module: {

@@ -45,3 +45,30 @@
     color: rgba(0, 0, 0, 0.8);
   }
 }
+
+@media screen and (max-width: 820px) {
+  .footer {
+    height: 87px;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+  }
+  .footer .container {
+    padding: 20px;
+  }
+
+  .footer .footer__first-line .footer__title {
+    font-size: 12px;
+    margin-bottom: 9px;
+    line-height: 15px;
+  }
+  .footer .footer__first-line .footer__text {
+    font-size: 10px;
+  }
+  .footer .footer__first-line .footer__social-item img {
+    height: 15px;
+  }
+  .footer .footer__second-line {
+    font-size: 10px;
+  }
+}
