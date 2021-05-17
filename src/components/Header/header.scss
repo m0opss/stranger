@@ -7,17 +7,21 @@
   display: flex;
   align-items: center;
   background-color: #fff;
-  animation: headerAnima 1s backwards;
+  // animation: headerAnima 1s backwards;
   & > .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
   }
+  .header__block {
+    display: flex;
+    align-items: center;
+  }
   .header__burger {
     display: none;
     align-items: center; /* центрируем содержимое кнопки */
     position: absolute;
-    top: 7px;
+    top: 25px;
     right: 20px;
     width: 27px;
     height: 19px;
@@ -160,7 +164,7 @@
   }
   .header__nav {
     display: block;
-    padding-left: 16%;
+    // padding-left: 33%;
     ul {
       padding-left: 0;
       display: flex;
@@ -174,6 +178,7 @@
         }
       }
       a {
+        margin-right: 30px;
         font-size: 20px;
         line-height: 219%;
         color: rgba(0, 0, 0, 0.9);
@@ -224,7 +229,12 @@
 @media screen and (max-width: 1515px) {
   .header .header__nav {
     display: block;
-    padding-left: 0;
+    li a {
+      font-size: 16px;
+    }
+  }
+  .btn-text {
+    font-size: 16px;
   }
 }
 
@@ -243,22 +253,23 @@
     .header__burger-menu.menu-open {
       display: block;
     }
-    .header__nav,
-    .header__logon {
+    // .header__nav,
+    // .header__logon,
+    .header__block {
       display: none;
     }
   }
 }
 
-.header .container {
-  position: relative;
-  .header__logo,
-  .header__nav li,
-  .header__logon-btn {
-    transform-origin: left;
-    animation: headerAnimaElem 1.4s backwards;
-  }
-}
+// .header .container {
+//   position: relative;
+//   .header__logo,
+//   .header__nav li,
+//   .header__logon-btn {
+//     transform-origin: left;
+//     // animation: headerAnimaElem 1.4s backwards;
+//   }
+// }
 @keyframes mobileMenuOpen {
   0% {
     left: -400vw;

@@ -17,30 +17,31 @@ const Header = ({}) => {
         <Link to="/" className="header__logo">
           <img src={logo} alt="" />
         </Link>
-        <nav className="header__nav">
-          <ul>
-            <li>
-              <NavLink to="/">Главная</NavLink>
-            </li>
-            <li>
-              <NavLink to="/about">О сайте</NavLink>
-            </li>
-            <li>
-              <NavLink to="/about">Правила</NavLink>
-            </li>
-            <li>
-              <NavLink to="/about">Вопросы</NavLink>
-            </li>
-            <li>
-              <NavLink to="/about">Рекламодателям</NavLink>
-            </li>
-          </ul>
-        </nav>
-        <nav className="header__logon">
-          <div className="header__logon-btn btn btn-text">Регистрация</div>
-          <div className="header__logon-btn btn btn-text">Войти</div>
-        </nav>
-
+        <div className="header__block">
+          <nav className="header__nav">
+            <ul>
+              <li>
+                <NavLink to="/">Главная</NavLink>
+              </li>
+              <li>
+                <NavLink to="/about">О сайте</NavLink>
+              </li>
+              <li>
+                <NavLink to="/about">Правила</NavLink>
+              </li>
+              <li>
+                <NavLink to="/about">Вопросы</NavLink>
+              </li>
+              <li>
+                <NavLink to="/about">Рекламодателям</NavLink>
+              </li>
+            </ul>
+          </nav>
+          <nav className="header__logon">
+            <div className="header__logon-btn btn btn-text">Регистрация</div>
+            <div className="header__logon-btn btn btn-text">Войти</div>
+          </nav>
+        </div>
         <div className="header__burger" onClick={toggleMenu}>
           <span></span>
         </div>

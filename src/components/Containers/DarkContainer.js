@@ -15,6 +15,8 @@ const DarkContainer = ({ children }) => {
         <div className="main-background__circle3" />
         <div className="main-background__circle4" />
         <div className="main-background__circle5" />
+        <div className="main-background__circle6" />
+        <div className="main-background__circle7" />
       </div>
       {children}
     </>
