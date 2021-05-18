@@ -6,8 +6,9 @@ import Loader from "./Loader/Loader";
 import "./app.scss";
 import Main from "../pages/Main";
 import About from "../pages/About";
-import { NavLink, Route } from "react-router-dom";
-import { BrowserRouter } from "react-router-dom";
+import LK from "../pages/LK";
+import { NavLink, Redirect, Route } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 
 const App = () => {
@@ -20,13 +21,11 @@ const App = () => {
   const routes = [
     { path: "/", Component: Main },
     { path: "/about", Component: About },
+    { path: "/lk", Component: LK },
   ];
-  // useEffect(() => {
-  //   setTimeout(() => setLoaded(true), 1000);
-  //   console.log(loaded);
-  // });
+
   return (
-    <BrowserRouter>
+    <Router>
       <div className="app">
         {routes.map(({ path, Component }) => (
           <Route key={path} exact path={path}>
@@ -44,7 +43,7 @@ const App = () => {
           </Route>
         ))}
       </div>
-    </BrowserRouter>
+    </Router>
   );
 };
 

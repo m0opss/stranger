@@ -10,11 +10,11 @@ const Container = ({ type, children }) => {
           <Header />
           {children}
         </DarkContainer>
-      ) : type == "light1" ? (
-        <DarkContainer>
+      ) : type == "lk" ? (
+        <>
           <Header />
           {children}
-        </DarkContainer>
+        </>
       ) : (
         <DarkContainer>
           <Header />

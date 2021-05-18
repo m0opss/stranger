@@ -38,8 +38,12 @@ const Header = ({}) => {
             </ul>
           </nav>
           <nav className="header__logon">
-            <div className="header__logon-btn btn btn-text">Регистрация</div>
-            <div className="header__logon-btn btn btn-text">Войти</div>
+            <NavLink to="/" className="header__logon-btn btn btn-text">
+              Регистрация
+            </NavLink>
+            <NavLink to="/lk" className="header__logon-btn btn btn-text">
+              Войти
+            </NavLink>
           </nav>
         </div>
         <div className="header__burger" onClick={toggleMenu}>
