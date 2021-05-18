@@ -25,15 +25,13 @@ a {
   align-items: center;
   justify-content: center;
   transition: 0.5s;
-  
 }
 
 .container {
   margin: auto;
-  max-width: 1780px;
-  padding: 0 40px;
+  max-width: 1800px;
+  padding: 0 50px;
   width: 100%;
-
 }
 
 .page {
@@ -43,9 +41,7 @@ a {
   overflow-x: hidden;
   transform-style: flat;
   perspective: 500px;
-  background: url('../assets/img/mainBg.png') no-repeat ;
-  background-position: center top;
-  // background-size: 100%;
+
 }
 
 .page-enter-active {

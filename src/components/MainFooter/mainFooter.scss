@@ -48,8 +48,8 @@
 
 @media screen and (max-width: 1320px) {
   .footer {
-    height: 152px;
-    padding-bottom: 0;
+    height: 162px;
+    padding-bottom: 10px;
   }
   .footer .footer__first-line {
     .footer__title {
@@ -79,17 +79,47 @@
   }
 
   .footer .footer__first-line .footer__title {
-    font-size: 12px;
+    font-size: 14px;
     margin-bottom: 9px;
     line-height: 15px;
   }
   .footer .footer__first-line .footer__text {
-    font-size: 10px;
+    font-size: 12px;
   }
   .footer .footer__first-line .footer__social-item img {
     height: 15px;
   }
   .footer .footer__second-line {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .footer {
+    margin-top: auto;
+  }
+}
+@media screen and (max-width: 490px) {
+  .footer {
+    height: 87px;
+
+    .container {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+  .footer .footer__first-line .footer__title {
+    font-size: 12px;
+    line-height: 15px;
+    letter-spacing: 0.25px;
+  }
+  .footer .footer__first-line .footer__text {
     font-size: 10px;
+    line-height: 14px;
+    letter-spacing: 0.25px;
+  }
+  .footer .footer__second-line {
+    font-size: 10px;
+    line-height: 12px;
   }
 }

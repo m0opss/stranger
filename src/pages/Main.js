@@ -29,7 +29,9 @@ const Main = () => {
           <p>
             MASTER THE GAME, <span>BECOME STRANGERS</span>
           </p>
-          <img src={alien} />
+          <div className="main-block__img-container">
+            <img src={alien} />
+          </div>
 
           <a className="btn main-block__btn">НАЧАТЬ</a>
           <Link to="/rules" className="main-block__play-rules">

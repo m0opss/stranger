@@ -15,7 +15,11 @@ const MainFooter = () => {
           </div>
           <div className="footer__social">
             <p className="footer__title">Присоединяйся к нам</p>
-            <a className="footer__social-item">
+            <a
+              className="footer__social-item"
+              href="https://www.instagram.com/strangergocom/?utm_medium=copy_link"
+              target='open'
+            >
               <img src={instIcon} />
               <p className="footer__text">strangers</p>
             </a>

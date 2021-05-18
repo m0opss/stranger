@@ -2,6 +2,15 @@
   // position: relative;
   animation: darkAnima 0.5s linear backwards;
   height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: url("../../assets/img/mainBg.png") no-repeat;
+  background-position: center top;
+  @media screen and (max-width: 767px) {
+    background: url("../../assets/img/mainBgMob.png") no-repeat;
+    background-position: center 80%;
+  }
 }
 
 .dark-container {
@@ -84,8 +93,8 @@
     box-shadow: 0px 4px 10px #ffffff;
   }
   .main-background__circle2 {
-    top: 350px;
-    right: -177px;
+    top: 430px;
+    right: -90px;
     width: 294px;
     height: 294px;
     background: #979797;
@@ -122,6 +131,7 @@
     width: 119px;
     height: 119px;
     animation: mainBackground__translate_TR-BL 9s infinite alternate;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
     background: black;
   }
   .main-background__circle7 {
@@ -164,74 +174,19 @@
   }
 }
 
-@media screen and (max-width: 1515px) {
-  .dark-container {
-    .main-background__rect1 {
-      // left: 37vw;
-    }
-    .main-background__rect2 {
-      // left: 58vw;
-    }
-    .main-background__rect3 {
-      // left: 118vw;
-    }
-    .main-background__rect4 {
-      // top: 143px;
-      // left: 124vw;
-    }
-    .main-background__circle1 {
-      // left: 32vw;
-      // top: 400px;
-    }
-    .main-background__circle2 {
-      // left: 132vw;
-    }
-    .main-background__circle3 {
-      // left: 62vw;
-    }
-    .main-background__circle4 {
-      // left: 109vw;
-    }
-  }
-}
-
-@media screen and (max-width: 1140px) {
-  .dark-container {
-    .main-background__rect1 {
-      // left: 72vw;
-    }
-    .main-background__rect2 {
-      // left: 87vw;
-    }
-    .main-background__rect3 {
-      // left: 151vw;
-    }
-    .main-background__rect4 {
-      // left: 167vw;
-    }
-    .main-background__circle1 {
-      // left: 60vw;
-    }
-    .main-background__circle2 {
-      // left: 167vw;
-    }
-    .main-background__circle3 {
-      // display: none;
-    }
-    .main-background__circle4 {
-      // display: none;
-    }
-  }
-}
 @media screen and (max-width: 767px) {
   .dark-container {
     .main-background__circle1,
     .main-background__circle2,
     .main-background__circle3,
     .main-background__circle4,
+    .main-background__circle5,
+    .main-background__circle6,
+    .main-background__circle7,
     .main-background__rect1,
     .main-background__rect2,
     .main-background__rect3,
+    .main-background__rect5,
     .main-background__rect4 {
       display: none;
     }
