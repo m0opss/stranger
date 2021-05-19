@@ -1,4 +1,22 @@
 .lk-page__container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  max-width: 1508px;
+  padding: 0 50px;
+  margin: auto;
+  @media screen and (max-width: 1508px){
+    max-width: 1208px;
+  }
+  @media screen and (max-width: 1208px){
+    max-width: 1000px;
+    padding: 0 20px;
+  }
+  @media screen and (max-width: 1000px){
+    flex-wrap: wrap;
+  }
+}
+
+.lk-page {
+  background: #e5e5e5;
+  min-height: 100vh;
 }

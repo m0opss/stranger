@@ -11,18 +11,23 @@ import { NavLink, Redirect, Route } from "react-router-dom";
 import { HashRouter as Router } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 
-const App = () => {
+const App = (props) => {
   // const dispatch = useDispatch();
   // const isFetching = useSelector((state) => state.repos.isFetching);
   // const onClickFetching = () => {
   //   dispatch(setFetching(false));
   // };
-  // const [loaded, setLoaded] = React.useState(false);
+  const [loaded, setLoaded] = React.useState(false);
   const routes = [
     { path: "/", Component: Main },
     { path: "/about", Component: About },
     { path: "/lk", Component: LK },
   ];
+
+  // useEffect(() => {
+  //   console.log(props)
+  //   setTimeout(() => setLoaded(true), 1000);
+  // }, []);
 
   return (
     <Router>
@@ -32,12 +37,12 @@ const App = () => {
             {({ match }) => (
               <CSSTransition
                 timeout={1000}
-                classNames="page"
+                // classNames="page"
                 unmountOnExit
                 in={match != null}
               >
                 <Component />
-                {/* {loaded ?  : <>asdasd</>} */}
+                {/* {loaded ? <Component /> : <>asdasd</>} */}
               </CSSTransition>
             )}
           </Route>

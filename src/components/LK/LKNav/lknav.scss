@@ -1,0 +1,129 @@
+.lk-nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 19px;
+}
+.lk-nav__block {
+  width: 560px;
+  height: 263px;
+  border-radius: 20px;
+  @media screen and (max-width: 1508px) {
+    width: 470px;
+  }
+  @media screen and (max-width: 1208px) {
+    width: 440px;
+  }
+}
+.lk-nav__block + .lk-nav__block {
+  margin-top: 47px;
+}
+
+.lknav__nav-panel {
+  padding: 36px 36px 46px 36px;
+  background: white;
+  .lknav__nav-panel-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: #000000;
+  }
+  .lknav__buttons-panel {
+    margin: 0 33px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    // align-items: center;
+  }
+}
+
+.balance-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #17ca9b;
+  padding: 20px 45px;
+  color: white;
+
+  .balance-card__title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 219%;
+  }
+  .balance-card__balance {
+    font-weight: 500;
+    font-size: 60px;
+    line-height: 140%;
+    // height: 82px;
+  }
+  .balance-card__sum-block {
+    display: flex;
+    align-items: center;
+    p {
+      font-size: 16px;
+      line-height: 219%;
+      opacity: 0.8;
+      margin-right: 10px;
+    }
+  }
+  .balance-card__arrow-block {
+    display: flex;
+    margin-top: 16px;
+    .balance-card__up-block,
+    .balance-card__down-block {
+      display: flex;
+
+      p {
+        font-size: 16px;
+        line-height: 219%;
+        margin-left: 12px;
+      }
+    }
+    .balance-card__up-block {
+      margin-left: 35px;
+    }
+  }
+}
+
+.progress-card {
+  display: flex;
+  padding: 26px 35px;
+  background: white;
+  .progress-card__text-info {
+    .progress-card__title {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24px;
+      text-align: center;
+      color: #000000;
+      margin-bottom: 35px;
+    }
+    .progress-card__text-block {
+      margin-bottom: 30px;
+
+      p {
+        margin-bottom: 8px;
+      }
+      .progress-card__text {
+        font-weight: normal;
+        font-size: 14px;
+        line-height: 17px;
+        letter-spacing: 0.25px;
+        color: rgba(0, 0, 0, 0.7);
+      }
+
+      .progress-card__text_accent {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 24px;
+        letter-spacing: 0.25px;
+        color: #22b67d;
+      }
+    }
+  }
+
+  .progress-card__circle-info {
+    margin-left: 117px;
+  }
+}

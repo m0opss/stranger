@@ -41,6 +41,10 @@
     text-align: center;
     margin-right: 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.95);
+    &:hover {
+      color: #17ca9b;
+      border-bottom-color: #17ca9b;
+    }
   }
   .main-block__btn {
 
@@ -58,17 +62,14 @@
     font-size: 35px;
   }
 
-  animation: mainBlockAnima 1.2s;
+  // animation: mainBlockAnima 1.2s;
 }
 
 @keyframes mainBlockAnima {
-  0% {
-    transform: translateY(400vh);
-  }
   50% {
     transform: translateY(400vh);
   }
-  0% {
+  100% {
     transform: translateY(0);
   }
 }

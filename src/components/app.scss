@@ -24,7 +24,9 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
-  // transition: 0.5s;
+  @media screen and (min-width: 768px) {
+    transition: 0.5s;
+  }
 }
 
 .container {
@@ -41,7 +43,6 @@ a {
   overflow-x: hidden;
   transform-style: flat;
   perspective: 500px;
-
 }
 
 .page-enter-active {
