@@ -1,0 +1,138 @@
+.settings-block {
+  position: relative;
+  .settings-block__title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: #000000;
+    white-space: nowrap;
+    margin-bottom: 50px;
+  }
+  .settings-block__title_small {
+    margin-bottom: 25px;
+  }
+  .settings-block__descr {
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 219%;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 40px;
+  }
+}
+
+.settings-block__close-btn {
+  display: flex; /* используем flex для центрирования содержимого */
+  align-items: center; /* центрируем содержимое кнопки */
+  position: absolute;
+  top: 28px;
+  right: 36px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  z-index: 10;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  span,
+  span::before,
+  span::after {
+    display: flex;
+    position: absolute;
+    justify-content: flex-end;
+    width: 100%;
+    height: 2px;
+    background-color: #737373;
+  }
+  span {
+    transform: rotate(45deg);
+  }
+  span::before {
+    content: "";
+    top: 0;
+    transform: rotate(0);
+  }
+  span::after {
+    content: "";
+    top: 0;
+    transform: rotate(90deg);
+  }
+}
+
+.buttons-block {
+  .buttons-block__button {
+    width: 320px;
+    height: 59.61px;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}
+.settings-block__change {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  .settings-block__inputs {
+    width: 100%;
+    max-width: 373px;
+  }
+}
+.custom-input + .custom-input {
+  margin-top: 20px;
+}
+.custom-input {
+  height: 47px;
+  width: 100%;
+  position: relative;
+  img {
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 26px;
+    top: 15px;
+  }
+  input {
+    background: #ffffff;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 30px;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    height: 100%;
+    width: 100%;
+    padding: 13px 20px;
+    padding-left: 61px;
+    border: none;
+    &::placeholder {
+      color: rgba(0, 0, 0, 0.3);
+    }
+    &:active,
+    &:focus {
+      outline: none;
+    }
+  }
+}
+.lk-btn {
+  border-radius: 50px;
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.25);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  color: white;
+  background: #b7b7b7;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+
+  color: #ffffff;
+  &:hover {
+    background: rgba(0, 0, 0, 0.4);
+  }
+}
+.save-settings-btn {
+  max-width: 323.13px;
+  width: 100%;
+  height: 59.61px;
+  margin-top: 50px;
+}

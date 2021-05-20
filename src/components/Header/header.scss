@@ -46,6 +46,7 @@
       width: 70%;
       top: 8px;
     }
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
   .header__burger-menu {
     position: absolute;
@@ -107,6 +108,7 @@
       .header__logon-login {
         display: flex;
         align-items: center;
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
         p {
           margin-left: 10px;
           font-style: normal;
@@ -125,16 +127,17 @@
       }
     }
     .header__close-menu-btn {
-      padding-bottom: 0;
+      // padding-bottom: 0;
       display: flex; /* используем flex для центрирования содержимого */
       align-items: center; /* центрируем содержимое кнопки */
       position: absolute;
-      top: 24px;
+      top: 31px;
       right: 20px;
       width: 30px;
       height: 30px;
       cursor: pointer;
       z-index: 10;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
       span,
       span::before,
       span::after {
