@@ -6,6 +6,7 @@ import rub from "../../../assets/img/LK/lkBtnRub.svg";
 import lkDown from "../../../assets/img/LK/lkDown.svg";
 import lkHelpSum from "../../../assets/img/LK/lkHelpSum.svg";
 import lkUp from "../../../assets/img/LK/lkUp.svg";
+import { Progress } from "antd";
 
 import "./lknav.scss";
 
@@ -72,7 +73,19 @@ const LKProgress = ({}) => (
         <p className="progress-card__text">последний раз</p>
       </div>
     </div>
-    <div className="progress-card__circle-info"></div>
+    <div className="progress-card__circle-info">
+      <Progress
+        type="circle"
+        percent={75}
+        width={210}
+        strokeWidth="7"
+        trailColor='#E1E1E1'
+        strokeColor={{
+          "0%": "#17CA9B",
+          "100%": "#17CA9B",
+        }}
+      />
+    </div>
   </div>
 );
 

@@ -28,6 +28,9 @@ a {
     transition: 0.5s;
   }
 }
+html body .app p {
+  margin-bottom: 0;
+}
 
 .container {
   margin: auto;

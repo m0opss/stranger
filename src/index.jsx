@@ -5,6 +5,7 @@ import App from "./components/App.jsx";
 import { Provider } from "react-redux";
 import {store} from './reducers'
 
+import 'antd/dist/antd.css'
 
 render(
   <Provider store={store}>
