@@ -4,9 +4,9 @@ import sett from "../../../assets/img/LK/lkBtnSettings.svg";
 import arr from "../../../assets/img/LK/lkBtnArrow.svg";
 import rub from "../../../assets/img/LK/lkBtnRub.svg";
 
-import plus from "../../../assets/img/LK/lkBtnRub.svg";
-import box from "../../../assets/img/LK/lkBtnRub.svg";
-import watch from "../../../assets/img/LK/lkBtnRub.svg";
+import plus from "../../../assets/img/LK/lkBtnPlus.svg";
+import box from "../../../assets/img/LK/lkBtnBox.svg";
+import watch from "../../../assets/img/LK/lkBtnWatch.svg";
 
 import lkDown from "../../../assets/img/LK/lkDown.svg";
 import lkHelpSum from "../../../assets/img/LK/lkHelpSum.svg";
@@ -15,12 +15,13 @@ import { Progress } from "antd";
 
 import "./lknav.scss";
 
-const LKNavPanel = ({ buttons, activeTab, setActiveTab, isMobile }) => (
+const LKNavPanel = ({ buttons, activeTab, setActiveTab, isMobile, title }) => (
   <div className="lk-nav__block lknav__nav-panel">
-    <p className="lknav__nav-panel-title">Операции</p>
+    <p className="lknav__nav-panel-title">{title}</p>
     <div className="lknav__buttons-panel">
       {buttons.map((i) => (
         <LKButton
+          key={i.type}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
           name={i.name}
@@ -29,31 +30,6 @@ const LKNavPanel = ({ buttons, activeTab, setActiveTab, isMobile }) => (
           link={i.link}
         />
       ))}
-      {/* <LKButton
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        name="Перевести"
-        img={arr}
-        type={isMobile ? `arr-m` : "arr"}
-        link="/transfer"
-      />
-
-      <LKButton
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        name="История транзакций"
-        img={rub}
-        type={isMobile ? `history-m` : "history"}
-        link="#history"
-      />
-
-      <LKButton
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        name="Настройки"
-        img={sett}
-        type="set"
-      /> */}
     </div>
   </div>
 );
@@ -121,7 +97,7 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
       name: "Перевести",
       img: arr,
       type: isMobile ? `arr-m` : "arr",
-      link: "/transfer",
+      link: "transfer",
     },
     {
       name: "История транзакций",
@@ -135,14 +111,14 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
     {
       name: "Добавить посты",
       img: plus,
-      type: isMobile ? `arr-m` : "arr",
-      link: "/transfer",
+      type: "add",
+      link: "addPost",
     },
     {
       name: "Архив",
       img: box,
       type: "arch",
-      link: "",
+      link: "archive",
     },
     { name: "Настройки", img: sett, type: "set", link: "" },
   ];
@@ -154,10 +130,10 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
       link: "#history",
     },
     {
-      name: "Архив",
+      name: "Просмотр рекламы",
       img: watch,
-      type: "",
-      link: "",
+      type: "watch",
+      link: "#watch",
     },
   ];
   return (
@@ -169,12 +145,14 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
             setActiveTab={setActiveTab}
             isMobile={isMobile}
             buttons={adminPanel_1}
+            title="Действия"
           />
           <LKNavPanel
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             isMobile={isMobile}
             buttons={adminPanel_2}
+            title="Статистика"
           />
         </>
       ) : (
@@ -185,6 +163,7 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
             setActiveTab={setActiveTab}
             isMobile={isMobile}
             buttons={userPanel}
+            title="Операции"
           />
           <LKProgress isMobile={isMobile} />
         </>

@@ -7,15 +7,15 @@ import LKContent from "../components/LK/LKContent/LKContent";
 import "./lk.scss";
 
 const LK = () => {
-  const [activeTab, setActiveTab] = useState("arr");
+  const [activeTab, setActiveTab] = useState("");
   const isAdmin = true;
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
 
   useEffect(() => {
-    if (window.innerWidth > 767) {
+    if (!isMobile) {
       if (isAdmin) {
-        setTimeout(() => setActiveTab("arr"), 1000);
+        setTimeout(() => setActiveTab("set"), 1000);
       } else {
         setTimeout(() => setActiveTab("arr"), 1000);
       }
@@ -33,8 +33,9 @@ const LK = () => {
           setActiveTab={setActiveTab}
           isAdmin={isAdmin}
           isMobile={isMobile}
-        />
+          />
         <LKContent
+          isAdmin={isAdmin}
           activeTab={activeTab}
           setActiveTab={setActiveTab}
           isMobile={isMobile}

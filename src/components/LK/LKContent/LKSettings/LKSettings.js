@@ -142,7 +142,7 @@ const ChangeLogBlock = ({ setActiveblock }) => {
   );
 };
 
-const ButtonsBlock = ({ setActiveblock }) => {
+const ButtonsBlock = ({ setActiveblock, isAdmin }) => {
   return (
     <div className="settings-block__change buttons-block">
       <div
@@ -157,11 +157,21 @@ const ButtonsBlock = ({ setActiveblock }) => {
       >
         изменить пароль
       </div>
+      {isAdmin ? (
+        <div
+          className="buttons-block__button btn lk-btn lk-btn"
+          onClick={() => setActiveblock("addUser")}
+        >
+          добавить пользователя
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
 
-const SettingsBlock = ({ setActiveTab }) => {
+const SettingsBlock = ({ setActiveTab, isAdmin, isMobile }) => {
   const [activeBlock, setActiveblock] = useState("");
 
   return (
@@ -183,10 +193,33 @@ const SettingsBlock = ({ setActiveTab }) => {
             </p>
             <ChangeLogBlock setActiveblock={setActiveblock} />
           </>
+        ) : activeBlock == "addUser" ? (
+          <>
+            <p
+              className="settings-block__title"
+              style={{ marginBottom: "30px" }}
+            >
+              Добавить пользователя
+            </p>
+            <div className="settings-block__user-type">
+              <label className="rad-label">
+                <input type="radio" class="rad-input" name="rad" />
+                <div className="rad-design"></div>
+                <div className="rad-text">Обычный</div>
+              </label>
+
+              <label className="rad-label">
+                <input type="radio" class="rad-input" name="rad" />
+                <div className="rad-design"></div>
+                <div className="rad-text">Администратор</div>
+              </label>
+            </div>
+            <ChangeLogBlock setActiveblock={setActiveblock} />
+          </>
         ) : (
           <>
             <p className="settings-block__title">Настройки аккаунта</p>
-            {window.innerWidth > 767 ? (
+            {!isMobile ? (
               <></>
             ) : (
               <div
@@ -196,7 +229,7 @@ const SettingsBlock = ({ setActiveTab }) => {
                 <span></span>
               </div>
             )}
-            <ButtonsBlock setActiveblock={setActiveblock} />
+            <ButtonsBlock setActiveblock={setActiveblock} isAdmin={isAdmin} />
           </>
         )}
       </div>

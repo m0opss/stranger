@@ -24,6 +24,16 @@
       line-height: 22px;
     }
   }
+  .settings-block__user-type {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 40px;
+    .rad-label {
+      display: flex;
+      align-items: center;
+    }
+  }
 
   .settings-block__descr {
     font-weight: normal;
@@ -168,4 +178,68 @@
     font-size: 18px;
     line-height: 22px;
   }
+}
+
+// radio
+.rad-label {
+  display: flex;
+  align-items: center;
+  border-radius: 100px;
+  padding: 14px 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.rad-label + .rad-label {
+  margin-left: 30px;
+}
+
+.rad-input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  z-index: -1;
+}
+
+.rad-design {
+  width: 22px;
+  height: 22px;
+  border-radius: 100px;
+
+  background: linear-gradient(90.6deg, #21b67d 2.8%, #0fdab3 97.2%);
+  position: relative;
+}
+
+.rad-design::before {
+  content: "";
+
+  display: inline-block;
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+
+  background: hsl(0, 0%, 90%);
+  transform: scale(1.1);
+  transition: 0.3s;
+}
+
+.rad-input:checked + .rad-design::before {
+  transform: scale(0);
+}
+
+.rad-text {
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #000000;
+  margin-left: 15px;
+}
+
+.rad-input:checked ~ .rad-text {
+  color: hsl(0, 0%, 40%);
 }

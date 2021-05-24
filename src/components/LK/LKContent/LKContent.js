@@ -2,22 +2,27 @@ import React, { useState } from "react";
 
 import "./lkcontent.scss";
 import HistoryBlock from "./LKHistory/LKHistory";
+import WatchBlock from "./LKWatch/LKWatch";
 import DonateBlock from "./LKDonate/LKDonateBlock";
 import SettingsBlock from "./LKSettings/LKSettings";
 
-const LKContent = ({ activeTab, setActiveTab }) => {
-  const [card, setCard] = useState("visa");
-
+const LKContentUser = ({
+  activeTab,
+  setActiveTab,
+  isMobile,
+  setCard,
+  card,
+}) => {
   return (
     <>
-      {window.innerWidth < 768 ? (
+      {isMobile ? (
         <>
           <HistoryBlock type="mobile" />
           {activeTab != "set" ? (
             <></>
           ) : (
             <div className="lk-content">
-              <SettingsBlock setActiveTab={setActiveTab} />
+              <SettingsBlock setActiveTab={setActiveTab} isMobile={isMobile} />
             </div>
           )}
         </>
@@ -28,11 +33,62 @@ const LKContent = ({ activeTab, setActiveTab }) => {
           ) : activeTab == "history" ? (
             <HistoryBlock />
           ) : activeTab == "set" ? (
-            <SettingsBlock setActiveTab={setActiveTab} />
+            <SettingsBlock setActiveTab={setActiveTab} isMobile={isMobile} />
           ) : (
             <></>
           )}
         </div>
+      )}
+    </>
+  );
+};
+const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
+  return (
+    <>
+      {isMobile ? (
+        <></>
+      ) : (
+        <div className="lk-content">
+          {activeTab == "watch" ? (
+            <WatchBlock />
+          ) : activeTab == "history" ? (
+            <HistoryBlock />
+          ) : activeTab == "set" ? (
+            <SettingsBlock
+              setActiveTab={setActiveTab}
+              isMobile={isMobile}
+              isAdmin={true}
+            />
+          ) : (
+            <></>
+          )}
+        </div>
+      )}
+    </>
+  );
+};
+
+const LKContent = ({ activeTab, setActiveTab, isMobile, isAdmin }) => {
+  const [card, setCard] = useState("visa");
+
+  return (
+    <>
+      {isAdmin ? (
+        <LKContentAdmin
+          isAdmin={isAdmin}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          isMobile={isMobile}
+        />
+      ) : (
+        <LKContentUser
+          isAdmin={isAdmin}
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          isMobile={isMobile}
+          setCard={setCard}
+          card={card}
+        />
       )}
     </>
   );

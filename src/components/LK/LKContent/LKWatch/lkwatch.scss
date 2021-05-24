@@ -1,0 +1,30 @@
+.lk-content__block.watch-block {
+  background: #17ca9b;
+  .history-block__title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    color: white;
+    white-space: nowrap;
+  }
+
+  .history-block__rows-list {
+    margin-top: 40px;
+    width: 100%;
+    .watch-block__row {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      p {
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 20px;
+        text-align: center;
+        color: white;
+      }
+    }
+  }
+}
