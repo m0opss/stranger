@@ -10,6 +10,7 @@ import LK from "../pages/LK";
 import { NavLink, Redirect, Route } from "react-router-dom";
 import { HashRouter as Router } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
+import Transfer from "../pages/Transfer";
 
 const App = (props) => {
   // const dispatch = useDispatch();
@@ -22,6 +23,7 @@ const App = (props) => {
     { path: "/", Component: Main },
     { path: "/about", Component: About },
     { path: "/lk", Component: LK },
+    { path: "/transfer", Component: Transfer },
   ];
 
   // useEffect(() => {

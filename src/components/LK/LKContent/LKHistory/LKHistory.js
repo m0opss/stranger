@@ -1,6 +1,6 @@
 import React from "react";
 
-import './lkhistory.scss'
+import "./lkhistory.scss";
 
 const HistoryRow = ({ date, card, sum }) => (
   <div className="history-block__row">
@@ -10,9 +10,11 @@ const HistoryRow = ({ date, card, sum }) => (
   </div>
 );
 
-const HistoryBlock = () => (
+const HistoryBlock = ({ type }) => (
   <div className="lk-content__block history-block">
-    <p className="history-block__title">История транзакций</p>
+    <a name="history" className="history-block__title">
+      История транзакций
+    </a>
     <div className="history-block__rows-list">
       <HistoryRow date="02.02.21" card="**** 9999" sum="100₽" />
       <HistoryRow date="02.02.21" card="**** 9999" sum="100₽" />

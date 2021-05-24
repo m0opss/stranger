@@ -78,7 +78,7 @@ const Header = ({}) => {
             <NavLink to="/about">Рекламодателям</NavLink>
           </li>
           <div className="header__burger-menu-logon">
-            <Link to="/" className="header__logon-login">
+            <Link to="/lk" className="header__logon-login">
               <img src={logonMobile} alt="" />
               <p>Войти</p>
             </Link>

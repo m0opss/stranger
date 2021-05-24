@@ -1,5 +1,15 @@
 .settings-block {
   position: relative;
+  .settings-block__mobile-wrapper {
+    border-radius: 20px;
+    background: white;
+    padding: 50px 45px;
+
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
   .settings-block__title {
     font-weight: 600;
     font-size: 20px;
@@ -8,52 +18,35 @@
     color: #000000;
     white-space: nowrap;
     margin-bottom: 50px;
+    @media screen and (max-width: 767px) {
+      margin-bottom: 30px;
+      font-size: 18px;
+      line-height: 22px;
+    }
   }
-  .settings-block__title_small {
-    margin-bottom: 25px;
-  }
+
   .settings-block__descr {
     font-weight: normal;
     font-size: 16px;
     line-height: 219%;
     color: rgba(0, 0, 0, 0.6);
     margin-bottom: 40px;
+    white-space: nowrap;
   }
-}
-
-.settings-block__close-btn {
-  display: flex; /* используем flex для центрирования содержимого */
-  align-items: center; /* центрируем содержимое кнопки */
-  position: absolute;
-  top: 28px;
-  right: 36px;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  z-index: 10;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  span,
-  span::before,
-  span::after {
-    display: flex;
-    position: absolute;
-    justify-content: flex-end;
-    width: 100%;
-    height: 2px;
-    background-color: #737373;
+  @media screen and (max-width: 767px) {
+    padding-top: 58px !important;
+    justify-content: center;
+    text-align: center;
+    .settings-block__mobile-wrapper {
+      position: relative;
+    }
   }
-  span {
-    transform: rotate(45deg);
-  }
-  span::before {
-    content: "";
-    top: 0;
-    transform: rotate(0);
-  }
-  span::after {
-    content: "";
-    top: 0;
-    transform: rotate(90deg);
+  @media screen and (max-width: 460px) {
+    .settings-block__descr {
+      font-size: 12px;
+      line-height: 15px;
+      margin-bottom: 25px;
+    }
   }
 }
 
@@ -65,7 +58,19 @@
     font-size: 20px;
     line-height: 24px;
     text-align: center;
-    margin-bottom: 30px;
+    @media screen and (max-width: 767px) {
+      width: 243px;
+      height: 40px;
+      font-size: 16px;
+      line-height: 20px;
+      text-align: center;
+    }
+  }
+  .buttons-block__button + .buttons-block__button {
+    margin-top: 30px;
+    @media screen and (max-width: 767px) {
+      margin-top: 15px;
+    }
   }
 }
 .settings-block__change {
@@ -73,13 +78,20 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  // justify-content: center;
   .settings-block__inputs {
     width: 100%;
     max-width: 373px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 .custom-input + .custom-input {
   margin-top: 20px;
+  @media screen and (max-width: 767px) {
+    margin-top: 15px;
+  }
 }
 .custom-input {
   height: 47px;
@@ -113,10 +125,17 @@
       outline: none;
     }
   }
+  @media screen and (max-width: 767px) {
+    width: 257px;
+    height: 40px;
+    input {
+      font-size: 12px;
+      line-height: 15px;
+    }
+  }
 }
 .lk-btn {
   border-radius: 50px;
-  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.25);
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   color: white;
   background: #b7b7b7;
@@ -130,9 +149,23 @@
     background: rgba(0, 0, 0, 0.4);
   }
 }
+.lk-btn__disable {
+  box-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.25);
+  cursor: inherit;
+  background-color: #c4c4c4;
+  &:hover {
+    background-color: #c4c4c4;
+  }
+}
 .save-settings-btn {
   max-width: 323.13px;
   width: 100%;
   height: 59.61px;
   margin-top: 50px;
+  @media screen and (max-width: 767px) {
+    margin-top: 30px;
+    height: 47px;
+    font-size: 18px;
+    line-height: 22px;
+  }
 }

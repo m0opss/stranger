@@ -7,18 +7,38 @@ import LKContent from "../components/LK/LKContent/LKContent";
 import "./lk.scss";
 
 const LK = () => {
-  const [activeTab, setActiveTab] = useState("");
+  const [activeTab, setActiveTab] = useState("arr");
+  const isAdmin = true;
+  let isMobile = false;
+  if (window.innerWidth < 768) isMobile = true;
 
   useEffect(() => {
-    setTimeout(() => setActiveTab("arr"), 1000);
+    if (window.innerWidth > 767) {
+      if (isAdmin) {
+        setTimeout(() => setActiveTab("arr"), 1000);
+      } else {
+        setTimeout(() => setActiveTab("arr"), 1000);
+      }
+    } else {
+      setActiveTab("");
+    }
   }, []);
 
   return (
     <div className="page lk-page">
       <Header />
       <div className="lk-page__container">
-        <LKNav activeTab={activeTab} setActiveTab={setActiveTab} />
-        <LKContent activeTab={activeTab} />
+        <LKNav
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          isAdmin={isAdmin}
+          isMobile={isMobile}
+        />
+        <LKContent
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          isMobile={isMobile}
+        />
       </div>
     </div>
   );

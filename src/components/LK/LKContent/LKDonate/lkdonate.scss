@@ -1,5 +1,5 @@
 .donate-block {
-
+  background: white;
   & > p {
     font-weight: 600;
     font-size: 20px;
@@ -7,17 +7,55 @@
     text-align: center;
     color: #000000;
   }
+  .donate-block__title_m {
+    margin-bottom: 20px;
+  }
   .donate-block__main-banner {
-    width: 433px;
+    max-width: 433px;
+    width: 100%;
     height: 280px;
-    background: #2c2c2c;
+    background-image: url("../../../../assets/img/lkBg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    // background: #2c2c2c;
     position: relative;
-    border-radius: 20px;
+    border-radius: 20px 40px 20px 40px;
     display: flex;
     align-items: center;
     flex-direction: column;
     padding: 50px 108px;
     margin-bottom: 10px;
+    position: relative;
+    // .donate-block__main-banner_bg-el_1,
+    // .donate-block__main-banner_bg-el_2,
+    // .donate-block__main-banner_bg-el_3,
+    // .donate-block__main-banner_bg-el_4,
+    // .donate-block__main-banner_bg-el_5 {
+    //   position: absolute;
+    // }
+    // .donate-block__main-banner_bg-el_1 {
+    //   top: 16px;
+    //   left: 25px;
+    //   border-left: 20px solid transparent;
+    //   border-right: 20px solid transparent;
+    //   border-bottom: 30px solid #afb1b1;
+    //   transform: rotate(15deg);
+    // }
+    // .donate-block__main-banner_bg-el_2 {
+    //   width: 150px;
+    //   height: 150px;
+    //   border-radius: 20px;
+    //   background: linear-gradient(90deg, #FFBC37 42.34%, transparent 42.34%) 0 0;
+    //   background-repeat: no-repeat;
+    //   background-size: 50% 50%;
+    // }
+    // .donate-block__main-banner_bg-el_3 {
+    // }
+    // .donate-block__main-banner_bg-el_4 {
+    // }
+    // .donate-block__main-banner_bg-el_5 {
+    // }
+
     .donate-block__balance-title {
       font-weight: 500;
       font-size: 15.3004px;
@@ -49,14 +87,31 @@
       border: 1.53004px solid rgba(255, 255, 255, 0.2);
       border-radius: 7.65018px;
     }
+
+    @media screen and (max-width: 622px) {
+      max-height: 183px;
+      width: 280px;
+      padding: 32px 70px;
+      border-radius: 20px 30px;
+      margin-bottom: 20px;
+      .donate-block__balance {
+        font-size: 60px;
+        line-height: 73px;
+      }
+      .donate-block__sum {
+        font-size: 9px;
+        line-height: 11px;
+      }
+    }
   }
 
   .donate-block__select-card {
     display: flex;
     justify-content: space-between;
-    width: 456px;
-    margin-top: 30px;
-    margin-bottom: 27px;
+    width: 80%;
+    max-width: 332px;
+    margin-top: 20px;
+    margin-bottom: 20px;
     li {
       list-style: none;
       width: 84px;
@@ -68,16 +123,34 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      background-repeat: no-repeat;
+      background-position: center;
+      // @media screen and (max-width: 767px) {
+      //   background-size: 60%;
+      // }
       &:hover {
         background: #dadada;
         border: none;
+        background-repeat: no-repeat;
+        background-position: center;
       }
     }
     li.active {
       border: none;
       background: #dadada;
+      background-repeat: no-repeat;
+      background-position: center;
       box-shadow: inset 0.622222px 0.622222px 1.24444px rgba(0, 0, 0, 0.25);
       border-radius: 5px;
+    }
+    @media screen and (max-width: 622px) {
+      width: 100%;
+      margin-top: 0;
+      margin-bottom: 10px;
+      li {
+        width: 46px;
+        height: 31px;
+      }
     }
   }
 
@@ -85,7 +158,7 @@
   .donate-block__input-summ-block {
     width: 100%;
     p {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
       font-weight: normal;
       font-size: 18px;
       line-height: 22px;
@@ -95,7 +168,7 @@
   .donate-block__input-card-block {
     input {
       width: 100%;
-      background: rgba(227, 227, 227, 0.7);
+      background: #ededed;
       border-radius: 20px;
       border: none;
       padding: 16px 45px;
@@ -103,8 +176,17 @@
       font-size: 18px;
       line-height: 22px;
       color: rgba(0, 0, 0, 0.7);
-      margin-bottom: 40px;
+      margin-bottom: 2  0px;
       outline: none;
+      @media screen and (max-width: 767px) {
+        height: 36px;
+        margin-bottom: 13px;
+        font-size: 12px;
+        line-height: 15px;
+      }
+      &:focus {
+        background-color: #dadada;
+      }
     }
   }
   .donate-block__input-summ-block {
@@ -126,6 +208,11 @@
         font-size: 20px;
         line-height: 24px;
         color: rgba(0, 0, 0, 0.9);
+        @media screen and (max-width: 767px) {
+          height: 36px;
+          font-size: 12px;
+          line-height: 15px;
+        }
       }
     }
     input {
@@ -136,10 +223,18 @@
       border: none;
       padding: 16px 25px 16px 10px;
       font-weight: 500;
-      font-size: 18px;
-      line-height: 22px;
+      font-size: 20px;
+      line-height: 24px;
       color: rgba(0, 0, 0, 0.7);
       outline: none;
+      @media screen and (max-width: 767px) {
+        height: 36px;
+        font-size: 12px;
+        line-height: 15px;
+      }
+    }
+    input.overflow {
+      color: #ff6058;
     }
     margin-bottom: 20px;
   }
@@ -150,6 +245,13 @@
     line-height: 17px;
     color: rgba(0, 0, 0, 0.5);
     white-space: nowrap;
+
+    @media screen and (max-width: 767px) {
+      font-size: 8px;
+      line-height: 10px;
+      white-space: unset;
+      text-align: left;
+    }
   }
   .donate-block__btn {
     background: #17ca9b;
@@ -161,5 +263,15 @@
     align-items: center;
     justify-content: center;
     color: white;
+    font-size: 20px;
+    line-height: 24px;
+    @media screen and (max-width: 767px) {
+      height: 47px;
+      font-size: 18px;
+      line-height: 22px;
+    }
+    @media screen and (max-width: 567px) {
+      width: 243px;
+    }
   }
 }
