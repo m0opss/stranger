@@ -15,8 +15,10 @@ import { Progress } from "antd";
 
 import "./lknav.scss";
 
-const LKNavPanel = ({ buttons, activeTab, setActiveTab, isMobile, title }) => (
-  <div className="lk-nav__block lknav__nav-panel">
+const LKNavPanel = ({ buttons, activeTab, setActiveTab, isAdmin, title }) => (
+  <div
+    className={`lk-nav__block lknav__nav-panel ${isAdmin ? "admin-panel" : ""}`}
+  >
     <p className="lknav__nav-panel-title">{title}</p>
     <div className="lknav__buttons-panel">
       {buttons.map((i) => (
@@ -144,10 +146,12 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             isMobile={isMobile}
+            isAdmin={isAdmin}
             buttons={adminPanel_1}
             title="Действия"
           />
           <LKNavPanel
+            isAdmin={isAdmin}
             activeTab={activeTab}
             setActiveTab={setActiveTab}
             isMobile={isMobile}

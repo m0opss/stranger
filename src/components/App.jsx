@@ -11,6 +11,8 @@ import { NavLink, Redirect, Route } from "react-router-dom";
 import { HashRouter as Router } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import Transfer from "../pages/Transfer";
+import Archive from "../pages/Archive";
+import AddPost from "../pages/AddPost";
 
 const App = (props) => {
   // const dispatch = useDispatch();
@@ -24,12 +26,9 @@ const App = (props) => {
     { path: "/about", Component: About },
     { path: "/lk", Component: LK },
     { path: "/transfer", Component: Transfer },
+    { path: "/archive", Component: Archive },
+    { path: "/addPost", Component: AddPost },
   ];
-
-  // useEffect(() => {
-  //   console.log(props)
-  //   setTimeout(() => setLoaded(true), 1000);
-  // }, []);
 
   return (
     <Router>
@@ -43,7 +42,7 @@ const App = (props) => {
                 unmountOnExit
                 in={match != null}
               >
-                <Component />
+                <Component {...props} />
                 {/* {loaded ? <Component /> : <>asdasd</>} */}
               </CSSTransition>
             )}

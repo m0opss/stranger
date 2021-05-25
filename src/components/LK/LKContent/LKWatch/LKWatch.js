@@ -13,8 +13,11 @@ const WatchRow = ({ brand, date, exe, sum }) => (
 
 const WatchBlock = ({ type }) => (
   <div className="lk-content__block watch-block">
-    <a name="watch" className="history-block__title">
-      Просмотр рекламы
+    <a
+      name={`${type == "watch" ? "watch" : "history"}`}
+      className="history-block__title"
+    >
+      {type == "watch" ? "Просмотр рекламы" : "История транзакций"}
     </a>
     <div className="history-block__rows-list">
       <WatchRow date="02.02.21" brand="Nike" exe="100%" sum="+100₽" />

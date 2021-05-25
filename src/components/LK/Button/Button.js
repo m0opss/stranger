@@ -6,7 +6,7 @@ const LKButton = ({ img, name, type, activeTab, setActiveTab, link }) => {
   const onClickButton = () => {
     setActiveTab(type);
   };
-  if (type == "arr-m" || type == "arch" || type == "arch") {
+  if (type == "arr-m" || type == "arch" || type == "add") {
     return (
       <Link className="lk-button" to={link}>
         <div

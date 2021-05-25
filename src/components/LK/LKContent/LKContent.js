@@ -46,13 +46,27 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
   return (
     <>
       {isMobile ? (
-        <></>
+        <>
+          {activeTab == "watch" ? (
+            <WatchBlock type="watch" />
+          ) : activeTab == "history" ? (
+            <WatchBlock type="history" />
+          ) : activeTab == "set" ? (
+            <SettingsBlock
+              setActiveTab={setActiveTab}
+              isMobile={isMobile}
+              isAdmin={true}
+            />
+          ) : (
+            <></>
+          )}
+        </>
       ) : (
         <div className="lk-content">
           {activeTab == "watch" ? (
             <WatchBlock />
           ) : activeTab == "history" ? (
-            <HistoryBlock />
+            <WatchBlock />
           ) : activeTab == "set" ? (
             <SettingsBlock
               setActiveTab={setActiveTab}

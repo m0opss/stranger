@@ -27,4 +27,31 @@
       }
     }
   }
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    padding: 15px 30px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .history-block__title {
+      font-size: 14px;
+      line-height: 17px;
+      text-align: center;
+      letter-spacing: 0.25px;
+    }
+    .history-block__rows-list {
+      margin-top: 15px;
+      .watch-block__row {
+        p {
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 15px;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 457px) {
+    padding: 15px 20px;
+  }
 }

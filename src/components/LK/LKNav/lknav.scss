@@ -68,7 +68,16 @@
       justify-content: center;
     }
   }
-
+}
+.lknav__nav-panel.admin-panel {
+  @media screen and (max-width: 622px) {
+    padding: 30px 40px;
+  }
+}
+.lknav__nav-panel + .lknav__nav-panel.admin-panel {
+  @media screen and (max-width: 622px) {
+    margin-bottom: 20px;
+  }
 }
 
 .balance-card {

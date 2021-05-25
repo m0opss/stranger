@@ -142,6 +142,108 @@ const ChangeLogBlock = ({ setActiveblock }) => {
   );
 };
 
+const AddBlock = ({ setActiveblock }) => {
+  const [log, set_log] = useState("");
+  const [disable, setDisable] = useState(true);
+  const [isAddAdmin, setisAddAdmin] = useState(false);
+  const [pass, set_pass] = useState("");
+  const [code, set_code] = useState("");
+
+  useEffect(() => {
+    if (isAddAdmin) {
+      if (log != "" && pass != "" && code != "") {
+        setDisable(false);
+      } else {
+        setDisable(true);
+      }
+    } else {
+      if (log != "" && pass != "") {
+        setDisable(false);
+      } else {
+        setDisable(true);
+      }
+    }
+  }, [log, pass, code, isAddAdmin]);
+
+  const toggleRadioBtn = (type) => {
+    if (type == "admin") setisAddAdmin(true);
+    else setisAddAdmin(false);
+  };
+
+  return (
+    <>
+      <div className="settings-block__user-type">
+        <label className="rad-label">
+          <input
+            type="radio"
+            className="rad-input"
+            name="rad"
+            value="user"
+            defaultChecked
+            onChange={(e) => toggleRadioBtn(e.target.value)}
+          />
+          <div className="rad-design"></div>
+          <div className="rad-text">Обычный</div>
+        </label>
+
+        <label className="rad-label">
+          <input
+            type="radio"
+            className="rad-input"
+            name="rad"
+            value="admin"
+            onChange={(e) => toggleRadioBtn(e.target.value)}
+          />
+          <div className="rad-design"></div>
+          <div className="rad-text">Администратор</div>
+        </label>
+      </div>
+      <div className="settings-block__change change-log-block">
+        <div
+          className="settings-block__close-btn"
+          onClick={() => setActiveblock("")}
+        >
+          <span></span>
+        </div>
+        <div className="settings-block__inputs">
+          <SettingsBlockInput
+            icon={icon_log}
+            value={log}
+            setValue={set_log}
+            placeholder="логин"
+            type="text"
+          />
+          <SettingsBlockInput
+            icon={icon_pass}
+            value={pass}
+            setValue={set_pass}
+            placeholder="пароль"
+            type="password"
+          />
+          {isAddAdmin ? (
+            <SettingsBlockInput
+              icon={icon_pass}
+              value={code}
+              setValue={set_code}
+              placeholder="секретный код"
+              type="password"
+            />
+          ) : (
+            <></>
+          )}
+        </div>
+      </div>
+      <div
+        className={`save-settings-btn btn lk-btn ${
+          disable ? "lk-btn__disable" : ""
+        }`}
+      >
+        добавить
+      </div>
+    </>
+  );
+};
+
 const ButtonsBlock = ({ setActiveblock, isAdmin }) => {
   return (
     <div className="settings-block__change buttons-block">
@@ -173,9 +275,13 @@ const ButtonsBlock = ({ setActiveblock, isAdmin }) => {
 
 const SettingsBlock = ({ setActiveTab, isAdmin, isMobile }) => {
   const [activeBlock, setActiveblock] = useState("");
-
+  console.log(isAdmin);
   return (
-    <div className="lk-content__block settings-block">
+    <div
+      className={`lk-content__block settings-block ${
+        isAdmin ? "settings-block_admin" : ""
+      }`}
+    >
       <div className="settings-block__mobile-wrapper">
         {activeBlock == "pass" ? (
           <>
@@ -201,20 +307,8 @@ const SettingsBlock = ({ setActiveTab, isAdmin, isMobile }) => {
             >
               Добавить пользователя
             </p>
-            <div className="settings-block__user-type">
-              <label className="rad-label">
-                <input type="radio" class="rad-input" name="rad" />
-                <div className="rad-design"></div>
-                <div className="rad-text">Обычный</div>
-              </label>
 
-              <label className="rad-label">
-                <input type="radio" class="rad-input" name="rad" />
-                <div className="rad-design"></div>
-                <div className="rad-text">Администратор</div>
-              </label>
-            </div>
-            <ChangeLogBlock setActiveblock={setActiveblock} />
+            <AddBlock setActiveblock={setActiveblock} />
           </>
         ) : (
           <>
@@ -222,12 +316,18 @@ const SettingsBlock = ({ setActiveTab, isAdmin, isMobile }) => {
             {!isMobile ? (
               <></>
             ) : (
-              <div
-                className="settings-block__close-btn"
-                onClick={() => setActiveTab("")}
-              >
-                <span></span>
-              </div>
+              <>
+                {isAdmin ? (
+                  <></>
+                ) : (
+                  <div
+                    className="settings-block__close-btn"
+                    onClick={() => setActiveTab("")}
+                  >
+                    <span></span>
+                  </div>
+                )}
+              </>
             )}
             <ButtonsBlock setActiveblock={setActiveblock} isAdmin={isAdmin} />
           </>

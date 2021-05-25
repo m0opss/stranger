@@ -25,15 +25,25 @@ const LK = () => {
   }, []);
 
   return (
-    <div className="page lk-page">
+    <div
+      className="page lk-page"
+      style={isAdmin && isMobile ? { background: "#FBFBFB" } : {}}
+    >
       <Header />
-      <div className="lk-page__container">
+      <div
+        className="lk-page__container"
+        style={
+          isAdmin && isMobile
+            ? { paddingLeft: "20px", paddingRight: "20px" }
+            : {}
+        }
+      >
         <LKNav
           activeTab={activeTab}
           setActiveTab={setActiveTab}
           isAdmin={isAdmin}
           isMobile={isMobile}
-          />
+        />
         <LKContent
           isAdmin={isAdmin}
           activeTab={activeTab}

@@ -3,12 +3,20 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/img/logo.svg";
 import logonMobile from "../../assets/img/logonMobile.svg";
 import alienMobile from "../../assets/img/alienMobile.png";
-import "./header.scss";
 
-const Header = ({}) => {
+import { useDispatch, useSelector } from "react-redux";
+import "./header.scss";
+import { onExitAccount } from "../../actions/authActions";
+
+const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const isAuth = useSelector((state) => state.auth.isAuth);
+  const dispatch = useDispatch();
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+  };
+  const onExitClick = () => {
+    dispatch(onExitAccount());
   };
 
   return (
@@ -38,12 +46,21 @@ const Header = ({}) => {
             </ul>
           </nav>
           <nav className="header__logon">
-            <NavLink to="/" className="header__logon-btn btn btn-text">
-              Регистрация
-            </NavLink>
-            <NavLink to="/lk" className="header__logon-btn btn btn-text">
-              Войти
-            </NavLink>
+            {isAuth ? (
+              <>
+                <img className="header__profile-img" src="" />
+                <p className="header__profile-name">stranger_1</p>
+              </>
+            ) : (
+              <>
+                <NavLink to="/" className="header__logon-btn btn btn-text">
+                  Регистрация
+                </NavLink>
+                <NavLink to="/lk" className="header__logon-btn btn btn-text">
+                  Войти
+                </NavLink>
+              </>
+            )}
           </nav>
         </div>
         <div className="header__burger" onClick={toggleMenu}>
@@ -78,13 +95,27 @@ const Header = ({}) => {
             <NavLink to="/about">Рекламодателям</NavLink>
           </li>
           <div className="header__burger-menu-logon">
-            <Link to="/lk" className="header__logon-login">
-              <img src={logonMobile} alt="" />
-              <p>Войти</p>
-            </Link>
-            <Link to="/" className="header__logon-reg">
-              Зарегистрироваться
-            </Link>
+            {isAuth ? (
+              <div className="header__profile-block">
+                <img className="header__profile-img" src="" />
+                <div className="header__profile-text-block">
+                  <p className="header__profile-name">stranger_1</p>
+                  <p className="header__profile-exit" onClick={onExitClick}>
+                    выйти
+                  </p>
+                </div>
+              </div>
+            ) : (
+              <>
+                <Link to="/lk" className="header__logon-login">
+                  <img src={logonMobile} alt="" />
+                  <p>Войти</p>
+                </Link>
+                <Link to="/" className="header__logon-reg">
+                  Зарегистрироваться
+                </Link>
+              </>
+            )}
           </div>
         </ul>
       </div>
