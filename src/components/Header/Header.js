@@ -47,10 +47,10 @@ const Header = () => {
           </nav>
           <nav className="header__logon">
             {isAuth ? (
-              <>
+              <Link to="lk" style={{ display: "flex" }}>
                 <img className="header__profile-img" src="" />
                 <p className="header__profile-name">stranger_1</p>
-              </>
+              </Link>
             ) : (
               <>
                 <NavLink to="/" className="header__logon-btn btn btn-text">
@@ -97,9 +97,13 @@ const Header = () => {
           <div className="header__burger-menu-logon">
             {isAuth ? (
               <div className="header__profile-block">
-                <img className="header__profile-img" src="" />
+                <Link to="lk">
+                  <img className="header__profile-img" src="" />
+                </Link>
                 <div className="header__profile-text-block">
-                  <p className="header__profile-name">stranger_1</p>
+                  <Link to="lk">
+                    <p className="header__profile-name">stranger_1</p>
+                  </Link>
                   <p className="header__profile-exit" onClick={onExitClick}>
                     выйти
                   </p>

@@ -20,7 +20,6 @@ const BrandCard = ({ img, onClick, id }) => {
         <></>
       )}
       <img src={id == "add" ? add_img : img} alt="" />
-      {id}
     </div>
   );
 };

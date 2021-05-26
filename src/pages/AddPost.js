@@ -3,10 +3,15 @@ import BrandCard from "../components/BrandCard/BrandCard";
 import Header from "../components/Header/Header";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import test from "../assets/img/testBrandImg.png";
+import alien from "../assets/img/alien.svg";
 import BackArr from "../components/BackArr/BackArr";
 
+import "./addpost.scss";
+
 const AddPost = (props) => {
-  const [brands, setBrands] = React.useState([
+  let isMobile = false;
+  if (window.innerWidth < 768) isMobile = true;
+  const [brands, setBrands] = useState([
     { img: test, id: 0 },
     { img: test, id: 1 },
     { img: test, id: 2 },
@@ -20,19 +25,29 @@ const AddPost = (props) => {
   const addBrand = () => {
     setBrands((brands) => [...brands, { img: test, id: brands.length }]);
   };
-  
+
   return (
-    <div className="archive-page">
+    <div className="archive-page add-page">
       <Header />
       <div className="archive-background">
+        <div className="archive-background__item archive-background__item_main"></div>
         <div className="archive-background__item archive-background__item_1"></div>
         <div className="archive-background__item archive-background__item_2"></div>
         <div className="archive-background__item archive-background__item_3"></div>
         <div className="archive-background__item archive-background__item_4"></div>
         <div className="archive-background__item archive-background__item_5"></div>
-        <BackArr />
+        {isMobile ? <></> : <BackArr />}
         <div className="archive-page__content">
-          <h1>Архив</h1>
+          {isMobile ? (
+            <>
+              <div className="add-page__alien">
+                <img src={alien} />
+              </div>
+              <h1 className="add-page__title">выбери игру</h1>
+            </>
+          ) : (
+            <></>
+          )}
 
           <TransitionGroup className="brands-list">
             <CSSTransition key="add" timeout={500} classNames="item">

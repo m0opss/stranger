@@ -19,7 +19,7 @@ const LKButton = ({ img, name, type, activeTab, setActiveTab, link }) => {
       </Link>
     );
   }
-  if (type == "history-m") {
+  if (type == "history-m" || type == "watch-m") {
     return (
       <a className="lk-button" href={link}>
         <div

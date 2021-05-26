@@ -134,7 +134,7 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
     {
       name: "Просмотр рекламы",
       img: watch,
-      type: "watch",
+      type: isMobile ? `watch-m` : "watch",
       link: "#watch",
     },
   ];

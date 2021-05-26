@@ -43,13 +43,14 @@ const LKContentUser = ({
   );
 };
 const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
+  console.log('isMobile', isMobile)
   return (
     <>
       {isMobile ? (
         <>
-          {activeTab == "watch" ? (
+          {activeTab == "watch-m" ? (
             <WatchBlock type="watch" />
-          ) : activeTab == "history" ? (
+          ) : activeTab == "history-m" ? (
             <WatchBlock type="history" />
           ) : activeTab == "set" ? (
             <SettingsBlock
