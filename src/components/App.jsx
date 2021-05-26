@@ -7,12 +7,13 @@ import "./app.scss";
 import Main from "../pages/Main";
 import About from "../pages/About";
 import LK from "../pages/LK";
-import { NavLink, Redirect, Route } from "react-router-dom";
+import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 import { HashRouter as Router } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import Transfer from "../pages/Transfer";
 import Archive from "../pages/Archive";
-import AddPost from "../pages/AddPost";
+import AddPosts from "../pages/AddPosts";
+import Register from "../pages/Register";
 
 const App = (props) => {
   // const dispatch = useDispatch();
@@ -25,29 +26,33 @@ const App = (props) => {
     { path: "/", Component: Main },
     { path: "/about", Component: About },
     { path: "/lk", Component: LK },
+    { path: "/lk-admin", Component: LK },
     { path: "/transfer", Component: Transfer },
     { path: "/archive", Component: Archive },
-    { path: "/addPost", Component: AddPost },
+    { path: "/addPosts", Component: AddPosts },
+    { path: "/register", Component: Register },
   ];
 
   return (
     <Router>
       <div className="app">
-        {routes.map(({ path, Component }) => (
-          <Route key={path} exact path={path}>
-            {({ match }) => (
-              <CSSTransition
-                timeout={1000}
-                // classNames="page"
-                unmountOnExit
-                in={match != null}
-              >
-                <Component {...props} />
-                {/* {loaded ? <Component /> : <>asdasd</>} */}
-              </CSSTransition>
-            )}
-          </Route>
-        ))}
+        <Switch>
+          {routes.map(({ path, Component }) => (
+            <Route key={path} exact path={path}>
+              {({ match }) => (
+                <CSSTransition
+                  timeout={1000}
+                  // classNames="page"
+                  unmountOnExit
+                  in={match != null}
+                >
+                  <Component {...props} />
+                  {/* {loaded ? <Component /> : <>asdasd</>} */}
+                </CSSTransition>
+              )}
+            </Route>
+          ))}
+        </Switch>
       </div>
     </Router>
   );

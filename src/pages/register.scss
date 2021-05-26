@@ -1,0 +1,38 @@
+.page-auth {
+  background-image: url("../assets/img/regPage1.png");
+  min-height: 100vh;
+  background-size: cover;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  position: relative;
+  .page-auth__background {
+    position: absolute;
+  }
+  .page-auth__background_1 {
+    width: 526px;
+    height: 581px;
+    left: -343px;
+    top: 156px;
+    background: #000000;
+    border-radius: 50%;
+  }
+  .page-auth__background_2 {
+    border-left: 120px solid transparent;
+    border-right: 120px solid transparent;
+    border-bottom: 170px solid #c4c4c4;
+    transform: rotate(-83.98deg);
+    right: -70px;
+    top: 140px;
+  }
+  .page-auth__content {
+    max-width: 1470px;
+    display: flex;
+    margin: auto;
+    .page-auth__alien-block {
+      width: 50%;
+    }
+    .page-auth__form-block {
+      width: 50%;
+    }
+  }
+}

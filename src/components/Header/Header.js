@@ -53,10 +53,10 @@ const Header = () => {
               </Link>
             ) : (
               <>
-                <NavLink to="/" className="header__logon-btn btn btn-text">
+                <NavLink to="/register" className="header__logon-btn btn btn-text">
                   Регистрация
                 </NavLink>
-                <NavLink to="/lk" className="header__logon-btn btn btn-text">
+                <NavLink to="/login" className="header__logon-btn btn btn-text">
                   Войти
                 </NavLink>
               </>
@@ -111,11 +111,11 @@ const Header = () => {
               </div>
             ) : (
               <>
-                <Link to="/lk" className="header__logon-login">
+                <Link to="/login" className="header__logon-login">
                   <img src={logonMobile} alt="" />
                   <p>Войти</p>
                 </Link>
-                <Link to="/" className="header__logon-reg">
+                <Link to="/register" className="header__logon-reg">
                   Зарегистрироваться
                 </Link>
               </>

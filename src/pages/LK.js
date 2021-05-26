@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Header from "../components/Header/Header";
 import LKNav from "../components/LK/LKNav/LKNav";
 import LKContent from "../components/LK/LKContent/LKContent";
@@ -11,7 +11,8 @@ const LK = () => {
   const isAdmin = true;
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
-
+  const p = useParams();
+  console.log(p );
   useEffect(() => {
     if (!isMobile) {
       if (isAdmin) {

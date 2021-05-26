@@ -6,9 +6,10 @@ import test from "../assets/img/testBrandImg.png";
 import alien from "../assets/img/alien.svg";
 import BackArr from "../components/BackArr/BackArr";
 
-import "./addpost.scss";
+import "./addposts.scss";
+import { Link } from "react-router-dom";
 
-const AddPost = (props) => {
+const AddPosts = (props) => {
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
   const [brands, setBrands] = useState([
@@ -51,9 +52,9 @@ const AddPost = (props) => {
 
           <TransitionGroup className="brands-list">
             <CSSTransition key="add" timeout={500} classNames="item">
-              <div className="brands-list__item">
+              <Link className="brands-list__item" to='/addPost'>
                 <BrandCard id="add" onClick={addBrand} />
-              </div>
+              </Link>
             </CSSTransition>
             {brands.map((i) => (
               <CSSTransition
@@ -73,4 +74,4 @@ const AddPost = (props) => {
   );
 };
 
-export default AddPost;
+export default AddPosts;

@@ -114,7 +114,7 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
       name: "Добавить посты",
       img: plus,
       type: "add",
-      link: "addPost",
+      link: "addPosts",
     },
     {
       name: "Архив",

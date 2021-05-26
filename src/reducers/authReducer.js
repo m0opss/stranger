@@ -4,7 +4,7 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const ON_EXIT = "ON_EXIT";
 
 const defaultState = {
-  isAuth: true,
+  isAuth: false,
   name: "",
   error: "",
 };
