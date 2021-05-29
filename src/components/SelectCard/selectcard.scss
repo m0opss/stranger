@@ -1,0 +1,45 @@
+.select-card {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 332px;
+  margin: 0 auto !important;
+
+  li {
+    list-style: none;
+    width: 84px;
+    height: 56px;
+    background: #ffffff;
+    border: 0.8px solid rgba(218, 218, 218, 0.6);;
+    box-sizing: border-box;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    &:hover {
+      background: #dadada;
+      border: none;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+  li.active {
+    border: none;
+    background: #dadada;
+    background-repeat: no-repeat;
+    background-position: center;
+    box-shadow: inset 0.622222px 0.622222px 1.24444px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+  }
+  @media screen and (max-width: 622px) {
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 10px;
+    li {
+      width: 66px;
+      height: 44px;
+    }
+  }
+}

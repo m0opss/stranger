@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TextField from "@material-ui/core/TextField";
 
-import './input.scss'
+import "./input.scss";
 
 const Input = ({
   value,
@@ -23,6 +23,7 @@ const Input = ({
           onChange={setValue}
           variant="outlined"
           className={className}
+          InputLabelProps={{ shrink: true }}
           placeholder={placeholder}
         />
       ) : (
@@ -35,6 +36,7 @@ const Input = ({
           variant="outlined"
           className={className}
           placeholder={placeholder}
+          InputLabelProps={{ shrink: true }}
           helperText={helperText}
         />
       )}

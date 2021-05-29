@@ -5,10 +5,11 @@ import LKNav from "../components/LK/LKNav/LKNav";
 import LKContent from "../components/LK/LKContent/LKContent";
 
 import "./lk.scss";
+import { useSelector } from "react-redux";
 
 const LK = () => {
   const [activeTab, setActiveTab] = useState("");
-  const isAdmin = true;
+  const isAdmin = useSelector(state => state.auth.isAdmin)
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
   const p = useParams();

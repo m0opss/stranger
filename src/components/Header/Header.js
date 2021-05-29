@@ -35,7 +35,7 @@ const Header = () => {
                 <NavLink to="/about">О сайте</NavLink>
               </li>
               <li>
-                <NavLink to="/about">Правила</NavLink>
+                <NavLink to="/rules">Правила</NavLink>
               </li>
               <li>
                 <NavLink to="/about">Вопросы</NavLink>
@@ -86,7 +86,7 @@ const Header = () => {
             <NavLink to="/about">Начать</NavLink>
           </li>
           <li>
-            <NavLink to="/about">Правила</NavLink>
+            <NavLink to="/rules">Правила</NavLink>
           </li>
           <li>
             <NavLink to="/about">Вопросы</NavLink>

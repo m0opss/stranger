@@ -14,6 +14,8 @@ import Transfer from "../pages/Transfer";
 import Archive from "../pages/Archive";
 import AddPosts from "../pages/AddPosts";
 import Register from "../pages/Register";
+import Login from "../pages/Login";
+import Rules from "../pages/Rules";
 
 const App = (props) => {
   // const dispatch = useDispatch();
@@ -31,6 +33,8 @@ const App = (props) => {
     { path: "/archive", Component: Archive },
     { path: "/addPosts", Component: AddPosts },
     { path: "/register", Component: Register },
+    { path: "/login", Component: Login },
+    { path: "/rules", Component: Rules },
   ];
 
   return (

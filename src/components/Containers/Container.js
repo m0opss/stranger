@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "../Header/Header";
 import DarkContainer from "./DarkContainer";
+import FullContainer from "./FullContainer";
 
 const Container = ({ type, children }) => {
   return (
@@ -16,10 +17,10 @@ const Container = ({ type, children }) => {
           {children}
         </>
       ) : (
-        <DarkContainer>
+        <FullContainer>
           <Header />
           {children}
-        </DarkContainer>
+        </FullContainer>
       )}
     </div>
   );

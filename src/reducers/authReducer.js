@@ -5,6 +5,7 @@ export const ON_EXIT = "ON_EXIT";
 
 const defaultState = {
   isAuth: false,
+  isAdmin: false,
   name: "",
   error: "",
 };

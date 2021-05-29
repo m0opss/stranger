@@ -52,7 +52,7 @@ const AddPosts = (props) => {
 
           <TransitionGroup className="brands-list">
             <CSSTransition key="add" timeout={500} classNames="item">
-              <Link className="brands-list__item" to='/addPost'>
+              <Link className="brands-list__item" to="/addPost">
                 <BrandCard id="add" onClick={addBrand} />
               </Link>
             </CSSTransition>

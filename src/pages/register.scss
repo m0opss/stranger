@@ -1,5 +1,8 @@
 .page-auth {
   background-image: url("../assets/img/regPage1.png");
+  @media screen and (max-width: 767px) {
+    background-image: none;
+  }
   min-height: 100vh;
   background-size: cover;
   background-position: bottom;
@@ -11,10 +14,16 @@
   .page-auth__background_1 {
     width: 526px;
     height: 581px;
-    left: -343px;
+    left: -375px;
     top: 156px;
     background: #000000;
     border-radius: 50%;
+    @media screen and (max-width: 1500px) {
+      left: -455px;
+    }
+    @media screen and (max-width: 767px) {
+      display: none;
+    }
   }
   .page-auth__background_2 {
     border-left: 120px solid transparent;
@@ -23,16 +32,280 @@
     transform: rotate(-83.98deg);
     right: -70px;
     top: 140px;
+    @media screen and (max-width: 767px) {
+      right: -140px;
+    }
   }
+
   .page-auth__content {
     max-width: 1470px;
     display: flex;
     margin: auto;
-    .page-auth__alien-block {
-      width: 50%;
+    padding-top: 67px;
+    .page-auth__background-item_m {
+      width: 120%;
+      height: 490px;
+      border-radius: 50%;
+      background: rgba(0, 0, 0, 0.9);
+      top: 0;
+      transform: translate(-8%, calc(126px - 100%));
+      position: absolute;
+      display: none;
     }
-    .page-auth__form-block {
-      width: 50%;
+    .page-auth__alien_m {
+      display: none;
+      width: 100%;
+      position: absolute;
+      top: 20px;
+
+      justify-content: center;
+      img {
+        height: 120px;
+        width: 125px;
+      }
     }
+    @media screen and (max-width: 1200px) {
+      flex-direction: column-reverse;
+      max-width: 768px;
+
+      .page-auth__alien-block,
+      .page-auth__form-block {
+        width: 80%;
+        margin: auto;
+      }
+      .page-auth__alien-block {
+        padding-top: 7px;
+      }
+    }
+    @media screen and (max-width: 767px) {
+      .page-auth__background-item_m {
+        display: block;
+      }
+      .page-auth__alien_m {
+        display: flex;
+      }
+      position: relative;
+      padding-top: 155px;
+    }
+    @media screen and (max-width: 541px) {
+      .page-auth__background-item_m {
+        // top: -28%;
+      }
+      .page-auth__alien_m img {
+        height: 95px;
+        width: 100px;
+      }
+    }
+    @media screen and (max-width: 431px) {
+      .page-auth__background-item_m {
+        // top: -27%;
+      }
+    }
+  }
+}
+
+.page-auth__alien-block {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  padding-top: 50px;
+  .page-auth__alien-row_1 {
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 150%;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.8);
+    a {
+      color: rgba(0, 0, 0, 0.8);
+      font-weight: bold;
+    }
+    margin-bottom: 10px;
+  }
+  .page-auth__alien-row_2 {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 49px;
+    text-align: center;
+    max-width: 326px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 20px;
+  }
+  .page-auth__alien-row_3 {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 150%;
+    max-width: 455px;
+    text-align: center;
+  }
+  img {
+    position: absolute;
+    bottom: 0;
+  }
+  @media screen and (max-width: 1200px) {
+    .page-auth__alien-row_2,
+    .page-auth__alien-row_3,
+    img {
+      display: none;
+    }
+
+    .page-auth__alien-row_1 {
+      font-size: 15px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+  }
+}
+
+.page-auth__form-block {
+  width: 50%;
+}
+
+.auth-form-block {
+  h1 {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 49px;
+    color: rgba(0, 0, 0, 0.7);
+    margin-left: 17px;
+  }
+  .auth-form-block__input {
+    margin-bottom: 30px;
+    width: 100%;
+    input {
+      padding-left: 35px;
+    }
+  }
+  .auth-form-block__inputs {
+    margin-left: 92px;
+    margin-top: 70px;
+    margin-bottom: 27px;
+    max-width: 452px;
+  }
+  @media screen and (max-width: 767px) {
+    h1 {
+      max-width: 244px;
+      font-size: 36px;
+      line-height: 44px;
+      margin-left: 0;
+      margin-bottom: 47px;
+    }
+    .auth-form-block__select-card-block {
+      width: 100%;
+      margin: auto;
+      margin-top: -10px;
+      margin-bottom: 20px;
+      p {
+        font-size: 12px;
+        line-height: 15px;
+        color: #737373;
+      }
+      .auth-form-block__select-card-wrapper {
+        padding: 10px 35px;
+      }
+    }
+    .auth-form-block__inputs {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 40px;
+      margin-bottom: 15px;
+      & * {
+        box-sizing: border-box;
+      }
+      .auth-form-block__input .MuiInputBase-input {
+        height: 36px !important;
+        padding-left: 25px;
+        &::placeholder {
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}
+
+.auth-form-block__reg-btn {
+  margin-left: 107px;
+  margin-bottom: 44px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 430px;
+  cursor: pointer;
+  p {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    color: #000000;
+  }
+  @media screen and (max-width: 1200px) {
+    margin-bottom: 25px;
+  }
+  @media screen and (max-width: 767px) {
+    margin: auto;
+    height: 20px;
+    p {
+      font-size: 16px;
+      line-height: 20px;
+    }
+  }
+}
+
+.auth-form-block__soc-login {
+  margin-left: 187px;
+  max-width: 265px;
+  p {
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-left: 13px;
+  }
+  .auth-form-block__soc-icon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+  }
+  @media screen and (max-width: 767px) {
+    margin: auto;
+    margin-top: 27px;
+    p {
+      font-size: 12px;
+      line-height: 20px;
+      text-align: center;
+    }
+    .auth-form-block__soc-icon {
+      max-width: 162px;
+      margin: 15px auto;
+      a {
+        height: 30px;
+        width: 30px;
+      }
+    }
+  }
+}
+
+.auth-form-block__policy {
+  font-size: 18px;
+  margin-top: 20px;
+  line-height: 150%;
+  text-align: center;
+  margin-left: 170px;
+  max-width: 310px;
+  color: rgba(0, 0, 0, 0.6);
+  a {
+    color: #17ca9b;
+  }
+  @media screen and (max-width: 1200px) {
+    font-size: 15px;
+    margin-top: 12px;
+  }
+  @media screen and (max-width: 767px) {
+    font-size: 12px;
+    line-height: 150%;
+    margin-left: 0;
+    max-width: 240px;
+    margin: auto;
   }
 }

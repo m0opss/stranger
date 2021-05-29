@@ -3,17 +3,16 @@
   .MuiOutlinedInput-notchedOutline {
     border: 0.8px solid #dadada;
     border-radius: 25px;
-    padding-left: 30px
+    padding-left: 30px;
+  }
+}
+
+.auth-form-block .MuiOutlinedInput-root.Mui-focused {
+  .MuiOutlinedInput-notchedOutline {
+    border-color: #dadada;
   }
 }
 .auth-form-block .MuiInputLabel-formControl {
   left: 22px;
 }
 
-.auth-form-block {
-  width: 456px;
-}
-.auth-form-block__input {
-  width: 100%;
-  margin-bottom: 10px;
-}
