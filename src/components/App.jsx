@@ -16,6 +16,9 @@ import AddPosts from "../pages/AddPosts";
 import Register from "../pages/Register";
 import Login from "../pages/Login";
 import Rules from "../pages/Rules";
+import Test from "../pages/Test";
+import Brand from "../pages/Brand";
+import Questions from "../pages/Questions";
 
 const App = (props) => {
   // const dispatch = useDispatch();
@@ -35,6 +38,9 @@ const App = (props) => {
     { path: "/register", Component: Register },
     { path: "/login", Component: Login },
     { path: "/rules", Component: Rules },
+    { path: "/test", Component: Test },
+    { path: "/brand/:id", Component: Brand },
+    { path: "/brand/:id/q", Component: Questions },
   ];
 
   return (

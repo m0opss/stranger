@@ -32,8 +32,9 @@ const Main = () => {
           <div className="main-block__img-container">
             <img src={alien} />
           </div>
-
-          <a className="btn main-block__btn">НАЧАТЬ</a>
+          <Link to="/test" className="btn main-block__btn">
+            НАЧАТЬ
+          </Link>
           <Link to="/rules" className="main-block__play-rules">
             Правила
           </Link>

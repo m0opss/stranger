@@ -19,6 +19,27 @@ const Login = ({}) => {
 
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
+
+  const fetchData = () => {
+
+    (async () => {
+      const rawResponse = await fetch("https://stranger-go.com/api/v1/token/login/", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: "admin@stranger-go.com",
+          password: "qwe123!@#",
+        }),
+      });
+      const content = await rawResponse.json();
+
+      console.log(content);
+    })();
+  };
+
   return (
     <div className="page-auth login">
       <div className="page-auth__background page-auth__background_1"></div>
@@ -69,8 +90,8 @@ const Login = ({}) => {
               className="auth-form-block__input"
             />
           </div>
-          <div className="auth-form-block__reg-btn">
-            <p>Зарегистрироваться</p>
+          <div className="auth-form-block__reg-btn" onClick={fetchData}>
+            <p>Войти</p>
             <img className="auth-form-block__reg-btn-ic" src={f_arr} />
           </div>
           <div className="auth-form-block__soc-login">

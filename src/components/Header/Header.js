@@ -38,7 +38,7 @@ const Header = () => {
                 <NavLink to="/rules">Правила</NavLink>
               </li>
               <li>
-                <NavLink to="/about">Вопросы</NavLink>
+                <NavLink to="/test">Вопросы</NavLink>
               </li>
               <li>
                 <NavLink to="/about">Рекламодателям</NavLink>
@@ -83,13 +83,13 @@ const Header = () => {
             <NavLink to="/about">О сайте</NavLink>
           </li>
           <li>
-            <NavLink to="/about">Начать</NavLink>
+            <NavLink to="/test">Начать</NavLink>
           </li>
           <li>
             <NavLink to="/rules">Правила</NavLink>
           </li>
           <li>
-            <NavLink to="/about">Вопросы</NavLink>
+            <NavLink to="/test">Вопросы</NavLink>
           </li>
           <li>
             <NavLink to="/about">Рекламодателям</NavLink>

@@ -19,7 +19,7 @@ const Rules = () => {
               <br />
               Начни зарабатовать на просмотре рекламы в виде игры.
             </p>
-            <Link to="/" className="main-block__img-play">
+            <Link to="/rules-slides" className="main-block__img-play">
               <img src={play} />
             </Link>
           </div>

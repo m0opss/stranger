@@ -29,11 +29,15 @@ module.exports = {
         use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
-        test: /\.(jpg|jpeg|png|svg)/,
+        test: /\.(jpg|jpeg|png|svg|gif)/,
         loader: "file-loader",
         options: {
           name: "assets/img/[name].[ext]",
         },
+      },
+      {
+        test: /\.(woff|woff2|ttf|eot)$/,
+        use: "file-loader?name=fonts/[name].[ext]!static",
       },
       {
         test: /\.m?js$/,
