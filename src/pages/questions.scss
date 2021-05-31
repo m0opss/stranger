@@ -6,11 +6,288 @@
 
   .questions-page__content {
     width: 100%;
-    // margin: auto;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
+    .questions-page__bg {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 12px;
+        margin: auto;
+        height: 100%;
+      }
+    }
+    .questions-page__bg_c-win {
+      border-radius: 50%;
+      background: #fcd876;
+      filter: drop-shadow(0px 4px 9px rgba(0, 0, 0, 0.25));
+      @media screen and (max-width: 1090px) {
+        transform: scale(0.5);
+      }
+    }
+    // Стили для кружков с рублями ////////////////////////////////////
+    .questions-page__bg_c1,
+    .questions-page__bg_c2,
+    .questions-page__bg_c3,
+    .questions-page__bg_c4,
+    .questions-page__bg_c5 {
+      width: 59px;
+      height: 59px;
+    }
+
+    .questions-page__bg_c6,
+    .questions-page__bg_c7 {
+      width: 106.78px;
+      height: 106.78px;
+    }
+    .questions-page__bg_c8,
+    .questions-page__bg_c9,
+    .questions-page__bg_c11,
+    .questions-page__bg_c10 {
+      width: 42.71px;
+      height: 42.71px;
+    }
+    .questions-page__bg_c12,
+    .questions-page__bg_c13,
+    .questions-page__bg_c14,
+    .questions-page__bg_c15 {
+      width: 21.36px;
+      height: 21.36px;
+      img {
+        padding: 5px;
+      }
+    }
+    .questions-page__bg_c0 {
+      width: 83.29px;
+      height: 83.29px;
+      top: 455px;
+      right: 32%;
+      @media screen and (max-width: 767px) {
+        top: 1px;
+        right: 2%;
+      }
+    }
+
+    .questions-page__bg_c1 {
+      top: 22px;
+      left: 5%;
+    }
+    .questions-page__bg_c2 {
+      top: 56px;
+      left: 20%;
+    }
+    .questions-page__bg_c3 {
+      top: 58px;
+      right: 26%;
+    }
+    .questions-page__bg_c4 {
+      top: 102px;
+      right: 7.5%;
+    }
+    .questions-page__bg_c5 {
+      top: 184px;
+      left: 17%;
+    }
+    .questions-page__bg_c6 {
+      top: 362px;
+      left: 21%;
+      @media screen and (max-width: 767px) {
+        top: 50px;
+        left: 1%;
+      }
+    }
+    .questions-page__bg_c7 {
+      top: 300px;
+      right: 16%;
+      @media screen and (max-width: 767px) {
+        top: 150px;
+        right: 3%;
+      }
+    }
+    .questions-page__bg_c8 {
+      top: 156px;
+      left: 27%;
+    }
+    .questions-page__bg_c9 {
+      top: 278px;
+      left: 30%;
+    }
+    .questions-page__bg_c10 {
+      top: 25px;
+      right: 50%;
+    }
+    .questions-page__bg_c11 {
+      top: 256px;
+      right: 25%;
+    }
+    .questions-page__bg_c12 {
+      top: 87px;
+      left: 33%;
+    }
+    .questions-page__bg_c13 {
+      top: 196px;
+      left: 40%;
+    }
+    .questions-page__bg_c14 {
+      top: 87px;
+      right: 40%;
+    }
+    .questions-page__bg_c15 {
+      top: 236px;
+      right: 38%;
+    }
   }
+  //////////////////////////////////////////////////////////////////////////////
+
+  //// Стили для треугольников ////////////////////////////////////////////////
+
+  .questions-page__bg_r-win {
+    width: 0;
+    height: 0;
+    @media screen and (max-width: 1090px) {
+      transform: scale(0.5);
+    }
+  }
+
+  .questions-page__bg_r0 {
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 70px solid #fcd876;
+    transform: rotate(30.78deg);
+    top: 134px;
+    left: 8%;
+    @media screen and (max-width: 1090px) {
+      transform: rotate(30.78deg) scale(0.5);
+    }
+  }
+  .questions-page__bg_r1 {
+    border-left: 70px solid transparent;
+    border-right: 70px solid transparent;
+    border-bottom: 110px solid #fcd876;
+    top: 425px;
+    transform: rotate(-47.78deg);
+    left: 35%;
+    @media screen and (max-width: 1090px) {
+      transform: rotate(-47.78deg) scale(0.5);
+    }
+    @media screen and (max-width: 768px) {
+      top: 220px;
+    }
+  }
+  .questions-page__bg_r2 {
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 70px solid #fcd876;
+    transform: rotate(-14.39deg);
+    top: 19px;
+    right: 15%;
+    @media screen and (max-width: 1090px) {
+      transform: rotate(-14.39deg) scale(0.5);
+    }
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
+  //// Стили для крестиков ////////////////////////////////////////////////
+  .questions-page__bg_c-loose {
+    @media screen and (max-width: 1090px) {
+      transform: scale(0.5);
+    }
+  }
+  .questions-page__bg_cl0,
+  .questions-page__bg_cl1 {
+    width: 196px;
+    height: 196px;
+    top: 379px;
+    @media screen and (max-width: 767px) {
+      bottom: -22%;
+      top: unset;
+      img {
+        padding: 42px !important;
+      }
+    }
+  }
+  .questions-page__bg_cl2,
+  .questions-page__bg_cl3 {
+    width: 132px;
+    height: 132px;
+    top: 294px;
+    @media screen and (max-width: 767px) {
+      bottom: 5%;
+      top: unset;
+      img {
+        padding: 35px !important;
+      }
+    }
+  }
+  .questions-page__bg_cl4,
+  .questions-page__bg_cl5 {
+    top: 200px;
+    width: 64px;
+    height: 64px;
+    @media screen and (max-width: 767px) {
+      bottom: 20%;
+      top: unset;
+    }
+  }
+
+  .questions-page__bg_cl0 {
+    left: -3%;
+    @media screen and (max-width: 767px) {
+      left: -22%;
+    }
+  }
+  .questions-page__bg_cl1 {
+    right: -3%;
+    @media screen and (max-width: 767px) {
+      right: -22%;
+    }
+  }
+  .questions-page__bg_cl2 {
+    left: 9%;
+    @media screen and (max-width: 767px) {
+      left: -9%;
+    }
+  }
+  .questions-page__bg_cl3 {
+    right: 9%;
+    @media screen and (max-width: 767px) {
+      right: -9%;
+    }
+  }
+  .questions-page__bg_cl4 {
+    left: 6%;
+    @media screen and (max-width: 767px) {
+      left: 6%;
+    }
+  }
+  .questions-page__bg_cl5 {
+    right: 6%;
+    @media screen and (max-width: 767px) {
+      right: 6%;
+    }
+  }
+  .questions-page__bg_cl6 {
+    width: 49px;
+    height: 49px;
+    top: 100px;
+    left: 26px;
+    @media screen and (max-width: 767px) {
+      top: unset;
+      bottom: 22%;
+      left: 50%;
+    }
+  }
+
+  //////////////////////////////////////////////////////////////////////////////
 
   .questions-page__countdown {
     display: flex;
@@ -27,15 +304,54 @@
   }
 }
 
+.questions-page .questions-page__content .questions-page__bg {
+  display: none;
+}
 .green-bg {
   background: url("../assets/img/que.png");
   background-repeat: no-repeat;
   background-position: center -60%;
   background-size: revert;
+  @media screen and (max-width: 767px) {
+    background-position: center 28%;
+    background-size: 208% 75%;
+  }
+}
+.green-bg.green-bg_win {
+  @media screen and (max-width: 767px) {
+    background-position: center 9%;
+    background-size: 208% 87%;
+  }
+  .questions-page__bg_c-loose {
+    display: none;
+  }
+  .questions-page__bg_c-win,
+  .questions-page__bg_r-win {
+    display: block;
+  }
+}
+.green-bg.green-bg_loose {
+  background: url("../assets/img/proval.png");
+  background-repeat: no-repeat;
+  background-position: center -60%;
+  background-size: revert;
+  @media screen and (max-width: 767px) {
+    background: url("../assets/img/que.png");
+    background-repeat: no-repeat;
+    background-position: center 28%;
+    background-size: 208% 75%;
+  }
+  .questions-page__bg_c-win,
+  .questions-page__bg_r-win {
+    display: none;
+  }
+  .questions-page__bg_c-loose {
+    display: block;
+  }
 }
 
 .questions__container {
-  min-height: 100vh;
+  min-height: calc(100vh - 95px);
   max-width: 1120px;
   width: 100%;
   padding: 0 20px;
@@ -45,23 +361,26 @@
   flex-direction: column;
   align-items: center;
   padding-top: 59px;
+  .ant-progress-text {
+    color: white !important;
+    font-weight: 600;
+    font-size: 27.9124px;
+    line-height: 34px;
+    text-align: center;
+    letter-spacing: 0.143099px;
+
+    color: #ffffff;
+  }
   .questions__timer {
     width: 115px;
     height: 115px;
-    background-color: red;
+    // background-color: red;
     margin-bottom: 50px;
   }
   .questions__close {
     position: absolute;
   }
-  .que {
-  }
 
-  // display: flex;
-  // width: 100%;
-  // flex-direction: column;
-  // align-items: center;
-  // margin: auto;
   .questions__que {
     font-weight: bold;
     font-size: 40px;
@@ -69,6 +388,8 @@
     text-align: center;
     color: #ffffff;
     margin-bottom: 35px;
+    @media screen and (max-width: 767px) {
+    }
   }
   .questions__descr {
     font-weight: normal;
@@ -78,6 +399,8 @@
     max-width: 500px;
     color: #ffffff;
     margin-bottom: 180px;
+    @media screen and (max-width: 767px) {
+    }
   }
   .questions__btn-block {
     display: flex;
@@ -102,6 +425,8 @@
         background: #fcd876;
       }
     }
+    @media screen and (max-width: 767px) {
+    }
   }
 }
 
@@ -119,6 +444,7 @@
     color: #060505;
     margin-bottom: 210px;
     font-family: Roboto;
+    z-index: 4;
   }
   .win__tnx {
     font-weight: normal;
@@ -130,6 +456,7 @@
     margin-bottom: 80px;
   }
   .win__cash {
+    z-index: 4;
     border-radius: 60px;
     height: 69px;
     width: 546px;
@@ -160,5 +487,57 @@
     line-height: 37px;
     text-align: center;
     color: #ffffff;
+  }
+  .win__no {
+    font-weight: 600;
+    font-size: 50px;
+    line-height: 61px;
+    text-align: center;
+    color: #323232;
+    max-width: 405px;
+    margin-bottom: 40px;
+  }
+
+  @media screen and (max-width: 767px) {
+    padding: 0 30px;
+    width: 100%;
+    .win__no {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 20px;
+      text-align: center;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .win__cash {
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 121%;
+      color: rgba(255, 255, 255, 0.85);
+      width: 261px;
+      margin-top: 11vh;
+      margin-bottom: 5px;
+      height: 33px;
+    }
+    .win__cost {
+      font-weight: 500;
+      font-size: 90px;
+      line-height: 145%;
+      margin-bottom: 130px;
+    }
+    .win__tnx {
+      font-size: 12px;
+      line-height: 15px;
+      margin-bottom: 40px;
+    }
+    .win__btn {
+      width: 200px;
+      height: 49px;
+      font-size: 16px;
+      line-height: 20px;
+      text-align: center;
+      letter-spacing: 0.25px;
+    }
   }
 }

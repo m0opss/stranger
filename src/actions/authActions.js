@@ -3,6 +3,8 @@ import {
   LOGIN_SUCCES,
   LOGIN_FAIL,
   ON_EXIT,
+  SET_TOKEN,
+  SET_AUTH
 } from "../reducers/authReducer";
 
 export function handleLogin() {
@@ -34,6 +36,19 @@ export function onExitAccount() {
   return function (dispatch) {
     dispatch({
       type: ON_EXIT,
+    });
+  };
+}
+
+export function onLogin(token) {
+  return function (dispatch) {
+    dispatch({
+      type: SET_TOKEN,
+      payload: token
+    });
+    dispatch({
+      type: SET_AUTH,
+      payload: true
     });
   };
 }

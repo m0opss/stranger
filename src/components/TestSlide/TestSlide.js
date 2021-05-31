@@ -6,10 +6,26 @@ import rub from "../../assets/img/testRub.svg";
 
 import "./testslide.scss";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const TestSlide = ({ img, name, time, price, id, ...props }) => {
+  const token = useSelector((state) => state.auth.token);
+  const startGame = () => {
+    fetch("https://stranger-go.com/api/v1/games/", {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        post: id,
+      }),
+    });
+  };
+
   return (
-    <div className="test-slide">
+    <div className="test-slide" onClick={() => console.log(id)}>
       <div className="test-slide__brand-logo">
         <img className="" src={img} />
       </div>
@@ -23,7 +39,11 @@ const TestSlide = ({ img, name, time, price, id, ...props }) => {
           <img src={rub} />
           {price}
         </div>
-        <Link className="test-slide__play" to={`/brand/${id}`}>
+        <Link
+          className="test-slide__play"
+          to={`/brand/${id}`}
+          onClick={startGame}
+        >
           <img src={start} />
         </Link>
       </div>

@@ -4,13 +4,16 @@ import Slider from "react-slick";
 import clock from "../assets/img/brandClock.svg";
 import info from "../assets/img/brandInfo.svg";
 import rub from "../assets/img/brandrub.svg";
-import test from "../assets/img/testBrandImg.png";
+import ReactPlayer from "react-player";
+
 import { Link, NavLink, useParams, useRouteMatch } from "react-router-dom";
 import "./brand.scss";
+import { useSelector } from "react-redux";
 
 const Brand = (props) => {
   const [fullWatched, setWatched] = useState(false);
   const [slideN, setSlideN] = useState(0);
+  const [slides, setSlides] = useState([]);
   const { params } = useRouteMatch();
   const id = params.id;
 
@@ -21,7 +24,7 @@ const Brand = (props) => {
   Описание Описание Описание Описание Описание Описание Описание
   Описание Описание Описание Описание`;
   let price = 10;
-  const len = 3;
+
   const settings = {
     dots: true,
     focusOnSelect: true,
@@ -29,15 +32,28 @@ const Brand = (props) => {
     slidesToShow: 1,
     speed: 500,
     afterChange: (current) => setSlideN(current),
-    // nextArrow: <SampleNextArrow />,
-    // prevArrow: <SamplePrevArrow />,
   };
 
   useEffect(() => {
-    if (len == slideN) {
+    if (slides.length == slideN) {
       setWatched(true);
     }
   });
+  const token = useSelector((state) => state.auth.token);
+  useEffect(() => {
+    fetch("https://stranger-go.com/api/v1/games/list_attachments/", {
+      method: "GET",
+      headers: {
+        Authorization: `Token ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((re) => {
+        setSlides(re);
+      });
+  }, []);
 
   return (
     <div className="page brand-page">
@@ -84,18 +100,22 @@ const Brand = (props) => {
 
         <div className="brand-page__slider">
           <Slider {...settings}>
-            <div className="brand-page__slider-item">
-              <img src={test} />
-            </div>
-            <div className="brand-page__slider-item">
-              <img src={test} />
-            </div>
-            <div className="brand-page__slider-item">
-              <img src={test} />
-            </div>
-            <div className="brand-page__slider-item">
-              <img src={test} />
-            </div>
+            {slides.map((i) => (
+              <div className="brand-page__slider-item" key={i.id}>
+                {i.type_attachment == "vi" ? (
+                  <video
+                    src={`https://stranger-go.com${i.file_attachment}`}
+                    height="700"
+                    width="700"
+                    controls
+                  />
+                ) : i.type_attachment == "im" ? (
+                  <img src={`https://stranger-go.com/${i.file_attachment}`} />
+                ) : (
+                  <></>
+                )}
+              </div>
+            ))}
           </Slider>
         </div>
       </div>

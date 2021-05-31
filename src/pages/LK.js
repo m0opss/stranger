@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, Redirect, useHistory, useParams } from "react-router-dom";
 import Header from "../components/Header/Header";
 import LKNav from "../components/LK/LKNav/LKNav";
 import LKContent from "../components/LK/LKContent/LKContent";
@@ -9,11 +9,13 @@ import { useSelector } from "react-redux";
 
 const LK = () => {
   const [activeTab, setActiveTab] = useState("");
-  const isAdmin = useSelector(state => state.auth.isAdmin)
+  const isAdmin = useSelector((state) => state.auth.isAdmin);
+  const isAuth = useSelector((state) => state.auth.isAuth);
+  const history = useHistory();
+  // const p = useParams();
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
-  const p = useParams();
-  console.log(p );
+
   useEffect(() => {
     if (!isMobile) {
       if (isAdmin) {
@@ -25,36 +27,39 @@ const LK = () => {
       setActiveTab("");
     }
   }, []);
-
-  return (
-    <div
-      className="page lk-page"
-      style={isAdmin && isMobile ? { background: "#FBFBFB" } : {}}
-    >
-      <Header />
+  if (isAuth) {
+    return (
       <div
-        className="lk-page__container"
-        style={
-          isAdmin && isMobile
-            ? { paddingLeft: "20px", paddingRight: "20px" }
-            : {}
-        }
+        className="page lk-page"
+        style={isAdmin && isMobile ? { background: "#FBFBFB" } : {}}
       >
-        <LKNav
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          isAdmin={isAdmin}
-          isMobile={isMobile}
-        />
-        <LKContent
-          isAdmin={isAdmin}
-          activeTab={activeTab}
-          setActiveTab={setActiveTab}
-          isMobile={isMobile}
-        />
+        <Header />
+        <div
+          className="lk-page__container"
+          style={
+            isAdmin && isMobile
+              ? { paddingLeft: "20px", paddingRight: "20px" }
+              : {}
+          }
+        >
+          <LKNav
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+            isAdmin={isAdmin}
+            isMobile={isMobile}
+          />
+          <LKContent
+            isAdmin={isAdmin}
+            activeTab={activeTab}
+            setActiveTab={setActiveTab}
+            isMobile={isMobile}
+          />
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
+  return <Redirect to="/" />;
+  // history.push("/");
 };
 
 export default LK;

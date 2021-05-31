@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Header from "../components/Header/Header";
 import TestSlide from "../components/TestSlide/TestSlide";
@@ -6,6 +6,7 @@ import Slider from "react-slick";
 import test from "../assets/img/testBrandLogo.svg";
 
 import "./test.scss";
+import { useSelector } from "react-redux";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -45,19 +46,47 @@ const Test = ({}) => {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
   };
+
+  useEffect(() => {
+    const token = useSelector((state) => state.auth.token);
+    fetch("https://stranger-go.com/api/v1/posts/", {
+      method: "GET",
+      headers: {
+        Authorization: `Token ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((re) => {
+        setSlides(re);
+      });
+  }, []);
+
+  const [slides, setSlides] = useState([]);
+
   return (
     <div className="page test-page">
       <Header />
 
       <div className="test-content">
         <Slider {...settings}>
-          <TestSlide id={0} img={test} name={"Nike"} time={"3"} price={"10"} />
-          <TestSlide id={1} img={test} name={"Nike"} time={"3"} price={"10"} />
+          {slides.map((s) => (
+            <TestSlide
+              id={s.id}
+              key={s.id}
+              img={s.logo}
+              name={s.brand}
+              time={s.duration}
+              price={s.coast}
+            />
+          ))}
+          {/* <TestSlide id={1} img={test} name={"Nike"} time={"3"} price={"10"} />
           <TestSlide id={2} img={test} name={"Nike"} time={"3"} price={"10"} />
           <TestSlide id={3} img={test} name={"Nike"} time={"3"} price={"10"} />
           <TestSlide id={4} img={test} name={"Nike"} time={"3"} price={"10"} />
           <TestSlide id={5} img={test} name={"Nike"} time={"3"} price={"10"} />
-          <TestSlide id={6} img={test} name={"Nike"} time={"3"} price={"10"} />
+          <TestSlide id={6} img={test} name={"Nike"} time={"3"} price={"10"} /> */}
         </Slider>
       </div>
     </div>

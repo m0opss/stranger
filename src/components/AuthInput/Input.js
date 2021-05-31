@@ -12,6 +12,7 @@ const Input = ({
   className,
   isValidated,
   placeholder,
+  type,
 }) => {
   return (
     <>
@@ -20,11 +21,12 @@ const Input = ({
           id={id}
           label={label}
           defaultValue={value}
-          onChange={setValue}
+          onChange={(e) => setValue(e.target.value)}
           variant="outlined"
           className={className}
           InputLabelProps={{ shrink: true }}
           placeholder={placeholder}
+          type={type}
         />
       ) : (
         <TextField
@@ -32,12 +34,13 @@ const Input = ({
           id={id}
           label={label}
           defaultValue={value}
-          onChange={setValue}
+          onChange={(e) => setValue(e.target.value)}
           variant="outlined"
           className={className}
           placeholder={placeholder}
           InputLabelProps={{ shrink: true }}
           helperText={helperText}
+          type={type}
         />
       )}
     </>

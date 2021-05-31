@@ -10,13 +10,80 @@ import alien from "../assets/img/alienReg.svg";
 import alien_m from "../assets/img/alien.svg";
 
 import "./register.scss";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import SelectCard from "../components/SelectCard/SelectCard";
+
+import isEmail from "validator/es/lib/isEmail";
+import { useDispatch } from "react-redux";
 
 const Register = ({}) => {
   const [login, setLogin] = useState("");
+  const [login_correct, setLogin_correct] = useState(true);
   const [pass, setPass] = useState("");
+  const [pass_correct, setPass_correct] = useState(true);
   const [passAlso, setPassAlso] = useState("");
+  const [passAlso_correct, setPassAlso_correct] = useState(true);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const validate = () => {
+    let flag = true;
+    console.log(login);
+    console.log(pass);
+    console.log(passAlso);
+    if (!isEmail(login)) {
+      setLogin_correct(false);
+      flag = false;
+    } else {
+      setLogin_correct(true);
+    }
+    if (passAlso !== pass) {
+      setPass_correct(false);
+      setPassAlso_correct(false);
+      flag = false;
+    } else {
+      setPass_correct(true);
+      setPassAlso_correct(true);
+    }
+    if (pass.length < 5) {
+      setPass_correct(false);
+      flag = false;
+    } else {
+      setPass_correct(true);
+    }
+    return flag;
+  };
+
+  const fetchData = () => {
+    if (validate()) {
+      (async () => {
+        const rawResponse = await fetch(
+          "https://stranger-go.com/api/v1/users/",
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: login,
+              password: pass,
+              re_password: passAlso,
+            }),
+          }
+        );
+        if (rawResponse.ok) {
+          const content = await rawResponse.json();
+          history.push("/login");
+        } else {
+          const err = await rawResponse.json();
+          alert(
+            "Ошибка HTTP: " + rawResponse.status + " " + JSON.stringify(err)
+          );
+        }
+      })();
+    }
+  };
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
 
@@ -55,7 +122,7 @@ const Register = ({}) => {
               id="login"
               label="E-mail"
               helperText="Email неправильно введен."
-              isValidated={true}
+              isValidated={login_correct}
               placeholder="введите email"
               className="auth-form-block__input"
             />
@@ -64,9 +131,10 @@ const Register = ({}) => {
               setValue={setPass}
               id="pass"
               label="Пароль"
-              helperText="Пароль неправильно введен."
-              isValidated={true}
+              helperText="Пароль не удовлетворяет требованиям"
+              isValidated={pass_correct}
               placeholder="введите пароль"
+              type="password"
               className="auth-form-block__input"
             />
             {isMobile ? (
@@ -83,14 +151,15 @@ const Register = ({}) => {
               value={passAlso}
               setValue={setPassAlso}
               id="passAlso"
+              type="password"
               label="Подверждение пароля"
-              helperText={"Пароль неправильно введен."}
-              isValidated={true}
+              helperText={"Пароли не совпадают"}
+              isValidated={passAlso_correct}
               placeholder="введите пароль"
               className="auth-form-block__input"
             />
           </div>
-          <div className="auth-form-block__reg-btn">
+          <div className="auth-form-block__reg-btn" onClick={fetchData}>
             <p>Зарегистрироваться</p>
             <img className="auth-form-block__reg-btn-ic" src={f_arr} />
           </div>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Header from "../components/Header/Header";
 import Input from "../components/AuthInput/Input";
+import { Link, useHistory } from "react-router-dom";
 
 import f_arr from "../assets/img/forwardArr.svg";
 import inst from "../assets/img/inst.svg";
@@ -9,34 +10,43 @@ import face from "../assets/img/facebook.svg";
 import alien from "../assets/img/alienReg.svg";
 import alien_m from "../assets/img/alien.svg";
 
+import { onLogin } from "../actions/authActions";
+
 import "./register.scss";
-import { Link } from "react-router-dom";
 import "./login.scss";
+import { useDispatch } from "react-redux";
 
 const Login = ({}) => {
   const [login, setLogin] = useState("");
   const [pass, setPass] = useState("");
-
+  const dispatch = useDispatch();
+  const history = useHistory()
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
-
   const fetchData = () => {
-
     (async () => {
-      const rawResponse = await fetch("https://stranger-go.com/api/v1/token/login/", {
-        method: "POST",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: "admin@stranger-go.com",
-          password: "qwe123!@#",
-        }),
-      });
+      const rawResponse = await fetch(
+        "https://stranger-go.com/api/v1/token/login/",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: "admin@stranger-go.com",
+            password: "qwe123!@#",
+            // email: login,
+            // password: pass,
+          }),
+        }
+      );
       const content = await rawResponse.json();
-
-      console.log(content);
+      if (content.auth_token != "" && content) {
+        dispatch(onLogin(content.auth_token));
+        console.log(content.auth_token);
+        history.push('/')
+      }
     })();
   };
 
