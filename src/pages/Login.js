@@ -11,21 +11,25 @@ import alien from "../assets/img/alienReg.svg";
 import alien_m from "../assets/img/alien.svg";
 
 import { onLogin } from "../actions/authActions";
+import { getUserData } from "../actions/userActions";
 
 import "./register.scss";
 import "./login.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = ({}) => {
   const [login, setLogin] = useState("");
   const [pass, setPass] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
+  const token = useSelector(state => state.auth.token)
+
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
 
   const fetchData = () => {
     dispatch(onLogin({ email: login, password: pass }));
+    // dispatch(getUserData(token))
     history.push("/");
   };
 

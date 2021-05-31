@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header/Header";
 import TestSlide from "../components/TestSlide/TestSlide";
 import Slider from "react-slick";
+import Swiper from "react-id-swiper";
 import test from "../assets/img/testBrandLogo.svg";
 import { useSelector } from "react-redux";
 
+import "swiper/swiper.scss";
 import "./test.scss";
 
 function SampleNextArrow(props) {
@@ -33,18 +35,14 @@ function SamplePrevArrow(props) {
 }
 
 const Test = ({}) => {
-  const settings = {
-    className: "center",
-    centerMode: true,
-    dots: true,
-    focusOnSelect: true,
-    infinite: true,
-    centerPadding: "10px",
-    slidesToShow: 3,
-    speed: 500,
-    // variableWidth: true,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
+  const params = {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    centeredSlides: true,
+    // pagination: {
+    //   el: ".swiper-pagination",
+    //   clickable: true,
+    // },
   };
 
   const [slides, setSlides] = useState([]);
@@ -67,9 +65,8 @@ const Test = ({}) => {
   return (
     <div className="page test-page">
       <Header />
-
       <div className="test-content">
-        <Slider {...settings}>
+        <Swiper {...params}>
           {slides.map((s) => (
             <TestSlide
               id={s.id}
@@ -80,7 +77,7 @@ const Test = ({}) => {
               price={s.coast}
             />
           ))}
-        </Slider>
+        </Swiper>
       </div>
     </div>
   );

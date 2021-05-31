@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BrandCard from "../components/BrandCard/BrandCard";
 import Header from "../components/Header/Header";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
@@ -19,6 +19,10 @@ const AddPosts = (props) => {
     { img: test, id: 3 },
     { img: test, id: 4 },
   ]);
+  
+  useEffect(() => {
+
+  })
 
   const removeBrand = (id) => {
     setBrands((brands) => brands.filter((i) => i.id != id));

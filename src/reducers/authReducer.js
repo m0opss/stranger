@@ -11,7 +11,8 @@ const defaultState = {
   isAuth: true,
   isAdmin: true,
   name: "",
-  token: "fa52819beaa0f72773eae7457586179144f25d77",
+  token: "0a4f656be0c0a56ecc731766d2f0d4ea5b4380a7",
+  // token: "",
   error: "",
   isBlock: false,
 };

@@ -3,7 +3,7 @@ import Header from "../components/Header/Header";
 import Slider from "react-slick";
 import clock from "../assets/img/brandClock.svg";
 import info from "../assets/img/brandInfo.svg";
-import rub from "../assets/img/brandrub.svg";
+import rub from "../assets/img/brandRub.svg";
 import ReactPlayer from "react-player";
 
 import { Link, NavLink, useParams, useRouteMatch } from "react-router-dom";

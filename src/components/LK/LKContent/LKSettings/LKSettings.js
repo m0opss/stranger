@@ -34,6 +34,34 @@ const ChangePassBlock = ({ setActiveblock, token }) => {
       setDisable(true);
     }
   }, [log, old_pass, new_pass, also_pass]);
+  const fetchData = () => {
+    (async () => {
+      const rawResponse = await fetch(
+        "https://stranger-go.com/api/v1/users/create_user/",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+          },
+          body: JSON.stringify({
+            email: log,
+            password: pass,
+            is_superuser: isAddAdmin,
+          }),
+        }
+      );
+      if (rawResponse.ok) {
+        const content = await rawResponse.json();
+        console.log(content);
+        alert("Пользователь добавлен.ID: " + content.id);
+      } else {
+        const err = await response.json();
+        alert("Ошибка HTTP: " + response.status + " " + JSON.stringify(err));
+      }
+    })();
+  };
   return (
     <>
       <div className="settings-block__change change-pass-block">
@@ -86,19 +114,46 @@ const ChangePassBlock = ({ setActiveblock, token }) => {
 };
 const ChangeLogBlock = ({ setActiveblock, token }) => {
   const [disable, setDisable] = useState(true);
-  const [old_log, set_old_log] = useState("");
   const [new_log, set_new_log] = useState("");
+  const [new_log_also, set_new_log_also] = useState("");
 
   const [pass, set_pass] = useState("");
 
   useEffect(() => {
-    if (old_log != "" && new_log != "" && pass != "") {
+    if (new_log_also != "" && new_log != "" && pass != "") {
       setDisable(false);
     } else {
       setDisable(true);
     }
-  }, [old_log, new_log, pass]);
-
+  }, [new_log_also, new_log, pass]);
+  const fetchData = () => {
+    (async () => {
+      const rawResponse = await fetch(
+        "https://stranger-go.com/api/v1/users/set_username/",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+          },
+          body: JSON.stringify({
+            current_password: pass,
+            new_email: new_log,
+            re_new_email: new_log_also,
+          }),
+        }
+      );
+      if (rawResponse.ok) {
+        const content = await rawResponse.json();
+        console.log(content);
+        alert("Пользователь добавлен.ID: " + content.id);
+      } else {
+        const err = await response.json();
+        alert("Ошибка HTTP: " + response.status + " " + JSON.stringify(err));
+      }
+    })();
+  };
   return (
     <>
       <div className="settings-block__change change-log-block">
@@ -111,16 +166,16 @@ const ChangeLogBlock = ({ setActiveblock, token }) => {
         <div className="settings-block__inputs">
           <SettingsBlockInput
             icon={icon_log}
-            value={old_log}
-            setValue={set_old_log}
-            placeholder="старый логин"
+            value={new_log}
+            setValue={set_new_log}
+            placeholder="новый логин"
             type="text"
           />
           <SettingsBlockInput
             icon={icon_log}
-            value={new_log}
-            setValue={set_new_log}
-            placeholder="новый логин"
+            value={new_log_also}
+            setValue={set_new_log_also}
+            placeholder="новый логин еще раз"
             type="text"
           />
           <SettingsBlockInput
@@ -136,6 +191,7 @@ const ChangeLogBlock = ({ setActiveblock, token }) => {
         className={`save-settings-btn btn lk-btn ${
           disable ? "lk-btn__disable" : ""
         }`}
+        onClick={fetchData}
       >
         изменить
       </div>

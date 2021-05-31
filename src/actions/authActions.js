@@ -9,6 +9,8 @@ import {
   SET_ADMIN,
 } from "../reducers/authReducer";
 
+import { getUserData } from "./userActions";
+
 export function handleLogin() {
   return function (dispatch) {
     dispatch({
@@ -60,6 +62,7 @@ export const onLogin = (credentials) => async (dispatch) => {
   );
   if (rawResponse.ok) {
     const content = await rawResponse.json();
+    dispatch(getUserData(content.auth_token));
     const response = await fetch("https://stranger-go.com/api/v1/users/me/", {
       method: "GET",
       headers: {

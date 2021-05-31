@@ -1,6 +1,7 @@
 .test-slide {
-  height: 100%;
-  width: 100% !important;
+  height: 500px;
+  width: 500px;
+  // width: 100% !important;
   transition: 0.5s;
   padding: 30px 20px 50px 60px;
   position: relative;
@@ -57,7 +58,7 @@
     .test-slide__play {
       width: 30%;
       margin-left: 50px;
-      display: none;
+      // display: none;
       @media screen and (max-width: 1612px) {
         margin-left: 22px;
       }
