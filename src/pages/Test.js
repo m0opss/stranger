@@ -4,9 +4,9 @@ import Header from "../components/Header/Header";
 import TestSlide from "../components/TestSlide/TestSlide";
 import Slider from "react-slick";
 import test from "../assets/img/testBrandLogo.svg";
+import { useSelector } from "react-redux";
 
 import "./test.scss";
-import { useSelector } from "react-redux";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -47,8 +47,9 @@ const Test = ({}) => {
     prevArrow: <SamplePrevArrow />,
   };
 
+  const [slides, setSlides] = useState([]);
+  const token = useSelector((state) => state.auth.token);
   useEffect(() => {
-    const token = useSelector((state) => state.auth.token);
     fetch("https://stranger-go.com/api/v1/posts/", {
       method: "GET",
       headers: {
@@ -62,8 +63,6 @@ const Test = ({}) => {
         setSlides(re);
       });
   }, []);
-
-  const [slides, setSlides] = useState([]);
 
   return (
     <div className="page test-page">
@@ -81,12 +80,6 @@ const Test = ({}) => {
               price={s.coast}
             />
           ))}
-          {/* <TestSlide id={1} img={test} name={"Nike"} time={"3"} price={"10"} />
-          <TestSlide id={2} img={test} name={"Nike"} time={"3"} price={"10"} />
-          <TestSlide id={3} img={test} name={"Nike"} time={"3"} price={"10"} />
-          <TestSlide id={4} img={test} name={"Nike"} time={"3"} price={"10"} />
-          <TestSlide id={5} img={test} name={"Nike"} time={"3"} price={"10"} />
-          <TestSlide id={6} img={test} name={"Nike"} time={"3"} price={"10"} /> */}
         </Slider>
       </div>
     </div>

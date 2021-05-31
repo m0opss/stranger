@@ -57,7 +57,6 @@ const App = (props) => {
                   in={match != null}
                 >
                   <Component {...props} />
-                  {/* {loaded ? <Component /> : <>asdasd</>} */}
                 </CSSTransition>
               )}
             </Route>

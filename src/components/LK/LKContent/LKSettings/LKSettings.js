@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import icon_log from "../../../../assets/img/LK/inputIconLog.svg";
 import icon_pass from "../../../../assets/img/LK/inputIconPass.svg";
@@ -19,7 +20,7 @@ const SettingsBlockInput = ({ icon, value, setValue, placeholder, type }) => {
   );
 };
 
-const ChangePassBlock = ({ setActiveblock }) => {
+const ChangePassBlock = ({ setActiveblock, token }) => {
   const [disable, setDisable] = useState(true);
   const [log, set_log] = useState("");
   const [old_pass, set_old_pass] = useState("");
@@ -83,7 +84,7 @@ const ChangePassBlock = ({ setActiveblock }) => {
     </>
   );
 };
-const ChangeLogBlock = ({ setActiveblock }) => {
+const ChangeLogBlock = ({ setActiveblock, token }) => {
   const [disable, setDisable] = useState(true);
   const [old_log, set_old_log] = useState("");
   const [new_log, set_new_log] = useState("");
@@ -142,7 +143,7 @@ const ChangeLogBlock = ({ setActiveblock }) => {
   );
 };
 
-const AddBlock = ({ setActiveblock }) => {
+const AddBlock = ({ setActiveblock, token }) => {
   const [log, set_log] = useState("");
   const [disable, setDisable] = useState(true);
   const [isAddAdmin, setisAddAdmin] = useState(false);
@@ -169,7 +170,34 @@ const AddBlock = ({ setActiveblock }) => {
     if (type == "admin") setisAddAdmin(true);
     else setisAddAdmin(false);
   };
-
+  const fetchData = () => {
+    (async () => {
+      const rawResponse = await fetch(
+        "https://stranger-go.com/api/v1/users/create_user/",
+        {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+          },
+          body: JSON.stringify({
+            email: log,
+            password: pass,
+            is_superuser: isAddAdmin,
+          }),
+        }
+      );
+      if (rawResponse.ok) {
+        const content = await rawResponse.json();
+        console.log(content);
+        alert("Пользователь добавлен.ID: " + content.id);
+      } else {
+        const err = await response.json();
+        alert("Ошибка HTTP: " + response.status + " " + JSON.stringify(err));
+      }
+    })();
+  };
   return (
     <>
       <div className="settings-block__user-type">
@@ -237,6 +265,7 @@ const AddBlock = ({ setActiveblock }) => {
         className={`save-settings-btn btn lk-btn ${
           disable ? "lk-btn__disable" : ""
         }`}
+        onClick={fetchData}
       >
         добавить
       </div>
@@ -275,7 +304,7 @@ const ButtonsBlock = ({ setActiveblock, isAdmin }) => {
 
 const SettingsBlock = ({ setActiveTab, isAdmin, isMobile }) => {
   const [activeBlock, setActiveblock] = useState("");
-  console.log(isAdmin);
+  const token = useSelector((state) => state.auth.token);
   return (
     <div
       className={`lk-content__block settings-block ${
@@ -289,7 +318,7 @@ const SettingsBlock = ({ setActiveTab, isAdmin, isMobile }) => {
             <p className="settings-block__descr">
               Здесь вы можете изменить свой пароль в игре
             </p>
-            <ChangePassBlock setActiveblock={setActiveblock} />
+            <ChangePassBlock token={token} setActiveblock={setActiveblock} />
           </>
         ) : activeBlock == "log" ? (
           <>
@@ -297,7 +326,7 @@ const SettingsBlock = ({ setActiveTab, isAdmin, isMobile }) => {
             <p className="settings-block__descr">
               Здесь вы можете изменить свой логин в игре
             </p>
-            <ChangeLogBlock setActiveblock={setActiveblock} />
+            <ChangeLogBlock token={token} setActiveblock={setActiveblock} />
           </>
         ) : activeBlock == "addUser" ? (
           <>
@@ -307,8 +336,7 @@ const SettingsBlock = ({ setActiveTab, isAdmin, isMobile }) => {
             >
               Добавить пользователя
             </p>
-
-            <AddBlock setActiveblock={setActiveblock} />
+            <AddBlock token={token} setActiveblock={setActiveblock} />
           </>
         ) : (
           <>

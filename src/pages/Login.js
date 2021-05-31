@@ -20,34 +20,13 @@ const Login = ({}) => {
   const [login, setLogin] = useState("");
   const [pass, setPass] = useState("");
   const dispatch = useDispatch();
-  const history = useHistory()
+  const history = useHistory();
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
+
   const fetchData = () => {
-    (async () => {
-      const rawResponse = await fetch(
-        "https://stranger-go.com/api/v1/token/login/",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: "admin@stranger-go.com",
-            password: "qwe123!@#",
-            // email: login,
-            // password: pass,
-          }),
-        }
-      );
-      const content = await rawResponse.json();
-      if (content.auth_token != "" && content) {
-        dispatch(onLogin(content.auth_token));
-        console.log(content.auth_token);
-        history.push('/')
-      }
-    })();
+    dispatch(onLogin({ email: login, password: pass }));
+    history.push("/");
   };
 
   return (
@@ -95,7 +74,8 @@ const Login = ({}) => {
               id="pass"
               label="Пароль"
               helperText="Пароль неправильно введен."
-              isValidated={false}
+              isValidated={true}
+              type="password"
               placeholder="введите пароль"
               className="auth-form-block__input"
             />

@@ -4,7 +4,9 @@ import {
   LOGIN_FAIL,
   ON_EXIT,
   SET_TOKEN,
-  SET_AUTH
+  SET_AUTH,
+  SET_BLOCK,
+  SET_ADMIN,
 } from "../reducers/authReducer";
 
 export function handleLogin() {
@@ -40,15 +42,57 @@ export function onExitAccount() {
   };
 }
 
-export function onLogin(token) {
-  return function (dispatch) {
-    dispatch({
-      type: SET_TOKEN,
-      payload: token
+export const onLogin = (credentials) => async (dispatch) => {
+  const rawResponse = await fetch(
+    "https://stranger-go.com/api/v1/token/login/",
+    {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(
+        // email: "admin@stranger-go.com",
+        // password: "qwe123!@#",
+        credentials
+      ),
+    }
+  );
+  if (rawResponse.ok) {
+    const content = await rawResponse.json();
+    const response = await fetch("https://stranger-go.com/api/v1/users/me/", {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Token ${content.auth_token}`,
+      },
     });
-    dispatch({
-      type: SET_AUTH,
-      payload: true
-    });
-  };
-}
+    if (response.ok) {
+      const userData = await response.json();
+
+      dispatch({
+        type: SET_TOKEN,
+        payload: content.auth_token,
+      });
+      dispatch({
+        type: SET_AUTH,
+        payload: true,
+      });
+      dispatch({
+        type: SET_ADMIN,
+        payload: userData.is_staff,
+      });
+      dispatch({
+        type: SET_BLOCK,
+        payload: userData.is_block,
+      });
+    } else {
+      const err = await response.json();
+      alert("Ошибка HTTP: " + response.status + " " + JSON.stringify(err));
+    }
+  } else {
+    const err = await rawResponse.json();
+    alert("Ошибка HTTP: " + rawResponse.status + " " + JSON.stringify(err));
+  }
+};
