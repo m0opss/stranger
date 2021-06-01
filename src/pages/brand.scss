@@ -59,21 +59,7 @@
     max-width: 500px;
     margin-bottom: 70px;
   }
-  .brand-page__btn {
-    font-weight: bold;
-    font-size: 30px;
-    line-height: 37px;
-    text-align: center;
-    color: #ffffff;
-    background: #c4c4c4;
-    border-radius: 50px;
-    max-width: 510px;
-    padding: 5px;
-    height: 95px;
-    box-shadow: inset 0px 3px 3px rgba(0, 0, 0, 0.25);
-    margin-bottom: 30px;
-    transition: .5s;
-  }
+
   .brand-page__btn.brand-page__btn_active {
     background: #17ca9b;
     box-shadow: unset;
@@ -87,7 +73,21 @@
     color: rgba(0, 0, 0, 0.5);
   }
 }
-
+.brand-page__btn {
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 37px;
+  text-align: center;
+  color: #ffffff;
+  background: #c4c4c4;
+  border-radius: 50px;
+  max-width: 510px;
+  padding: 5px;
+  height: 95px;
+  box-shadow: inset 0px 3px 3px rgba(0, 0, 0, 0.25);
+  margin-bottom: 30px;
+  transition: 0.5s;
+}
 .brand-page__slider {
   .slick-list {
     width: 700px !important;

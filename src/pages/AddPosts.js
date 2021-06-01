@@ -8,6 +8,7 @@ import BackArr from "../components/BackArr/BackArr";
 
 import "./addposts.scss";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const AddPosts = (props) => {
   let isMobile = false;
@@ -19,13 +20,27 @@ const AddPosts = (props) => {
     { img: test, id: 3 },
     { img: test, id: 4 },
   ]);
-  
-  useEffect(() => {
+  const [slides, setSlides] = useState([]);
+  const token = useSelector((state) => state.auth.token);
 
-  })
+  useEffect(() => {
+    fetch("https://stranger-go.com/api/v1/posts/", {
+      method: "GET",
+      headers: {
+        Authorization: `Token ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((re) => {
+        setSlides(re);
+        console.log(re)
+      });
+  }, []);
 
   const removeBrand = (id) => {
-    setBrands((brands) => brands.filter((i) => i.id != id));
+    setSlides((brands) => brands.filter((i) => i.id != id));
   };
   const addBrand = () => {
     setBrands((brands) => [...brands, { img: test, id: brands.length }]);
@@ -60,14 +75,14 @@ const AddPosts = (props) => {
                 <BrandCard id="add" onClick={addBrand} />
               </Link>
             </CSSTransition>
-            {brands.map((i) => (
+            {slides.map((i) => (
               <CSSTransition
                 key={i.id}
                 timeout={500}
                 classNames="brands-list__item"
               >
                 <div className="brands-list__item">
-                  <BrandCard id={i.id} img={i.img} onClick={removeBrand} />
+                  <BrandCard id={i.id} img={i.logo} onClick={removeBrand} />
                 </div>
               </CSSTransition>
             ))}

@@ -1,0 +1,51 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+.brand-page__btn-panel {
+  display: flex;
+  align-items: center;
+  // justify-content: space-between;
+  width: 60%;
+  padding-left: 200px;
+  .brand-page__btn {
+    padding: 15px 36px;
+    height: auto;
+    margin: 10px;
+  }
+}
+.brand-page__name-input {
+  height: 60px;
+  max-width: 200px;
+  border: none;
+  border-bottom: 1px solid #c4c4c4;
+  outline: none;
+  margin-bottom: 50px;
+}
+.brand-page__row-input {
+  max-width: 50px;
+  border: none;
+  border-bottom: 1px solid #c4c4c4;
+  outline: none;
+  &::placeholder {
+    font-size: 12px;
+  }
+}
+.brand-page__descr-input {
+  width: 100%;
+  min-height: 400px;
+  padding: 10px;
+}
+.brand-page__slide {
+  width: 597px;
+  height: 582px;
+  background-color: #dadada;
+  border-radius: 20px;
+}
+input.brand-page__slide {
+  background-image: url('../assets/img/addBrand.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+input#file-upload-button {
+  display: none;
+}
