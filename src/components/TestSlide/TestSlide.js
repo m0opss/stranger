@@ -31,13 +31,15 @@ const TestSlide = ({ img, name, time, price, id, ...props }) => {
       </div>
       <div className="test-slide__name">{name}</div>
       <div className="test-slide__row">
-        <div className="test-slide__time">
-          <img src={clock} />
-          {time} мин
-        </div>
-        <div className="test-slide__price">
-          <img src={rub} />
-          {price}
+        <div className="">
+          <div className="test-slide__time">
+            <img src={clock} />
+            {time} мин
+          </div>
+          <div className="test-slide__price">
+            <img src={rub} />
+            {price}
+          </div>
         </div>
         <Link
           className="test-slide__play"

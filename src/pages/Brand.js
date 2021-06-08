@@ -35,7 +35,8 @@ const Brand = (props) => {
   };
 
   useEffect(() => {
-    if (slides.length == slideN) {
+    console.log(slides.length, slideN)
+    if (slides.length == slideN + 1) {
       setWatched(true);
     }
   });
@@ -97,7 +98,23 @@ const Brand = (props) => {
             </p>
           )}
         </div>
-
+        <div className="brand-page__info_m">
+          <h2>{name}</h2>
+          <div className="brand-page__row">
+            <div className="brand-page__brand">
+              <img src={info} />
+              {brand}
+            </div>
+            <div className="brand-page__time">
+              <img src={clock} />
+              {time} мин
+            </div>
+            <div className="brand-page__price">
+              <img src={rub} />
+              {price}
+            </div>
+          </div>
+        </div>
         <div className="brand-page__slider">
           <Slider {...settings}>
             {slides.map((i) => (
@@ -105,8 +122,8 @@ const Brand = (props) => {
                 {i.type_attachment == "vi" ? (
                   <video
                     src={`https://stranger-go.com${i.file_attachment}`}
-                    height="700"
-                    width="700"
+                    height="100%"
+                    width="100%"
                     controls
                   />
                 ) : i.type_attachment == "im" ? (
@@ -117,6 +134,27 @@ const Brand = (props) => {
               </div>
             ))}
           </Slider>
+        </div>
+        <div className="brand-page__info_m">
+          {fullWatched ? (
+            <Link
+              to={`/brand/${id}/q`}
+              className={`btn brand-page__btn brand-page__btn_active`}
+              style={{ marginBottom: 0 }}
+            >
+              играть
+            </Link>
+          ) : (
+            <div className={`btn brand-page__btn`}>играть</div>
+          )}
+
+          {fullWatched ? (
+            <></>
+          ) : (
+            <p className="brand-page__warning">
+              Играть можно начать только после просмотра презентации
+            </p>
+          )}
         </div>
       </div>
     </div>

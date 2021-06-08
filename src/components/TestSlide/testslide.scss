@@ -68,4 +68,47 @@
       font-size: 22px;
     }
   }
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    min-width: 158px;
+    max-height: 158px;
+
+    padding: 20px 15px;
+    .test-slide__brand-logo {
+      height: 97px;
+      left: 98px;
+      top: -40px;
+      width: 97px;
+      img {
+        height: auto;
+      }
+    }
+    .test-slide__name {
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 22px;
+      color: #ffffff;
+    }
+    .test-slide__price,
+    .test-slide__time {
+      img {
+        width: 15px;
+        height: 15px;
+      }
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 15px;
+      letter-spacing: 0.25px;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    .test-slide__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .test-slide__price {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+    }
+  }
 }

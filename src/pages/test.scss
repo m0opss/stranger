@@ -8,7 +8,10 @@
   width: 100%;
   max-width: 1522px;
   margin: auto;
-  // overflow-x: hidden;
+  display: block;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 }
 .arrow-info {
   display: flex;
@@ -75,5 +78,29 @@
   100% {
     transform: none;
     // transform: perspective(900px) rotate3d(0, -2, 3, -19deg);
+  }
+}
+
+.test-page__mobile-content {
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  .brands-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+  }
+  .brands-list__item {
+    width: 45%;
+    margin-bottom: 25px;
+    &:nth-child(2n) {
+      margin-top: 20px;
+    }
+  }
+  @media screen and (max-width: 767px) {
+    display: flex;
   }
 }

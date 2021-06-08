@@ -1,24 +1,92 @@
+.brand-page {
+  min-height: 100vh;
+}
 .brand-page__content {
   display: flex;
   // flex-wrap: wrap-reverse;
-  padding-left: 12%;
-  padding-right: 16%;
+  padding-left: 200px;
+  padding-right: 200px;
   justify-content: space-between;
   margin: auto;
   margin-top: 92px;
-  .brand-page__info,
-  .brand-page__slider {
-    width: 47%;
-    max-width: 576px;
+  .brand-page__info {
+    min-width: 576px;
   }
-  @media screen and (max-width: 1424px) {
-    flex-direction: column-reverse;
-    align-items: center;
-    padding-left: 11%;
-    padding-right: 11%;
+  .brand-page__slider {
+    width: 700px;
+  }
+  @media screen and (max-width: 1795px) {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+  @media screen and (max-width: 1550px) {
+    padding-left: 60px;
+    padding-right: 60px;
+    align-items: flex-end;
+    .brand-page__info {
+      min-width: 500px;
+    }
+    .brand-page__slider {
+      width: 550px;
+    }
+  }
+  @media screen and (max-width: 1260px) {
+    padding-left: 40px;
+    padding-right: 30px;
+    .brand-page__slider {
+      width: 500px;
+    }
+    .brand-page__info {
+      width: 450px;
+      min-width: unset;
+    }
+  }
+  @media screen and (max-width: 1090px) {
+    padding-right: 10px;
+    .brand-page__info {
+      width: 400px;
+    }
+    .brand-page__slider {
+      width: 450px;
+    }
+  }
+  @media screen and (max-width: 1000px) {
+    flex-direction: column;
+    padding-left: 40px;
+    padding-right: 40px;
+    margin-top: 45px;
+    .brand-page__slider {
+      width: 100%;
+    }
+    .brand-page__info {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 585px) {
+    padding-left: 25px;
+    padding-right: 25px;
   }
 }
-
+.brand-page__row {
+  display: flex;
+  font-weight: 600;
+  font-size: 30.4452px;
+  line-height: 37px;
+  letter-spacing: 0.475706px;
+  color: rgba(0, 0, 0, 0.9);
+  width: 100%;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  .brand-page__brand,
+  .brand-page__time,
+  .brand-page__price {
+    display: flex;
+    align-items: center;
+    img {
+      margin-right: 20px;
+    }
+  }
+}
 .brand-page__info {
   display: flex;
   flex-direction: column;
@@ -32,26 +100,7 @@
     align-items: center;
     color: #000000;
   }
-  .brand-page__row {
-    display: flex;
-    font-weight: 600;
-    font-size: 30.4452px;
-    line-height: 37px;
-    letter-spacing: 0.475706px;
-    color: rgba(0, 0, 0, 0.9);
-    width: 100%;
-    justify-content: space-between;
-    margin-bottom: 50px;
-    .brand-page__brand,
-    .brand-page__time,
-    .brand-page__price {
-      display: flex;
-      align-items: center;
-      img {
-        margin-right: 20px;
-      }
-    }
-  }
+
   .brand-page__descr {
     font-size: 28px;
     line-height: 34px;
@@ -60,10 +109,6 @@
     margin-bottom: 70px;
   }
 
-  .brand-page__btn.brand-page__btn_active {
-    background: #17ca9b;
-    box-shadow: unset;
-  }
   .brand-page__warning {
     max-width: 510px;
     font-weight: 300;
@@ -72,7 +117,31 @@
     text-align: center;
     color: rgba(0, 0, 0, 0.5);
   }
+
+  @media screen and (max-width: 1260px) {
+    h2 {
+      font-size: 34px;
+    }
+    .brand-page__row {
+      font-size: 24px;
+    }
+    .brand-page__descr {
+      font-size: 22px;
+    }
+  }
+  @media screen and (max-width: 1090px) {
+    h2 {
+      font-size: 30px;
+    }
+    .brand-page__row {
+      font-size: 20px;
+    }
+    .brand-page__descr {
+      font-size: 18px;
+    }
+  }
 }
+
 .brand-page__btn {
   font-weight: bold;
   font-size: 30px;
@@ -87,14 +156,64 @@
   box-shadow: inset 0px 3px 3px rgba(0, 0, 0, 0.25);
   margin-bottom: 30px;
   transition: 0.5s;
+  @media screen and (max-width: 1090px) { 
+    font-size: 28px;
+  }
 }
+.brand-page__btn.brand-page__btn_active {
+  background: #17ca9b;
+  box-shadow: unset;
+  transition: 0.3s;
+}
+
+.brand-page__info_m {
+  width: 100%;
+  display: none;
+  @media screen and (max-width: 1000px) {
+    display: block;
+    .brand-page__row {
+      margin-bottom: 20px;
+    }
+    .brand-page__btn {
+      margin: auto;
+      margin-top: 55px;
+      margin-bottom: 20px;
+      height: 45px;
+      width: 200px;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 22px;
+      text-align: center;
+
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .brand-page__warning {
+      font-weight: 300;
+      font-size: 12px;
+      margin: auto;
+      line-height: 15px;
+      text-align: center;
+      max-width: 200px;
+      margin-bottom: 30px;
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  @media screen and (max-width: 585px) {
+    .brand-page__row {
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 20px;
+      letter-spacing: 0.25px;
+      img {
+        width: 25px;
+        height: 25px;
+      }
+    }
+  }
+}
+
 .brand-page__slider {
-  .slick-list {
-    width: 700px !important;
-  }
-  .slick-slide.slick-active.slick-current {
-    width: 700px !important;
-  }
   .slick-prev:before,
   .slick-next:before {
     color: #000;
@@ -108,24 +227,25 @@
     left: -60px;
   }
   .slick-next {
-    right: -150px;
+    right: -25px;
+  }
+
+  .slick-dots {
+    li button::before {
+      font-size: 12px;
+    }
+    .slick-active button:before {
+      color: #17ca9b;
+    }
   }
   .brand-page__slider-item {
-    background-color: #148bff;
-    width: 700px !important;
+    background-color: black;
     height: 700px;
     border-radius: 20px;
     position: relative;
-
-    @media screen and (max-width: 1650px) {
-      width: 594px !important;
-      height: 630px;
+    & > * {
+      border-radius: 20px;
     }
-    @media screen and (max-width: 1424px) {
-      width: initial !important;
-      width: 100% !important;
-    }
-
     img {
       position: absolute;
       top: 0;
@@ -133,10 +253,22 @@
       height: 100%;
       padding: 40px 5px 100px 90px;
     }
+    @media screen and (max-width: 1550px) {
+      height: 597px;
+    }
+    @media screen and (max-width: 1260px) {
+      height: 500px;
+    }
+    @media screen and (max-width: 585px) {
+      height: 340px;
+    }
   }
-  @media screen and (max-width: 1424px) {
-    .slick-slider {
-      width: 700px;
+  @media screen and (max-width: 1260px) {
+    .slick-prev,
+    .slick-next {
+      &::before {
+        display: none;
+      }
     }
   }
 }

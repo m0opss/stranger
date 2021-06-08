@@ -32,8 +32,18 @@ function printNumbersQue(from, to, func, perc, func2) {
   }, 1000);
 }
 
-const Que = ({ que, i }) => {
-  const [time, setTime] = useState(que.time);
+const Que = ({
+  cnt,
+  isMobile,
+  setCnt,
+  finished,
+  setFinished,
+  fetchAnsw,
+  loose,
+  content,
+  setLoose,
+}) => {
+  const [time, setTime] = useState(content.time);
   const [percent, setPercent] = useState(0);
 
   const sec = `${time % 60}`.padStart(2, "0");
@@ -42,6 +52,13 @@ const Que = ({ que, i }) => {
   useEffect(() => {
     printNumbersQue(time, 0, setTime, percent, setPercent);
   }, []);
+
+  useEffect(() => {
+    if (time == 1110) {
+      setFinished(true);
+      setLoose(true);
+    }
+  }, [time]);
 
   return (
     <div className="questions__container">
@@ -55,51 +72,23 @@ const Que = ({ que, i }) => {
           format={() => `${min}:${sec}`}
         />
       </div>
-      <h2 className="questions__que">Вопрос {i}</h2>
-      <p className="questions__descr">{que.text}</p>
+      <h2 className="questions__que">Вопрос {content.id}</h2>
+      <p className="questions__descr">{content.text}</p>
       <div className="questions__btn-block">
-        {que.answers.map((ans) => {
-          if (ans.is_correct)
-            return (
-              <div
-                key={`a${ans.id}`}
-                className="questions__btn btn"
-                onClick={() => setFinished(true)}
-              >
-                {ans.text}
-              </div>
-            );
-          return (
-            <div key={`a${ans.id}`} className="questions__btn btn">
-              {ans.text}
-            </div>
-          );
-        })}
+        {content.answers.map((a) => (
+          <div
+            key={`a${a.id}`}
+            className="questions__btn btn"
+            onClick={() => fetchAnsw(content.id, a.id)}
+          >
+            {a.text}
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
-const QueContainer = ({
-  cnt,
-  isMobile,
-  setCnt,
-  finished,
-  setFinished,
-  loose,
-  answers,
-  setLoose,
-}) => {
-  const [percent, setPercent] = useState(0);
-
-  return (
-    <>
-      {answers.map((que, i) => (
-        <Que que={que} i={i} key={`q${i}`} />
-      ))}
-    </>
-  );
-};
 const WinContainer = ({ brand, isMobile }) => {
   return (
     <div className="win__container">
@@ -132,7 +121,8 @@ const LooseContainer = ({ brand, isMobile }) => {
   );
 };
 
-const fetchData = (func, token) => {
+const fetchData = (setData, token) => {
+  // https://stranger-go.com/api/v1/answers/
   (async () => {
     const rawResponse = await fetch(
       "https://stranger-go.com/api/v1/games/question/",
@@ -144,7 +134,7 @@ const fetchData = (func, token) => {
       }
     );
     const content = await rawResponse.json();
-    func(content);
+    setData(content);
   })();
 };
 
@@ -154,15 +144,33 @@ const Questions = (props) => {
   const [finished, setFinished] = useState(false);
   const [loose, setLoose] = useState(false);
   const [cnt, setCnt] = useState(0);
-  const [answers, setAnswers] = useState([]);
+  const [content, setContent] = useState({});
+
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
   useEffect(() => {
     printNumbers(3, 0, setTiming);
-    fetchData(setAnswers, token);
+    fetchData(setContent, token);
   }, []);
 
-  // https://stranger-go.com/api/v1/answers/
+  const fetchAnsw = (id_q, id_a) => {
+    fetch("https://stranger-go.com/api/v1/games/check_answer/", {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ question: id_q, answer: id_a }),
+    }).then((re) => {
+      if (re.status == 200) {
+        fetchData(setContent, token);
+      } else {
+        setFinished(true);
+        setLoose(true);
+      }
+    });
+  };
 
   return (
     <div
@@ -207,15 +215,16 @@ const Questions = (props) => {
         ) : finished && !loose ? (
           <WinContainer isMobile={isMobile} />
         ) : (
-          <QueContainer
+          <Que
             isMobile={isMobile}
-            cnt={cnt}
-            answers={answers}
-            setCnt={setCnt}
             finished={finished}
             setFinished={setFinished}
+            fetchAnsw={fetchAnsw}
             loose={loose}
             setLoose={setLoose}
+            cnt={cnt}
+            setCnt={setCnt}
+            content={content}
           />
         )}
       </div>

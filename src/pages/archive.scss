@@ -1,12 +1,12 @@
 .archive-page {
   min-height: 100vh;
   width: 100%;
-  // overflow-x: hidden;
   .archive-background {
+    overflow-x: hidden;
     width: 100%;
     position: relative;
     padding-top: 35px;
-
+    min-height: 100vh;
     .archive-background__item {
       position: absolute;
     }

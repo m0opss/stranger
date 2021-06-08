@@ -1,12 +1,13 @@
 @media screen and (max-width: 767px) {
-  .archive-page.add-page {
+  .archive-page.add-page, .test-page {
     .archive-background__item_main {
-      width: 120%;
+      width: 164%;
+      position: absolute;
       height: 490px;
       border-radius: 50%;
       background: rgba(0, 0, 0, 0.95);
       top: -27%;
-      transform: translateX(-10%);
+      transform: translateX(-19%);
     }
     .archive-page__content {
       display: flex;

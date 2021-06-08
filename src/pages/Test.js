@@ -4,6 +4,7 @@ import Header from "../components/Header/Header";
 import TestSlide from "../components/TestSlide/TestSlide";
 import Slider from "react-slick";
 import Swiper from "react-id-swiper";
+import alien from "../assets/img/alien.svg";
 import test from "../assets/img/testBrandLogo.svg";
 import { useSelector } from "react-redux";
 
@@ -47,6 +48,9 @@ const Test = ({}) => {
 
   const [slides, setSlides] = useState([]);
   const token = useSelector((state) => state.auth.token);
+  let isMobile = false;
+  if (window.innerWidth < 768) isMobile = true;
+
   useEffect(() => {
     fetch("https://stranger-go.com/api/v1/posts/", {
       method: "GET",
@@ -63,7 +67,7 @@ const Test = ({}) => {
   }, []);
 
   return (
-    <div className="page test-page">
+    <div className="page archive-page test-page ">
       <Header />
       <div className="test-content">
         <Swiper {...params}>
@@ -78,6 +82,40 @@ const Test = ({}) => {
             />
           ))}
         </Swiper>
+      </div>
+      <div className="archive-background">
+        <div className="archive-background__item archive-background__item_main"></div>
+        <div className="archive-background__item archive-background__item_1"></div>
+        <div className="archive-background__item archive-background__item_2"></div>
+        <div className="archive-background__item archive-background__item_3"></div>
+        <div className="archive-background__item archive-background__item_4"></div>
+        <div className="archive-background__item archive-background__item_5"></div>
+        <div className="test-page__mobile-content">
+          {isMobile ? (
+            <>
+              <div className="add-page__alien">
+                <img src={alien} />
+              </div>
+              <h1 className="add-page__title">выбери рекламу</h1>
+            </>
+          ) : (
+            <></>
+          )}
+          <div className="brands-list">
+            {slides.map((s) => (
+              <div className="brands-list__item">
+                <TestSlide
+                  id={s.id}
+                  key={s.id}
+                  img={s.logo}
+                  name={s.brand}
+                  time={s.duration}
+                  price={s.coast}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
