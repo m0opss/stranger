@@ -35,8 +35,7 @@ const Brand = (props) => {
   };
 
   useEffect(() => {
-    console.log(slides.length, slideN)
-    if (slides.length == slideN + 1) {
+    if (slides.length == slideN + 1 || slides.length == 0) {
       setWatched(true);
     }
   });

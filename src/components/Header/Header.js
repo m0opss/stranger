@@ -38,10 +38,10 @@ const Header = () => {
                 <NavLink to="/rules">Правила</NavLink>
               </li>
               <li>
-                <NavLink to="/test">Вопросы</NavLink>
+                <NavLink to="/faq">Вопросы</NavLink>
               </li>
               <li>
-                <NavLink to="/about">Рекламодателям</NavLink>
+                <NavLink to="/advertisers">Рекламодателям</NavLink>
               </li>
             </ul>
           </nav>
@@ -89,10 +89,10 @@ const Header = () => {
             <NavLink to="/rules">Правила</NavLink>
           </li>
           <li>
-            <NavLink to="/test">Вопросы</NavLink>
+            <NavLink to="/faq">Вопросы</NavLink>
           </li>
           <li>
-            <NavLink to="/about">Рекламодателям</NavLink>
+            <NavLink to="/advertisers">Рекламодателям</NavLink>
           </li>
           <div className="header__burger-menu-logon">
             {isAuth ? (

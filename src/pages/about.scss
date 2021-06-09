@@ -1,0 +1,50 @@
+.page.about-page {
+  .main-container {
+    background: url("../assets/img/mainBgMob.png") no-repeat;
+    background-position: center top;
+    @media screen and (max-width: 480px) {
+      background-position: center -200px;
+    }
+  }
+  .wtf-block {
+    .wtf-block__steps {
+      .step-card {
+        border-radius: 10px;
+        margin-top: 30px;
+        .step-card__img-container img {
+          max-height: 100px;
+          height: auto;
+        }
+        .step-card__cnt {
+          font-size: 36px;
+          margin-top: 15px;
+        }
+        p:nth-child(1) {
+          white-space: normal;
+          margin-bottom: 10px;
+        }
+        @media screen and (max-width: 480px) {
+          width: 100px;
+          padding: 10px 15px;
+          .step-card__img-container img {
+            max-height: 40px;
+            //   height: unset;
+          }
+          p:nth-child(1) {
+            font-weight: normal;
+            font-size: 12px;
+            line-height: 125.34%;
+            text-align: center;
+            color: rgba(0, 0, 0, 0.7);
+          }
+        }
+        @media screen and (max-width: 370px) {
+            width: 100%;
+        }
+      }
+    }
+    @media screen and (max-width: 480px) {
+      width: 57%;
+    }
+  }
+}

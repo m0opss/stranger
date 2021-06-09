@@ -1,6 +1,6 @@
 .test-slide {
-  height: 500px;
-  width: 500px;
+  height: 421px;
+  // width: 500px;
   // width: 100% !important;
   transition: 0.5s;
   padding: 30px 20px 115px 60px;
@@ -50,11 +50,14 @@
     border-radius: 0 0 20px 20px;
     color: #000000;
     // box-shadow: 0px 13px 13px rgba(0, 0, 0, 0.25);
-    
+    p {
+      z-index: 3;
+    }
     .test-slide__progress_field,
     .test-slide__progress_space {
       position: absolute;
       height: 100%;
+      z-index: 2;
       // border-radius: 0 0 20px 20px;
     }
     .test-slide__progress_field {
@@ -68,15 +71,29 @@
       right: 0;
       // box-shadow: 0px 13px 13px rgb(0 0 0 / 25%)
     }
+
+    @media screen and (max-width: 767px) {
+      height: 20px;
+      bottom: 0;
+      font-weight: 300;
+      font-size: 10px;
+      line-height: 12px;
+      text-align: center;
+      letter-spacing: 0.0459271px;
+    }
   }
   .test-slide__row {
     display: flex;
+    justify-content: space-between;
     align-items: flex-end;
     font-weight: 600;
     font-size: 26px;
     line-height: 37px;
     letter-spacing: 0.475706px;
     color: rgba(255, 255, 255, 0.9);
+    & > div {
+      display: flex;
+    }
     .test-slide__time,
     .test-slide__price {
       display: flex;
@@ -116,7 +133,7 @@
     min-width: 158px;
     max-height: 158px;
 
-    padding: 20px 15px;
+    padding: 20px 15px 40px 15px;
     .test-slide__brand-logo {
       height: 97px;
       left: 98px;

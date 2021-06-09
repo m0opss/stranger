@@ -40,10 +40,24 @@ const Test = ({}) => {
     slidesPerView: 1,
     spaceBetween: 30,
     centeredSlides: true,
-    // pagination: {
-    //   el: ".swiper-pagination",
-    //   clickable: true,
-    // },
+  };
+  const settings = {
+    className: "center",
+    centerMode: true,
+    infinite: true,
+    centerPadding: "100px",
+    slidesToShow: 3,
+    speed: 500,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   const [slides, setSlides] = useState([]);
@@ -70,7 +84,7 @@ const Test = ({}) => {
     <div className="page archive-page test-page ">
       <Header />
       <div className="test-content">
-        <Swiper {...params}>
+        <Slider {...settings}>
           {slides.map((s) => (
             <TestSlide
               id={s.id}
@@ -82,7 +96,20 @@ const Test = ({}) => {
               price={s.coast}
             />
           ))}
-        </Swiper>
+        </Slider>
+        {/* <Swiper {...params}>
+          {slides.map((s) => (
+            <TestSlide
+              id={s.id}
+              key={s.id}
+              img={s.logo}
+              name={s.brand}
+              time={s.duration}
+              progress={s.progress}
+              price={s.coast}
+            />
+          ))}
+        </Swiper> */}
       </div>
       <div className="archive-background">
         <div className="archive-background__item archive-background__item_main"></div>

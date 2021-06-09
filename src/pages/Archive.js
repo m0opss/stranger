@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BrandCard from "../components/BrandCard/BrandCard";
 import Header from "../components/Header/Header";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
@@ -6,22 +6,32 @@ import test from "../assets/img/testBrandImg.png";
 import BackArr from "../components/BackArr/BackArr";
 
 import "./archive.scss";
+import { useSelector } from "react-redux";
 
 const Archive = ({}) => {
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
-
-  const [brands, setBrands] = useState([
-    { img: test, id: 0 },
-    { img: test, id: 1 },
-    { img: test, id: 2 },
-    { img: test, id: 3 },
-    { img: test, id: 4 },
-    { img: test, id: 5 },
-  ]);
+  const token = useSelector((state) => state.auth.token);
+  const [brands, setBrands] = useState([]);
   const removeBrand = (id) => {
     setBrands((brands) => brands.filter((i) => i.id != id));
   };
+
+  useEffect(() => {
+    fetch("https://stranger-go.com/api/v1/posts/", {
+      method: "GET",
+      headers: {
+        Authorization: `Token ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((re) => {
+        setBrands(re.filter((item) => !item.is_archive));
+      });
+  }, []);
+
   // const addBrand = () => {
   //   setBrands((brands) => [...brands, { img: test, id: brands.length }]);
   // };
@@ -46,7 +56,7 @@ const Archive = ({}) => {
                 classNames="brands-list__item"
               >
                 <div className="brands-list__item">
-                  <BrandCard id={i.id} img={i.img} onClick={removeBrand} />
+                  <BrandCard id={i.id} img={i.logo} onClick={removeBrand} />
                   <div className="brands-list__btn btn" onClick={() => {}}>
                     опубликовать
                   </div>

@@ -1,0 +1,45 @@
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+
+.rules-slides .rules-slides__slider-container {
+  margin: auto;
+  width: 500px;
+  margin-top: 50px;
+  & > p {
+    margin-bottom: 40px;
+    width: 100%;
+    font-weight: bold;
+    font-size: 60px;
+    line-height: 73px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  @media screen and (max-width: 670px) {
+    margin-top: 30px;
+    width: 300px;
+    .slick-arrow {
+      display: none !important;
+    }
+    & > p {
+      font-size: 32px;
+      line-height: 125.34%;
+      color: #ffffff;
+    }
+  }
+}
+
+.rules-slide {
+  z-index: 10;
+  color: white;
+  width: 495px;
+  .rules-slide__img-container {
+    background: #dadada;
+    height: 566px;
+    border-radius: 10px;
+  }
+  @media screen and (max-width: 670px) {
+    .rules-slide__img-container {
+      height: 440px;
+    }
+  }
+}

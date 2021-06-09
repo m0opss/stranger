@@ -20,6 +20,9 @@ import Test from "../pages/Test";
 import Brand from "../pages/Brand";
 import Questions from "../pages/Questions";
 import AddPost from "../pages/AddPost";
+import RulesSlides from "../pages/RulesSlides";
+import FAQ from "../pages/FAQ";
+import AddQue from "../pages/AddQue";
 
 const App = (props) => {
   // const dispatch = useDispatch();
@@ -39,10 +42,13 @@ const App = (props) => {
     { path: "/register", Component: Register },
     { path: "/login", Component: Login },
     { path: "/rules", Component: Rules },
+    { path: "/rules-slides", Component: RulesSlides },
     { path: "/test", Component: Test },
     { path: "/brand/:id", Component: Brand },
     { path: "/brand/:id/q", Component: Questions },
     { path: "/addPost", Component: AddPost },
+    { path: "/faq", Component: FAQ },
+    { path: "/addQue", Component: AddQue },
   ];
 
   return (

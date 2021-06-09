@@ -62,9 +62,11 @@
       display: none;
     }
   }
+
   @media screen and (max-width: 585px) {
     padding-left: 25px;
     padding-right: 25px;
+    margin-top: 20px;
   }
 }
 .brand-page__row {

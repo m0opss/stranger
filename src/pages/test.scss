@@ -8,7 +8,7 @@
     @media screen and (max-width: 767px) {
       display: block;
     }
-  }  
+  }
 }
 .test-content {
   width: 100%;
@@ -17,6 +17,94 @@
   display: block;
   @media screen and (max-width: 767px) {
     display: none;
+  }
+
+  .center {
+    .slick-list {
+      overflow: visible;
+    }
+    .slick-track {
+      display: flex;
+      align-items: center;
+    }
+    .slick-slide {
+      visibility: hidden;
+      opacity: 0;
+      transition: 0.5s;
+    }
+    .slick-slide.slick-active {
+      visibility: visible;
+      opacity: 1;
+      filter: blur(3px);
+      width: 421px !important;
+      z-index: 2;
+      @media screen and (max-width: 1024px) {
+        width: auto !important;
+        margin-left: auto;
+        margin-right: auto;
+        filter: unset;
+        .test-slide {
+          height: 560px;
+        }
+      }
+    }
+    .slick-slide.slick-active.slick-current {
+      visibility: visible;
+      opacity: 1;
+      margin-left: 50px;
+      margin-right: 50px;
+      width: 580px !important;
+      filter: unset;
+      z-index: 3;
+      .test-slide {
+        height: 560px;
+        .test-slide__brand-logo {
+          transform: translate(30%, -50%);
+        }
+      }
+      @media screen and (max-width: 1024px) {
+        width: auto !important;
+        margin-left: auto;
+        margin-right: auto;
+        filter: unset;
+        .test-slide {
+          height: 560px;
+        }
+      }
+    }
+  }
+}
+
+.test-page {
+  .slick-arrow {
+    z-index: 6;
+    height: 80px;
+    width: 80px;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 6px solid #000000;
+    background: white;
+    &:hover {
+      background: #202124;
+      border: 5px solid #000000;
+      .arrow-info-top,
+      .arrow-info-bottom {
+        background: white;
+      }
+    }
+    &::before {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .slick-arrow.slick-next {
+      right: 55px;
+    }
+    .slick-arrow.slick-prev {
+      left: 55px;
+    }
   }
 }
 .arrow-info {
@@ -97,7 +185,6 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-
   }
   .brands-list__item {
     width: 45%;

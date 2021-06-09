@@ -15,6 +15,7 @@ const AddPost = (props) => {
   const [slides, setSlides] = useState([]);
   const token = useSelector((state) => state.auth.token);
   const post = useSelector((state) => state.addPost);
+
   const [post_t, setPost_t] = useState(post);
   const [full, setFull] = useState();
 
@@ -43,20 +44,6 @@ const AddPost = (props) => {
     }
   });
 
-  // useEffect(() => {
-  //   fetch("https://stranger-go.com/api/v1/games/list_attachments/", {
-  //     method: "GET",
-  //     headers: {
-  //       Authorization: `Token ${token}`,
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((re) => {
-  //       setSlides(re);
-  //     });
-  // }, []);
   const addFile = (e) => {
     let files = e.target.files;
 
@@ -67,6 +54,7 @@ const AddPost = (props) => {
         setSlides((slides) => [...slides, fr.result]);
       };
     }
+    document.querySelector("input[type=file]").value = "";
   };
 
   const fetchPost = () => {
@@ -91,7 +79,32 @@ const AddPost = (props) => {
       body: JSON.stringify(body),
     })
       .then((res) => res.json())
-      .then((res) => console.log(res));
+      .then((res) => {
+        slides.map((s) => {
+          let media = {
+            type_attachment: "im",
+            file_attachment: s,
+          };
+          const formData = new FormData();
+          for (let k in media) {
+            formData.append(k, media[k]);
+            console.log(media, k);
+          }
+
+          fetch(
+            `https://stranger-go.com/api/v1/posts/${res.id}/add_attachment/`,
+            {
+              method: "POST",
+              headers: {
+                Authorization: `Token ${token}`,
+                // Accept: "application/json",
+                // "Content-Type": "multipart/form-data",
+              },
+              body: formData,
+            }
+          );
+        });
+      });
   };
 
   const savePostField = (val) => {
@@ -133,7 +146,6 @@ const AddPost = (props) => {
                 defaultValue={post_t.time}
                 onChange={(e) => savePostField({ time: e.target.value })}
               />
-            
             </div>
             <div className="brand-page__price">
               <img src={rub} />
@@ -184,7 +196,6 @@ const AddPost = (props) => {
                 defaultValue={post_t.time}
                 onChange={(e) => savePostField({ time: e.target.value })}
               />
-            
             </div>
             <div className="brand-page__price">
               <img src={rub} />
@@ -199,16 +210,22 @@ const AddPost = (props) => {
           </div>
         </div>
         <div className="brand-page__slider">
+          <input
+            className=""
+            type="file"
+            onChange={addFile}
+            onClick={addFile}
+            style={{ display: "none" }}
+          />
           <Slider {...settings}>
-            <input
+            <div
               className="brand-page__slider-item brand-page__slider-item_add"
-              type="file"
-              onChange={addFile}
-              onClick={addFile}
-            />
-
-            {slides.map((i) => (
-              <div className="brand-page__slider-item">
+              onClick={() => {
+                document.querySelector("input[type=file]").click();
+              }}
+            ></div>
+            {slides.map((i, ind) => (
+              <div className="brand-page__slider-item" key={ind}>
                 <img src={i} />
               </div>
             ))}
@@ -216,7 +233,7 @@ const AddPost = (props) => {
         </div>
       </div>
       <div className="brand-page__btn-panel">
-        <Link to="addQue" className={`btn brand-page__btn`}>
+        <Link to="/addQue" className={`btn brand-page__btn`}>
           вопросы
         </Link>
         <div
@@ -234,6 +251,17 @@ const AddPost = (props) => {
           onClick={full ? fetchPost : () => {}}
         >
           опубликовать
+        </div>
+      </div>
+      <div className="brand-page__btn-panel_m">
+        <Link to="addQue" className={`btn brand-page__btn`}>
+          вопросы
+        </Link>
+        <div className={`btn brand-page__btn`} onClick={savePostRedux}>
+          сохранить
+        </div>
+        <div className={`btn brand-page__btn`} onClick={fetchPost}>
+          готово
         </div>
       </div>
     </div>

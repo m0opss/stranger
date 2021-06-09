@@ -27,7 +27,7 @@ const TestSlide = ({ img, name, time, price, id, progress, ...props }) => {
   return (
     <div className="test-slide" onClick={() => console.log(id)}>
       <div className="test-slide__brand-logo">
-        <img className="" src={img} />
+        <img className="" src={`https://stranger-go.com${img}`} />
       </div>
       <div className="test-slide__name">{name}</div>
       <div className="test-slide__row">
@@ -41,13 +41,19 @@ const TestSlide = ({ img, name, time, price, id, progress, ...props }) => {
             {price}
           </div>
         </div>
-        <Link
-          className="test-slide__play"
-          to={`/brand/${id}`}
-          onClick={startGame}
-        >
-          <img src={start} />
-        </Link>
+        {progress == 100 ? (
+          <div className="test-slide__play" style={{ opacity: ".5" }}>
+            <img src={start} />
+          </div>
+        ) : (
+          <Link
+            className="test-slide__play"
+            to={`/brand/${id}`}
+            onClick={startGame}
+          >
+            <img src={start} />
+          </Link>
+        )}
       </div>
       <div className="test-slide__progress">
         <div
@@ -77,7 +83,7 @@ const TestSlide = ({ img, name, time, price, id, progress, ...props }) => {
               : { width: `${100 - progress}%` }
           }
         ></div>
-        {progress}%
+        <p>{progress}%</p>
       </div>
     </div>
   );

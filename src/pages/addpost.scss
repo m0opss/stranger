@@ -13,6 +13,59 @@
     margin: 10px;
   }
 }
+.add-post .brand-page__btn-panel {
+  padding-left: 10%;
+
+  @media screen and (max-width: 933px) {
+    padding-left: 40px;
+    padding-right: 40px;
+    margin: auto;
+    width: 100%;
+    justify-content: space-between;
+  }
+  @media screen and (max-width: 856px) {
+    display: none;
+  }
+}
+.add-post .brand-page__btn-panel_m {
+  display: none;
+  justify-content: space-between;
+  .brand-page__btn {
+    height: 50px;
+    background-color: black;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    border-radius: 0;
+    width: 33%;
+    margin-bottom: 0;
+    :nth-child(2) {
+      margin: 0 2px;
+    }
+  }
+
+  @media screen and (max-width: 856px) {
+    display: flex;
+  }
+}
+.add-post .brand-page__row {
+  img {
+    width: 35px;
+    height: 35px;
+    @media screen and (max-width: 1080px) { 
+      width: 30px;
+      height: 30px;
+    }
+  }
+}
+.add-post .brand-page__slider-item img {
+  padding: 0;
+  height: auto;
+  position: static;
+  margin: auto;
+}
 .brand-page__name-input {
   height: 60px;
   max-width: 200px;
@@ -51,7 +104,6 @@
   }
 }
 
-
 .add-post .brand-page__content {
   .brand-page__brand .brand-page__row-input {
     max-width: 150px;
@@ -68,7 +120,3 @@
     right: -60px;
   }
 }
-
-// input#file-upload-button {
-//   display: none;
-// }

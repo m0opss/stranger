@@ -1,0 +1,106 @@
+.faq-page {
+  .main-container {
+    background-position: center 70%;
+    @media screen and (max-width: 1140px) {
+      background-position: center 120%;
+    }
+    @media screen and (max-width: 767px) {
+      background: rgba(0, 0, 0, 0.9);
+    }
+  }
+  .faq-page__content {
+    margin-top: 55px;
+    padding-left: 200px;
+    padding-right: 200px;
+    a {
+      margin-bottom: 50px;
+      img {
+        margin: auto;
+        width: 183px;
+        height: 195px;
+      }
+    }
+    .faq-page__title {
+      font-weight: bold;
+      font-size: 40px;
+      line-height: 49px;
+      text-align: center;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin: auto;
+      @media screen and (max-width: 1124px) {
+        font-size: 34px;
+      }
+      @media screen and (max-width: 767px) {
+        font-size: 18px;
+        line-height: 125.34%;
+      }
+    }
+    @media screen and (max-width: 767px) {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
+    .faq-page__descr {
+      display: none;
+      font-weight: normal;
+      font-size: 16px;
+      line-height: 20px;
+      text-align: center;
+      margin-top: 10px;
+      color: rgba(255, 255, 255, 0.7);
+
+      @media screen and (max-width: 767px) {
+        display: block;
+      }
+    }
+  }
+
+  .wtf-block {
+    .step-card {
+      cursor: pointer;
+      p {
+        font-weight: normal;
+        font-size: 25.5027px;
+        line-height: 125.34%;
+        text-align: center;
+        color: #000000;
+      }
+      &:hover {
+        background: #f7f5f5;
+      }
+    }
+    @media screen and (max-width: 767px) {
+      display: flex;
+      .step-card {
+        height: 330px;
+        .step-card__img-container {
+          margin-top: 0;
+          img {
+            height: 160px;
+          }
+        }
+      }
+    }
+    @media screen and (max-width: 480px) {
+      width: 55%;
+      margin-top: 30px;
+      .step-card {
+        height: 141px;
+        width: 90px;
+        padding: 15px;
+        p {
+          font-size: 12px;
+          line-height: 15px;
+          text-align: center;
+          color: rgba(0, 0, 0, 0.7);
+        }
+        .step-card__img-container {
+          margin-top: 0;
+          img {
+            height: 84px;
+          }
+        }
+      }
+    }
+  }
+}
