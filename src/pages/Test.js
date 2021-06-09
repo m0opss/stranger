@@ -52,7 +52,7 @@ const Test = ({}) => {
   if (window.innerWidth < 768) isMobile = true;
 
   useEffect(() => {
-    fetch("https://stranger-go.com/api/v1/posts/", {
+    fetch("https://stranger-go.com/api/v1/posts/all_post/", {
       method: "GET",
       headers: {
         Authorization: `Token ${token}`,
@@ -78,6 +78,7 @@ const Test = ({}) => {
               img={s.logo}
               name={s.brand}
               time={s.duration}
+              progress={s.progress}
               price={s.coast}
             />
           ))}
@@ -103,13 +104,14 @@ const Test = ({}) => {
           )}
           <div className="brands-list">
             {slides.map((s) => (
-              <div className="brands-list__item">
+              <div className="brands-list__item" key={s.id}>
                 <TestSlide
                   id={s.id}
                   key={s.id}
                   img={s.logo}
                   name={s.brand}
                   time={s.duration}
+                  progress={s.progress}
                   price={s.coast}
                 />
               </div>

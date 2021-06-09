@@ -121,7 +121,7 @@ const LooseContainer = ({ brand, isMobile }) => {
   );
 };
 
-const fetchData = (setData, token) => {
+const fetchData = (setData, token, setFinish = null) => {
   // https://stranger-go.com/api/v1/answers/
   (async () => {
     const rawResponse = await fetch(
@@ -133,8 +133,15 @@ const fetchData = (setData, token) => {
         },
       }
     );
-    const content = await rawResponse.json();
-    setData(content);
+    if (rawResponse.status == 204) {
+      setFinish(true);
+    } else if (rawResponse.status == 200) {
+      const content = await rawResponse.json();
+      setData(content);
+    } else {
+      const content = await rawResponse.json();
+      alert(JSON.stringify(content));
+    }
   })();
 };
 
@@ -150,7 +157,7 @@ const Questions = (props) => {
   if (window.innerWidth < 768) isMobile = true;
   useEffect(() => {
     printNumbers(3, 0, setTiming);
-    fetchData(setContent, token);
+    fetchData(setContent, token, setFinished);
   }, []);
 
   const fetchAnsw = (id_q, id_a) => {

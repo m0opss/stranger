@@ -8,7 +8,7 @@ import "./testslide.scss";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const TestSlide = ({ img, name, time, price, id, ...props }) => {
+const TestSlide = ({ img, name, time, price, id, progress, ...props }) => {
   const token = useSelector((state) => state.auth.token);
   const startGame = () => {
     fetch("https://stranger-go.com/api/v1/games/", {
@@ -48,6 +48,36 @@ const TestSlide = ({ img, name, time, price, id, ...props }) => {
         >
           <img src={start} />
         </Link>
+      </div>
+      <div className="test-slide__progress">
+        <div
+          className="test-slide__progress_field"
+          style={
+            progress < 30
+              ? {
+                  backgroundColor: "#ef5c68",
+                  width: `${progress}%`,
+                }
+              : progress >= 30 && progress < 80
+              ? { backgroundColor: "#ffc720", width: `${progress}%` }
+              : progress == 100
+              ? {
+                  backgroundColor: "#17CA9B",
+                  width: `${progress}%`,
+                  borderRadius: "0 0 20px 20px",
+                }
+              : { backgroundColor: "#17CA9B", width: `${progress}%` }
+          }
+        ></div>
+        <div
+          className="test-slide__progress_space"
+          style={
+            progress == 0
+              ? { width: "100%", borderRadius: "0 0 20px 20px" }
+              : { width: `${100 - progress}%` }
+          }
+        ></div>
+        {progress}%
       </div>
     </div>
   );

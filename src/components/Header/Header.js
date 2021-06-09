@@ -47,7 +47,7 @@ const Header = () => {
           </nav>
           <nav className="header__logon">
             {isAuth ? (
-              <Link to="lk" style={{ display: "flex" }}>
+              <Link to="/lk" style={{ display: "flex" }}>
                 <img className="header__profile-img" src="" />
                 <p className="header__profile-name">stranger_1</p>
               </Link>

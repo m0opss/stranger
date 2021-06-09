@@ -3,6 +3,12 @@
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
+  .archive-background {
+    display: none;
+    @media screen and (max-width: 767px) {
+      display: block;
+    }
+  }  
 }
 .test-content {
   width: 100%;

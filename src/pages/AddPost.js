@@ -184,7 +184,7 @@ const AddPost = (props) => {
                 defaultValue={post_t.time}
                 onChange={(e) => savePostField({ time: e.target.value })}
               />
-              мин
+            
             </div>
             <div className="brand-page__price">
               <img src={rub} />

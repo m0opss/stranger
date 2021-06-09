@@ -155,6 +155,9 @@
   height: 95px;
   box-shadow: inset 0px 3px 3px rgba(0, 0, 0, 0.25);
   margin-bottom: 30px;
+  &:hover {
+    color: white
+  }
   transition: 0.5s;
   @media screen and (max-width: 1090px) { 
     font-size: 28px;
