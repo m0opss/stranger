@@ -53,7 +53,7 @@ const Login = ({}) => {
             Войди за пару секунд и забери зароботанные деньги без ввода
             конфиденциальных данных.
           </p>
-          <img src={alien} />
+          {/* <img src={alien} /> */}
         </div>
         <div className="page-auth__form-block  auth-form-block">
           {isMobile ? (
