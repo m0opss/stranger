@@ -4,6 +4,30 @@ import Container from "../components/Containers/Container";
 
 import "./rilesSlides.scss";
 
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div className={className} style={{ ...style }} onClick={onClick}>
+      <div className="arrow-info arrow-info_next">
+        <div className="arrow-info-top"></div>
+        <div className="arrow-info-bottom"></div>
+      </div>
+    </div>
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div className={className} style={{ ...style }} onClick={onClick}>
+      <div className="arrow-info arrow-info_prev">
+        <div className="arrow-info-top"></div>
+        <div className="arrow-info-bottom"></div>
+      </div>
+    </div>
+  );
+}
+
 const RulesSlides = ({}) => {
   const [step, setStep] = useState(0);
 
@@ -13,6 +37,8 @@ const RulesSlides = ({}) => {
     infinite: false,
     slidesToShow: 1,
     speed: 500,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
     afterChange: (current) => setStep(current),
   };
   return (

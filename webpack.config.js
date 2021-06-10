@@ -7,7 +7,7 @@ module.exports = {
   entry: ["@babel/polyfill", "./src/index.jsx"],
   output: {
     path: path.resolve(__dirname, "./docs"),
-    filename: "[name].[hash].js",
+    filename: "static/[name].[hash].js",
   },
   devServer: {
     port: 3333,
@@ -32,7 +32,7 @@ module.exports = {
         test: /\.(jpg|jpeg|png|svg|gif)/,
         loader: "file-loader",
         options: {
-          name: "assets/img/[name].[ext]",
+          name: "static/assets/img/[name].[ext]",
         },
       },
       {

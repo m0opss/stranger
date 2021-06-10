@@ -167,6 +167,9 @@
   display: flex;
   padding: 26px 35px;
   background: white;
+  @media screen and (max-width: 547px) {
+    padding: 26px 16px;
+  }
   .progress-card__text-info {
     .progress-card__title {
       font-weight: 600;
