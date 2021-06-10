@@ -15,6 +15,12 @@
   max-width: 1522px;
   margin: auto;
   display: block;
+  @media screen and (max-width: 1805px) {
+    max-width: 1322px;
+  }
+  @media screen and (max-width: 1586px) {
+    max-width: 1222px;
+  }
   @media screen and (max-width: 767px) {
     display: none;
   }
@@ -27,6 +33,15 @@
       display: flex;
       align-items: center;
     }
+    .slick-dots {
+      bottom: -45px;
+      li button::before {
+        font-size: 12px;
+      }
+      .slick-active button:before {
+        color: #17ca9b;
+      }
+    }
     .slick-slide {
       visibility: hidden;
       opacity: 0;
@@ -38,7 +53,7 @@
       filter: blur(3px);
       width: 421px !important;
       z-index: 2;
-      @media screen and (max-width: 1024px) {
+      @media screen and (max-width: 1185px) {
         width: auto !important;
         margin-left: auto;
         margin-right: auto;
@@ -62,7 +77,7 @@
           transform: translate(30%, -50%);
         }
       }
-      @media screen and (max-width: 1024px) {
+      @media screen and (max-width: 1185px) {
         width: auto !important;
         margin-left: auto;
         margin-right: auto;
@@ -98,7 +113,29 @@
       display: none;
     }
   }
-  @media screen and (max-width: 1024px) {
+  .slick-arrow.slick-next {
+    right: -125px;
+  }
+  .slick-arrow.slick-prev {
+    left: -125px;
+  }
+  @media screen and (max-width: 1485px) {
+    .slick-arrow.slick-next {
+      right: -95px;
+    }
+    .slick-arrow.slick-prev {
+      left: -95px;
+    }
+  }
+  @media screen and (max-width: 1485px) {
+    .slick-arrow.slick-next {
+      right: 20px;
+    }
+    .slick-arrow.slick-prev {
+      left: 20px;
+    }
+  }
+  @media screen and (max-width: 1185px) {
     .slick-arrow.slick-next {
       right: 55px;
     }

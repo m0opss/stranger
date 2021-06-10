@@ -14,6 +14,7 @@ import lkUp from "../../../assets/img/LK/lkUp.svg";
 import { Progress } from "antd";
 
 import "./lknav.scss";
+import { useSelector } from "react-redux";
 
 const LKNavPanel = ({ buttons, activeTab, setActiveTab, isAdmin, title }) => (
   <div
@@ -57,7 +58,7 @@ const BalanceBlock = ({ balance }) => (
   </div>
 );
 
-const LKProgress = ({ isMobile }) => (
+const LKProgress = ({ isMobile, progress }) => (
   <div className="lk-nav__block progress-card">
     <div className="progress-card__text-info">
       <p className="progress-card__title">Прогресс игры</p>
@@ -73,7 +74,7 @@ const LKProgress = ({ isMobile }) => (
     <div className="progress-card__circle-info">
       <Progress
         type="circle"
-        percent={75}
+        percent={progress}
         width={isMobile ? 120 : 210}
         strokeWidth={`${isMobile ? "8" : "7"}`}
         trailColor="#E1E1E1"
@@ -138,6 +139,9 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
       link: "#watch",
     },
   ];
+
+  const balance = useSelector((state) => state.user.balance);
+  const progress = useSelector((state) => state.user.progress);
   return (
     <div className="lk-nav">
       {isAdmin ? (
@@ -161,7 +165,7 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
         </>
       ) : (
         <>
-          <BalanceBlock balance="20" />
+          <BalanceBlock balance={balance} />
           <LKNavPanel
             activeTab={activeTab}
             setActiveTab={setActiveTab}
@@ -169,7 +173,7 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
             buttons={userPanel}
             title="Операции"
           />
-          <LKProgress isMobile={isMobile} />
+          <LKProgress isMobile={isMobile} progress={progress} />
         </>
       )}
     </div>

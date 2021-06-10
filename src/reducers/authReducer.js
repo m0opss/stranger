@@ -9,9 +9,9 @@ export const ON_EXIT = "ON_EXIT";
 
 const defaultState = {
   isAuth: true,
-  isAdmin: true,
+  isAdmin: false,
   name: "",
-  token: "60f501924ad184a29dcbb7c6688d1e6162f60d92",
+  token: "d0bac4c62f41f9222c22335f47029242cc554ec4",
   // token: "",
   error: "",
   isBlock: false,

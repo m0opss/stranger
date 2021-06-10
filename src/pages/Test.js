@@ -43,6 +43,7 @@ const Test = ({}) => {
   };
   const settings = {
     className: "center",
+    dots: true,
     centerMode: true,
     infinite: true,
     centerPadding: "100px",
@@ -52,7 +53,13 @@ const Test = ({}) => {
     prevArrow: <SamplePrevArrow />,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1310,
+        settings: {
+          centerPadding: "50px",
+        },
+      },
+      {
+        breakpoint: 1185,
         settings: {
           slidesToShow: 1,
         },

@@ -62,7 +62,13 @@ const Que = ({
 
   return (
     <div className="questions__container">
-      <div className="questions__close"></div>
+      <Link
+        to="/test"
+        className="settings-block__close-btn card-close questions__close"
+        // onClick={() => onClick(id)}
+      >
+        <span></span>
+      </Link>
       <div className="questions__timer">
         <Progress
           type="circle"
@@ -75,15 +81,19 @@ const Que = ({
       <h2 className="questions__que">Вопрос {content.id}</h2>
       <p className="questions__descr">{content.text}</p>
       <div className="questions__btn-block">
-        {content.answers.map((a) => (
-          <div
-            key={`a${a.id}`}
-            className="questions__btn btn"
-            onClick={() => fetchAnsw(content.id, a.id)}
-          >
-            {a.text}
-          </div>
-        ))}
+        {content.answers ? (
+          content.answers.map((a) => (
+            <div
+              key={`a${a.id}`}
+              className="questions__btn btn"
+              onClick={() => fetchAnsw(content.id, a.id)}
+            >
+              {a.text}
+            </div>
+          ))
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
@@ -171,7 +181,7 @@ const Questions = (props) => {
       body: JSON.stringify({ question: id_q, answer: id_a }),
     }).then((re) => {
       if (re.status == 200) {
-        fetchData(setContent, token);
+        fetchData(setContent, token, setFinished);
       } else {
         setFinished(true);
         setLoose(true);

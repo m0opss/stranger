@@ -310,7 +310,7 @@
 .green-bg {
   background: url("../assets/img/que.png");
   background-repeat: no-repeat;
-  background-position: center -60%;
+  background-position: center 0;
   background-size: revert;
   @media screen and (max-width: 767px) {
     background-position: center 28%;
@@ -378,7 +378,11 @@
     margin-bottom: 50px;
   }
   .questions__close {
-    position: absolute;
+    span,
+    span::before,
+    span::after {
+      background-color: #fff;
+    }
   }
 
   .questions__que {

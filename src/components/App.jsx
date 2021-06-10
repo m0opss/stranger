@@ -23,6 +23,7 @@ import AddPost from "../pages/AddPost";
 import RulesSlides from "../pages/RulesSlides";
 import FAQ from "../pages/FAQ";
 import AddQue from "../pages/AddQue";
+import Advertisers from "../pages/Advertisers";
 
 const App = (props) => {
   // const dispatch = useDispatch();
@@ -49,6 +50,7 @@ const App = (props) => {
     { path: "/addPost", Component: AddPost },
     { path: "/faq", Component: FAQ },
     { path: "/addQue", Component: AddQue },
+    { path: "/advertisers", Component: Advertisers },
   ];
 
   return (

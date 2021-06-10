@@ -93,6 +93,9 @@
     color: rgba(255, 255, 255, 0.9);
     & > div {
       display: flex;
+      @media screen and (max-width: 767px) {
+        flex-direction: column;
+      }
     }
     .test-slide__time,
     .test-slide__price {

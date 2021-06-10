@@ -14,16 +14,16 @@ const Brand = (props) => {
   const [fullWatched, setWatched] = useState(false);
   const [slideN, setSlideN] = useState(0);
   const [slides, setSlides] = useState([]);
+  const [data, setData] = useState({});
   const { params } = useRouteMatch();
+  const token = useSelector((state) => state.auth.token);
   const id = params.id;
 
-  let name = "Nike";
-  let time = 3;
-  let brand = "Nike";
-  let descr = `Описание Описание Описание Описание Описание Описание Описание
-  Описание Описание Описание Описание Описание Описание Описание
-  Описание Описание Описание Описание`;
-  let price = 10;
+  let name = data.brand;
+  let time = data.duration;
+  let brand = data.url_brand;
+  let descr = data.description;;
+  let price = data.coast;
 
   const settings = {
     dots: true,
@@ -35,12 +35,24 @@ const Brand = (props) => {
   };
 
   useEffect(() => {
-    if (slides.length == slideN + 1 || slides.length == 0) {
+    if (slides.length == slideN + 1) {
       setWatched(true);
     }
   });
-  const token = useSelector((state) => state.auth.token);
+
   useEffect(() => {
+    fetch(`https://stranger-go.com/api/v1/posts/${id}/`, {
+      method: "GET",
+      headers: {
+        Authorization: `Token ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((re) => {
+        setData(re);
+      });
     fetch("https://stranger-go.com/api/v1/games/list_attachments/", {
       method: "GET",
       headers: {
@@ -64,7 +76,7 @@ const Brand = (props) => {
           <div className="brand-page__row">
             <div className="brand-page__brand">
               <img src={info} />
-              {brand}
+              <a href={brand}>{name}</a>
             </div>
             <div className="brand-page__time">
               <img src={clock} />

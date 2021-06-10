@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
 import lkHelpSum from "../../../../assets/img/LK/lkHelpSum.svg";
 
@@ -50,6 +51,8 @@ const DonateBlock = ({ setCard, card }) => {
   };
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
+  const balance = useSelector((state) => state.user.balance);
+
   return (
     <div className="lk-content__block donate-block">
       {isMobile ? (
@@ -67,7 +70,7 @@ const DonateBlock = ({ setCard, card }) => {
           <p>Баланс</p>
           {/* <img src={lkHelpSum} /> */}
         </div>
-        <p className="donate-block__balance">20₽</p>
+        <p className="donate-block__balance">{balance}₽</p>
         <p className="donate-block__sum">Сумма для перевода: 15₽</p>
       </div>
       {isMobile ? <></> : <p>Транзакция</p>}
