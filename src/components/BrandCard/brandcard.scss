@@ -2,12 +2,16 @@
   width: 100%;
   position: relative;
   border-radius: 20px;
-  background-color: #2e7cf6;
+  // background-color: #2e7cf6;
   height: 405px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: .5s;
+  &:hover {
+    border: 1px solid #dadada;
+  }
   img {
     position: absolute;
     top: 0;

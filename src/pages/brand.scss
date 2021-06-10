@@ -11,6 +11,7 @@
   margin-top: 92px;
   .brand-page__info {
     min-width: 576px;
+    z-index: 2;
   }
   .brand-page__slider {
     width: 700px;
@@ -169,6 +170,9 @@
   background: #17ca9b;
   box-shadow: unset;
   transition: 0.3s;
+  &:hover {
+    background: #11bb8e;
+  }
 }
 
 .brand-page__info_m {

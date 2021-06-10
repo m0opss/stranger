@@ -11,6 +11,13 @@
     padding: 15px 36px;
     height: auto;
     margin: 10px;
+    
+  }
+  .que_btn {
+    box-shadow: unset;
+    &:hover{
+      background-color: #17CA9B;
+    }
   }
 }
 .add-post .brand-page__btn-panel {
@@ -29,6 +36,7 @@
 }
 .add-post .brand-page__btn-panel_m {
   display: none;
+  background: white;
   justify-content: space-between;
   .brand-page__btn {
     height: 50px;
@@ -36,6 +44,7 @@
     font-weight: normal;
     font-size: 16px;
     line-height: 20px;
+    z-index: 2 ;
     text-align: center;
     color: rgba(255, 255, 255, 0.8);
     border-radius: 0;
@@ -94,6 +103,7 @@
   background-image: url("../assets/img/addBrand.svg");
   background-repeat: no-repeat;
   background-position: center center;
+  cursor: pointer
 }
 .add-post .brand-page__row {
   @media screen and (max-width: 460px) {

@@ -13,8 +13,12 @@ const Archive = ({}) => {
   if (window.innerWidth < 768) isMobile = true;
   const token = useSelector((state) => state.auth.token);
   const [brands, setBrands] = useState([]);
+
   const removeBrand = (id) => {
     setBrands((brands) => brands.filter((i) => i.id != id));
+  };
+  const pubBrand = (id) => {
+    removeBrand(id);
   };
 
   useEffect(() => {
@@ -32,9 +36,6 @@ const Archive = ({}) => {
       });
   }, []);
 
-  // const addBrand = () => {
-  //   setBrands((brands) => [...brands, { img: test, id: brands.length }]);
-  // };
   return (
     <div className="archive-page">
       <Header />
@@ -57,7 +58,10 @@ const Archive = ({}) => {
               >
                 <div className="brands-list__item">
                   <BrandCard id={i.id} img={i.logo} onClick={removeBrand} />
-                  <div className="brands-list__btn btn" onClick={() => {}}>
+                  <div
+                    className="brands-list__btn btn"
+                    onClick={() => pubBrand(i.id)}
+                  >
                     опубликовать
                   </div>
                 </div>

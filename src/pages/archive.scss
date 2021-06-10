@@ -1,8 +1,9 @@
 .archive-page {
   min-height: 100vh;
   width: 100%;
+
   .archive-background {
-    overflow-x: hidden;
+    overflow: hidden;
     width: 100%;
     position: relative;
     padding-top: 35px;
@@ -51,11 +52,13 @@
       top: 70vh;
     }
 
-    @media screen and (max-width: 767px) {
+    @media screen and (max-width: 904px) {
       .archive-background__item_1 {
         top: 255px;
         left: -170px;
       }
+    }
+    @media screen and (max-width: 767px) {
       .archive-background__item_2 {
         top: 205px;
         right: -130px;
@@ -67,7 +70,11 @@
       }
     }
   }
-
+  @media screen and (max-width: 874px) {
+    .back-btn {
+      margin-left: 30px;
+    }
+  }
   .archive-page__content {
     margin: auto;
     max-width: 1298px;
@@ -83,7 +90,7 @@
       width: 100%;
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
+      // justify-content: space-between;
       .brands-list__item {
         width: 415px;
         margin: 6px;
@@ -117,6 +124,9 @@
       text-align: center;
       width: 100%;
       color: #ffffff;
+      &:hover {
+        background: #11bb8e;
+      }
     }
     @media screen and (max-width: 1326px) {
       max-width: 861px;

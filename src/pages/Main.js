@@ -10,6 +10,7 @@ import steps_4 from "../assets/img/steps_4.png";
 
 import "./main.scss";
 import MainFooter from "../components/MainFooter/MainFooter";
+import { useSelector } from "react-redux";
 
 const StepsItem = ({ title, img, i }) => (
   <div className="wtf-block__steps-item step-card">
@@ -22,6 +23,8 @@ const StepsItem = ({ title, img, i }) => (
 );
 
 const Main = () => {
+  const isAuth = useSelector((state) => state.auth.isAuth);
+
   return (
     <div className="page">
       <Container type="dark">
@@ -32,7 +35,10 @@ const Main = () => {
           <div className="main-block__img-container">
             <img src={alien} />
           </div>
-          <Link to="/test" className="btn main-block__btn">
+          <Link
+            to={isAuth ? "/test" : "/login"}
+            className="btn main-block__btn"
+          >
             НАЧАТЬ
           </Link>
           <Link to="/rules" className="main-block__play-rules">

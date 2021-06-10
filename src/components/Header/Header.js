@@ -48,7 +48,7 @@ const Header = () => {
           <nav className="header__logon">
             {isAuth ? (
               <Link to="/lk" style={{ display: "flex" }}>
-                <img className="header__profile-img" src="" />
+                <img className="header__profile-img" src={alienMobile} />
                 <p className="header__profile-name">stranger_1</p>
               </Link>
             ) : (
@@ -98,7 +98,7 @@ const Header = () => {
             {isAuth ? (
               <div className="header__profile-block">
                 <Link to="lk">
-                  <img className="header__profile-img" src="" />
+                  <img className="header__profile-img" src={alienMobile} />
                 </Link>
                 <div className="header__profile-text-block">
                   <Link to="lk">

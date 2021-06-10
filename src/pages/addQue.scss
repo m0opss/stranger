@@ -1,0 +1,121 @@
+.add-que {
+  .add-que__name {
+    margin-top: 100px;
+    border: 1px solid #dadada;
+    background: #17ca9b;
+  }
+  .add-que__name,
+  .add-que__name::placeholder {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 40px;
+    line-height: 99.12%;
+    text-align: center;
+    color: #ffffff;
+  }
+
+  .add-que__text {
+    margin-top: 30px;
+    border: 1px solid #dadada;
+    background: #17ca9b;
+    width: 497px;
+    min-height: 150px;
+  }
+  .add-que__text,
+  .add-que__text::placeholder {
+    font-weight: normal;
+    font-size: 30px;
+    line-height: 121%;
+    max-width: 497px;
+    text-align: center;
+    color: #ffffff;
+  }
+  .add-que__slide {
+    width: 1080px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .questions__container {
+    display: block;
+    .questions__btn-block {
+      margin-top: 150px;
+      .questions__btn {
+        width: 47%;
+        @media screen and (max-width: 851px) {
+          width: 60%;
+        }
+        @media screen and (max-width: 681px) {
+          width: 90%;
+        }
+      }
+      .questions__btn_add {
+        color: #b7b7b7;
+        border-color: #b7b7b7;
+        outline: none;
+      }
+    }
+    .slick-dots {
+      bottom: -95px;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      .remove,
+      .add {
+        border: 3.45px solid rgba(0, 0, 0, 0.3);
+        border-radius: 50%;
+        height: 69px;
+        width: 69px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+        font-size: 43.125px;
+        line-height: 53px;
+        margin: 0 20px;
+        color: rgba(0, 0, 0, 0.3);
+      }
+    }
+    .slick-arrow {
+      display: none !important;
+    }
+    .slick-dots {
+      li button::before {
+        font-size: 12px;
+      }
+      .slick-active button:before {
+        color: #17ca9b;
+      }
+    }
+  }
+  @media screen and (max-width: 1125px) {
+    .add-que__slide {
+      width: auto;
+    }
+    .questions__container .questions__btn-block {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
+      height: auto;
+    }
+  }
+  @media screen and (max-width: 621px) {
+    .add-que__name,
+    .add-que__name::placeholder {
+      font-size: 18px;
+      line-height: 99.12%;
+    }
+
+    .add-que__text,
+    .add-que__text::placeholder {
+      font-size: 16px;
+      line-height: 121%;
+    }
+    .add-que__text {
+      max-width: 330px;
+    }
+
+  }
+}

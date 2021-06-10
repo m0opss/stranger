@@ -28,9 +28,7 @@ const Register = ({}) => {
 
   const validate = () => {
     let flag = true;
-    console.log(login);
-    console.log(pass);
-    console.log(passAlso);
+
     if (!isEmail(login)) {
       setLogin_correct(false);
       flag = false;
@@ -107,7 +105,7 @@ const Register = ({}) => {
             Зарегистрируйся за пару минут и получи свои деньги без ввода
             конфиденциальных данных.
           </p>
-          <img src={alien} />
+          {/* <img src={alien} /> */}
         </div>
         <div className="page-auth__form-block  auth-form-block">
           {isMobile ? (
@@ -179,9 +177,10 @@ const Register = ({}) => {
           </div>
           <div className="auth-form-block__policy">
             Регистрируясь, я принимаю <br />
-            <Link to="/policy">
-              Политику конфиденциальности и Договором Оферты
-            </Link>
+            <div className="">
+              <a target='_blank' href="/static/assets/docs/policy.docx">Политику конфиденциальности</a> и{' '}
+              <a target='_blank' href="/static/assets/docs/ofer.docx">Договор Оферты</a>
+            </div>
           </div>
         </div>
       </div>
