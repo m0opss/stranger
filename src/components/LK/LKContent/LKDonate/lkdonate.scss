@@ -221,6 +221,9 @@
     color: white;
     font-size: 20px;
     line-height: 24px;
+    &:hover {
+      background: #17af87;
+    }
     @media screen and (max-width: 767px) {
       height: 47px;
       font-size: 18px;

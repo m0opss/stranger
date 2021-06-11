@@ -3,7 +3,7 @@ import Header from "../components/Header/Header";
 import { Progress } from "antd";
 import win_bg from "../assets/img/WinRub.svg";
 import loose_bg from "../assets/img/Loose.svg";
-import { Link, NavLink, useParams } from "react-router-dom";
+import { Link, NavLink, useHistory, useParams } from "react-router-dom";
 
 import "./questions.scss";
 import { useSelector } from "react-redux";
@@ -131,7 +131,7 @@ const LooseContainer = ({ brand, isMobile }) => {
   );
 };
 
-const fetchData = (setData, token, setFinish = null) => {
+const fetchData = (setData, token, history, setFinish = null) => {
   // https://stranger-go.com/api/v1/answers/
   (async () => {
     const rawResponse = await fetch(
@@ -151,6 +151,7 @@ const fetchData = (setData, token, setFinish = null) => {
     } else {
       const content = await rawResponse.json();
       alert(JSON.stringify(content));
+      history.push("/test");
     }
   })();
 };
@@ -162,12 +163,12 @@ const Questions = (props) => {
   const [loose, setLoose] = useState(false);
   const [cnt, setCnt] = useState(0);
   const [content, setContent] = useState({});
-
+  const history = useHistory();
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
   useEffect(() => {
     printNumbers(3, 0, setTiming);
-    fetchData(setContent, token, setFinished);
+    fetchData(setContent, token, history, setFinished);
   }, []);
 
   const fetchAnsw = (id_q, id_a) => {
@@ -181,7 +182,7 @@ const Questions = (props) => {
       body: JSON.stringify({ question: id_q, answer: id_a }),
     }).then((re) => {
       if (re.status == 200) {
-        fetchData(setContent, token, setFinished);
+        fetchData(setContent, token, history, setFinished);
       } else {
         setFinished(true);
         setLoose(true);

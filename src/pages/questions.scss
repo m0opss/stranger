@@ -6,6 +6,7 @@
 
   .questions-page__content {
     width: 100%;
+    min-height: 80vh;
     position: relative;
     display: flex;
     align-items: center;
@@ -294,6 +295,13 @@
     width: 150px;
     height: 250px;
     margin: auto;
+    font-weight: bold;
+    font-size: 250px;
+    line-height: 99.12%;
+    text-align: center;
+    color: #000000;
+    position: relative;
+
     div {
       height: 100%;
       width: 33.33%;
