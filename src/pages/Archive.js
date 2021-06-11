@@ -32,7 +32,7 @@ const Archive = ({}) => {
     })
       .then((res) => res.json())
       .then((re) => {
-        setBrands(re.filter((item) => !item.is_archive));
+        setBrands(re.filter((item) => item.is_archive));
       });
   }, []);
 
