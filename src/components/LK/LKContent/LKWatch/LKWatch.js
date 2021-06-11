@@ -2,30 +2,76 @@ import React from "react";
 
 import "./lkwatch.scss";
 
-const WatchRow = ({ brand, date, exe, sum }) => (
+const WatchRow = ({ brand, date, progress, amount }) => (
   <div className="watch-block__row">
     <p className="watch-block__row-brand">{brand}</p>
-    <p className="watch-block__row-date">{date}</p>
-    <p className="watch-block__row-exe">{exe}</p>
-    <p className="watch-block__row-sum">{sum}</p>
+    <p className="watch-block__row-date">{date == null ? "-" : date}</p>
+    <p className="watch-block__row-exe">{progress}</p>
+    <p className="watch-block__row-sum">{amount}</p>
+  </div>
+);
+const UserRow = ({ email, id, is_block, is_staff, blockUser }) => (
+  <div className="watch-block__row watch-block__row_user">
+    <p className="watch-block__row-brand">{id}</p>
+    <p className="watch-block__row-date">{email}</p>
+    {/* <p className="watch-block__row-exe">{is_block ? "Блок" : "Активен"}</p> */}
+    <p className="watch-block__row-sum">{is_staff ? "Адм." : "Польз."}</p>
+    <p
+      className={`watch-block__row-block-btn ${
+        is_block ? "watch-block__row-block-btn_unlock" : ""
+      }`}
+      onClick={blockUser}
+    >
+      {is_block ? "Lock" : "Unlock"}
+    </p>
   </div>
 );
 
-const WatchBlock = ({ type }) => (
-  <div className="lk-content__block watch-block">
-    <a
-      name={`${type == "watch" ? "watch" : "history"}`}
-      className="history-block__title"
-    >
-      {type == "watch" ? "Просмотр рекламы" : "История транзакций"}
-    </a>
-    <div className="history-block__rows-list">
-      <WatchRow date="02.02.21" brand="Nike" exe="100%" sum="+100₽" />
-      <WatchRow date="02.02.21" brand="Nike" exe="100%" sum="+100₽" />
-      <WatchRow date="02.02.21" brand="Nike" exe="100%" sum="+100₽" />
-      <WatchRow date="02.02.21" brand="Nike" exe="100%" sum="+100₽" />
-      <WatchRow date="02.02.21" brand="Nike" exe="100%" sum="+100₽" />
+const WatchBlock = ({ type, data, loadCsv, blockUser }) => {
+  if (type == "users")
+    return (
+      <div className="lk-content__block watch-block watch-block_user">
+        <a name={`users`} className="history-block__title">
+          Список пользователей
+        </a>
+        <div className="history-block__rows-list">
+          {data.map((el) => (
+            <UserRow
+              id={el.id}
+              email={el.email}
+              is_block={el.is_block}
+              is_staff={el.is_staff}
+              blockUser={() => blockUser(el.id)}
+            />
+          ))}
+        </div>
+        <div className="watch-block__load" onClick={loadCsv}>
+          выгрузить в Excel
+        </div>
+      </div>
+    );
+  return (
+    <div className="lk-content__block watch-block">
+      <a
+        name={`${type == "watch" ? "watch" : "history"}`}
+        className="history-block__title"
+      >
+        {type == "watch" ? "Просмотр рекламы" : "История транзакций"}
+      </a>
+      <div className="history-block__rows-list">
+        {data.map((el) => (
+          <WatchRow
+            date={el.date}
+            brand={el.brand}
+            progress={el.progress}
+            amount={el.amount}
+          />
+        ))}
+      </div>
+      <div className="watch-block__load" onClick={loadCsv}>
+        выгрузить в Excel
+      </div>
     </div>
-  </div>
-);
+  );
+};
 export default WatchBlock;

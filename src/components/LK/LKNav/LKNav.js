@@ -7,6 +7,7 @@ import rub from "../../../assets/img/LK/lkBtnRub.svg";
 import plus from "../../../assets/img/LK/lkBtnPlus.svg";
 import box from "../../../assets/img/LK/lkBtnBox.svg";
 import watch from "../../../assets/img/LK/lkBtnWatch.svg";
+import icon_log from "../../../assets/img/LK/inputIconLog.svg";
 
 import lkDown from "../../../assets/img/LK/lkDown.svg";
 import lkHelpSum from "../../../assets/img/LK/lkHelpSum.svg";
@@ -137,6 +138,12 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
       img: watch,
       type: isMobile ? `watch-m` : "watch",
       link: "#watch",
+    },
+    {
+      name: "Пользователи",
+      img: icon_log,
+      type: isMobile ? `users-m` : "users",
+      link: "#users",
     },
   ];
 

@@ -11,12 +11,11 @@
     padding: 15px 36px;
     height: auto;
     margin: 10px;
-    
   }
   .que_btn {
     box-shadow: unset;
-    &:hover{
-      background-color: #17CA9B;
+    &:hover {
+      background-color: #17ca9b;
     }
   }
 }
@@ -44,7 +43,7 @@
     font-weight: normal;
     font-size: 16px;
     line-height: 20px;
-    z-index: 2 ;
+    z-index: 2;
     text-align: center;
     color: rgba(255, 255, 255, 0.8);
     border-radius: 0;
@@ -63,7 +62,7 @@
   img {
     width: 35px;
     height: 35px;
-    @media screen and (max-width: 1080px) { 
+    @media screen and (max-width: 1080px) {
       width: 30px;
       height: 30px;
     }
@@ -103,7 +102,7 @@
   background-image: url("../assets/img/addBrand.svg");
   background-repeat: no-repeat;
   background-position: center center;
-  cursor: pointer
+  cursor: pointer;
 }
 .add-post .brand-page__row {
   @media screen and (max-width: 460px) {
@@ -128,5 +127,8 @@
   }
   .slick-arrow.slick-next {
     right: -60px;
+    @media screen and (max-width: 1551px) {
+      right: -25px;
+    }
   }
 }

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./lkcontent.scss";
 import HistoryBlock from "./LKHistory/LKHistory";
 import WatchBlock from "./LKWatch/LKWatch";
 import DonateBlock from "./LKDonate/LKDonateBlock";
 import SettingsBlock from "./LKSettings/LKSettings";
+import { useSelector } from "react-redux";
 
 const LKContentUser = ({
   activeTab,
@@ -43,20 +44,110 @@ const LKContentUser = ({
   );
 };
 const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
-  console.log("isMobile", isMobile);
+  const data = [
+    { date: "02.02.21", brand: "Nike", progress: "100%", amount: "+100₽" },
+    { date: "02.02.21", brand: "Nike", progress: "100%", amount: "+100₽" },
+    { date: "02.02.21", brand: "Nike", progress: "100%", amount: "+100₽" },
+    { date: "02.02.21", brand: "Nike", progress: "100%", amount: "+100₽" },
+  ];
+  const token = useSelector((state) => state.auth.token);
+
+  const [users, setUsers] = useState([]);
+  const [dataS, setDataS] = useState([]);
+  const [dataH, setDataH] = useState([]);
+  useEffect(() => {
+    fetch("https://stranger-go.com/api/v1/users/", {
+      method: "GET",
+      headers: {
+        Authorization: `Token ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((re) => {
+        setUsers(re);
+        console.log(re);
+      });
+    fetch("https://stranger-go.com/api/v1/users/post_statistics/", {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    })
+      .then((res) => res.json())
+      .then((re) => {
+        let data = [...re];
+        data.sort((a, b) => (a.id > b.id ? 1 : -1));
+        setDataS(data);
+      });
+  }, []);
+
+  const loadCsv = () => {
+    var dataStr =
+      "data:text/json;charset=utf-8," +
+      encodeURIComponent(JSON.stringify(data));
+    var downloadAnchorNode = document.createElement("a");
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", "stat.csv");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+  };
+  const blockUser = (id) => {
+    fetch("https://stranger-go.com/api/v1/users/set_block_user/", {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        user: id,
+      }),
+    }).then((re) => {
+      if (re.ok)
+        fetch("https://stranger-go.com/api/v1/users/", {
+          method: "GET",
+          headers: {
+            Authorization: `Token ${token}`,
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        })
+          .then((res) => res.json())
+          .then((re) => {
+            let data = [...re];
+            data.sort((a, b) => (a.id > b.id ? 1 : -1));
+            setUsers(data);
+            console.log(re);
+          });
+    });
+  };
+
   return (
     <>
       {isMobile ? (
         <>
           {activeTab == "watch-m" ? (
-            <WatchBlock type="watch" />
+            <WatchBlock type="watch" data={dataS} loadCsv={loadCsv} />
           ) : activeTab == "history-m" ? (
-            <WatchBlock type="history" />
+            <WatchBlock type="history" data={data} loadCsv={loadCsv} />
           ) : activeTab == "set" ? (
             <SettingsBlock
               setActiveTab={setActiveTab}
               isMobile={isMobile}
               isAdmin={true}
+            />
+          ) : activeTab == "users-m" ? (
+            <WatchBlock
+              type="users"
+              data={users}
+              loadCsv={loadCsv}
+              blockUser={blockUser}
             />
           ) : (
             <></>
@@ -65,9 +156,16 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
       ) : (
         <div className="lk-content">
           {activeTab == "watch" ? (
-            <WatchBlock type="watch" />
+            <WatchBlock type="watch" data={dataS} loadCsv={loadCsv} />
           ) : activeTab == "history" ? (
-            <WatchBlock type="history" />
+            <WatchBlock type="history" data={data} loadCsv={loadCsv} />
+          ) : activeTab == "users" ? (
+            <WatchBlock
+              type="users"
+              data={users}
+              loadCsv={loadCsv}
+              blockUser={blockUser}
+            />
           ) : activeTab == "set" ? (
             <SettingsBlock
               setActiveTab={setActiveTab}
