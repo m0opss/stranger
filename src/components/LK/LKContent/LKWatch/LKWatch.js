@@ -14,7 +14,6 @@ const UserRow = ({ email, id, is_block, is_staff, blockUser }) => (
   <div className="watch-block__row watch-block__row_user">
     <p className="watch-block__row-brand">{id}</p>
     <p className="watch-block__row-date">{email}</p>
-    {/* <p className="watch-block__row-exe">{is_block ? "Блок" : "Активен"}</p> */}
     <p className="watch-block__row-sum">{is_staff ? "Адм." : "Польз."}</p>
     <p
       className={`watch-block__row-block-btn ${
@@ -35,10 +34,19 @@ const WatchBlock = ({ type, data, loadCsv, blockUser }) => {
           Список пользователей
         </a>
         <div className="history-block__rows-list">
+          <div className="watch-block__row watch-block__row_user">
+            <p className="watch-block__row-brand">Id</p>
+            <p className="watch-block__row-date">Email</p>
+            <p className="watch-block__row-sum">Тип</p>
+            <p className="watch-block__row-sum" style={{ width: "11%" }}>
+              Статус
+            </p>
+          </div>
           {data.map((el) => (
             <UserRow
-              id={el.id}
               email={el.email}
+              id={el.id}
+              key={el.id}
               is_block={el.is_block}
               is_staff={el.is_staff}
               blockUser={() => blockUser(el.id)}
@@ -59,8 +67,16 @@ const WatchBlock = ({ type, data, loadCsv, blockUser }) => {
         {type == "watch" ? "Просмотр рекламы" : "История транзакций"}
       </a>
       <div className="history-block__rows-list">
-        {data.map((el) => (
+        <WatchRow
+          date={"Дата"}
+          brand={"Бренд"}
+          progress={"Прогресс"}
+          amount={"Выплаты"}
+        />
+
+        {data.map((el, i) => (
           <WatchRow
+            key={i}
             date={el.date}
             brand={el.brand}
             progress={el.progress}

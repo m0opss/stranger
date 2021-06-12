@@ -54,7 +54,7 @@ const Que = ({
   }, []);
 
   useEffect(() => {
-    if (time == 1110) {
+    if (time == 0) {
       setFinished(true);
       setLoose(true);
     }

@@ -3,10 +3,10 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/img/logo.svg";
 import logonMobile from "../../assets/img/logonMobile.svg";
 import alienMobile from "../../assets/img/alienMobile.png";
-
+import { Menu, Dropdown } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import "./header.scss";
 import { onExitAccount } from "../../actions/authActions";
+import "./header.scss";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -19,6 +19,18 @@ const Header = () => {
     dispatch(onExitAccount());
   };
 
+  const menu = (
+    <Menu>
+      <Menu.Item key="0">
+        <Link to="/lk" style={{ display: "flex" }}>
+          Личный кабинет
+        </Link>
+      </Menu.Item>
+      <Menu.Item key="1" onClick={onExitClick }>
+        <p >Выйти</p>
+      </Menu.Item>
+    </Menu>
+  );
   return (
     <header className="header">
       <div className="container">
@@ -47,13 +59,22 @@ const Header = () => {
           </nav>
           <nav className="header__logon">
             {isAuth ? (
-              <Link to="/lk" style={{ display: "flex" }}>
-                <img className="header__profile-img" src={alienMobile} />
-                <p className="header__profile-name">stranger_1</p>
-              </Link>
+              <Dropdown overlay={menu} trigger={["click"]}>
+                <a
+                  className="ant-dropdown-link"
+                  onClick={(e) => e.preventDefault()}
+                  style={{ display: "flex" }}
+                >
+                  <img className="header__profile-img" src={alienMobile} />
+                  <p className="header__profile-name">stranger_1</p>
+                </a>
+              </Dropdown>
             ) : (
               <>
-                <NavLink to="/register" className="header__logon-btn btn btn-text">
+                <NavLink
+                  to="/register"
+                  className="header__logon-btn btn btn-text"
+                >
                   Регистрация
                 </NavLink>
                 <NavLink to="/login" className="header__logon-btn btn btn-text">

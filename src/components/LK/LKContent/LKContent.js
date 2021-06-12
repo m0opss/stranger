@@ -86,17 +86,32 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
       });
   }, []);
 
-  const loadCsv = () => {
-    var dataStr =
-      "data:text/json;charset=utf-8," +
-      encodeURIComponent(JSON.stringify(data));
-    var downloadAnchorNode = document.createElement("a");
-    downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", "stat.csv");
-    document.body.appendChild(downloadAnchorNode); // required for firefox
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
+  const loadCsv = (type) => {
+    const formData = new FormData();
+    formData.append("download", 1);
+    fetch(`https://stranger-go.com/api/v1/users/${type}/`, {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${token}`,
+
+        // "Content-Type": "text/html; charset=utf-8",
+      },
+      body: formData,
+    })
+      .then((re) => re.text())
+      .then((re) => {
+        console.log(re);
+        var dataStr =
+          "data:attachment/csv;charset=utf-8," + encodeURIComponent(re);
+        var downloadAnchorNode = document.createElement("a");
+        downloadAnchorNode.setAttribute("href", dataStr);
+        downloadAnchorNode.setAttribute("download", "stat.csv");
+        document.body.appendChild(downloadAnchorNode); // required for firefox
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+      });
   };
+
   const blockUser = (id) => {
     fetch("https://stranger-go.com/api/v1/users/set_block_user/", {
       method: "POST",
@@ -123,7 +138,6 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
             let data = [...re];
             data.sort((a, b) => (a.id > b.id ? 1 : -1));
             setUsers(data);
-            console.log(re);
           });
     });
   };
@@ -133,9 +147,17 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
       {isMobile ? (
         <>
           {activeTab == "watch-m" ? (
-            <WatchBlock type="watch" data={dataS} loadCsv={loadCsv} />
+            <WatchBlock
+              type="watch"
+              data={dataS}
+              loadCsv={() => loadCsv("post_statistics")}
+            />
           ) : activeTab == "history-m" ? (
-            <WatchBlock type="history" data={data} loadCsv={loadCsv} />
+            <WatchBlock
+              type="history"
+              data={data}
+              loadCsv={() => loadCsv("post_transaction")}
+            />
           ) : activeTab == "set" ? (
             <SettingsBlock
               setActiveTab={setActiveTab}
@@ -156,9 +178,17 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
       ) : (
         <div className="lk-content">
           {activeTab == "watch" ? (
-            <WatchBlock type="watch" data={dataS} loadCsv={loadCsv} />
+            <WatchBlock
+              type="watch"
+              data={dataS}
+              loadCsv={() => loadCsv("post_statistics")}
+            />
           ) : activeTab == "history" ? (
-            <WatchBlock type="history" data={data} loadCsv={loadCsv} />
+            <WatchBlock
+              type="history"
+              data={data}
+              loadCsv={() => loadCsv("post_transaction")}
+            />
           ) : activeTab == "users" ? (
             <WatchBlock
               type="users"
