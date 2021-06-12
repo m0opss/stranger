@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header/Header";
 
 import { Link, useParams } from "react-router-dom";
-import { SAVE_QUE } from "../reducers/addPostReducer";
+import { SAVE_QUE, REMOVE_QUE, ADD_QUE } from "../reducers/addPostReducer";
 import { useDispatch, useSelector } from "react-redux";
 import Slider from "react-slick";
 import "./addQue.scss";
@@ -15,7 +15,7 @@ const settings = {
 };
 
 const QueSlide = ({ id, que, saveQue }) => (
-  <div className="">
+  <div className="add-que__slide-wrapper" id={id}>
     <div className="add-que__slide">
       <input
         className="add-que__name"
@@ -58,8 +58,27 @@ const AddQue = (props) => {
     });
   };
 
-  const removeQ = () => {};
-  const addQ = () => {};
+  const removeQ = () => {
+    let sl_ind = document
+      .querySelector("div.slick-slide.slick-active div.add-que__slide-wrapper")
+      .getAttribute("id");
+    // console.log(sl_ind);
+    dispatch({
+      type: REMOVE_QUE,
+      payload: sl_ind,
+    });
+  };
+  const addQ = () => {
+    dispatch({
+      type: ADD_QUE,
+    });
+    let a = document.createElement("div");
+    a.textContent = "+";
+    a.classList.add("add");
+    a.addEventListener("click", addQ);
+    document.querySelector("div.add").remove()
+    document.querySelector("ul.slick-dots").appendChild(a);
+  };
   // добавление + - в dots ////////////////////////////////////////
   useEffect(() => {
     let r = document.createElement("div");
