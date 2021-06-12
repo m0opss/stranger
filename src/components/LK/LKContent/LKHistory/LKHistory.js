@@ -16,11 +16,17 @@ const HistoryBlock = ({ type, data }) => (
       История транзакций
     </a>
     <div className="history-block__rows-list">
+      {data ? (
+        data.map((item) => (
+          <HistoryRow date="02.02.21" card="**** 9999" sum="100₽" />
+        ))
+      ) : (
+        <></>
+      )}
+      {/* <HistoryRow date="02.02.21" card="**** 9999" sum="100₽" />
       <HistoryRow date="02.02.21" card="**** 9999" sum="100₽" />
       <HistoryRow date="02.02.21" card="**** 9999" sum="100₽" />
-      <HistoryRow date="02.02.21" card="**** 9999" sum="100₽" />
-      <HistoryRow date="02.02.21" card="**** 9999" sum="100₽" />
-      <HistoryRow date="02.02.21" card="**** 9999" sum="100₽" />
+      <HistoryRow date="02.02.21" card="**** 9999" sum="100₽" /> */}
     </div>
   </div>
 );
