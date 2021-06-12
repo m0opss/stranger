@@ -35,12 +35,23 @@ const AddPosts = (props) => {
       .then((res) => res.json())
       .then((re) => {
         setSlides(re);
-        console.log(re)
+        console.log(re);
       });
   }, []);
 
   const removeBrand = (id) => {
     setSlides((brands) => brands.filter((i) => i.id != id));
+    fetch(`https://stranger-go.com/api/v1/posts/${id}/`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((re) => {
+
+        console.log(re);
+      });
   };
   const addBrand = () => {
     setBrands((brands) => [...brands, { img: test, id: brands.length }]);
@@ -72,7 +83,11 @@ const AddPosts = (props) => {
           <TransitionGroup className="brands-list">
             <CSSTransition key="add" timeout={500} classNames="item">
               <Link className="brands-list__item" to="/addPost">
-                <BrandCard id="add" onClick={addBrand} />
+                <BrandCard
+                  id="add"
+                  onClick={addBrand}
+                  // deletePost={deletePost}
+                />
               </Link>
             </CSSTransition>
             {slides.map((i) => (

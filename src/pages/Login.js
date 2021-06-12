@@ -37,6 +37,9 @@ const Login = ({}) => {
     <div className="page-auth login">
       <div className="page-auth__background page-auth__background_1"></div>
       <div className="page-auth__background page-auth__background_2"></div>
+      <div className="page-auth__background page-auth__background_2_m"></div>
+      <div className="page-auth__background page-auth__background_3"></div>
+      <div className="page-auth__background page-auth__background_4"></div>
       <Header />
 
       <div className="page-auth__content">

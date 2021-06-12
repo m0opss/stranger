@@ -16,8 +16,32 @@ const Archive = ({}) => {
 
   const removeBrand = (id) => {
     setBrands((brands) => brands.filter((i) => i.id != id));
+    fetch(`https://stranger-go.com/api/v1/posts/${id}/`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((re) => {
+        console.log(re);
+      });
   };
+
   const pubBrand = (id) => {
+    fetch(`https://stranger-go.com/api/v1/posts/${id}/`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Token ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ is_archive: false }),
+    })
+      .then((res) => res.json())
+      .then((re) => {
+        console.log(re);
+      });
     removeBrand(id);
   };
 
@@ -32,7 +56,7 @@ const Archive = ({}) => {
     })
       .then((res) => res.json())
       .then((re) => {
-        setBrands(re.filter((item) => item.is_archive));
+        setBrands(re.filter((item) => !item.is_archive));
       });
   }, []);
 
@@ -68,16 +92,6 @@ const Archive = ({}) => {
               </CSSTransition>
             ))}
           </TransitionGroup>
-          {/* <div className="brands-list">
-            {brands.map((i) => (
-              <div className="brands-list__item" key={i.id}>
-                <BrandCard id={i.id} img={i.img} />
-                <div className="brands-list__btn btn" onClick={() => {}}>
-                  опубликовать
-                </div>
-              </div>
-            ))}
-          </div> */}
         </div>
       </div>
     </div>

@@ -130,6 +130,9 @@
     }
     @media screen and (max-width: 1326px) {
       max-width: 861px;
+      .brands-list {
+        justify-content: space-between;
+      }
     }
     @media screen and (max-width: 908px) {
       max-width: 740px;

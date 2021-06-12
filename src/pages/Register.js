@@ -89,6 +89,9 @@ const Register = ({}) => {
     <div className="page-auth register">
       <div className="page-auth__background page-auth__background_1"></div>
       <div className="page-auth__background page-auth__background_2"></div>
+      <div className="page-auth__background page-auth__background_2_m"></div>
+      <div className="page-auth__background page-auth__background_3"></div>
+      <div className="page-auth__background page-auth__background_4"></div>
       <Header />
 
       <div className="page-auth__content">
@@ -178,8 +181,13 @@ const Register = ({}) => {
           <div className="auth-form-block__policy">
             Регистрируясь, я принимаю <br />
             <div className="">
-              <a target='_blank' href="/static/assets/docs/policy.docx">Политику конфиденциальности</a> и{' '}
-              <a target='_blank' href="/static/assets/docs/ofer.docx">Договор Оферты</a>
+              <a target="_blank" href="/static/assets/docs/policy.docx">
+                Политику конфиденциальности
+              </a>{" "}
+              и{" "}
+              <a target="_blank" href="/static/assets/docs/ofer.docx">
+                Договор Оферты
+              </a>
             </div>
           </div>
         </div>
