@@ -50,7 +50,7 @@ export const onLogin = (credentials, history) => async (dispatch) => {
     {
       method: "POST",
       headers: {
-        Accept: "application/json",
+        Accept: "application/json", 
         "Content-Type": "application/json",
       },
       body: JSON.stringify(

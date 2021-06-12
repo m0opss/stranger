@@ -17,6 +17,7 @@ const LKContentUser = ({
   const [sum, setSum] = useState("");
   const max = 3000;
   const token = useSelector((state) => state.auth.token);
+  const transaction_history = useSelector((state) => state.user.transaction_history);
   let status, ok;
   const fetchMoney = () => {
     fetch("https://stranger-go.com/api/v1/users/get_money/", {
@@ -48,7 +49,7 @@ const LKContentUser = ({
     <>
       {isMobile ? (
         <>
-          <HistoryBlock type="mobile" />
+          <HistoryBlock type="mobile" data={transaction_history}/>
           {activeTab != "set" ? (
             <></>
           ) : (

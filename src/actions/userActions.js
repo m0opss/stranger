@@ -14,25 +14,24 @@ export const getUserData = (token) => async (dispatch) => {
         "Content-Type": "application/json",
         Authorization: `Token ${token}`,
       },
-      body: JSON.stringify(),
     }
   );
 
   if (rawResponse.ok) {
     const userData = await rawResponse.json();
-
-    dispatch({
-      type: SET_BALANCE,
-      payload: userData.balance,
-    });
-    dispatch({
-      type: SET_PROGRESS,
-      payload: userData.progress,
-    });
     dispatch({
       type: SET_TR_HISTORY,
-      payload: userData.transaction_history,
+      payload: userData,
     });
+
+    // dispatch({
+    //   type: SET_BALANCE,
+    //   payload: userData.balance,
+    // });
+    // dispatch({
+    //   type: SET_PROGRESS,
+    //   payload: userData.progress,
+    // });
   } else {
     const err = await rawResponse.json();
     alert("Ошибка HTTP: " + rawResponse.status + " " + JSON.stringify(err));

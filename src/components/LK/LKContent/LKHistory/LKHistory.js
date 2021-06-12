@@ -10,7 +10,7 @@ const HistoryRow = ({ date, card, sum }) => (
   </div>
 );
 
-const HistoryBlock = ({ type }) => (
+const HistoryBlock = ({ type, data }) => (
   <div className="lk-content__block history-block">
     <a name="history" className="history-block__title">
       История транзакций

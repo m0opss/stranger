@@ -149,6 +149,8 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
 
   const balance = useSelector((state) => state.user.balance);
   const progress = useSelector((state) => state.user.progress);
+
+
   return (
     <div className="lk-nav">
       {isAdmin ? (
