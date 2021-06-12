@@ -17,12 +17,9 @@ const settings = {
 const QueSlide = ({ id, que, saveQue }) => (
   <div className="add-que__slide-wrapper" id={id}>
     <div className="add-que__slide">
-      <input
-        className="add-que__name"
-        placeholder="Вопрос"
-        value={que.q}
-        onChange={(e) => saveQue(e.target.value, id, "q")}
-      />
+      <div className="add-que__name" style={{ border: "none" }}>
+        Вопрос {id + 1}
+      </div>
       <textarea
         className="add-que__text"
         placeholder="Формулировка вопроса"
@@ -62,7 +59,6 @@ const AddQue = (props) => {
     let sl_ind = document
       .querySelector("div.slick-slide.slick-active div.add-que__slide-wrapper")
       .getAttribute("id");
-    // console.log(sl_ind);
     dispatch({
       type: REMOVE_QUE,
       payload: sl_ind,
@@ -76,7 +72,7 @@ const AddQue = (props) => {
     a.textContent = "+";
     a.classList.add("add");
     a.addEventListener("click", addQ);
-    document.querySelector("div.add").remove()
+    document.querySelector("div.add").remove();
     document.querySelector("ul.slick-dots").appendChild(a);
   };
   // добавление + - в dots ////////////////////////////////////////

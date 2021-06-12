@@ -98,31 +98,34 @@ const FAQ = ({}) => {
             К какой категории относиться твой вопрос?
           </p>
         </div>
-        <div className="wtf-block">
-          <div className="wtf-block__steps">
-            {card != 0 ? (
-              <div>
-                <StepsItem
-                  title="Выбери рекламу"
-                  img={cardsData[card].img}
-                  setCard={() => setCard(0)}
-                />
 
-                <Collapse bordered={false} className="faq__collapse">
-                  {Object.keys(cardsData[card].qw).map((q) => (
-                    <Panel
-                      header={q}
-                      key={q}
-                      className="site-collapse-custom-panel"
-                    >
-                      {cardsData[card].qw[q].map((sub, i) => (
-                        <p key={i}>{sub}</p>
-                      ))}
-                    </Panel>
-                  ))}
-                </Collapse>
-              </div>
-            ) : (
+        {card != 0 ? (
+          <div className="wtf-block">
+            <div className="wtf-block__steps">
+              <StepsItem
+                title="Выбери рекламу"
+                img={cardsData[card].img}
+                setCard={() => setCard(0)}
+              />
+
+              <Collapse bordered={false} className="faq__collapse" accordion>
+                {Object.keys(cardsData[card].qw).map((q) => (
+                  <Panel
+                    header={q}
+                    key={q}
+                    className="site-collapse-custom-panel"
+                  >
+                    {cardsData[card].qw[q].map((sub, i) => (
+                      <p key={i}>{sub}</p>
+                    ))}
+                  </Panel>
+                ))}
+              </Collapse>
+            </div>
+          </div>
+        ) : (
+          <div className="wtf-block">
+            <div className="wtf-block__steps">
               <>
                 <StepsItem
                   title="Выбери рекламу"
@@ -148,9 +151,9 @@ const FAQ = ({}) => {
                   setCard={() => setCard(4)}
                 />
               </>
-            )}
+            </div>
           </div>
-        </div>
+        )}
       </Container>
     </div>
   );

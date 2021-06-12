@@ -6,27 +6,30 @@ import lkHelpSum from "../../../../assets/img/LK/lkHelpSum.svg";
 import SelectCard from "../../../SelectCard/SelectCard";
 import "./lkdonate.scss";
 
-const CardInputBlock = ({}) => {
+const CardInputBlock = ({ cardNum, setCardNum }) => {
   return (
     <div className="donate-block__input-card-block">
       <p>Номер карты</p>
-      <input type="text" placeholder="**** **** **** 9999" />
+      <input
+        value={cardNum}
+        onChange={setCardNum}
+        type="text"
+        placeholder="**** **** **** 9999"
+      />
     </div>
   );
 };
 
-const SummInputBlock = ({}) => {
-  const max = 20;
+const SummInputBlock = ({ sum, setSum, max }) => {
   const [overflow, setOverflow] = useState(false);
 
-  const [value, setValue] = useState(0);
   useEffect(() => {
-    if (parseFloat(value) > max) {
+    if (parseFloat(sum) > max) {
       setOverflow(true);
     } else {
       setOverflow(false);
     }
-  }, [value]);
+  }, [sum]);
 
   return (
     <div className="donate-block__input-summ-block">
@@ -37,18 +40,19 @@ const SummInputBlock = ({}) => {
           className={`${overflow ? "overflow " : ""}`}
           type="number"
           min="0"
-          value={value}
-          onChange={(e) => setValue(e.target.value)}
+          value={sum}
+          onChange={(e) => setSum(e.target.value)}
         />
       </div>
     </div>
   );
 };
 
-const DonateBlock = ({ setCard, card }) => {
+const DonateBlock = ({ setCard, card, setSum, fetchMoney, sum, max }) => {
   const onClickCard = (kind) => {
     setCard(kind);
   };
+
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
   const balance = useSelector((state) => state.user.balance);
@@ -78,14 +82,16 @@ const DonateBlock = ({ setCard, card }) => {
         <SelectCard onClickCard={onClickCard} card={card} isMobile={isMobile} />
       </div>
       <CardInputBlock />
-      <SummInputBlock />
+      <SummInputBlock sum={sum} setSum={setSum} max={max} />
 
       <p className="donate-block__small-text">
         {isMobile
           ? " Вывести деньги из кошелька можно только через 2 часа с момента зачисления на него"
           : "* Только что заработанные деньги можно вывести через 2 часа"}
       </p>
-      <div className="btn donate-block__btn">перевести</div>
+      <div className="btn donate-block__btn" onClick={fetchMoney}>
+        перевести
+      </div>
     </div>
   );
 };

@@ -14,6 +14,36 @@ const LKContentUser = ({
   setCard,
   card,
 }) => {
+  const [sum, setSum] = useState("");
+  const max = 3000;
+  const token = useSelector((state) => state.auth.token);
+  let status, ok;
+  const fetchMoney = () => {
+    fetch("https://stranger-go.com/api/v1/users/get_money/", {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        sum: parseFloat(sum),
+      }),
+    })
+      .then((res) => {
+        status = res.status;
+        ok = res.ok;
+        return res.json();
+      })
+      .then((re) => {
+        console.log(re)
+        if (ok) {
+          alert(re.detail);
+        } else {
+          alert(re.detail);
+        }
+      });
+  };
   return (
     <>
       {isMobile ? (
@@ -30,7 +60,14 @@ const LKContentUser = ({
       ) : (
         <div className="lk-content">
           {activeTab == "arr" ? (
-            <DonateBlock setCard={setCard} card={card} />
+            <DonateBlock
+              setCard={setCard}
+              card={card}
+              sum={sum}
+              max={max}
+              setSum={setSum}
+              fetchMoney={fetchMoney}
+            />
           ) : activeTab == "history" ? (
             <HistoryBlock />
           ) : activeTab == "set" ? (
@@ -44,12 +81,6 @@ const LKContentUser = ({
   );
 };
 const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
-  const data = [
-    { date: "02.02.21", brand: "Nike", progress: "100%", amount: "+100₽" },
-    { date: "02.02.21", brand: "Nike", progress: "100%", amount: "+100₽" },
-    { date: "02.02.21", brand: "Nike", progress: "100%", amount: "+100₽" },
-    { date: "02.02.21", brand: "Nike", progress: "100%", amount: "+100₽" },
-  ];
   const token = useSelector((state) => state.auth.token);
 
   const [users, setUsers] = useState([]);
@@ -66,8 +97,9 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
     })
       .then((res) => res.json())
       .then((re) => {
-        setUsers(re);
-        console.log(re);
+        let data = [...re];
+        data.sort((a, b) => (a.id > b.id ? 1 : -1));
+        setUsers(data);
       });
     fetch("https://stranger-go.com/api/v1/users/post_statistics/", {
       method: "POST",
@@ -80,9 +112,22 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
     })
       .then((res) => res.json())
       .then((re) => {
+        setDataS(data);
+      });
+    fetch("https://stranger-go.com/api/v1/users/post_transaction/", {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+    })
+      .then((res) => res.json())
+      .then((re) => {
         let data = [...re];
         data.sort((a, b) => (a.id > b.id ? 1 : -1));
-        setDataS(data);
+        setDataH(data);
       });
   }, []);
 
@@ -155,7 +200,7 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
           ) : activeTab == "history-m" ? (
             <WatchBlock
               type="history"
-              data={data}
+              data={dataH}
               loadCsv={() => loadCsv("post_transaction")}
             />
           ) : activeTab == "set" ? (
@@ -186,7 +231,7 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
           ) : activeTab == "history" ? (
             <WatchBlock
               type="history"
-              data={data}
+              data={dataH}
               loadCsv={() => loadCsv("post_transaction")}
             />
           ) : activeTab == "users" ? (
@@ -212,7 +257,7 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
 };
 
 const LKContent = ({ activeTab, setActiveTab, isMobile, isAdmin }) => {
-  const [card, setCard] = useState("visa");
+  const [card, setCard] = useState("qiwi");
 
   return (
     <>

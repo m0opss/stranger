@@ -1,8 +1,8 @@
 .faq-page {
   .main-container {
-    background-position: center 70%;
+    background-position: center 74%;
     @media screen and (max-width: 1140px) {
-      background-position: center 120%;
+      // background-position: center 120%;
     }
     @media screen and (max-width: 767px) {
       background: rgba(0, 0, 0, 0.9);
@@ -66,6 +66,19 @@
   }
 
   .wtf-block {
+    .step-card {
+      cursor: pointer;
+      p {
+        font-weight: normal;
+        font-size: 25.5027px;
+        line-height: 125.34%;
+        text-align: center;
+        color: #000000;
+      }
+      &:hover {
+        background: #f7f5f5;
+      }
+    }
     .faq__collapse {
       width: 70%;
       margin-top: 70px;
@@ -94,6 +107,7 @@
           text-align: start;
           color: #5f6367;
           margin-left: 65px;
+          margin-bottom: 10px;
         }
       }
       .ant-collapse-item {
@@ -115,20 +129,14 @@
           color: #5f6367;
         }
       }
-    }
-    .step-card {
-      cursor: pointer;
-      p {
-        font-weight: normal;
-        font-size: 25.5027px;
-        line-height: 125.34%;
-        text-align: center;
-        color: #000000;
+      @media screen and (max-width: 1140px) {
+        width: 95%;
       }
-      &:hover {
-        background: #f7f5f5;
-      }
+      // @media screen and (max-width: 767px) {
+      //   width: 95%;
+      // }
     }
+
     @media screen and (max-width: 767px) {
       display: flex;
       .step-card {
@@ -147,6 +155,15 @@
       // flex-direction: column;
       .faq__collapse {
         margin-left: -30px;
+        .ant-collapse-header {
+          font-size: 23px;
+          line-height: 29px;
+        }
+        .ant-collapse-content-box p {
+          font-size: 15px;
+          margin-left: 10px;
+          margin-bottom: 10px;
+        }
       }
       .step-card {
         height: 141px;
@@ -166,10 +183,8 @@
         }
       }
       .ant-collapse-content-box p {
-
       }
       .ant-collapse-header {
-
       }
     }
   }

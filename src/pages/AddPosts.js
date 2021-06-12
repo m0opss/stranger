@@ -49,7 +49,6 @@ const AddPosts = (props) => {
     })
       .then((res) => res.json())
       .then((re) => {
-
         console.log(re);
       });
   };

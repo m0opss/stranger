@@ -12,9 +12,8 @@ const defaultState = {
   ques: [
     {
       id: 0,
-      q: "",
       descr: "",
-      time: "",
+      time: 1,
       answ: [
         { id: 0, text: "", is_correct: false },
         { id: 1, text: "", is_correct: false },
@@ -24,9 +23,8 @@ const defaultState = {
     },
     {
       id: 1,
-      q: "",
       descr: "",
-      time: "",
+      time: 1,
       answ: [
         { id: 0, text: "", is_correct: false },
         { id: 1, text: "", is_correct: false },
@@ -36,9 +34,8 @@ const defaultState = {
     },
     {
       id: 2,
-      q: "",
       descr: "",
-      time: "",
+      time: 1,
       answ: [
         { id: 0, text: "", is_correct: false },
         { id: 1, text: "", is_correct: false },
@@ -65,9 +62,8 @@ export default function addPostReducer(state = defaultState, action) {
           ...state.ques,
           {
             id: state.ques.length,
-            q: "",
             descr: "",
-            time: "",
+            time: 1,
             answ: [
               { id: 0, text: "", is_correct: false },
               { id: 1, text: "", is_correct: false },
@@ -82,8 +78,7 @@ export default function addPostReducer(state = defaultState, action) {
       let tmp = [...state.ques];
       tmp.map((item) => {
         if (item.id == id) {
-          if (type == "q") item.q = val;
-          else if (type == "decr") item.descr = val;
+          if (type == "decr") item.descr = val;
           else if (type == "time") item.time = val;
           else if (type == "answ") {
             item.answ.map((a) => {

@@ -17,9 +17,11 @@ const AddPost = (props) => {
   // snackbar ///////////////////////////////////////////////
   const [open, setOpen] = React.useState(false);
   const [alertMsg, setAlertMsg] = React.useState();
+  const [severity, setSeverity] = React.useState();
 
-  const handleClick = (msg) => {
+  const handleClick = (msg, severity) => {
     setAlertMsg(msg);
+    setSeverity(severity);
     setOpen(true);
   };
 
@@ -27,7 +29,6 @@ const AddPost = (props) => {
     if (reason === "clickaway") {
       return;
     }
-
     setOpen(false);
   };
   // / /////////////////////////////
@@ -67,18 +68,23 @@ const AddPost = (props) => {
 
   const addFile = (e) => {
     let files = e.target.files;
-
     if (FileReader && files && files.length) {
       var fr = new FileReader();
       fr.readAsDataURL(files[0]);
+      console.log(fr);
       fr.onloadend = function () {
-        setSlides((slides) => [...slides, fr.result]);
+        fr.result.substr();
+        setSlides((slides) => [
+          ...slides,
+          { type: fr.result.substr(5, 2), data: fr.result },
+        ]);
       };
     }
     document.querySelector("input[type=file]").value = "";
   };
 
   const fetchPost = () => {
+    let ok;
     let body = {
       brand: post_t.brName,
       url_brand: `http://${post_t.brLink}`,
@@ -86,10 +92,15 @@ const AddPost = (props) => {
       duration: parseFloat(post_t.time),
       coast: parseFloat(post_t.price),
       remains: 5000,
+      logo: slides[0].data,
       is_published: true,
       is_archive: false,
     };
-
+    if (slides.length == 0) {
+      handleClick("Загрузите изображение!", "error");
+      return;
+    }
+    // Создаем пост ///////////////////////////////////////////////
     fetch("https://stranger-go.com/api/v1/posts/", {
       method: "POST",
       headers: {
@@ -99,34 +110,86 @@ const AddPost = (props) => {
       },
       body: JSON.stringify(body),
     })
-      .then((res) => res.json())
       .then((res) => {
-        slides.map((s) => {
-          let media = {
-            type_attachment: "im",
-            file_attachment: s,
-          };
-          const formData = new FormData();
-          for (let k in media) {
-            formData.append(k, media[k]);
-            console.log(media, k);
-          }
+        ok = res.ok;
+        return res.json();
+      })
+      .then((res) => {
+        if (ok) {
+          slides.map((s) => {
+            let media = {
+              type_attachment: s.type,
+              file_attachment: s.data,
+            };
+            const formData = new FormData();
+            for (let k in media) {
+              formData.append(k, media[k]);
+            }
+            // Загружаем изображение .///////////////////////////////////
+            fetch(
+              `https://stranger-go.com/api/v1/posts/${res.id}/add_attachment/`,
+              {
+                method: "POST",
+                headers: {
+                  Authorization: `Token ${token}`,
+                  // Accept: "application/json",
+                  // "Content-Type": "multipart/form-data",
+                },
+                body: formData,
+              }
+            ).then((res) => {
+              if (res.ok) handleClick("Изображение загружено!", "success");
+              else {
+                handleClick("неподдерживаемый формат изображения", "error");
+              }
+            });
+          });
+          post.ques.map((q) => {
+            let tmp = [];
 
-          fetch(
-            `https://stranger-go.com/api/v1/posts/${res.id}/add_attachment/`,
-            {
+            if (q.descr != "")
+              q.answ.map((item) => {
+                if (item.text != "") {
+                  tmp = [
+                    ...tmp,
+                    {
+                      text: item.text,
+                      is_correct: item.is_correct,
+                    },
+                  ];
+                }
+              });
+
+            let media = {
+              post: res.id,
+              text: q.descr,
+              time: q.time,
+              answers: tmp,
+            };
+            console.log(tmp);
+            fetch(`https://stranger-go.com/api/v1/questions/`, {
               method: "POST",
               headers: {
                 Authorization: `Token ${token}`,
-                // Accept: "application/json",
-                // "Content-Type": "multipart/form-data",
+                Accept: "application/json",
+                "Content-Type": "application/json",
               },
-              body: formData,
-            }
-          ).then((res) => {
-            handleClick("Пост успешно добавлен!");
+              body: JSON.stringify(media),
+            })
+              .then((res) => {
+                if (res.ok) handleClick("Пост успешно добавлен!", "success");
+                else {
+                  return res.json();
+                }
+              })
+              .then((res) => {
+                // console.log(res.non_field_errors[0]);
+                handleClick("Ответов должно быть 4", "error");
+              });
           });
-        });
+        } else {
+          handleClick("Неправильно заполнены поля", "error");
+        }
       });
   };
 
@@ -134,7 +197,8 @@ const AddPost = (props) => {
     setPost_t({ ...post_t, ...val });
   };
   const savePostRedux = (val) => {
-    handleClick("Пост успешно сохранен!");
+    console.log(123123);
+    handleClick("Пост успешно сохранен!", "success");
     dispatch(savePost(post_t));
   };
 
@@ -155,7 +219,7 @@ const AddPost = (props) => {
           elevation={6}
           variant="filled"
           onClose={handleClose}
-          severity="success"
+          severity={severity}
         >
           {alertMsg}
         </MuiAlert>
@@ -278,14 +342,18 @@ const AddPost = (props) => {
               ></div>
               {slides.map((i, ind) => (
                 <div className="brand-page__slider-item" key={ind}>
-                  <img src={i} />
+                  {i.type == "im" ? (
+                    <img src={i.data} />
+                  ) : (
+                    <video src={i.data} height="100%" width="100%" controls />
+                  )}
                 </div>
               ))}
             </Slider>
           </div>
         </div>
         <div className="brand-page__btn-panel">
-          <Link to="/addQue" className={`btn brand-page__btn que_btn`} >
+          <Link to="/addQue" className={`btn brand-page__btn que_btn`}>
             вопросы
           </Link>
           <div

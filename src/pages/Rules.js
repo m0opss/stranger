@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Container from "../components/Containers/Container";
 import play from "../assets/img/rulesPlay.svg";
 import alien from "../assets/img/alienReg.svg";
+// import alien_m from "../assets/img/rulesBG_m.svg";
 
 import "./rules.scss";
 
@@ -11,6 +12,9 @@ const Rules = () => {
   return (
     <div className="page rules">
       <Container type="dark">
+        <div className="rules-bg__item_1"></div>
+        <div className="rules-bg__item_2"></div>
+        <div className="rules-bg__item_3"></div>
         <div className="main-block">
           <p>УЗНАЙ СЕКРЕТЫ STRANGERS</p>
           <div className="main-block__img-container">

@@ -44,6 +44,9 @@ const RulesSlides = ({}) => {
   return (
     <div className="page rules rules-slides">
       <Container type="dark">
+      <div className="rules-bg__item_1"></div>
+        <div className="rules-bg__item_2"></div>
+        <div className="rules-bg__item_3"></div>
         <div className="rules-slides__slider-container">
           <p>{step + 1} ШАГ</p>
           <Slider {...settings}>

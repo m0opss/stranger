@@ -44,7 +44,7 @@ export function onExitAccount() {
   };
 }
 
-export const onLogin = (credentials) => async (dispatch) => {
+export const onLogin = (credentials, history) => async (dispatch) => {
   const rawResponse = await fetch(
     "https://stranger-go.com/api/v1/token/login/",
     {
@@ -73,7 +73,7 @@ export const onLogin = (credentials) => async (dispatch) => {
     });
     if (response.ok) {
       const userData = await response.json();
-
+      history.push('/')
       dispatch({
         type: SET_TOKEN,
         payload: content.auth_token,

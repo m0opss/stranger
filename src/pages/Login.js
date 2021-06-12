@@ -28,9 +28,9 @@ const Login = ({}) => {
   if (window.innerWidth < 768) isMobile = true;
 
   const fetchData = () => {
-    dispatch(onLogin({ email: login, password: pass }));
+    dispatch(onLogin({ email: login, password: pass }, history));
     // dispatch(getUserData(token))
-    history.push("/");
+    // history.push("/");
   };
 
   return (
