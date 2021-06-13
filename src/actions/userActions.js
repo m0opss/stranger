@@ -23,6 +23,10 @@ export const getUserData = (token) => async (dispatch) => {
       type: SET_TR_HISTORY,
       payload: userData,
     });
+    dispatch({
+      type: SET_BALANCE,
+      payload: userData.length > 0 ? userData[0].balance : 0,
+    });
 
     // dispatch({
     //   type: SET_BALANCE,

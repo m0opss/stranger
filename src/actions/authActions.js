@@ -5,6 +5,8 @@ import {
   ON_EXIT,
   SET_TOKEN,
   SET_AUTH,
+  SET_TYPE,
+  SET_VALUE,
   SET_BLOCK,
   SET_ADMIN,
 } from "../reducers/authReducer";
@@ -72,8 +74,8 @@ export const onLogin = (credentials, history) => async (dispatch) => {
       },
     });
     if (response.ok) {
-      const userData = await response.json();
       history.push('/')
+      const userData = await response.json();
       dispatch({
         type: SET_TOKEN,
         payload: content.auth_token,
@@ -85,6 +87,14 @@ export const onLogin = (credentials, history) => async (dispatch) => {
       dispatch({
         type: SET_ADMIN,
         payload: userData.is_staff,
+      });
+      dispatch({
+        type: SET_TYPE,
+        payload: userData.withdrawal_type,
+      });
+      dispatch({
+        type: SET_VALUE,
+        payload: userData.withdrawal_value,
       });
       dispatch({
         type: SET_BLOCK,
