@@ -1,5 +1,6 @@
 .donate-block {
   background: white;
+  height: 100%;
   & > p {
     font-weight: 600;
     font-size: 20px;
@@ -221,6 +222,7 @@
     justify-content: center;
     color: white;
     font-size: 20px;
+    cursor: pointer;
     line-height: 24px;
     &:hover {
       background: #17af87;

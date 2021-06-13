@@ -8,6 +8,7 @@
 
 .lk-page__container {
   display: flex;
+  height: 922px;
   max-width: 1508px;
   padding: 0 50px 20px;
   margin: auto;
@@ -38,6 +39,7 @@
   }
   @media screen and (max-width: 1058px) {
     justify-content: center;
+    height: auto;
     flex-wrap: wrap;
   }
 }

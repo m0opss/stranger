@@ -8,7 +8,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: .5s;
+  transition: 0.5s;
   &:hover {
     border: 1px solid #dadada;
   }
@@ -22,6 +22,12 @@
     height: 100%;
   }
   .card-close {
+    &:hover {
+      span::after,
+      span::before {
+        background-color: black;
+      }
+    }
     span,
     span::after,
     span::before {

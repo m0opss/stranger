@@ -5,12 +5,14 @@ import logonMobile from "../../assets/img/logonMobile.svg";
 import alienMobile from "../../assets/img/alienMobile.png";
 import { Menu, Dropdown } from "antd";
 import { useDispatch, useSelector } from "react-redux";
+import { DownOutlined } from '@ant-design/icons'
 import { onExitAccount } from "../../actions/authActions";
 import "./header.scss";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const isAuth = useSelector((state) => state.auth.isAuth);
+  const email = useSelector((state) => state.auth.email);
   const dispatch = useDispatch();
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -66,7 +68,7 @@ const Header = () => {
                   style={{ display: "flex" }}
                 >
                   <img className="header__profile-img" src={alienMobile} />
-                  <p className="header__profile-name">stranger_1</p>
+                  <p className="header__profile-name">{email} <DownOutlined style={{marginLeft: '10px'}} /></p>
                 </a>
               </Dropdown>
             ) : (
@@ -123,7 +125,7 @@ const Header = () => {
                 </Link>
                 <div className="header__profile-text-block">
                   <Link to="lk">
-                    <p className="header__profile-name">stranger_1</p>
+                    <p className="header__profile-name">{email}</p>
                   </Link>
                   <p className="header__profile-exit" onClick={onExitClick}>
                     выйти

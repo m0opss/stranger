@@ -43,8 +43,7 @@ const BalanceBlock = ({ balance }) => (
     <p className="balance-card__title">Баланс</p>
     <p className="balance-card__balance">{balance}₽</p>
     <div className="balance-card__sum-block">
-      <p>Сумма для перевода: 15₽</p>
-      <img src={lkHelpSum} />
+      <p>Минимальная сумма для перевода: 200₽</p>
     </div>
     <div className="balance-card__arrow-block">
       <div className="balance-card__down-block">
@@ -152,7 +151,7 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
 
 
   return (
-    <div className="lk-nav">
+    <div className="lk-nav" style={isAdmin ? {justifyContent: 'flex-start'} : {}}>
       {isAdmin ? (
         <>
           <LKNavPanel

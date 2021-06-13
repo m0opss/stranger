@@ -24,6 +24,7 @@ const StepsItem = ({ title, img, i }) => (
 
 const Main = () => {
   const isAuth = useSelector((state) => state.auth.isAuth);
+  const isAdmin = useSelector((state) => state.auth.isAdmin);
 
   return (
     <div className="page">
@@ -35,12 +36,16 @@ const Main = () => {
           <div className="main-block__img-container">
             <img src={alien} />
           </div>
-          <Link
-            to={isAuth ? "/test" : "/login"}
-            className="btn main-block__btn"
-          >
-            НАЧАТЬ
-          </Link>
+          {isAdmin ? (
+            <></>
+          ) : (
+            <Link
+              to={isAuth ? "/test" : "/login"}
+              className="btn main-block__btn"
+            >
+              НАЧАТЬ
+            </Link>
+          )}
           <Link to="/rules" className="main-block__play-rules">
             Правила
           </Link>

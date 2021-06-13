@@ -20,24 +20,24 @@ const SettingsBlockInput = ({ icon, value, setValue, placeholder, type }) => {
   );
 };
 
-const ChangePassBlock = ({ setActiveblock, token }) => {
+const ChangePassBlock = ({ setActiveblock, token, isAdmin }) => {
   const [disable, setDisable] = useState(true);
-  const [log, set_log] = useState("");
   const [old_pass, set_old_pass] = useState("");
   const [new_pass, set_new_pass] = useState("");
   const [also_pass, set_also_pass] = useState("");
 
   useEffect(() => {
-    if (log != "" && old_pass != "" && new_pass != "" && also_pass != "") {
+    if (old_pass != "" && new_pass != "" && also_pass != "") {
       setDisable(false);
     } else {
       setDisable(true);
     }
-  }, [log, old_pass, new_pass, also_pass]);
+  }, [old_pass, new_pass, also_pass]);
+
   const fetchData = () => {
     (async () => {
       const rawResponse = await fetch(
-        "https://stranger-go.com/api/v1/users/create_user/",
+        "https://stranger-go.com/api/v1/users/set_password/",
         {
           method: "POST",
           headers: {
@@ -46,16 +46,16 @@ const ChangePassBlock = ({ setActiveblock, token }) => {
             Authorization: `Token ${token}`,
           },
           body: JSON.stringify({
-            email: log,
-            password: pass,
-            is_superuser: isAddAdmin,
+            new_password: new_pass,
+            re_new_password: also_pass,
+            current_password: old_pass,
           }),
         }
       );
       if (rawResponse.ok) {
         const content = await rawResponse.json();
         console.log(content);
-        alert("Пользователь добавлен.ID: " + content.id);
+        alert("Пароль успешно изменен");
       } else {
         const err = await response.json();
         alert("Ошибка HTTP: " + response.status + " " + JSON.stringify(err));
@@ -65,20 +65,17 @@ const ChangePassBlock = ({ setActiveblock, token }) => {
   return (
     <>
       <div className="settings-block__change change-pass-block">
-        <div
-          className="settings-block__close-btn"
-          onClick={() => setActiveblock("")}
-        >
-          <span></span>
-        </div>
+        {isAdmin ? (
+          <div
+            className="settings-block__close-btn"
+            onClick={() => setActiveblock("")}
+          >
+            <span></span>
+          </div>
+        ) : (
+          <></>
+        )}
         <div className="settings-block__inputs">
-          <SettingsBlockInput
-            icon={icon_log}
-            value={log}
-            setValue={set_log}
-            placeholder="логин"
-            type="text"
-          />
           <SettingsBlockInput
             icon={icon_pass}
             value={old_pass}
@@ -106,91 +103,6 @@ const ChangePassBlock = ({ setActiveblock, token }) => {
         className={`save-settings-btn btn lk-btn ${
           disable ? "lk-btn__disable" : ""
         }`}
-      >
-        изменить
-      </div>
-    </>
-  );
-};
-const ChangeLogBlock = ({ setActiveblock, token }) => {
-  const [disable, setDisable] = useState(true);
-  const [new_log, set_new_log] = useState("");
-  const [new_log_also, set_new_log_also] = useState("");
-
-  const [pass, set_pass] = useState("");
-
-  useEffect(() => {
-    if (new_log_also != "" && new_log != "" && pass != "") {
-      setDisable(false);
-    } else {
-      setDisable(true);
-    }
-  }, [new_log_also, new_log, pass]);
-  const fetchData = () => {
-    (async () => {
-      const rawResponse = await fetch(
-        "https://stranger-go.com/api/v1/users/set_username/",
-        {
-          method: "POST",
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-            Authorization: `Token ${token}`,
-          },
-          body: JSON.stringify({
-            current_password: pass,
-            new_email: new_log,
-            re_new_email: new_log_also,
-          }),
-        }
-      );
-      if (rawResponse.ok) {
-        const content = await rawResponse.json();
-        console.log(content);
-        alert("Пользователь добавлен.ID: " + content.id);
-      } else {
-        const err = await response.json();
-        alert("Ошибка HTTP: " + response.status + " " + JSON.stringify(err));
-      }
-    })();
-  };
-  return (
-    <>
-      <div className="settings-block__change change-log-block">
-        <div
-          className="settings-block__close-btn"
-          onClick={() => setActiveblock("")}
-        >
-          <span></span>
-        </div>
-        <div className="settings-block__inputs">
-          <SettingsBlockInput
-            icon={icon_log}
-            value={new_log}
-            setValue={set_new_log}
-            placeholder="новый логин"
-            type="text"
-          />
-          <SettingsBlockInput
-            icon={icon_log}
-            value={new_log_also}
-            setValue={set_new_log_also}
-            placeholder="новый логин еще раз"
-            type="text"
-          />
-          <SettingsBlockInput
-            icon={icon_pass}
-            value={pass}
-            setValue={set_pass}
-            placeholder="пароль"
-            type="password"
-          />
-        </div>
-      </div>
-      <div
-        className={`save-settings-btn btn lk-btn ${
-          disable ? "lk-btn__disable" : ""
-        }`}
         onClick={fetchData}
       >
         изменить
@@ -198,6 +110,7 @@ const ChangeLogBlock = ({ setActiveblock, token }) => {
     </>
   );
 };
+
 
 const AddBlock = ({ setActiveblock, token }) => {
   const [log, set_log] = useState("");
@@ -294,7 +207,7 @@ const AddBlock = ({ setActiveblock, token }) => {
             icon={icon_log}
             value={log}
             setValue={set_log}
-            placeholder="логин"
+            placeholder="email"
             type="text"
           />
           <SettingsBlockInput
@@ -329,37 +242,28 @@ const AddBlock = ({ setActiveblock, token }) => {
   );
 };
 
-const ButtonsBlock = ({ setActiveblock, isAdmin }) => {
+const ButtonsBlock = ({ setActiveblock }) => {
   return (
     <div className="settings-block__change buttons-block">
-      <div
-        className="buttons-block__button btn lk-btn lk-btn "
-        onClick={() => setActiveblock("log")}
-      >
-        изменить логин
-      </div>
       <div
         className="buttons-block__button btn lk-btn lk-btn"
         onClick={() => setActiveblock("pass")}
       >
         изменить пароль
       </div>
-      {isAdmin ? (
-        <div
-          className="buttons-block__button btn lk-btn lk-btn"
-          onClick={() => setActiveblock("addUser")}
-        >
-          добавить пользователя
-        </div>
-      ) : (
-        <></>
-      )}
+
+      <div
+        className="buttons-block__button btn lk-btn lk-btn"
+        onClick={() => setActiveblock("addUser")}
+      >
+        добавить пользователя
+      </div>
     </div>
   );
 };
 
-const SettingsBlock = ({ setActiveTab, isAdmin, isMobile }) => {
-  const [activeBlock, setActiveblock] = useState("");
+const SettingsBlock = ({ isAdmin }) => {
+  const [activeBlock, setActiveblock] = useState(isAdmin ? "" : "pass");
   const token = useSelector((state) => state.auth.token);
   return (
     <div
@@ -374,15 +278,11 @@ const SettingsBlock = ({ setActiveTab, isAdmin, isMobile }) => {
             <p className="settings-block__descr">
               Здесь вы можете изменить свой пароль в игре
             </p>
-            <ChangePassBlock token={token} setActiveblock={setActiveblock} />
-          </>
-        ) : activeBlock == "log" ? (
-          <>
-            <p className="settings-block__title">Настройки аккаунта</p>
-            <p className="settings-block__descr">
-              Здесь вы можете изменить свой логин в игре
-            </p>
-            <ChangeLogBlock token={token} setActiveblock={setActiveblock} />
+            <ChangePassBlock
+              isAdmin={isAdmin}
+              token={token}
+              setActiveblock={setActiveblock}
+            />
           </>
         ) : activeBlock == "addUser" ? (
           <>
@@ -397,23 +297,11 @@ const SettingsBlock = ({ setActiveTab, isAdmin, isMobile }) => {
         ) : (
           <>
             <p className="settings-block__title">Настройки аккаунта</p>
-            {!isMobile ? (
-              <></>
+            {isAdmin ? (
+              <ButtonsBlock setActiveblock={setActiveblock} isAdmin={isAdmin} />
             ) : (
-              <>
-                {isAdmin ? (
-                  <></>
-                ) : (
-                  <div
-                    className="settings-block__close-btn"
-                    onClick={() => setActiveTab("")}
-                  >
-                    <span></span>
-                  </div>
-                )}
-              </>
+              <></>
             )}
-            <ButtonsBlock setActiveblock={setActiveblock} isAdmin={isAdmin} />
           </>
         )}
       </div>

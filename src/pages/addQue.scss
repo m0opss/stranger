@@ -41,7 +41,10 @@
     display: block;
     .questions__btn-block {
       margin-top: 150px;
-      .questions__btn {
+      .questions__btn-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         width: 47%;
         @media screen and (max-width: 851px) {
           width: 60%;
@@ -49,6 +52,9 @@
         @media screen and (max-width: 681px) {
           width: 90%;
         }
+      }
+      .questions__btn {
+        width: 90%;
       }
       .questions__btn_add {
         color: #b7b7b7;
@@ -117,6 +123,5 @@
     .add-que__text {
       max-width: 330px;
     }
-
   }
 }

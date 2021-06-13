@@ -1,5 +1,6 @@
 .history-block {
   // margin-top: 9px;
+  height: 263px;
   .history-block__title {
     font-weight: 600;
     font-size: 20px;
@@ -19,6 +20,7 @@
       justify-content: space-between;
       margin-bottom: 20px;
       p {
+        width: 33%;
         font-weight: normal;
         font-size: 16px;
         line-height: 20px;

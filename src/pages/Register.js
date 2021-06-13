@@ -84,7 +84,7 @@ const Register = ({}) => {
   };
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
-
+  const [checked, setChecked] = useState(false);
   return (
     <div className="page-auth register">
       <div className="page-auth__background page-auth__background_1"></div>
@@ -108,7 +108,6 @@ const Register = ({}) => {
             Зарегистрируйся за пару минут и получи свои деньги без ввода
             конфиденциальных данных.
           </p>
-          {/* <img src={alien} /> */}
         </div>
         <div className="page-auth__form-block  auth-form-block">
           {isMobile ? (
@@ -160,6 +159,23 @@ const Register = ({}) => {
               className="auth-form-block__input"
             />
           </div>
+          <div className="auth-form-block__policy">
+            <input
+              type="checkbox"
+              checked={checked}
+              onChange={(e) => setChecked(e.target.checked)}
+            />
+            Регистрируясь, я принимаю <br />
+            <div className="">
+              <a target="_blank" href="/static/assets/docs/policy.docx">
+                Политику конфиденциальности
+              </a>{" "}
+              и{" "}
+              <a target="_blank" href="/static/assets/docs/ofer.docx">
+                Договор Оферты
+              </a>
+            </div>
+          </div>
           <div className="auth-form-block__reg-btn" onClick={fetchData}>
             <p>Зарегистрироваться</p>
             <img className="auth-form-block__reg-btn-ic" src={f_arr} />
@@ -175,18 +191,6 @@ const Register = ({}) => {
               </a>
               <a href="#">
                 <img src={inst} />
-              </a>
-            </div>
-          </div>
-          <div className="auth-form-block__policy">
-            Регистрируясь, я принимаю <br />
-            <div className="">
-              <a target="_blank" href="/static/assets/docs/policy.docx">
-                Политику конфиденциальности
-              </a>{" "}
-              и{" "}
-              <a target="_blank" href="/static/assets/docs/ofer.docx">
-                Договор Оферты
               </a>
             </div>
           </div>

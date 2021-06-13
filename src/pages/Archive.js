@@ -37,12 +37,15 @@ const Archive = ({}) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ is_archive: false }),
-    })
-      .then((res) => res.json())
-      .then((re) => {
-        console.log(re);
-      });
-    removeBrand(id);
+    }).then((res) => {
+      if (res.ok) {
+        alert("Пост удален из архива");
+      } else {
+        alert("Ощибка");
+      }
+    });
+    setBrands((brands) => brands.filter((i) => i.id != id));
+    // removeBrand(id);
   };
 
   useEffect(() => {
@@ -56,7 +59,7 @@ const Archive = ({}) => {
     })
       .then((res) => res.json())
       .then((re) => {
-        setBrands(re.filter((item) => !item.is_archive));
+        setBrands(re.filter((item) => item.is_archive));
       });
   }, []);
 

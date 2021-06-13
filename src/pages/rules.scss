@@ -87,6 +87,11 @@
     .main-block__img-play {
       margin-top: 20px;
       z-index: 2;
+      &:hover {
+        img {
+          opacity: .6;
+        }
+      }
     }
 
     @media screen and (max-width: 767px) {

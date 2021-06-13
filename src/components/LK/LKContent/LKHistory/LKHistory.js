@@ -16,6 +16,12 @@ const HistoryBlock = ({ type, data }) => (
       История транзакций
     </a>
     <div className="history-block__rows-list">
+      <HistoryRow date="Дата" card="Счет" sum="Сумма" />
+      {
+        data == undefined || data.length == 0 ?
+        <HistoryRow date="-" card="-" sum="-" />
+        : <></>
+      }
       {data ? (
         data.map((item) => (
           <HistoryRow date="02.02.21" card="**** 9999" sum="100₽" />

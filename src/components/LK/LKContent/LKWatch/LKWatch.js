@@ -53,9 +53,6 @@ const WatchBlock = ({ type, data, loadCsv, blockUser }) => {
             />
           ))}
         </div>
-        <div className="watch-block__load" onClick={loadCsv}>
-          выгрузить в Excel
-        </div>
       </div>
     );
   return (
@@ -70,8 +67,8 @@ const WatchBlock = ({ type, data, loadCsv, blockUser }) => {
         <WatchRow
           date={"Дата"}
           brand={"Бренд"}
-          progress={"Прогресс"}
-          amount={"Выплаты"}
+          progress={"Прогресс,%"}
+          amount={"Выплаты,₽"}
         />
 
         {data.map((el, i) => (
@@ -84,6 +81,7 @@ const WatchBlock = ({ type, data, loadCsv, blockUser }) => {
           />
         ))}
       </div>
+
       <div className="watch-block__load" onClick={loadCsv}>
         выгрузить в Excel
       </div>

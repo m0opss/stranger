@@ -14,9 +14,12 @@ const settings = {
   speed: 500,
 };
 
-const QueSlide = ({ id, que, saveQue }) => (
+const QueSlide = ({ id, que, saveQue, setCorrect }) => (
   <div className="add-que__slide-wrapper" id={id}>
     <div className="add-que__slide">
+      <p style={{ color: "red", fontWeight: "bold" }}>
+        Заполните все четыре вопроса!
+      </p>
       <div className="add-que__name" style={{ border: "none" }}>
         Вопрос {id + 1}
       </div>
@@ -28,13 +31,21 @@ const QueSlide = ({ id, que, saveQue }) => (
       />
       <div className="questions__btn-block">
         {que.answ.map((a) => (
-          <input
-            key={`add` + id + a.id}
-            className="questions__btn questions__btn_add btn"
-            placeholder="+"
-            onChange={(e) => saveQue(e.target.value, id, "answ", a.id)}
-            value={a.text}
-          />
+          <div className="questions__btn-wrapper">
+            <input
+              key={`add` + id + a.id}
+              className="questions__btn questions__btn_add btn"
+              placeholder="+"
+              onChange={(e) => saveQue(e.target.value, id, "answ", a.id)}
+              value={a.text}
+            />
+            <input
+              type="checkbox"
+              value={a.is_correct}
+              onChange={(e) => saveQue(e.target.checked, id, "answ_corr", a.id)}
+              id={a.id}
+            />
+          </div>
         ))}
       </div>
     </div>
@@ -43,7 +54,7 @@ const QueSlide = ({ id, que, saveQue }) => (
 
 const AddQue = (props) => {
   const ques = useSelector((state) => state.addPost.ques);
-
+  const [correct, setCorrect] = useState();
   const dispatch = useDispatch();
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
@@ -64,6 +75,7 @@ const AddQue = (props) => {
       payload: sl_ind,
     });
   };
+
   const addQ = () => {
     dispatch({
       type: ADD_QUE,
@@ -76,6 +88,7 @@ const AddQue = (props) => {
     document.querySelector("ul.slick-dots").appendChild(a);
   };
   // добавление + - в dots ////////////////////////////////////////
+
   useEffect(() => {
     let r = document.createElement("div");
     r.textContent = "-";

@@ -482,6 +482,13 @@
     margin-bottom: 50px;
   }
   .questions__close {
+    &:hover {
+      span,
+      span::before,
+      span::after {
+        background-color: #dadada;
+      }
+    }
     span,
     span::before,
     span::after {

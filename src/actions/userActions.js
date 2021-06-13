@@ -25,17 +25,13 @@ export const getUserData = (token) => async (dispatch) => {
     });
     dispatch({
       type: SET_BALANCE,
-      payload: userData.length > 0 ? userData[0].balance : 0,
+      payload: userData.length > 0 ? userData[userData.length - 1].balance : 0,
+    });
+    dispatch({
+      type: SET_PROGRESS,
+      payload: userData.length > 0 ? userData[userData.length - 1].progress : 0,
     });
 
-    // dispatch({
-    //   type: SET_BALANCE,
-    //   payload: userData.balance,
-    // });
-    // dispatch({
-    //   type: SET_PROGRESS,
-    //   payload: userData.progress,
-    // });
   } else {
     const err = await rawResponse.json();
     alert("Ошибка HTTP: " + rawResponse.status + " " + JSON.stringify(err));

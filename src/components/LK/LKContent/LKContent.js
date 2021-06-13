@@ -14,31 +14,54 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
   const transaction_history = useSelector(
     (state) => state.user.transaction_history
   );
-  
+
   const token = useSelector((state) => state.auth.token);
   const max = 3000;
-  console.log(cardNum);
+
   const fetchMoney = () => {
-    let status, ok;
-    fetch("https://stranger-go.com/api/v1/users/get_money/", {
-      method: "POST",
+    let ok_card;
+    fetch("https://stranger-go.com/api/v1/users/me/", {
+      method: "PATCH",
       headers: {
         Authorization: `Token ${token}`,
         Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        sum: parseFloat(sum),
+        withdrawal_type: card == "qiwi" ? 1 : card == "phone" ? 2 : 0,
+        withdrawal_value: cardNum,
       }),
     })
       .then((res) => {
-        status = res.status;
-        ok = res.ok;
+        ok_card = res.ok;
         return res.json();
       })
       .then((re) => {
-        if (ok) {
-          alert(re.detail);
+        if (ok_card) {
+          let status, ok;
+          fetch("https://stranger-go.com/api/v1/users/get_money/", {
+            method: "POST",
+            headers: {
+              Authorization: `Token ${token}`,
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              sum: parseFloat(sum),
+            }),
+          })
+            .then((res) => {
+              status = res.status;
+              ok = res.ok;
+              return res.json();
+            })
+            .then((re) => {
+              if (ok) {
+                alert(re.detail);
+              } else {
+                alert(re.detail);
+              }
+            });
         } else {
           alert(re.detail);
         }
@@ -215,7 +238,7 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
             <WatchBlock
               type="users"
               data={users}
-              loadCsv={loadCsv}
+              // loadCsv={loadCsv}
               blockUser={blockUser}
             />
           ) : (
@@ -240,7 +263,7 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
             <WatchBlock
               type="users"
               data={users}
-              loadCsv={loadCsv}
+              // loadCsv={loadCsv}
               blockUser={blockUser}
             />
           ) : activeTab == "set" ? (

@@ -55,7 +55,25 @@ const AddPosts = (props) => {
   const addBrand = () => {
     setBrands((brands) => [...brands, { img: test, id: brands.length }]);
   };
+  const pubBrand = (id) => {
+    fetch(`https://stranger-go.com/api/v1/posts/${id}/`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Token ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ is_archive: true }),
+    }).then((res) => {
+      if (res.ok) {
+        alert('Пост добавлен в архив')
+      } else {
+        alert('Ощибка')
+      }
+    });
 
+    setSlides((brands) => brands.filter((i) => i.id != id));
+  };
   return (
     <div className="archive-page add-page">
       <Header />
@@ -97,6 +115,12 @@ const AddPosts = (props) => {
               >
                 <div className="brands-list__item">
                   <BrandCard id={i.id} img={i.logo} onClick={removeBrand} />
+                  <div
+                    className="brands-list__btn btn"
+                    onClick={() => pubBrand(i.id)}
+                  >
+                    в архив
+                  </div>
                 </div>
               </CSSTransition>
             ))}

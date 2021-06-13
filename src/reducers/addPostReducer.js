@@ -13,9 +13,9 @@ const defaultState = {
     {
       id: 0,
       descr: "",
-      time: 1,
+      time: 60,
       answ: [
-        { id: 0, text: "", is_correct: false },
+        { id: 0, text: "", is_correct: true },
         { id: 1, text: "", is_correct: false },
         { id: 2, text: "", is_correct: false },
         { id: 3, text: "", is_correct: false },
@@ -24,9 +24,9 @@ const defaultState = {
     {
       id: 1,
       descr: "",
-      time: 1,
+      time: 60,
       answ: [
-        { id: 0, text: "", is_correct: false },
+        { id: 0, text: "", is_correct: true },
         { id: 1, text: "", is_correct: false },
         { id: 2, text: "", is_correct: false },
         { id: 3, text: "", is_correct: false },
@@ -35,9 +35,9 @@ const defaultState = {
     {
       id: 2,
       descr: "",
-      time: 1,
+      time: 60,
       answ: [
-        { id: 0, text: "", is_correct: false },
+        { id: 0, text: "", is_correct: true },
         { id: 1, text: "", is_correct: false },
         { id: 2, text: "", is_correct: false },
         { id: 3, text: "", is_correct: false },
@@ -63,9 +63,9 @@ export default function addPostReducer(state = defaultState, action) {
           {
             id: state.ques.length,
             descr: "",
-            time: 1,
+            time: 60,
             answ: [
-              { id: 0, text: "", is_correct: false },
+              { id: 0, text: "", is_correct: true },
               { id: 1, text: "", is_correct: false },
               { id: 2, text: "", is_correct: false },
               { id: 3, text: "", is_correct: false },
@@ -84,6 +84,12 @@ export default function addPostReducer(state = defaultState, action) {
             item.answ.map((a) => {
               if (a.id == a_id) {
                 a.text = val;
+              }
+            });
+          } else if (type == "answ_corr") {
+            item.answ.map((a) => {
+              if (a.id == a_id) {
+                a.is_correct = val;
               }
             });
           }

@@ -83,7 +83,7 @@ const AddPost = (props) => {
     document.querySelector("input[type=file]").value = "";
   };
 
-  const fetchPost = () => {
+  const fetchPost = (isArchive) => {
     let ok;
     let body = {
       brand: post_t.brName,
@@ -94,7 +94,7 @@ const AddPost = (props) => {
       remains: 5000,
       logo: slides[0].data,
       is_published: true,
-      is_archive: false,
+      is_archive: isArchive,
     };
     if (slides.length == 0) {
       handleClick("Загрузите изображение!", "error");
@@ -166,7 +166,7 @@ const AddPost = (props) => {
               time: q.time,
               answers: tmp,
             };
-            console.log(tmp);
+      
             fetch(`https://stranger-go.com/api/v1/questions/`, {
               method: "POST",
               headers: {
@@ -197,9 +197,8 @@ const AddPost = (props) => {
     setPost_t({ ...post_t, ...val });
   };
   const savePostRedux = (val) => {
-    console.log(123123);
     handleClick("Пост успешно сохранен!", "success");
-    dispatch(savePost(post_t));
+    // dispatch(savePost(post_t));
   };
 
   return (
@@ -360,7 +359,7 @@ const AddPost = (props) => {
             className={`btn brand-page__btn ${
               full ? "brand-page__btn_active" : ""
             }`}
-            onClick={full ? savePostRedux : () => {}}
+            onClick={full ? () => fetchPost(true) : () => {}}
           >
             сохранить
           </div>
@@ -368,7 +367,7 @@ const AddPost = (props) => {
             className={`btn brand-page__btn ${
               full ? "brand-page__btn_active" : ""
             }`}
-            onClick={full ? fetchPost : () => {}}
+            onClick={full ? () => fetchPost(false) : () => {}}
           >
             опубликовать
           </div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
+import { Input, Select } from "antd";
+import { SettingOutlined } from "@ant-design/icons";
 import lkHelpSum from "../../../../assets/img/LK/lkHelpSum.svg";
 
 import SelectCard from "../../../SelectCard/SelectCard";
@@ -10,11 +11,11 @@ const CardInputBlock = ({ cardNum, setCardNum, card }) => {
   return (
     <div className="donate-block__input-card-block">
       <p>Номер телефона</p>
-
+      {/* <Input addonBefore="+7" defaultValue="mysite" /> */}
       <input
         value={cardNum}
         onChange={(e) => setCardNum(e.target.value)}
-        type="text"
+        type="tel"
         placeholder={"+7**********"}
       />
     </div>
@@ -37,6 +38,7 @@ const SummInputBlock = ({ sum, setSum, max }) => {
       <p>Перевести</p>
       <div className="">
         <p>₽</p>
+
         <input
           className={`${overflow ? "overflow " : ""}`}
           type="number"
@@ -84,7 +86,7 @@ const DonateBlock = ({
           <p>Баланс</p>
         </div>
         <p className="donate-block__balance">{balance}₽</p>
-        <p className="donate-block__sum">Сумма для перевода: 15₽</p>
+        {/* <p className="donate-block__sum">Сумма для перевода: 15₽</p> */}
       </div>
       {isMobile ? <></> : <p>Транзакция</p>}
       <div className="donate-block__select-card">
@@ -93,11 +95,11 @@ const DonateBlock = ({
       <CardInputBlock cardNum={cardNum} setCardNum={setCardNum} />
       <SummInputBlock sum={sum} setSum={setSum} max={max} />
 
-      <p className="donate-block__small-text">
+      {/* <p className="donate-block__small-text">
         {isMobile
           ? " Вывести деньги из кошелька можно только через 2 часа с момента зачисления на него"
           : "* Только что заработанные деньги можно вывести через 2 часа"}
-      </p>
+      </p> */}
       <div className="btn donate-block__btn" onClick={fetchMoney}>
         перевести
       </div>

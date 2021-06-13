@@ -5,6 +5,7 @@ export const SET_TOKEN = "SET_TOKEN";
 export const SET_AUTH = "SET_AUTH";
 export const SET_BLOCK = "SET_BLOCK";
 export const SET_ADMIN = "SET_ADMIN";
+export const SET_EMAIL = "SET_EMAIL";
 export const ON_EXIT = "ON_EXIT";
 export const SET_TYPE = "SET_TYPE";
 export const SET_VALUE = "SET_VALUE";
@@ -14,11 +15,11 @@ const defaultState = {
   isAdmin: false,
   withdrawal_type: 0,
   withdrawal_value: '',
-  name: "",
+  email: "",
+  // token: "d70b85803c00420f123a088a30c79eec6e26e39a",
   token: "",
   error: "",
   isBlock: false,
-  // token: "f0b3d07942238757c47a920a4cf3b2957847dd5a",
 };
 
 export default function authReducer(state = defaultState, action) {
@@ -39,6 +40,8 @@ export default function authReducer(state = defaultState, action) {
       return { ...state, withdrawal_type: action.payload };
     case SET_VALUE:
       return { ...state, withdrawal_value: action.payload };
+    case SET_EMAIL:
+      return { ...state, email: action.payload };
     case ON_EXIT:
       return { ...state, isAuth: action.payload };
     default:

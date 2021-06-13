@@ -171,6 +171,14 @@
       cursor: pointer;
       z-index: 10;
       -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      &:hover {
+        background-color: rgb(61, 61, 61);
+        span,
+        span::before,
+        span::after {
+          background-color: rgb(61, 61, 61);
+        }
+      }
       span,
       span::before,
       span::after {
@@ -246,6 +254,11 @@
   }
   .header__logon {
     display: flex;
+    .ant-dropdown-trigger.ant-dropdown-link {
+      &:hover .header__profile-name {
+        color: #17ca9b;
+      }
+    }
     .header__profile-img {
       width: 45px;
       height: 45px;
@@ -255,7 +268,8 @@
     .header__profile-name {
       margin-left: 13px;
       font-weight: bold;
-      font-size: 20px;
+      transition: 0.3s;
+      font-size: 16px;
       line-height: 219%;
       display: flex;
       align-items: center;

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setFetching } from "../reducers/reposReducer";
+import { SET_TOKEN } from "../reducers/authReducer";
 import Loader from "./Loader/Loader";
 
 import "./app.scss";
@@ -8,8 +8,8 @@ import Main from "../pages/Main";
 import About from "../pages/About";
 import LK from "../pages/LK";
 import { NavLink, Redirect, Route, Switch } from "react-router-dom";
-import { BrowserRouter as Router } from "react-router-dom";
-// import { HashRouter as Router } from "react-router-dom";
+// import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
 import { CSSTransition } from "react-transition-group";
 import Transfer from "../pages/Transfer";
 import Archive from "../pages/Archive";
@@ -24,6 +24,7 @@ import AddPost from "../pages/AddPost";
 import RulesSlides from "../pages/RulesSlides";
 import FAQ from "../pages/FAQ";
 import AddQue from "../pages/AddQue";
+import { getMe } from "../actions/authActions";
 import Advertisers from "../pages/Advertisers";
 
 const App = (props) => {
@@ -53,7 +54,17 @@ const App = (props) => {
     { path: "/addQue", Component: AddQue },
     { path: "/advertisers", Component: Advertisers },
   ];
-
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (
+      localStorage.getItem("token") != undefined &&
+      localStorage.getItem("token") != ""
+    ) {
+      console.log(localStorage.getItem("token"));
+      dispatch(getMe(localStorage.getItem("token")));
+      dispatch({ type: SET_TOKEN, payload: localStorage.getItem("token") });
+    }
+  }, []);
   return (
     <Router>
       <div className="app">

@@ -8,6 +8,7 @@ import {
   SET_TYPE,
   SET_VALUE,
   SET_BLOCK,
+  SET_EMAIL,
   SET_ADMIN,
 } from "../reducers/authReducer";
 
@@ -45,6 +46,53 @@ export function onExitAccount() {
     });
   };
 }
+export const getMe = (token, history) => async (dispatch) => {
+  dispatch(getUserData(token));
+
+  const response = await fetch("https://stranger-go.com/api/v1/users/me/", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      Authorization: `Token ${token}`,
+    },
+  });
+  if (response.ok) {
+    if (history != undefined) history.push("/");
+    const userData = await response.json();
+    dispatch({
+      type: SET_TOKEN,
+      payload: token,
+    });
+    dispatch({
+      type: SET_AUTH,
+      payload: true,
+    });
+    dispatch({
+      type: SET_ADMIN,
+      payload: userData.is_staff,
+    });
+    dispatch({
+      type: SET_TYPE,
+      payload: userData.withdrawal_type,
+    });
+    dispatch({
+      type: SET_EMAIL,
+      payload: userData.email,
+    });
+    dispatch({
+      type: SET_VALUE,
+      payload: userData.withdrawal_value,
+    });
+    dispatch({
+      type: SET_BLOCK,
+      payload: userData.is_block,
+    });
+  } else {
+    const err = await response.json();
+    alert("Ошибка HTTP: " + response.status + " " + JSON.stringify(err));
+  }
+};
 
 export const onLogin = (credentials, history) => async (dispatch) => {
   const rawResponse = await fetch(
@@ -52,7 +100,7 @@ export const onLogin = (credentials, history) => async (dispatch) => {
     {
       method: "POST",
       headers: {
-        Accept: "application/json", 
+        Accept: "application/json",
         "Content-Type": "application/json",
       },
       body: JSON.stringify(
@@ -64,46 +112,8 @@ export const onLogin = (credentials, history) => async (dispatch) => {
   );
   if (rawResponse.ok) {
     const content = await rawResponse.json();
-    dispatch(getUserData(content.auth_token));
-    const response = await fetch("https://stranger-go.com/api/v1/users/me/", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Token ${content.auth_token}`,
-      },
-    });
-    if (response.ok) {
-      history.push('/')
-      const userData = await response.json();
-      dispatch({
-        type: SET_TOKEN,
-        payload: content.auth_token,
-      });
-      dispatch({
-        type: SET_AUTH,
-        payload: true,
-      });
-      dispatch({
-        type: SET_ADMIN,
-        payload: userData.is_staff,
-      });
-      dispatch({
-        type: SET_TYPE,
-        payload: userData.withdrawal_type,
-      });
-      dispatch({
-        type: SET_VALUE,
-        payload: userData.withdrawal_value,
-      });
-      dispatch({
-        type: SET_BLOCK,
-        payload: userData.is_block,
-      });
-    } else {
-      const err = await response.json();
-      alert("Ошибка HTTP: " + response.status + " " + JSON.stringify(err));
-    }
+    localStorage.setItem("token", content.auth_token);
+    dispatch(getMe(content.auth_token, history));
   } else {
     const err = await rawResponse.json();
     alert("Ошибка HTTP: " + rawResponse.status + " " + JSON.stringify(err));
