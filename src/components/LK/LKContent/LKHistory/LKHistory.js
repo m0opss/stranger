@@ -23,10 +23,6 @@ const HistoryBlock = ({ type, data }) => (
       ) : (
         <></>
       )}
-      {/* <HistoryRow date="02.02.21" card="**** 9999" sum="100₽" />
-      <HistoryRow date="02.02.21" card="**** 9999" sum="100₽" />
-      <HistoryRow date="02.02.21" card="**** 9999" sum="100₽" />
-      <HistoryRow date="02.02.21" card="**** 9999" sum="100₽" /> */}
     </div>
   </div>
 );

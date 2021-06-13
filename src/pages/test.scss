@@ -4,7 +4,8 @@
   align-items: center;
   min-height: 100vh;
   .archive-background {
-    display: none;
+    // display: none;
+    position: absolute;
     @media screen and (max-width: 767px) {
       display: block;
     }
@@ -15,6 +16,7 @@
   max-width: 1522px;
   margin: auto;
   display: block;
+  z-index: 1;
   @media screen and (max-width: 1805px) {
     max-width: 1322px;
   }
@@ -74,7 +76,7 @@
       .test-slide {
         height: 560px;
         .test-slide__brand-logo {
-          transform: translate(30%, -50%);
+          transform: translate(25%, -50%);
         }
       }
       @media screen and (max-width: 1185px) {

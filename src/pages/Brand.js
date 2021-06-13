@@ -22,7 +22,7 @@ const Brand = (props) => {
   let name = data.brand;
   let time = data.duration;
   let brand = data.url_brand;
-  let descr = data.description;;
+  let descr = data.description;
   let price = data.coast;
 
   const settings = {
@@ -68,104 +68,112 @@ const Brand = (props) => {
   }, []);
 
   return (
-    <div className="page brand-page">
+    <div className="page archive-page brand-page">
       <Header />
-      <div className="brand-page__content">
-        <div className="brand-page__info">
-          <h2>{name}</h2>
-          <div className="brand-page__row">
-            <div className="brand-page__brand">
-              <img src={info} />
-              <a href={brand}>{name}</a>
-            </div>
-            <div className="brand-page__time">
-              <img src={clock} />
-              {time} мин
-            </div>
-            <div className="brand-page__price">
-              <img src={rub} />
-              {price}
-            </div>
-          </div>
-          <div className="brand-page__descr">{descr}</div>
-          {fullWatched ? (
-            <Link
-              to={`/brand/${id}/q`}
-              className={`btn brand-page__btn brand-page__btn_active`}
-              style={{ marginBottom: 0 }}
-            >
-              ответить на вопросы
-            </Link>
-          ) : (
-            <div className={`btn brand-page__btn`}>ответить на вопросы</div>
-          )}
-
-          {fullWatched ? (
-            <></>
-          ) : (
-            <p className="brand-page__warning">
-              Играть можно начать только после просмотра презентации/видео
-              ролика
-            </p>
-          )}
-        </div>
-        <div className="brand-page__info_m">
-          <h2>{name}</h2>
-          <div className="brand-page__row">
-            <div className="brand-page__brand">
-              <img src={info} />
-              {brand}
-            </div>
-            <div className="brand-page__time">
-              <img src={clock} />
-              {time} мин
-            </div>
-            <div className="brand-page__price">
-              <img src={rub} />
-              {price}
-            </div>
-          </div>
-        </div>
-        <div className="brand-page__slider">
-          <Slider {...settings}>
-            {slides.map((i) => (
-              <div className="brand-page__slider-item" key={i.id}>
-                {i.type_attachment == "vi" ? (
-                  <video
-                    src={`https://stranger-go.com${i.file_attachment}`}
-                    height="100%"
-                    width="100%"
-                    controls
-                  />
-                ) : i.type_attachment == "im" ? (
-                  <img src={`https://stranger-go.com/${i.file_attachment}`} />
-                ) : (
-                  <></>
-                )}
+      <div className="archive-background">
+        <div className="archive-background__item archive-background__item_main"></div>
+        <div className="archive-background__item archive-background__item_1"></div>
+        <div className="archive-background__item archive-background__item_2"></div>
+        <div className="archive-background__item archive-background__item_3"></div>
+        <div className="archive-background__item archive-background__item_4"></div>
+        <div className="archive-background__item archive-background__item_5"></div>
+        <div className="brand-page__content">
+          <div className="brand-page__info">
+            <h2>{name}</h2>
+            <div className="brand-page__row">
+              <div className="brand-page__brand">
+                <img src={info} />
+                <a href={brand}>{name}</a>
               </div>
-            ))}
-          </Slider>
-        </div>
-        <div className="brand-page__info_m">
-          {fullWatched ? (
-            <Link
-              to={`/brand/${id}/q`}
-              className={`btn brand-page__btn brand-page__btn_active`}
-              style={{ marginBottom: 0 }}
-            >
-              играть
-            </Link>
-          ) : (
-            <div className={`btn brand-page__btn`}>играть</div>
-          )}
+              <div className="brand-page__time">
+                <img src={clock} />
+                {time} мин
+              </div>
+              <div className="brand-page__price">
+                <img src={rub} />
+                {price}
+              </div>
+            </div>
+            <div className="brand-page__descr">{descr}</div>
+            {fullWatched ? (
+              <Link
+                to={`/brand/${id}/q`}
+                className={`btn brand-page__btn brand-page__btn_active`}
+                style={{ marginBottom: 0 }}
+              >
+                ответить на вопросы
+              </Link>
+            ) : (
+              <div className={`btn brand-page__btn`}>ответить на вопросы</div>
+            )}
 
-          {fullWatched ? (
-            <></>
-          ) : (
-            <p className="brand-page__warning">
-              Играть можно начать только после просмотра презентации
-            </p>
-          )}
+            {fullWatched ? (
+              <></>
+            ) : (
+              <p className="brand-page__warning">
+                Играть можно начать только после просмотра презентации/видео
+                ролика
+              </p>
+            )}
+          </div>
+          <div className="brand-page__info_m">
+            <h2>{name}</h2>
+            <div className="brand-page__row">
+              <div className="brand-page__brand">
+                <img src={info} />
+                {brand}
+              </div>
+              <div className="brand-page__time">
+                <img src={clock} />
+                {time} мин
+              </div>
+              <div className="brand-page__price">
+                <img src={rub} />
+                {price}
+              </div>
+            </div>
+          </div>
+          <div className="brand-page__slider">
+            <Slider {...settings}>
+              {slides.map((i) => (
+                <div className="brand-page__slider-item" key={i.id}>
+                  {i.type_attachment == "vi" ? (
+                    <video
+                      src={`https://stranger-go.com${i.file_attachment}`}
+                      height="100%"
+                      width="100%"
+                      controls
+                    />
+                  ) : i.type_attachment == "im" ? (
+                    <img src={`https://stranger-go.com/${i.file_attachment}`} />
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              ))}
+            </Slider>
+          </div>
+          <div className="brand-page__info_m">
+            {fullWatched ? (
+              <Link
+                to={`/brand/${id}/q`}
+                className={`btn brand-page__btn brand-page__btn_active`}
+                style={{ marginBottom: 0 }}
+              >
+                играть
+              </Link>
+            ) : (
+              <div className={`btn brand-page__btn`}>играть</div>
+            )}
+
+            {fullWatched ? (
+              <></>
+            ) : (
+              <p className="brand-page__warning">
+                Играть можно начать только после просмотра презентации
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </div>

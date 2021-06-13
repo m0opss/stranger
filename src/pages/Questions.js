@@ -32,17 +32,7 @@ function printNumbersQue(from, to, func, perc, func2) {
   }, 1000);
 }
 
-const Que = ({
-  cnt,
-  isMobile,
-  setCnt,
-  finished,
-  setFinished,
-  fetchAnsw,
-  loose,
-  content,
-  setLoose,
-}) => {
+const Que = ({ setFinished, fetchAnsw, content, setLoose }) => {
   const [time, setTime] = useState(content.time);
   const [percent, setPercent] = useState(0);
 
@@ -65,7 +55,6 @@ const Que = ({
       <Link
         to="/test"
         className="settings-block__close-btn card-close questions__close"
-        // onClick={() => onClick(id)}
       >
         <span></span>
       </Link>
@@ -227,23 +216,43 @@ const Questions = (props) => {
           </div>
         ))}
         {timing != 0 ? (
-          <div className="questions-page__countdown">{timing}</div>
+          <>
+            <div className=" questions-page__bg-item_1"></div>
+            <div className=" questions-page__bg-item_2"></div>
+            <div className=" questions-page__bg-item_3"></div>
+            <div className=" questions-page__bg-item_4"></div>
+            <div className=" questions-page__bg-item_5"></div>
+            <div className=" questions-page__bg-item_6"></div>
+            <div className=" questions-page__bg-item_7"></div>
+            <div className=" questions-page__bg-item_8"></div>
+            <div className=" questions-page__bg-item_9"></div>
+            <div className="questions-page__countdown">
+              <p> Поехали!</p>
+              <span>{timing}</span>
+            </div>
+          </>
         ) : finished && loose ? (
           <LooseContainer isMobile={isMobile} />
         ) : finished && !loose ? (
           <WinContainer isMobile={isMobile} />
         ) : (
-          <Que
-            isMobile={isMobile}
-            finished={finished}
-            setFinished={setFinished}
-            fetchAnsw={fetchAnsw}
-            loose={loose}
-            setLoose={setLoose}
-            cnt={cnt}
-            setCnt={setCnt}
-            content={content}
-          />
+          <>
+            <div className=" questions-page__bg-item_1"></div>
+            <div className=" questions-page__bg-item_3"></div>
+            <div className=" questions-page__bg-item_6"></div>
+
+            <Que
+              isMobile={isMobile}
+              finished={finished}
+              setFinished={setFinished}
+              fetchAnsw={fetchAnsw}
+              loose={loose}
+              setLoose={setLoose}
+              cnt={cnt}
+              setCnt={setCnt}
+              content={content}
+            />
+          </>
         )}
       </div>
     </div>

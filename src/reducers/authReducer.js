@@ -8,10 +8,10 @@ export const SET_ADMIN = "SET_ADMIN";
 export const ON_EXIT = "ON_EXIT";
 
 const defaultState = {
-  isAuth: true,
+  isAuth: false,
   isAdmin: false,
   name: "",
-  token: "f0b3d07942238757c47a920a4cf3b2957847dd5a",
+  // token: "f0b3d07942238757c47a920a4cf3b2957847dd5a",
   token: "",
   error: "",
   isBlock: false,

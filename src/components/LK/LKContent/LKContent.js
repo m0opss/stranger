@@ -7,19 +7,19 @@ import DonateBlock from "./LKDonate/LKDonateBlock";
 import SettingsBlock from "./LKSettings/LKSettings";
 import { useSelector } from "react-redux";
 
-const LKContentUser = ({
-  activeTab,
-  setActiveTab,
-  isMobile,
-  setCard,
-  card,
-}) => {
+const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
   const [sum, setSum] = useState("");
-  const max = 3000;
+  const [card, setCard] = useState("qiwi");
+  const [cardNum, setCardNum] = useState("");
+  const transaction_history = useSelector(
+    (state) => state.user.transaction_history
+  );
+  
   const token = useSelector((state) => state.auth.token);
-  const transaction_history = useSelector((state) => state.user.transaction_history);
-  let status, ok;
+  const max = 3000;
+  console.log(cardNum);
   const fetchMoney = () => {
+    let status, ok;
     fetch("https://stranger-go.com/api/v1/users/get_money/", {
       method: "POST",
       headers: {
@@ -37,7 +37,6 @@ const LKContentUser = ({
         return res.json();
       })
       .then((re) => {
-        console.log(re)
         if (ok) {
           alert(re.detail);
         } else {
@@ -49,7 +48,7 @@ const LKContentUser = ({
     <>
       {isMobile ? (
         <>
-          <HistoryBlock type="mobile" data={transaction_history}/>
+          <HistoryBlock type="mobile" data={transaction_history} />
           {activeTab != "set" ? (
             <></>
           ) : (
@@ -62,11 +61,13 @@ const LKContentUser = ({
         <div className="lk-content">
           {activeTab == "arr" ? (
             <DonateBlock
-              setCard={setCard}
-              card={card}
-              sum={sum}
               max={max}
+              card={card}
+              setCard={setCard}
+              sum={sum}
               setSum={setSum}
+              cardNum={cardNum}
+              setCardNum={setCardNum}
               fetchMoney={fetchMoney}
             />
           ) : activeTab == "history" ? (
@@ -113,7 +114,7 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
     })
       .then((res) => res.json())
       .then((re) => {
-        setDataS(data);
+        setDataS(re);
       });
     fetch("https://stranger-go.com/api/v1/users/post_transaction/", {
       method: "POST",
@@ -258,8 +259,6 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
 };
 
 const LKContent = ({ activeTab, setActiveTab, isMobile, isAdmin }) => {
-  const [card, setCard] = useState("qiwi");
-
   return (
     <>
       {isAdmin ? (
@@ -275,8 +274,6 @@ const LKContent = ({ activeTab, setActiveTab, isMobile, isAdmin }) => {
           activeTab={activeTab}
           setActiveTab={setActiveTab}
           isMobile={isMobile}
-          setCard={setCard}
-          card={card}
         />
       )}
     </>

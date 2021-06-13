@@ -27,6 +27,90 @@
         height: 100%;
       }
     }
+    // MAIN TRIANGLE////////////////////////////////////////////////////////////////////
+    .questions-page__bg-item_1,
+    .questions-page__bg-item_2 {
+      position: absolute;
+      border-left: 40px solid transparent;
+      border-right: 40px solid transparent;
+      border-bottom: 60px solid #fcd876;
+      @media screen and (max-width: 985px) {
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-bottom: 40px solid #fcd876;
+      }
+    }
+    .questions-page__bg-item_3,
+    .questions-page__bg-item_4,
+    .questions-page__bg-item_5,
+    .questions-page__bg-item_6,
+    .questions-page__bg-item_7,
+    .questions-page__bg-item_8,
+    .questions-page__bg-item_9 {
+      position: absolute;
+      border-left: 80px solid transparent;
+      border-right: 80px solid transparent;
+      border-bottom: 100px solid #fcd876;
+      top: 134px;
+      left: 8%;
+      @media screen and (max-width: 985px) {
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-bottom: 40px solid #fcd876;
+      }
+    }
+    .questions-page__bg-item_1 {
+      top: 450px;
+      left: -20px;
+    }
+    .questions-page__bg-item_2 {
+      top: 35%;
+      left: 80%;
+    }
+    .questions-page__bg-item_3,
+    .questions-page__bg-item_4,
+    .questions-page__bg-item_5 {
+      border-bottom-color: #17ca9b;
+    }
+    .questions-page__bg-item_6,
+    .questions-page__bg-item_7,
+    .questions-page__bg-item_8 {
+      border-bottom-color: #c4c4c4;
+    }
+    .questions-page__bg-item_3 {
+      top: 100%;
+      left: -20px;
+      transform: rotate(30.78deg);
+    }
+    .questions-page__bg-item_4 {
+      top: 20%;
+      left: 20%;
+      transform: rotate(30.78deg);
+    }
+    .questions-page__bg-item_5 {
+      top: -40px;
+      left: 80%;
+      transform: rotate(30.78deg);
+    }
+    .questions-page__bg-item_6 {
+      top: 60%;
+      left: 94%;
+      transform: rotate(10.78deg);
+    }
+    .questions-page__bg-item_8 {
+      top: 85%;
+      left: 20%;
+      transform: rotate(40.78deg);
+    }
+    .questions-page__bg-item_7 {
+      display: none;
+    }
+    .questions-page__bg-item_9 {
+      top: 90%;
+      left: 70%;
+      transform: rotate(10.78deg);
+    }
+    /////////////////////////////////////////////////////////////////////////
     .questions-page__bg_c-win {
       border-radius: 50%;
       background: #fcd876;
@@ -209,7 +293,7 @@
     height: 196px;
     top: 379px;
     @media screen and (max-width: 767px) {
-      bottom: -22%;
+      bottom: -12%;
       top: unset;
       img {
         padding: 42px !important;
@@ -222,7 +306,7 @@
     height: 132px;
     top: 294px;
     @media screen and (max-width: 767px) {
-      bottom: 5%;
+      bottom: 12%;
       top: unset;
       img {
         padding: 35px !important;
@@ -235,7 +319,7 @@
     width: 64px;
     height: 64px;
     @media screen and (max-width: 767px) {
-      bottom: 20%;
+      bottom: 26%;
       top: unset;
     }
   }
@@ -283,7 +367,7 @@
     left: 26px;
     @media screen and (max-width: 767px) {
       top: unset;
-      bottom: 22%;
+      bottom: 32%;
       left: 50%;
     }
   }
@@ -292,21 +376,33 @@
 
   .questions-page__countdown {
     display: flex;
-    width: 150px;
-    height: 250px;
+    // width: 150px;
+    // height: 250px;
     margin: auto;
     font-weight: bold;
     font-size: 250px;
     line-height: 99.12%;
     text-align: center;
     color: #000000;
+    display: flex;
+    flex-direction: column;
     position: relative;
-
+    p {
+      font-size: 40px;
+    }
     div {
       height: 100%;
       width: 33.33%;
       &:hover {
         transform: perspective(900px) rotate3d(0, -2, 3, -19deg);
+      }
+    }
+    @media screen and (max-width: 640px) {
+      p {
+        line-height: 99.12%;
+      }
+      span {
+        font-size: 120px;
       }
     }
   }
@@ -322,7 +418,7 @@
   background-size: revert;
   @media screen and (max-width: 767px) {
     background-position: center 28%;
-    background-size: 208% 75%;
+    background-size: 208% 89%;
   }
 }
 .green-bg.green-bg_win {

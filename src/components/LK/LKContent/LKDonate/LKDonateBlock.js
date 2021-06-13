@@ -6,15 +6,16 @@ import lkHelpSum from "../../../../assets/img/LK/lkHelpSum.svg";
 import SelectCard from "../../../SelectCard/SelectCard";
 import "./lkdonate.scss";
 
-const CardInputBlock = ({ cardNum, setCardNum }) => {
+const CardInputBlock = ({ cardNum, setCardNum, card }) => {
   return (
     <div className="donate-block__input-card-block">
-      <p>Номер карты</p>
+      <p>Номер телефона</p>
+
       <input
         value={cardNum}
-        onChange={setCardNum}
+        onChange={(e) => setCardNum(e.target.value)}
         type="text"
-        placeholder="**** **** **** 9999"
+        placeholder={"+7**********"}
       />
     </div>
   );
@@ -48,7 +49,16 @@ const SummInputBlock = ({ sum, setSum, max }) => {
   );
 };
 
-const DonateBlock = ({ setCard, card, setSum, fetchMoney, sum, max }) => {
+const DonateBlock = ({
+  setCard,
+  card,
+  setSum,
+  fetchMoney,
+  sum,
+  max,
+  cardNum,
+  setCardNum,
+}) => {
   const onClickCard = (kind) => {
     setCard(kind);
   };
@@ -72,7 +82,6 @@ const DonateBlock = ({ setCard, card, setSum, fetchMoney, sum, max }) => {
         <div className="donate-block__main-banner_bg-el_5"></div>
         <div className="donate-block__balance-title">
           <p>Баланс</p>
-          {/* <img src={lkHelpSum} /> */}
         </div>
         <p className="donate-block__balance">{balance}₽</p>
         <p className="donate-block__sum">Сумма для перевода: 15₽</p>
@@ -81,7 +90,7 @@ const DonateBlock = ({ setCard, card, setSum, fetchMoney, sum, max }) => {
       <div className="donate-block__select-card">
         <SelectCard onClickCard={onClickCard} card={card} isMobile={isMobile} />
       </div>
-      <CardInputBlock />
+      <CardInputBlock cardNum={cardNum} setCardNum={setCardNum} />
       <SummInputBlock sum={sum} setSum={setSum} max={max} />
 
       <p className="donate-block__small-text">
