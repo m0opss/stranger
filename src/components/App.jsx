@@ -26,6 +26,7 @@ import FAQ from "../pages/FAQ";
 import AddQue from "../pages/AddQue";
 import { getMe } from "../actions/authActions";
 import Advertisers from "../pages/Advertisers";
+import ResetPass from "../pages/ResetPass";
 
 const App = (props) => {
   // const dispatch = useDispatch();
@@ -53,6 +54,7 @@ const App = (props) => {
     { path: "/faq", Component: FAQ },
     { path: "/addQue", Component: AddQue },
     { path: "/advertisers", Component: Advertisers },
+    { path: "/reset", Component: ResetPass },
   ];
   const dispatch = useDispatch();
   useEffect(() => {

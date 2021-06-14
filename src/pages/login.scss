@@ -2,4 +2,18 @@
   .page-auth__content {
     min-height: 89vh;
   }
+  .reset-btn {
+    margin-left: 245px;
+    color: #cacaca;
+    cursor: pointer;
+    width: 140px;
+    display: block;
+    &:hover {
+      color: #17ca9b;
+    }
+    @media screen and (max-width: 767px) {
+      margin: auto;
+      margin-top: 20px;;
+    }
+  }
 }

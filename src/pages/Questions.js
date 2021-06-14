@@ -120,22 +120,6 @@ const LooseContainer = ({ brand, isMobile }) => {
     </div>
   );
 };
-const [open, setOpen] = React.useState(false);
-const [alertMsg, setAlertMsg] = React.useState();
-const [severity, setSeverity] = React.useState();
-
-const handleClick = (msg, severity) => {
-  setAlertMsg(msg);
-  setSeverity(severity);
-  setOpen(true);
-};
-
-const handleClose = (event, reason) => {
-  if (reason === "clickaway") {
-    return;
-  }
-  setOpen(false);
-};
 
 const fetchData = (setData, token, history, setFinish = null) => {
   // https://stranger-go.com/api/v1/answers/
@@ -164,6 +148,22 @@ const fetchData = (setData, token, history, setFinish = null) => {
 };
 
 const Questions = (props) => {
+  const [open, setOpen] = React.useState(false);
+  const [alertMsg, setAlertMsg] = React.useState();
+  const [severity, setSeverity] = React.useState();
+
+  const handleClick = (msg, severity) => {
+    setAlertMsg(msg);
+    setSeverity(severity);
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
   const token = useSelector((state) => state.auth.token);
   const [timing, setTiming] = useState();
   const [finished, setFinished] = useState(false);

@@ -19,11 +19,11 @@ import "./login.scss";
 import { useDispatch, useSelector } from "react-redux";
 
 const Login = ({}) => {
+  const token = useSelector((state) => state.auth.token);
   const [login, setLogin] = useState("");
   const [pass, setPass] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
-  const token = useSelector((state) => state.auth.token);
   const [open, setOpen] = React.useState(false);
   const [alertMsg, setAlertMsg] = React.useState();
   const [severity, setSeverity] = React.useState();
@@ -124,6 +124,7 @@ const Login = ({}) => {
             <p>Войти</p>
             <img className="auth-form-block__reg-btn-ic" src={f_arr} />
           </div>
+          <Link to="/reset" className='reset-btn'>Забыли пароль?</Link>
           <div className="auth-form-block__soc-login">
             <p>Или войдите с помощью</p>
             <div className="auth-form-block__soc-icon">
