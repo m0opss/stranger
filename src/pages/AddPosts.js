@@ -5,7 +5,8 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import test from "../assets/img/testBrandImg.png";
 import alien from "../assets/img/alien.svg";
 import BackArr from "../components/BackArr/BackArr";
-
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 import "./addposts.scss";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -52,8 +53,25 @@ const AddPosts = (props) => {
         console.log(re);
       });
   };
+
   const addBrand = () => {
     setBrands((brands) => [...brands, { img: test, id: brands.length }]);
+  };
+  const [open, setOpen] = React.useState(false);
+  const [alertMsg, setAlertMsg] = React.useState();
+  const [severity, setSeverity] = React.useState();
+
+  const handleClick = (msg, severity) => {
+    setAlertMsg(msg);
+    setSeverity(severity);
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
   };
   const pubBrand = (id) => {
     fetch(`https://stranger-go.com/api/v1/posts/${id}/`, {
@@ -66,9 +84,10 @@ const AddPosts = (props) => {
       body: JSON.stringify({ is_archive: true }),
     }).then((res) => {
       if (res.ok) {
-        alert('Пост добавлен в архив')
+        handleClick("Пост добавлен в архив", "success");
       } else {
-        alert('Ощибка')
+
+        handleClick("Ошибка", "error");
       }
     });
 
@@ -76,6 +95,24 @@ const AddPosts = (props) => {
   };
   return (
     <div className="archive-page add-page">
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleClose}
+          severity={severity}
+        >
+          {alertMsg}
+        </MuiAlert>
+      </Snackbar>
       <Header />
       <div className="archive-background">
         <div className="archive-background__item archive-background__item_main"></div>

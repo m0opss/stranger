@@ -4,7 +4,8 @@ import { Progress } from "antd";
 import win_bg from "../assets/img/WinRub.svg";
 import loose_bg from "../assets/img/Loose.svg";
 import { Link, NavLink, useHistory, useParams } from "react-router-dom";
-
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 import "./questions.scss";
 import { useSelector } from "react-redux";
 
@@ -119,6 +120,22 @@ const LooseContainer = ({ brand, isMobile }) => {
     </div>
   );
 };
+const [open, setOpen] = React.useState(false);
+const [alertMsg, setAlertMsg] = React.useState();
+const [severity, setSeverity] = React.useState();
+
+const handleClick = (msg, severity) => {
+  setAlertMsg(msg);
+  setSeverity(severity);
+  setOpen(true);
+};
+
+const handleClose = (event, reason) => {
+  if (reason === "clickaway") {
+    return;
+  }
+  setOpen(false);
+};
 
 const fetchData = (setData, token, history, setFinish = null) => {
   // https://stranger-go.com/api/v1/answers/
@@ -139,7 +156,8 @@ const fetchData = (setData, token, history, setFinish = null) => {
       setData(content);
     } else {
       const content = await rawResponse.json();
-      alert(JSON.stringify(content));
+      // alert(JSON.stringify(content));
+      handleClick(content[Object.keys(content)[0]], "error");
       history.push("/test");
     }
   })();
@@ -190,6 +208,24 @@ const Questions = (props) => {
       }`}
     >
       <Header />
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleClose}
+          severity={severity}
+        >
+          {alertMsg}
+        </MuiAlert>
+      </Snackbar>
       <div className={`questions-page__content `}>
         {[...Array(16).keys()].map((i) => (
           <div

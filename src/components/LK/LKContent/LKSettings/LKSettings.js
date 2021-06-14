@@ -3,7 +3,8 @@ import { useSelector } from "react-redux";
 
 import icon_log from "../../../../assets/img/LK/inputIconLog.svg";
 import icon_pass from "../../../../assets/img/LK/inputIconPass.svg";
-
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 import "./lksettings.scss";
 
 const SettingsBlockInput = ({ icon, value, setValue, placeholder, type }) => {
@@ -33,7 +34,22 @@ const ChangePassBlock = ({ setActiveblock, token, isAdmin }) => {
       setDisable(true);
     }
   }, [old_pass, new_pass, also_pass]);
+  const [open, setOpen] = React.useState(false);
+  const [alertMsg, setAlertMsg] = React.useState();
+  const [severity, setSeverity] = React.useState();
 
+  const handleClick = (msg, severity) => {
+    setAlertMsg(msg);
+    setSeverity(severity);
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
   const fetchData = () => {
     (async () => {
       const rawResponse = await fetch(
@@ -54,16 +70,33 @@ const ChangePassBlock = ({ setActiveblock, token, isAdmin }) => {
       );
       if (rawResponse.ok) {
         const content = await rawResponse.json();
-        console.log(content);
-        alert("Пароль успешно изменен");
+        handleClick("Пароль успешно изменен", "success");
       } else {
-        const err = await response.json();
-        alert("Ошибка HTTP: " + response.status + " " + JSON.stringify(err));
+        const err = await rawResponse.json();
+        handleClick(err[Object.keys(err)[0]], "error");
       }
     })();
   };
   return (
     <>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleClose}
+          severity={severity}
+        >
+          {alertMsg}
+        </MuiAlert>
+      </Snackbar>
       <div className="settings-block__change change-pass-block">
         {isAdmin ? (
           <div
@@ -111,14 +144,28 @@ const ChangePassBlock = ({ setActiveblock, token, isAdmin }) => {
   );
 };
 
-
 const AddBlock = ({ setActiveblock, token }) => {
   const [log, set_log] = useState("");
   const [disable, setDisable] = useState(true);
   const [isAddAdmin, setisAddAdmin] = useState(false);
   const [pass, set_pass] = useState("");
   const [code, set_code] = useState("");
+  const [open, setOpen] = React.useState(false);
+  const [alertMsg, setAlertMsg] = React.useState();
+  const [severity, setSeverity] = React.useState();
 
+  const handleClick = (msg, severity) => {
+    setAlertMsg(msg);
+    setSeverity(severity);
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
   useEffect(() => {
     if (isAddAdmin) {
       if (log != "" && pass != "" && code != "") {
@@ -160,15 +207,33 @@ const AddBlock = ({ setActiveblock, token }) => {
       if (rawResponse.ok) {
         const content = await rawResponse.json();
         console.log(content);
-        alert("Пользователь добавлен.ID: " + content.id);
+        handleClick("Пользователь добавлен.ID: " + content.id, 'success');
       } else {
-        const err = await response.json();
-        alert("Ошибка HTTP: " + response.status + " " + JSON.stringify(err));
+        const err = await rawResponse.json();
+        handleClick(err[Object.keys(err)[0]], "error");
       }
     })();
   };
   return (
     <>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleClose}
+          severity={severity}
+        >
+          {alertMsg}
+        </MuiAlert>
+      </Snackbar>
       <div className="settings-block__user-type">
         <label className="rad-label">
           <input

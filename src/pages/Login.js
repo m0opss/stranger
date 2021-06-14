@@ -9,7 +9,8 @@ import vk from "../assets/img/vk.svg";
 import face from "../assets/img/facebook.svg";
 import alien from "../assets/img/alienReg.svg";
 import alien_m from "../assets/img/alien.svg";
-
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 import { onLogin } from "../actions/authActions";
 import { getUserData } from "../actions/userActions";
 
@@ -22,8 +23,23 @@ const Login = ({}) => {
   const [pass, setPass] = useState("");
   const dispatch = useDispatch();
   const history = useHistory();
-  const token = useSelector(state => state.auth.token)
+  const token = useSelector((state) => state.auth.token);
+  const [open, setOpen] = React.useState(false);
+  const [alertMsg, setAlertMsg] = React.useState();
+  const [severity, setSeverity] = React.useState();
 
+  const handleClick = (msg, severity) => {
+    setAlertMsg(msg);
+    setSeverity(severity);
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
 
@@ -41,7 +57,24 @@ const Login = ({}) => {
       <div className="page-auth__background page-auth__background_3"></div>
       <div className="page-auth__background page-auth__background_4"></div>
       <Header />
-
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleClose}
+          severity={severity}
+        >
+          {alertMsg}
+        </MuiAlert>
+      </Snackbar>
       <div className="page-auth__content">
         <div className="page-auth__background-item_m"></div>
         <div className="page-auth__alien_m">

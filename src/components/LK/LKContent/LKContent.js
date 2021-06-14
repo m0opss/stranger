@@ -6,6 +6,8 @@ import WatchBlock from "./LKWatch/LKWatch";
 import DonateBlock from "./LKDonate/LKDonateBlock";
 import SettingsBlock from "./LKSettings/LKSettings";
 import { useSelector } from "react-redux";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
 const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
   const [sum, setSum] = useState("");
@@ -17,7 +19,22 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
 
   const token = useSelector((state) => state.auth.token);
   const max = 3000;
+  const [open, setOpen] = React.useState(false);
+  const [alertMsg, setAlertMsg] = React.useState();
+  const [severity, setSeverity] = React.useState();
 
+  const handleClick = (msg, severity) => {
+    setAlertMsg(msg);
+    setSeverity(severity);
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
   const fetchMoney = () => {
     let ok_card;
     fetch("https://stranger-go.com/api/v1/users/me/", {
@@ -57,18 +74,36 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
             })
             .then((re) => {
               if (ok) {
-                alert(re.detail);
+                handleClick(re.detail, "success");
               } else {
-                alert(re.detail);
+                handleClick(re.detail, "error");
               }
             });
         } else {
-          alert(re.detail);
+          handleClick(re.detail, "error");
         }
       });
   };
   return (
     <>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleClose}
+          severity={severity}
+        >
+          {alertMsg}
+        </MuiAlert>
+      </Snackbar>
       {isMobile ? (
         <>
           <HistoryBlock type="mobile" data={transaction_history} />

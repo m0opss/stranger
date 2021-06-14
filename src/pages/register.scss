@@ -362,13 +362,17 @@
 }
 
 .auth-form-block__policy {
-  font-size: 18px;
+  font-size: 16px;
   margin-top: 20px;
   line-height: 150%;
   text-align: center;
-  margin-left: 170px;
-  max-width: 310px;
+  margin-left: 120px;
+  max-width: 420px;
   color: rgba(0, 0, 0, 0.6);
+  
+  input {
+    margin-right: 10px;
+  }
   a {
     color: #17ca9b;
     position: relative;
@@ -396,7 +400,7 @@
     font-size: 12px;
     line-height: 150%;
     margin-left: 0;
-    max-width: 240px;
+    max-width: 320px;
     margin: auto;
   }
 }

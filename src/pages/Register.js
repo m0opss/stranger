@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import Header from "../components/Header/Header";
 import Input from "../components/AuthInput/Input";
-
+import { Modal, Button } from "antd";
 import f_arr from "../assets/img/forwardArr.svg";
 import inst from "../assets/img/inst.svg";
 import vk from "../assets/img/vk.svg";
 import face from "../assets/img/facebook.svg";
 import alien from "../assets/img/alienReg.svg";
 import alien_m from "../assets/img/alien.svg";
-
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 import "./register.scss";
 import { Link, useHistory } from "react-router-dom";
 import SelectCard from "../components/SelectCard/SelectCard";
@@ -52,6 +53,42 @@ const Register = ({}) => {
     return flag;
   };
 
+  function info(login) {
+    Modal.info({
+      title: "Подтверждение регистрации",
+      content: (
+        <div>
+          <p>
+            На вашу электронную почту {login} отправлено письмо со ссылкой
+            активации.
+            <br />
+            <span style={{ fontSize: "12px", color: "#cacaca" }}>
+              Если не можете найти письмо, проверьте папку спам
+            </span>
+          </p>
+        </div>
+      ),
+      onOk() {
+        history.push("/login");
+      },
+    });
+  }
+  const [open, setOpen] = React.useState(false);
+  const [alertMsg, setAlertMsg] = React.useState();
+  const [severity, setSeverity] = React.useState();
+
+  const handleClick = (msg, severity) => {
+    setAlertMsg(msg);
+    setSeverity(severity);
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
   const fetchData = () => {
     if (validate()) {
       (async () => {
@@ -72,12 +109,10 @@ const Register = ({}) => {
         );
         if (rawResponse.ok) {
           const content = await rawResponse.json();
-          history.push("/login");
+          info(login);
         } else {
           const err = await rawResponse.json();
-          alert(
-            "Ошибка HTTP: " + rawResponse.status + " " + JSON.stringify(err)
-          );
+          handleClick(err[Object.keys(err)[0]], "error");
         }
       })();
     }
@@ -93,7 +128,24 @@ const Register = ({}) => {
       <div className="page-auth__background page-auth__background_3"></div>
       <div className="page-auth__background page-auth__background_4"></div>
       <Header />
-
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleClose}
+          severity={severity}
+        >
+          {alertMsg}
+        </MuiAlert>
+      </Snackbar>
       <div className="page-auth__content">
         <div className="page-auth__background-item_m"></div>
         <div className="page-auth__alien_m">
@@ -176,7 +228,11 @@ const Register = ({}) => {
               </a>
             </div>
           </div>
-          <div className="auth-form-block__reg-btn" onClick={fetchData}>
+          <div
+            className="auth-form-block__reg-btn"
+            style={checked ? {} : { opacity: "0.4" }}
+            onClick={checked ? fetchData : () => {}}
+          >
             <p>Зарегистрироваться</p>
             <img className="auth-form-block__reg-btn-ic" src={f_arr} />
           </div>

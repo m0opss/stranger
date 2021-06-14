@@ -4,7 +4,8 @@ import Header from "../components/Header/Header";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import test from "../assets/img/testBrandImg.png";
 import BackArr from "../components/BackArr/BackArr";
-
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 import "./archive.scss";
 import { useSelector } from "react-redux";
 
@@ -27,6 +28,22 @@ const Archive = ({}) => {
         console.log(re);
       });
   };
+  const [open, setOpen] = React.useState(false);
+  const [alertMsg, setAlertMsg] = React.useState();
+  const [severity, setSeverity] = React.useState();
+
+  const handleClick = (msg, severity) => {
+    setAlertMsg(msg);
+    setSeverity(severity);
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
 
   const pubBrand = (id) => {
     fetch(`https://stranger-go.com/api/v1/posts/${id}/`, {
@@ -39,9 +56,9 @@ const Archive = ({}) => {
       body: JSON.stringify({ is_archive: false }),
     }).then((res) => {
       if (res.ok) {
-        alert("Пост удален из архива");
+        handleClick("Пост удален из архива", "success");
       } else {
-        alert("Ощибка");
+        handleClick("Ошибка", "error");
       }
     });
     setBrands((brands) => brands.filter((i) => i.id != id));
@@ -65,6 +82,24 @@ const Archive = ({}) => {
 
   return (
     <div className="archive-page">
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleClose}
+          severity={severity}
+        >
+          {alertMsg}
+        </MuiAlert>
+      </Snackbar>
       <Header />
       <div className="archive-background">
         <div className="archive-background__item archive-background__item_1"></div>
