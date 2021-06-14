@@ -17,14 +17,20 @@ const HistoryBlock = ({ type, data }) => (
     </a>
     <div className="history-block__rows-list">
       <HistoryRow date="Дата" card="Счет" sum="Сумма" />
-      {
-        data == undefined || data.length == 0 ?
+      {data == undefined || data.length == 0 ? (
         <HistoryRow date="-" card="-" sum="-" />
-        : <></>
-      }
+      ) : (
+        <></>
+      )}
       {data ? (
         data.map((item) => (
-          <HistoryRow date="02.02.21" card="**** 9999" sum="100₽" />
+          <HistoryRow
+            date={item.date.substr(0, 10)}
+            card={item.account_number.substr(0, 9)}
+            sum={
+              item.type_operations == "inc" ? "+" + item.amount : "-" + item.amount
+            }
+          />
         ))
       ) : (
         <></>

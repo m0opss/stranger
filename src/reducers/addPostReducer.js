@@ -13,9 +13,9 @@ const defaultState = {
     {
       id: 0,
       descr: "",
-      time: 60,
+      time: 0,
       answ: [
-        { id: 0, text: "", is_correct: true },
+        { id: 0, text: "", is_correct: false },
         { id: 1, text: "", is_correct: false },
         { id: 2, text: "", is_correct: false },
         { id: 3, text: "", is_correct: false },
@@ -24,9 +24,9 @@ const defaultState = {
     {
       id: 1,
       descr: "",
-      time: 60,
+      time: 0,
       answ: [
-        { id: 0, text: "", is_correct: true },
+        { id: 0, text: "", is_correct: false },
         { id: 1, text: "", is_correct: false },
         { id: 2, text: "", is_correct: false },
         { id: 3, text: "", is_correct: false },
@@ -35,9 +35,9 @@ const defaultState = {
     {
       id: 2,
       descr: "",
-      time: 60,
+      time: 0,
       answ: [
-        { id: 0, text: "", is_correct: true },
+        { id: 0, text: "", is_correct: false },
         { id: 1, text: "", is_correct: false },
         { id: 2, text: "", is_correct: false },
         { id: 3, text: "", is_correct: false },
@@ -63,9 +63,9 @@ export default function addPostReducer(state = defaultState, action) {
           {
             id: state.ques.length,
             descr: "",
-            time: 60,
+            time: 0,
             answ: [
-              { id: 0, text: "", is_correct: true },
+              { id: 0, text: "", is_correct: false },
               { id: 1, text: "", is_correct: false },
               { id: 2, text: "", is_correct: false },
               { id: 3, text: "", is_correct: false },
@@ -74,28 +74,8 @@ export default function addPostReducer(state = defaultState, action) {
         ],
       };
     case SAVE_QUE:
-      const { id, val, type, a_id } = action.payload;
-      let tmp = [...state.ques];
-      tmp.map((item) => {
-        if (item.id == id) {
-          if (type == "decr") item.descr = val;
-          else if (type == "time") item.time = val;
-          else if (type == "answ") {
-            item.answ.map((a) => {
-              if (a.id == a_id) {
-                a.text = val;
-              }
-            });
-          } else if (type == "answ_corr") {
-            item.answ.map((a) => {
-              if (a.id == a_id) {
-                a.is_correct = val;
-              }
-            });
-          }
-        }
-      });
-      return { ...state, ques: tmp };
+      return { ...state, ques: action.payload };
+
     default:
       return state;
   }

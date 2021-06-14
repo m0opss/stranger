@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 
 import "swiper/swiper.scss";
 import "./test.scss";
+import { useHistory } from "react-router";
 
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
@@ -64,8 +65,9 @@ const Test = ({}) => {
   const token = useSelector((state) => state.auth.token);
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
-
+  const history = useHistory();
   useEffect(() => {
+    let ok, status;
     fetch("https://stranger-go.com/api/v1/posts/all_post/", {
       method: "GET",
       headers: {
@@ -74,12 +76,18 @@ const Test = ({}) => {
         "Content-Type": "application/json",
       },
     })
-      .then((res) => res.json())
+      .then((res) => {
+        status = res.status;
+        ok = res.ok;
+        return res.json();
+      })
       .then((re) => {
-        setSlides(re);
+        if (ok) setSlides(re);
+        else if (status == 401) history.push("/");
+        else alert(JSON.stringify(re) + " " + status);
       });
   }, []);
-
+  console.log(123123213, slides);
   return (
     <div className="page archive-page test-page ">
       <Header />

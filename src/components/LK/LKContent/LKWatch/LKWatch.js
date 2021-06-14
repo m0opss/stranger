@@ -12,10 +12,17 @@ const WatchRow = ({ brand, date, progress, amount }) => (
 );
 const UserRow = ({ email, id, is_block, is_staff, blockUser }) => (
   <div className="watch-block__row watch-block__row_user">
-    <p className="watch-block__row-brand">{id}</p>
-    <p className="watch-block__row-date">{email}</p>
-    <p className="watch-block__row-sum">{is_staff ? "Адм." : "Польз."}</p>
+    <p style={{ textAlign: "center" }} className="watch-block__row-brand">
+      {id}
+    </p>
+    <p style={{ textAlign: "center" }} className="watch-block__row-date">
+      {email}
+    </p>
+    <p style={{ textAlign: "center" }} className="watch-block__row-sum">
+      {is_staff ? "Адм." : "Польз."}
+    </p>
     <p
+      style={{ textAlign: "center" }}
       className={`watch-block__row-block-btn ${
         is_block ? "watch-block__row-block-btn_unlock" : ""
       }`}
@@ -35,10 +42,25 @@ const WatchBlock = ({ type, data, loadCsv, blockUser }) => {
         </a>
         <div className="history-block__rows-list">
           <div className="watch-block__row watch-block__row_user">
-            <p className="watch-block__row-brand">Id</p>
-            <p className="watch-block__row-date">Email</p>
-            <p className="watch-block__row-sum">Тип</p>
-            <p className="watch-block__row-sum" style={{ width: "11%" }}>
+            <p
+              style={{ textAlign: "center" }}
+              className="watch-block__row-brand"
+            >
+              Id
+            </p>
+            <p
+              style={{ textAlign: "center" }}
+              className="watch-block__row-date"
+            >
+              Email
+            </p>
+            <p style={{ textAlign: "center" }} className="watch-block__row-sum">
+              Тип
+            </p>
+            <p
+              className="watch-block__row-sum"
+              style={{ width: "11%", textAlign: "center" }}
+            >
               Статус
             </p>
           </div>

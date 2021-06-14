@@ -3,13 +3,16 @@ import React from "react";
 import { render } from "react-dom";
 import App from "./components/App.jsx";
 import { Provider } from "react-redux";
-import {store} from './reducers'
-
-import 'antd/dist/antd.css'
+import { store } from "./reducers";
+// import { BrowserRouter as Router } from "react-router-dom";
+import { HashRouter as Router } from "react-router-dom";
+import "antd/dist/antd.css";
 
 render(
   <Provider store={store}>
-    <App />
+    <Router>
+      <App />
+    </Router>
   </Provider>,
   document.getElementById("root")
 );

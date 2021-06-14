@@ -110,6 +110,9 @@
       line-height: 219%;
       opacity: 0.8;
       margin-right: 10px;
+      @media screen and (max-width: 1208px) {
+        font-size: 14px;
+      }
     }
   }
   .balance-card__arrow-block {

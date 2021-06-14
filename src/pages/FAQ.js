@@ -127,7 +127,15 @@ const FAQ = ({}) => {
           <div className="wtf-block">
             <div className="wtf-block__steps">
               <>
-                <StepsItem
+                {Object.keys(cardsData).map((item) => (
+                  <StepsItem
+                    title={cardsData[item].title}
+                    img={cardsData[item].img}
+                    i={item}
+                    setCard={() => setCard(item)}
+                  />
+                ))}
+                {/* <StepsItem
                   title="Выбери рекламу"
                   img={steps_1}
                   setCard={() => setCard(1)}
@@ -149,7 +157,7 @@ const FAQ = ({}) => {
                   img={steps_4}
                   i={4}
                   setCard={() => setCard(4)}
-                />
+                /> */}
               </>
             </div>
           </div>

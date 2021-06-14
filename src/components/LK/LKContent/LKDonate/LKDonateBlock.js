@@ -11,13 +11,19 @@ const CardInputBlock = ({ cardNum, setCardNum, card }) => {
   return (
     <div className="donate-block__input-card-block">
       <p>Номер телефона</p>
-      {/* <Input addonBefore="+7" defaultValue="mysite" /> */}
-      <input
+      <Input
+        addonBefore="+7"
+        value={cardNum}
+        type="tel"
+        // placeholder={"+7**********"}
+        onChange={(e) => setCardNum(e.target.value)}
+      />
+      {/* <input
         value={cardNum}
         onChange={(e) => setCardNum(e.target.value)}
         type="tel"
         placeholder={"+7**********"}
-      />
+      /> */}
     </div>
   );
 };

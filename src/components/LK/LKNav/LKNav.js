@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LKButton from "../Button/Button";
 import sett from "../../../assets/img/LK/lkBtnSettings.svg";
 import arr from "../../../assets/img/LK/lkBtnArrow.svg";
@@ -48,26 +48,26 @@ const BalanceBlock = ({ balance }) => (
     <div className="balance-card__arrow-block">
       <div className="balance-card__down-block">
         <img src={lkDown} />
-        <p>-15₽</p>
+        <p>0₽</p>
       </div>
       <div className="balance-card__up-block">
         <img src={lkUp} />
-        <p>+20₽</p>
+        <p>0₽</p>
       </div>
     </div>
   </div>
 );
 
-const LKProgress = ({ isMobile, progress }) => (
+const LKProgress = ({ isMobile, progress, date, plusSum }) => (
   <div className="lk-nav__block progress-card">
     <div className="progress-card__text-info">
       <p className="progress-card__title">Прогресс игры</p>
       <div className="progress-card__text-block">
-        <p className="progress-card__text_accent">+10₽</p>
+        <p className="progress-card__text_accent">{0}₽</p>
         <p className="progress-card__text">заработано</p>
       </div>
       <div className="progress-card__text-block">
-        <p className="progress-card__text_accent">21/04/21</p>
+        <p className="progress-card__text_accent">{date}</p>
         <p className="progress-card__text">последний раз</p>
       </div>
     </div>
@@ -148,10 +148,13 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
 
   const balance = useSelector((state) => state.user.balance);
   const progress = useSelector((state) => state.user.progress);
-
+  const th = useSelector((state) => state.user.transaction_history);
 
   return (
-    <div className="lk-nav" style={isAdmin ? {justifyContent: 'flex-start'} : {}}>
+    <div
+      className="lk-nav"
+      style={isAdmin ? { justifyContent: "flex-start" } : {}}
+    >
       {isAdmin ? (
         <>
           <LKNavPanel
@@ -181,7 +184,12 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
             buttons={userPanel}
             title="Операции"
           />
-          <LKProgress isMobile={isMobile} progress={progress} />
+          <LKProgress
+            isMobile={isMobile}
+            progress={progress}
+            // plusSum={plusSum}
+            date={th[th.length - 1].date.substr(0, 10)}
+          />
         </>
       )}
     </div>

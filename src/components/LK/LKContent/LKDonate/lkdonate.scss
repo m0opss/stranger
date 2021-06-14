@@ -123,6 +123,26 @@
     }
   }
   .donate-block__input-card-block {
+    margin-bottom: 20px;
+    @media screen and (max-width: 767px) {
+      margin-bottom: 13px;
+
+    }
+    .ant-input-group-addon {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      color: rgba(0, 0, 0, 0.9);
+      border-radius: 20px 0 0 20px;
+      background: #ededed;
+      border: none;
+      border-right: 1px solid #e7dddd;
+      @media screen and (max-width: 767px) {
+        font-size: 12px;
+        padding-left: 17px;
+        line-height: 15px;
+      }
+    }
     input {
       width: 100%;
       background: #ededed;
@@ -133,11 +153,10 @@
       font-size: 18px;
       line-height: 22px;
       color: rgba(0, 0, 0, 0.7);
-      margin-bottom: 20px;
       outline: none;
       @media screen and (max-width: 767px) {
         height: 36px;
-        margin-bottom: 13px;
+        
         font-size: 12px;
         line-height: 15px;
         padding-left: 30px;

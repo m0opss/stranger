@@ -21,15 +21,15 @@ export const getUserData = (token) => async (dispatch) => {
     const userData = await rawResponse.json();
     dispatch({
       type: SET_TR_HISTORY,
-      payload: userData,
+      payload: userData.transaction_history,
     });
     dispatch({
       type: SET_BALANCE,
-      payload: userData.length > 0 ? userData[userData.length - 1].balance : 0,
+      payload: userData.balance,
     });
     dispatch({
       type: SET_PROGRESS,
-      payload: userData.length > 0 ? userData[userData.length - 1].progress : 0,
+      payload: userData.progress,
     });
 
   } else {

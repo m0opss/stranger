@@ -12,6 +12,7 @@ import { useSelector } from "react-redux";
 
 const Brand = (props) => {
   const [fullWatched, setWatched] = useState(false);
+  const [timed, setTimed] = useState(false);
   const [slideN, setSlideN] = useState(0);
   const [slides, setSlides] = useState([]);
   const [data, setData] = useState({});
@@ -33,7 +34,11 @@ const Brand = (props) => {
     speed: 500,
     afterChange: (current) => setSlideN(current),
   };
-
+  useEffect(() => {
+    if (Object.keys(data).length > 0) {
+      setTimeout(() => setTimed(true), data.duration * 60 * 1000);
+    }
+  }, [data]);
   useEffect(() => {
     if (slides.length == slideN + 1) {
       setWatched(true);
@@ -95,7 +100,7 @@ const Brand = (props) => {
               </div>
             </div>
             <div className="brand-page__descr">{descr}</div>
-            {fullWatched ? (
+            {fullWatched && timed ? (
               <Link
                 to={`/brand/${id}/q`}
                 className={`btn brand-page__btn brand-page__btn_active`}

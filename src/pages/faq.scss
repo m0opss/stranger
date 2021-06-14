@@ -66,8 +66,12 @@
   }
 
   .wtf-block {
+    .wtf-block__steps {
+      justify-content: center;
+    }
     .step-card {
       cursor: pointer;
+      margin: 10px;
       p {
         font-weight: normal;
         font-size: 25.5027px;
@@ -153,10 +157,14 @@
       width: 55%;
       margin-top: 30px;
       // flex-direction: column;
+      .ant-collapse-item {
+        width: 320px;
+      }
       .faq__collapse {
-        margin-left: -30px;
+        margin-left: -60px;
+        width: 320px;
         .ant-collapse-header {
-          font-size: 23px;
+          font-size: 19px;
           line-height: 29px;
         }
         .ant-collapse-content-box p {

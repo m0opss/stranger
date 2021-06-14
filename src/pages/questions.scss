@@ -414,11 +414,30 @@
 .green-bg {
   background: url("../assets/img/que.png");
   background-repeat: no-repeat;
-  background-position: center 0;
+  background-position: center -172px;
   background-size: revert;
+
   @media screen and (max-width: 767px) {
-    background-position: center 28%;
     background-size: 208% 89%;
+    background-position: center -109%;
+    @media (max-height: 825px) {
+      background-position: center -96%;
+    }
+    @media (max-height: 790px) {
+      background-position: center -79%;
+    }
+    @media (max-height: 765px) {
+      background-position: center -59%;
+    }
+    @media (max-height: 720px) {
+      background-position: center -30%;
+    }
+    @media (max-height: 676px) {
+      background-position: center -15%;
+    }
+    @media (max-height: 643px) {
+      background-position: center 28%;
+    }
   }
 }
 .green-bg.green-bg_win {
@@ -481,7 +500,36 @@
     // background-color: red;
     margin-bottom: 50px;
   }
+  .questions__save {
+    top: 76px;
+    cursor: pointer;
+    &:hover {
+      .check-sign {
+        background: #dadada;
+      }
+    }
+    .check-sign {
+      position: absolute;
+      background: white;
+    }
+
+    #check-part-1 {
+      width: 15px;
+      height: 2px;
+      transform: rotate(45deg);
+    }
+
+    #check-part-2 {
+      width: 30px;
+      height: 2px;
+      transform: rotate(-45deg);
+      left: 7px;
+      top: 9px;
+    }
+  }
   .questions__close {
+    height: 30px;
+    width: 30px;
     &:hover {
       span,
       span::before,
@@ -538,7 +586,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    height: 220px;
+    // height: 220px;
     width: 100%;
     .questions__btn {
       width: 48%;
@@ -557,6 +605,15 @@
         background: #fcd876;
       }
     }
+    @media screen and (max-width: 1553px) {
+      justify-content: space-around;
+      .questions__btn-wrapper {
+        width: 45%;
+      }
+      .questions__btn {
+        height: 56px;
+      }
+    }
     @media screen and (max-width: 767px) {
       flex-direction: column;
       flex-wrap: nowrap;
@@ -564,7 +621,7 @@
       justify-content: center;
       height: auto;
       .questions__btn {
-        height: 60px;
+        height: 49px;
         font-weight: 500;
         font-size: 22px;
         line-height: 22px;
@@ -605,7 +662,7 @@
     text-align: center;
     max-width: 695px;
     color: rgba(0, 0, 0, 0.5);
-    margin-bottom: 80px;
+    margin-bottom: 4vh;
   }
   .win__cash {
     z-index: 4;
@@ -623,7 +680,7 @@
     align-items: center;
     justify-content: center;
 
-    margin-top: 120px;
+    margin-top: 5vh;
     margin-bottom: 54px;
   }
   .win__btn {
@@ -668,7 +725,7 @@
       line-height: 121%;
       color: rgba(255, 255, 255, 0.85);
       width: 261px;
-      margin-top: 11vh;
+      margin-top: 5vh;
       margin-bottom: 5px;
       height: 33px;
     }

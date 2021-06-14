@@ -3,7 +3,7 @@
   // width: 500px;
   // width: 100% !important;
   transition: 0.5s;
-  padding: 30px 20px 115px 60px;
+  padding: 30px 20px 115px 40px;
   position: relative;
   background-color: black;
   border-radius: 20px;
@@ -19,10 +19,10 @@
     img {
       position: absolute;
       top: 0;
-      left: 0;
+      right: 0;
       padding: 0px;
-      height: 100%;
-      width: 100%;
+      height: 150%;
+      // width: 100%;
     }
   }
   .test-slide__name {

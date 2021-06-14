@@ -247,7 +247,7 @@ const AddPost = (props) => {
                 <input
                   type="text"
                   className="brand-page__row-input"
-                  placeholder="Бренд"
+                  placeholder="www.site.com"
                   defaultValue={post_t.brLink}
                   onChange={(e) => savePostField({ brLink: e.target.value })}
                 />
@@ -297,7 +297,7 @@ const AddPost = (props) => {
                 <input
                   type="text"
                   className="brand-page__row-input"
-                  placeholder="Бренд"
+                  placeholder="www.site.com"
                   defaultValue={post_t.brLink}
                   onChange={(e) => savePostField({ brLink: e.target.value })}
                 />

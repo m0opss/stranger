@@ -5,7 +5,7 @@ import logonMobile from "../../assets/img/logonMobile.svg";
 import alienMobile from "../../assets/img/alienMobile.png";
 import { Menu, Dropdown } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { DownOutlined } from '@ant-design/icons'
+import { DownOutlined } from "@ant-design/icons";
 import { onExitAccount } from "../../actions/authActions";
 import "./header.scss";
 
@@ -13,6 +13,8 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const isAuth = useSelector((state) => state.auth.isAuth);
   const email = useSelector((state) => state.auth.email);
+  const isAdmin = useSelector((state) => state.auth.isAdmin);
+
   const dispatch = useDispatch();
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -28,8 +30,8 @@ const Header = () => {
           Личный кабинет
         </Link>
       </Menu.Item>
-      <Menu.Item key="1" onClick={onExitClick }>
-        <p >Выйти</p>
+      <Menu.Item key="1" onClick={onExitClick}>
+        <p>Выйти</p>
       </Menu.Item>
     </Menu>
   );
@@ -43,19 +45,29 @@ const Header = () => {
           <nav className="header__nav">
             <ul>
               <li>
-                <NavLink to="/">Главная</NavLink>
+                <NavLink exact to="/">
+                  Главная
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/about">О сайте</NavLink>
+                <NavLink exact to="/about">
+                  О сайте
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/rules">Правила</NavLink>
+                <NavLink exact to="/rules">
+                  Правила
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/faq">Вопросы</NavLink>
+                <NavLink exact to="/faq">
+                  Вопросы
+                </NavLink>
               </li>
               <li>
-                <NavLink to="/advertisers">Рекламодателям</NavLink>
+                <NavLink exact to="/advertisers">
+                  Рекламодателям
+                </NavLink>
               </li>
             </ul>
           </nav>
@@ -68,7 +80,9 @@ const Header = () => {
                   style={{ display: "flex" }}
                 >
                   <img className="header__profile-img" src={alienMobile} />
-                  <p className="header__profile-name">{email} <DownOutlined style={{marginLeft: '10px'}} /></p>
+                  <p className="header__profile-name">
+                    {email} <DownOutlined style={{ marginLeft: "10px" }} />
+                  </p>
                 </a>
               </Dropdown>
             ) : (
@@ -100,22 +114,38 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <NavLink to="/">Главная</NavLink>
+            <NavLink exact to="/">
+              Главная
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/about">О сайте</NavLink>
+            <NavLink exact to="/about">
+              О сайте
+            </NavLink>
+          </li>
+          {isAdmin ? (
+            <></>
+          ) : (
+            <li>
+              <NavLink exact to="/test">
+                Начать
+              </NavLink>
+            </li>
+          )}
+          <li>
+            <NavLink exact to="/rules">
+              Правила
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/test">Начать</NavLink>
+            <NavLink exact to="/faq">
+              Вопросы
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/rules">Правила</NavLink>
-          </li>
-          <li>
-            <NavLink to="/faq">Вопросы</NavLink>
-          </li>
-          <li>
-            <NavLink to="/advertisers">Рекламодателям</NavLink>
+            <NavLink exact to="/advertisers">
+              Рекламодателям
+            </NavLink>
           </li>
           <div className="header__burger-menu-logon">
             {isAuth ? (

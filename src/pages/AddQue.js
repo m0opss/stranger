@@ -14,57 +14,81 @@ const settings = {
   speed: 500,
 };
 
-const QueSlide = ({ id, que, saveQue, setCorrect }) => (
-  <div className="add-que__slide-wrapper" id={id}>
-    <div className="add-que__slide">
-      <p style={{ color: "red", fontWeight: "bold" }}>
-        Заполните все четыре вопроса!
-      </p>
-      <div className="add-que__name" style={{ border: "none" }}>
-        Вопрос {id + 1}
-      </div>
-      <textarea
-        className="add-que__text"
-        placeholder="Формулировка вопроса"
-        value={que.descr}
-        onChange={(e) => saveQue(e.target.value, id, "decr")}
-      />
-      <div className="questions__btn-block">
-        {que.answ.map((a) => (
-          <div className="questions__btn-wrapper">
-            <input
-              key={`add` + id + a.id}
-              className="questions__btn questions__btn_add btn"
-              placeholder="+"
-              onChange={(e) => saveQue(e.target.value, id, "answ", a.id)}
-              value={a.text}
-            />
-            <input
-              type="checkbox"
-              value={a.is_correct}
-              onChange={(e) => saveQue(e.target.checked, id, "answ_corr", a.id)}
-              id={a.id}
-            />
-          </div>
-        ))}
+const QueSlide = ({ id, que, saveQue }) => {
+  const [sec, setsec] = useState(`${que.time % 60}`.padStart(2, "0"));
+  const [min, setmin] = useState(Math.floor(que.time / 60));
+
+  const createTime = (val, flag) => {
+    let time;
+    if (flag) {
+      time = parseFloat(sec) + parseFloat(val) * 60;
+      setmin(parseFloat(val));
+    } else {
+      setsec(val.padStart(2, "0"));
+      time = parseFloat(val) + min * 60;
+    }
+    console.log(time);
+    saveQue(time, id, "time");
+  };
+
+  return (
+    <div className="add-que__slide-wrapper" id={id}>
+      <div className="add-que__slide">
+        <div className="add-que__time">
+          <input
+            defaultValue={min}
+            onBlur={(e) => createTime(e.target.value, true)}
+          />
+          :
+          <input
+            defaultValue={sec}
+            onBlur={(e) => createTime(e.target.value, false)}
+          />
+        </div>
+        <div className="add-que__name" style={{ border: "none" }}>
+          Вопрос {id + 1}
+        </div>
+        <textarea
+          className="add-que__text"
+          placeholder="Формулировка вопроса"
+          value={que.descr}
+          onChange={(e) => saveQue(e.target.value, id, "decr")}
+        />
+        <p style={{ color: "red", fontWeight: "bold" }}>
+          Заполните все четыре вопроса!
+        </p>
+        <div className="questions__btn-block">
+          {que.answ.map((a) => (
+            <div className="questions__btn-wrapper" key={a.id}>
+              <input
+                key={`add` + id + a.id}
+                className="questions__btn questions__btn_add btn"
+                placeholder="+"
+                onChange={(e) => saveQue(e.target.value, id, "answ", a.id)}
+                value={a.text}
+              />
+              <input
+                type="checkbox"
+                value={a.is_correct}
+                onChange={(e) =>
+                  saveQue(e.target.checked, id, "answ_corr", a.id)
+                }
+                id={a.id}
+              />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const AddQue = (props) => {
-  const ques = useSelector((state) => state.addPost.ques);
-  const [correct, setCorrect] = useState();
+  const ques_redux = useSelector((state) => state.addPost.ques);
+
   const dispatch = useDispatch();
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
-
-  const saveQue = (val, id, type, a_id) => {
-    dispatch({
-      type: SAVE_QUE,
-      payload: { val: val, id: id, type: type, a_id: a_id },
-    });
-  };
 
   const removeQ = () => {
     let sl_ind = document
@@ -104,6 +128,36 @@ const AddQue = (props) => {
     document.querySelector("ul.slick-dots").appendChild(a);
   }, []);
   /////////////////////////////////////////////////////////////////
+  const [ques, setQues] = useState(ques_redux);
+  const saveQue = (val, id, type, a_id) => {
+    let tmp = [...ques];
+    tmp.map((item) => {
+      if (item.id == id) {
+        if (type == "decr") item.descr = val;
+        else if (type == "time") item.time = val;
+        else if (type == "answ") {
+          item.answ.map((a) => {
+            if (a.id == a_id) {
+              a.text = val;
+            }
+          });
+        } else if (type == "answ_corr") {
+          item.answ.map((a) => {
+            if (a.id == a_id) {
+              a.is_correct = val;
+            }
+          });
+        }
+      }
+    });
+    setQues(tmp);
+  };
+  const saveQueRedux = () => {
+    dispatch({
+      type: SAVE_QUE,
+      payload: ques,
+    });
+  };
 
   return (
     <div className={`page questions-page add-que green-bg`}>
@@ -116,6 +170,14 @@ const AddQue = (props) => {
             className="settings-block__close-btn card-close questions__close"
           >
             <span></span>
+          </Link>
+          <Link
+            to="/addPost"
+            className="settings-block__close-btn card-close questions__save"
+            onClick={saveQueRedux}
+          >
+            <div id="check-part-1" className="check-sign"></div>
+            <div id="check-part-2" className="check-sign"></div>
           </Link>
           <Slider {...settings}>
             {ques.map((item, ind) => (

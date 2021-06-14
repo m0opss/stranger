@@ -16,7 +16,6 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
   const transaction_history = useSelector(
     (state) => state.user.transaction_history
   );
-
   const token = useSelector((state) => state.auth.token);
   const max = 3000;
   const [open, setOpen] = React.useState(false);
@@ -129,7 +128,7 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
               fetchMoney={fetchMoney}
             />
           ) : activeTab == "history" ? (
-            <HistoryBlock />
+            <HistoryBlock data={transaction_history}/>
           ) : activeTab == "set" ? (
             <SettingsBlock setActiveTab={setActiveTab} isMobile={isMobile} />
           ) : (

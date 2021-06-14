@@ -1,15 +1,22 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_TOKEN } from "../reducers/authReducer";
+import { SET_TOKEN, SET_UID } from "../reducers/authReducer";
 import Loader from "./Loader/Loader";
 
 import "./app.scss";
 import Main from "../pages/Main";
 import About from "../pages/About";
 import LK from "../pages/LK";
-import { NavLink, Redirect, Route, Switch } from "react-router-dom";
-import { BrowserRouter as Router } from "react-router-dom";
-// import { HashRouter as Router } from "react-router-dom";
+import {
+  NavLink,
+  Redirect,
+  Route,
+  Switch,
+  useHistory,
+  useLocation,
+  useParams,
+} from "react-router-dom";
+
 import { CSSTransition } from "react-transition-group";
 import Transfer from "../pages/Transfer";
 import Archive from "../pages/Archive";
@@ -27,6 +34,7 @@ import AddQue from "../pages/AddQue";
 import { getMe } from "../actions/authActions";
 import Advertisers from "../pages/Advertisers";
 import ResetPass from "../pages/ResetPass";
+import ResetPassConfirm from "../pages/ResetPassConfirm";
 
 const App = (props) => {
   // const dispatch = useDispatch();
@@ -34,7 +42,7 @@ const App = (props) => {
   // const onClickFetching = () => {
   //   dispatch(setFetching(false));
   // };
-  const [loaded, setLoaded] = React.useState(false);
+  const history = useHistory();
   const routes = [
     { path: "/", Component: Main },
     { path: "/about", Component: About },
@@ -55,39 +63,48 @@ const App = (props) => {
     { path: "/addQue", Component: AddQue },
     { path: "/advertisers", Component: Advertisers },
     { path: "/reset", Component: ResetPass },
+    { path: "/reset-confirm", Component: ResetPassConfirm },
   ];
   const dispatch = useDispatch();
+  const { search } = useLocation();
+  useEffect(() => {
+    const params = new URLSearchParams(search);
+    if (params.get("uid") != null) {
+      dispatch({ type: SET_TOKEN, payload: params.get("token") });
+      dispatch({ type: SET_UID, payload: params.get("uid") });
+
+      history.push("/reset-confirm");
+    }
+  }, []);
   useEffect(() => {
     if (
       localStorage.getItem("token") != undefined &&
       localStorage.getItem("token") != ""
     ) {
-      console.log(localStorage.getItem("token"));
       dispatch(getMe(localStorage.getItem("token")));
       dispatch({ type: SET_TOKEN, payload: localStorage.getItem("token") });
     }
   }, []);
+
   return (
-    <Router>
-      <div className="app">
-        <Switch>
-          {routes.map(({ path, Component }) => (
-            <Route key={path} exact path={path}>
-              {({ match }) => (
-                <CSSTransition
-                  timeout={1000}
-                  // classNames="page"
-                  unmountOnExit
-                  in={match != null}
-                >
-                  <Component {...props} />
-                </CSSTransition>
-              )}
-            </Route>
-          ))}
-        </Switch>
-      </div>
-    </Router>
+    <div className="app">
+      <Switch>
+        {routes.map(({ path, Component }) => (
+          <Route key={path} exact path={path}>
+            {({ match }) => (
+              <CSSTransition
+                timeout={1000}
+                // classNames="page"
+                unmountOnExit
+                in={match != null}
+              >
+                <Component {...props} />
+              </CSSTransition>
+            )}
+          </Route>
+        ))}
+      </Switch>
+    </div>
   );
 };
 

@@ -15,11 +15,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 const ResetPass = ({}) => {
   const [login, setLogin] = useState("");
-  const [pass, setPass] = useState("");
-  const [step, setStep] = useState(false);
-  const dispatch = useDispatch();
-  const history = useHistory();
-  const token = useSelector((state) => state.auth.token);
   const [open, setOpen] = React.useState(false);
   const [alertMsg, setAlertMsg] = React.useState();
   const [severity, setSeverity] = React.useState();
@@ -54,10 +49,9 @@ const ResetPass = ({}) => {
           }),
         }
       );
-      if (rawResponse.ok) {
-        const content = await rawResponse.json();
-        handleClick(`На почту ${email} отправлен код`, 'success')
-        setStep(true);
+      if (rawResponse.status == 204) {
+        console.log(rawResponse.status)
+        handleClick(`На почту ${login} отправлена ссылка для восстановления пароля`, "success");
       } else {
         const err = await rawResponse.json();
         handleClick(err[Object.keys(err)[0]], "error");
@@ -110,47 +104,18 @@ const ResetPass = ({}) => {
           <h1 className="auth-form-block__title">Восстановление пароля</h1>
 
           <div className="auth-form-block__inputs">
-            {step ? (
-              <>
-                <Input
-                  value={login}
-                  setValue={setLogin}
-                  id="login"
-                  label="E-mail"
-                  helperText="Email неправильно введен."
-                  isValidated={true}
-                  placeholder="введите email"
-                  className="auth-form-block__input"
-                />
-                <Input
-                  value={pass}
-                  setValue={setPass}
-                  id="pass"
-                  label="Пароль"
-                  helperText="Пароль не удовлетворяет требованиям"
-                  isValidated={pass_correct}
-                  placeholder="введите пароль"
-                  type="password"
-                  className="auth-form-block__input"
-                />
-              </>
-            ) : (
-              <Input
-                value={login}
-                setValue={setLogin}
-                id="login"
-                label="E-mail"
-                helperText="Email неправильно введен."
-                isValidated={true}
-                placeholder="введите email"
-                className="auth-form-block__input"
-              />
-            )}
+            <Input
+              value={login}
+              setValue={setLogin}
+              id="login"
+              label="E-mail"
+              helperText="Email неправильно введен."
+              isValidated={true}
+              placeholder="введите email"
+              className="auth-form-block__input"
+            />
           </div>
-          <div
-            className="auth-form-block__reg-btn"
-            onClick={step ? () => {} : fetchData}
-          >
+          <div className="auth-form-block__reg-btn" onClick={fetchData}>
             <p>Отправить</p>
             <img className="auth-form-block__reg-btn-ic" src={f_arr} />
           </div>

@@ -1,6 +1,23 @@
 .add-que {
+  overflow: visible;
+  .add-que__time {
+    input {
+      border: 1px solid #dadada;
+      background: #17ca9b;
+      width: 25px;
+      text-align: center;
+      &:nth-child(1){
+        margin-right: 5px;
+      }
+      &:nth-child(2){
+        margin-left: 5px;
+        width: 40px;
+      
+      }
+    }
+  }
   .add-que__name {
-    margin-top: 100px;
+    margin-top: 20px;
     border: 1px solid #dadada;
     background: #17ca9b;
   }
@@ -19,7 +36,7 @@
     border: 1px solid #dadada;
     background: #17ca9b;
     width: 497px;
-    min-height: 150px;
+    min-height: 65px;
   }
   .add-que__text,
   .add-que__text::placeholder {
@@ -41,11 +58,15 @@
     display: block;
     .questions__btn-block {
       margin-top: 150px;
+      @media screen and (max-width: 681px) {
+        margin-top: 50px;
+      }
       .questions__btn-wrapper {
         display: flex;
         align-items: center;
         justify-content: space-between;
         width: 47%;
+
         @media screen and (max-width: 851px) {
           width: 60%;
         }
@@ -54,7 +75,10 @@
         }
       }
       .questions__btn {
-        width: 90%;
+        width: 83%;
+        @media screen and (max-width: 1253px) {
+          width: 90%;
+        }
       }
       .questions__btn_add {
         color: #b7b7b7;
@@ -67,6 +91,9 @@
       display: flex !important;
       align-items: center;
       justify-content: center;
+      @media screen and (max-width: 681px) {
+        bottom: -45px;
+      }
       .remove,
       .add {
         border: 3.45px solid rgba(0, 0, 0, 0.3);
@@ -82,6 +109,11 @@
         margin: 0 20px;
         cursor: pointer;
         color: rgba(0, 0, 0, 0.3);
+        @media screen and (max-width: 681px) {
+          height: 40px;
+          width: 40px;
+          font-size: 22px;
+        }
       }
     }
     .slick-arrow {
@@ -95,17 +127,20 @@
         color: #17ca9b;
       }
     }
+    @media screen and (max-width: 767px) {
+      padding-top: 40px;
+    }
   }
   @media screen and (max-width: 1125px) {
     .add-que__slide {
       width: auto;
     }
     .questions__container .questions__btn-block {
-      flex-direction: column;
-      flex-wrap: nowrap;
-      align-items: center;
-      justify-content: center;
-      height: auto;
+      // flex-direction: column;
+      // flex-wrap: nowrap;
+      // align-items: center;
+      // justify-content: center;
+      // height: auto;
     }
   }
   @media screen and (max-width: 621px) {
