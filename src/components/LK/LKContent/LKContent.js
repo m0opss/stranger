@@ -45,7 +45,7 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
       },
       body: JSON.stringify({
         withdrawal_type: card == "qiwi" ? 1 : card == "phone" ? 2 : 0,
-        withdrawal_value: cardNum,
+        withdrawal_value: '+7' + cardNum,
       }),
     })
       .then((res) => {
@@ -75,7 +75,8 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
               if (ok) {
                 handleClick(re.detail, "success");
               } else {
-                handleClick(re.detail, "error");
+                console.log(123)
+                handleClick("Ошибка: " + re.detail, "error");
               }
             });
         } else {

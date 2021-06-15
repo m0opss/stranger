@@ -20,6 +20,7 @@ const Header = () => {
     setMenuOpen(!menuOpen);
   };
   const onExitClick = () => {
+    localStorage.removeItem('token')
     dispatch(onExitAccount());
   };
 

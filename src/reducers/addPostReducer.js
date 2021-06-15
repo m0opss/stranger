@@ -11,25 +11,25 @@ const defaultState = {
   text: "",
   ques: [
     {
-      id: 0,
-      descr: "",
-      time: 0,
-      answ: [
-        { id: 0, text: "", is_correct: false },
-        { id: 1, text: "", is_correct: false },
-        { id: 2, text: "", is_correct: false },
-        { id: 3, text: "", is_correct: false },
-      ],
-    },
-    {
       id: 1,
       descr: "",
       time: 0,
       answ: [
-        { id: 0, text: "", is_correct: false },
-        { id: 1, text: "", is_correct: false },
-        { id: 2, text: "", is_correct: false },
-        { id: 3, text: "", is_correct: false },
+        { id: 11, text: "", is_correct: false },
+        { id: 12, text: "", is_correct: false },
+        { id: 13, text: "", is_correct: false },
+        { id: 14, text: "", is_correct: false },
+      ],
+    },
+    {
+      id: 4,
+      descr: "",
+      time: 0,
+      answ: [
+        { id: 41, text: "", is_correct: false },
+        { id: 42, text: "", is_correct: false },
+        { id: 43, text: "", is_correct: false },
+        { id: 44, text: "", is_correct: false },
       ],
     },
     {
@@ -37,10 +37,10 @@ const defaultState = {
       descr: "",
       time: 0,
       answ: [
-        { id: 0, text: "", is_correct: false },
-        { id: 1, text: "", is_correct: false },
-        { id: 2, text: "", is_correct: false },
-        { id: 3, text: "", is_correct: false },
+        { id: 21, text: "", is_correct: false },
+        { id: 22, text: "", is_correct: false },
+        { id: 23, text: "", is_correct: false },
+        { id: 24, text: "", is_correct: false },
       ],
     },
   ],
@@ -65,10 +65,26 @@ export default function addPostReducer(state = defaultState, action) {
             descr: "",
             time: 0,
             answ: [
-              { id: 0, text: "", is_correct: false },
-              { id: 1, text: "", is_correct: false },
-              { id: 2, text: "", is_correct: false },
-              { id: 3, text: "", is_correct: false },
+              {
+                id: parseFloat(String(state.ques.length) + "1"),
+                text: "",
+                is_correct: false,
+              },
+              {
+                id: parseFloat(String(state.ques.length) + "2"),
+                text: "",
+                is_correct: false,
+              },
+              {
+                id: parseFloat(String(state.ques.length) + "3"),
+                text: "",
+                is_correct: false,
+              },
+              {
+                id: parseFloat(String(state.ques.length) + "4"),
+                text: "",
+                is_correct: false,
+              },
             ],
           },
         ],

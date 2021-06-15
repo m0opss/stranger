@@ -35,7 +35,7 @@ const AddPosts = (props) => {
     })
       .then((res) => res.json())
       .then((re) => {
-        setSlides(re);
+        setSlides(re.filter((item) => !item.is_archive));
         console.log(re);
       });
   }, []);

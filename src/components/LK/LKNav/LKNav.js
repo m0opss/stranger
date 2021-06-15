@@ -180,7 +180,7 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
           <LKNavPanel
             activeTab={activeTab}
             setActiveTab={setActiveTab}
-            isMobile={isMobile}
+            isMobile={isMobile} 
             buttons={userPanel}
             title="Операции"
           />
@@ -188,7 +188,7 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
             isMobile={isMobile}
             progress={progress}
             // plusSum={plusSum}
-            date={th[th.length - 1].date.substr(0, 10)}
+            date={th.length > 0 ? th[th.length - 1].date.substr(0, 10) : '-'}
           />
         </>
       )}

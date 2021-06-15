@@ -121,37 +121,34 @@ const LooseContainer = ({ brand, isMobile }) => {
   );
 };
 
-const fetchData = (setData, token, history, setFinish = null) => {
-  // https://stranger-go.com/api/v1/answers/
-  (async () => {
-    const rawResponse = await fetch(
-      "https://stranger-go.com/api/v1/games/question/",
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Token ${token}`,
-        },
-      }
-    );
-    if (rawResponse.status == 204) {
-      setFinish(true);
-    } else if (rawResponse.status == 200) {
-      const content = await rawResponse.json();
-      setData(content);
-    } else {
-      const content = await rawResponse.json();
-      // alert(JSON.stringify(content));
-      handleClick(content[Object.keys(content)[0]], "error");
-      history.push("/test");
-    }
-  })();
-};
-
 const Questions = (props) => {
   const [open, setOpen] = React.useState(false);
   const [alertMsg, setAlertMsg] = React.useState();
   const [severity, setSeverity] = React.useState();
 
+  const fetchData = (setData, token, history, setFinish = null) => {
+    (async () => {
+      const rawResponse = await fetch(
+        "https://stranger-go.com/api/v1/games/question/",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Token ${token}`,
+          },
+        }
+      );
+      if (rawResponse.status == 204) {
+        setFinish(true);
+      } else if (rawResponse.status == 200) {
+        const content = await rawResponse.json();
+        setData(content);
+      } else {
+        const content = await rawResponse.json();
+        handleClick(content[Object.keys(content)[0]], "error");
+        history.push("/test");
+      }
+    })();
+  };
   const handleClick = (msg, severity) => {
     setAlertMsg(msg);
     setSeverity(severity);

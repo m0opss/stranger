@@ -5,7 +5,9 @@ import "./lkwatch.scss";
 const WatchRow = ({ brand, date, progress, amount }) => (
   <div className="watch-block__row">
     <p className="watch-block__row-brand">{brand}</p>
-    <p className="watch-block__row-date">{date == null ? "-" : date}</p>
+    <p className="watch-block__row-date">
+      {date == null || date == "" ? "-" : date}
+    </p>
     <p className="watch-block__row-exe">{progress}</p>
     <p className="watch-block__row-sum">{amount}</p>
   </div>
@@ -99,7 +101,7 @@ const WatchBlock = ({ type, data, loadCsv, blockUser }) => {
             date={el.date}
             brand={el.brand}
             progress={el.progress}
-            amount={el.amount}
+            amount={el.amount != undefined ? el.amount : el.remains}
           />
         ))}
       </div>
