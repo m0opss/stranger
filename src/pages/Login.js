@@ -28,11 +28,11 @@ const Login = ({}) => {
   const [alertMsg, setAlertMsg] = React.useState();
   const [severity, setSeverity] = React.useState();
 
-  const handleClick = (msg, severity) => {
+  function handleClick(msg, severity) {
     setAlertMsg(msg);
     setSeverity(severity);
     setOpen(true);
-  };
+  }
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -44,9 +44,7 @@ const Login = ({}) => {
   if (window.innerWidth < 768) isMobile = true;
 
   const fetchData = () => {
-    dispatch(onLogin({ email: login, password: pass }, history));
-    // dispatch(getUserData(token))
-    // history.push("/");
+    dispatch(onLogin({ email: login, password: pass }, history, handleClick));
   };
 
   return (
@@ -124,7 +122,9 @@ const Login = ({}) => {
             <p>Войти</p>
             <img className="auth-form-block__reg-btn-ic" src={f_arr} />
           </div>
-          <Link to="/reset" className='reset-btn'>Забыли пароль?</Link>
+          <Link to="/reset" className="reset-btn">
+            Забыли пароль?
+          </Link>
           <div className="auth-form-block__soc-login">
             <p>Или войдите с помощью</p>
             <div className="auth-form-block__soc-icon">

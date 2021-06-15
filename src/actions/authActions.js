@@ -94,28 +94,30 @@ export const getMe = (token, history) => async (dispatch) => {
   }
 };
 
-export const onLogin = (credentials, history) => async (dispatch) => {
-  const rawResponse = await fetch(
-    "https://stranger-go.com/api/v1/token/login/",
-    {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(
-        // email: "admin@stranger-go.com",
-        // password: "qwe123!@#",
-        credentials
-      ),
+export const onLogin =
+  (credentials, history, handleClick) => async (dispatch) => {
+    const rawResponse = await fetch(
+      "https://stranger-go.com/api/v1/token/login/",
+      {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(
+          // email: "admin@stranger-go.com",
+          // password: "qwe123!@#",
+          credentials
+        ),
+      }
+    );
+    if (rawResponse.ok) {
+      const content = await rawResponse.json();
+      localStorage.setItem("token", content.auth_token);
+      dispatch(getMe(content.auth_token, history));
+    } else {
+      const err = await rawResponse.json();
+      handleClick("Ошибка: " + err[Object.keys(err)[0]], "error");
+      // alert("Ошибка HTTP: " + rawResponse.status + " " + JSON.stringify(err));
     }
-  );
-  if (rawResponse.ok) {
-    const content = await rawResponse.json();
-    localStorage.setItem("token", content.auth_token);
-    dispatch(getMe(content.auth_token, history));
-  } else {
-    const err = await rawResponse.json();
-    alert("Ошибка HTTP: " + rawResponse.status + " " + JSON.stringify(err));
-  }
-};
+  };
