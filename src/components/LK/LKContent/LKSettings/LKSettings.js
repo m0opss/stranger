@@ -21,7 +21,13 @@ const SettingsBlockInput = ({ icon, value, setValue, placeholder, type }) => {
   );
 };
 
-const ChangePassBlock = ({ setActiveblock, token, isAdmin }) => {
+const ChangePassBlock = ({
+  setActiveblock,
+  setActiveTab,
+  token,
+  isAdmin,
+  isMobile,
+}) => {
   const [disable, setDisable] = useState(true);
   const [old_pass, set_old_pass] = useState("");
   const [new_pass, set_new_pass] = useState("");
@@ -102,6 +108,13 @@ const ChangePassBlock = ({ setActiveblock, token, isAdmin }) => {
           <div
             className="settings-block__close-btn"
             onClick={() => setActiveblock("")}
+          >
+            <span></span>
+          </div>
+        ) : !isAdmin && isMobile ? (
+          <div
+            className="settings-block__close-btn"
+            onClick={() => setActiveTab("")}
           >
             <span></span>
           </div>
@@ -207,7 +220,7 @@ const AddBlock = ({ setActiveblock, token }) => {
       if (rawResponse.ok) {
         const content = await rawResponse.json();
         console.log(content);
-        handleClick("Пользователь добавлен.ID: " + content.id, 'success');
+        handleClick("Пользователь добавлен.ID: " + content.id, "success");
       } else {
         const err = await rawResponse.json();
         handleClick(err[Object.keys(err)[0]], "error");
@@ -327,7 +340,7 @@ const ButtonsBlock = ({ setActiveblock }) => {
   );
 };
 
-const SettingsBlock = ({ isAdmin }) => {
+const SettingsBlock = ({ isAdmin, isMobile, setActiveTab }) => {
   const [activeBlock, setActiveblock] = useState(isAdmin ? "" : "pass");
   const token = useSelector((state) => state.auth.token);
   return (
@@ -345,7 +358,9 @@ const SettingsBlock = ({ isAdmin }) => {
             </p>
             <ChangePassBlock
               isAdmin={isAdmin}
+              setActiveTab={setActiveTab}
               token={token}
+              isMobile={isMobile}
               setActiveblock={setActiveblock}
             />
           </>

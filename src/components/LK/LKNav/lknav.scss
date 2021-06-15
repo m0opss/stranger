@@ -12,6 +12,9 @@
   width: 560px;
   height: 263px;
   border-radius: 20px;
+  @media screen and (max-height: 939px) {
+    height: 253px;
+  }
   @media screen and (max-width: 1508px) {
     width: 470px;
   }
@@ -30,6 +33,12 @@
   margin-top: 47px;
   @media screen and (max-width: 1508px) {
     margin-top: 19px;
+  }
+  @media screen and (max-height: 1008px) {
+    margin-top: 30px;
+  }
+  @media screen and (max-height: 974px) {
+    margin-top: 15px;
   }
   @media screen and (max-width: 767px) {
     margin-top: 30px;

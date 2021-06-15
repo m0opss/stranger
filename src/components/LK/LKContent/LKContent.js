@@ -45,7 +45,7 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
       },
       body: JSON.stringify({
         withdrawal_type: card == "qiwi" ? 1 : card == "phone" ? 2 : 0,
-        withdrawal_value: '+7' + cardNum,
+        withdrawal_value: "+7" + cardNum,
       }),
     })
       .then((res) => {
@@ -75,7 +75,7 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
               if (ok) {
                 handleClick(re.detail, "success");
               } else {
-                console.log(123)
+                console.log(123);
                 handleClick("Ошибка: " + re.detail, "error");
               }
             });
@@ -111,7 +111,11 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
             <></>
           ) : (
             <div className="lk-content">
-              <SettingsBlock setActiveTab={setActiveTab} isMobile={isMobile} />
+              <SettingsBlock
+                setActiveTab={setActiveTab}
+                isMobile={isMobile}
+                isAdmin={false}
+              />
             </div>
           )}
         </>
@@ -129,9 +133,13 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
               fetchMoney={fetchMoney}
             />
           ) : activeTab == "history" ? (
-            <HistoryBlock data={transaction_history}/>
+            <HistoryBlock data={transaction_history} />
           ) : activeTab == "set" ? (
-            <SettingsBlock setActiveTab={setActiveTab} isMobile={isMobile} />
+            <SettingsBlock
+              setActiveTab={setActiveTab}
+              isMobile={isMobile}
+              isAdmin={false}
+            />
           ) : (
             <></>
           )}

@@ -63,7 +63,7 @@ const LKProgress = ({ isMobile, progress, date, plusSum }) => (
     <div className="progress-card__text-info">
       <p className="progress-card__title">Прогресс игры</p>
       <div className="progress-card__text-block">
-        <p className="progress-card__text_accent">{0}₽</p>
+        <p className="progress-card__text_accent">{plusSum}₽</p>
         <p className="progress-card__text">заработано</p>
       </div>
       <div className="progress-card__text-block">
@@ -149,7 +149,7 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
   const balance = useSelector((state) => state.user.balance);
   const progress = useSelector((state) => state.user.progress);
   const th = useSelector((state) => state.user.transaction_history);
-
+  let plusSum = th.length > 0 ? th[th.length - 1].amount : 0
   return (
     <div
       className="lk-nav"
@@ -187,7 +187,7 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
           <LKProgress
             isMobile={isMobile}
             progress={progress}
-            // plusSum={plusSum}
+            plusSum={plusSum}
             date={th.length > 0 ? th[th.length - 1].date.substr(0, 10) : '-'}
           />
         </>
