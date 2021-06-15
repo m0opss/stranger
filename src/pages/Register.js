@@ -219,11 +219,11 @@ const Register = ({}) => {
             />
             Регистрируясь, я принимаю <br />
             <div className="">
-              <a target="_blank" href="/static/assets/docs/policy.docx">
+              <a target="_blank" href="/static/assets/docs/policy.pdf">
                 Политику конфиденциальности
               </a>{" "}
               и{" "}
-              <a target="_blank" href="/static/assets/docs/ofer.docx">
+              <a target="_blank" href="/static/assets/docs/ofer.pdf">
                 Договор Оферты
               </a>
             </div>
