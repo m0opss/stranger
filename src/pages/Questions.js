@@ -93,7 +93,7 @@ const WinContainer = ({ brand, isMobile }) => {
   return (
     <div className="win__container">
       <div className="win__cash">ты заработал</div>
-      <p className="win__cost">20 ₽</p>
+      <p className="win__cost">10 ₽</p>
       <p className="win__tnx">
         Спасибо за Ваше время и внимание к {brand}, который спонсирует этот
         тест.
