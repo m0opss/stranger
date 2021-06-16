@@ -15,15 +15,8 @@ const CardInputBlock = ({ cardNum, setCardNum, card }) => {
         addonBefore="+7"
         value={cardNum}
         type="tel"
-        // placeholder={"+7**********"}
         onChange={(e) => setCardNum(e.target.value)}
       />
-      {/* <input
-        value={cardNum}
-        onChange={(e) => setCardNum(e.target.value)}
-        type="tel"
-        placeholder={"+7**********"}
-      /> */}
     </div>
   );
 };
@@ -70,7 +63,10 @@ const DonateBlock = ({
   const onClickCard = (kind) => {
     setCard(kind);
   };
-
+  let active = false;
+  if (max >= 200 && cardNum != ""  && cardNum.length == 10 && sum != '') {
+    active = true;
+  }
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
   const balance = useSelector((state) => state.user.balance);
@@ -106,7 +102,10 @@ const DonateBlock = ({
           ? " Вывести деньги из кошелька можно только через 2 часа с момента зачисления на него"
           : "* Только что заработанные деньги можно вывести через 2 часа"}
       </p> */}
-      <div className="btn donate-block__btn" onClick={fetchMoney}>
+      <div
+        className={`btn donate-block__btn ${active ? 'donate-block__btn_active' : ''}`}
+        onClick={active ? fetchMoney : () => {}}
+      >
         перевести
       </div>
     </div>

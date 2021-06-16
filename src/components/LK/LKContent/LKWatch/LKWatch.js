@@ -95,15 +95,27 @@ const WatchBlock = ({ type, data, loadCsv, blockUser }) => {
           amount={"Выплаты,₽"}
         />
 
-        {data.map((el, i) => (
-          <WatchRow
-            key={i}
-            date={el.date}
-            brand={el.brand}
-            progress={el.progress}
-            amount={el.amount != undefined ? el.amount : el.remains}
-          />
-        ))}
+        {data.length > 5
+          ? data
+              .slice(data.length - 6, data.length - 1)
+              .map((el, i) => (
+                <WatchRow
+                  key={i}
+                  date={el.date}
+                  brand={el.brand}
+                  progress={el.progress}
+                  amount={el.amount != undefined ? el.amount : el.remains}
+                />
+              ))
+          : data.map((el, i) => (
+              <WatchRow
+                key={i}
+                date={el.date}
+                brand={el.brand}
+                progress={el.progress}
+                amount={el.amount != undefined ? el.amount : el.remains}
+              />
+            ))}
       </div>
 
       <div className="watch-block__load" onClick={loadCsv}>

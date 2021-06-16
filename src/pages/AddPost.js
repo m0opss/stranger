@@ -231,7 +231,7 @@ const AddPost = (props) => {
         <div className="archive-background__item archive-background__item_3"></div>
         <div className="archive-background__item archive-background__item_4"></div>
         <div className="archive-background__item archive-background__item_5"></div>
-        {isMobile ? <></> : <BackArr />}
+        {isMobile ? <></> : <BackArr link={'/addPosts'}/>}
         <div className="brand-page__content">
           <div className="brand-page__info">
             <input

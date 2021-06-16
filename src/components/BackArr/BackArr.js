@@ -4,10 +4,10 @@ import { useHistory } from "react-router";
 import back_arr from "../../assets/img/backArr.svg";
 import "./backarr.scss";
 
-const BackArr = ({ className }) => {
+const BackArr = ({ link }) => {
   const history = useHistory();
   const onBackClick = () => {
-    history.goBack();
+    history.push(link);
   };
   return (
     <div className="back-btn btn" onClick={onBackClick}>

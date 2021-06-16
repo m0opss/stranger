@@ -12,16 +12,18 @@ const LK = () => {
   const isAdmin = useSelector((state) => state.auth.isAdmin);
   const isAuth = useSelector((state) => state.auth.isAuth);
   const history = useHistory();
-  // const p = useParams();
+
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
 
   useEffect(() => {
     if (!isMobile) {
       if (isAdmin) {
-        setTimeout(() => setActiveTab("set"), 1000);
+        setActiveTab("set")
+        // setTimeout(() => setActiveTab("set"), 1000);
       } else {
-        setTimeout(() => setActiveTab("arr"), 1000);
+        setActiveTab("arr")
+        // setTimeout(() => setActiveTab("arr"), 1000);
       }
     } else {
       setActiveTab("");
@@ -59,7 +61,7 @@ const LK = () => {
     );
   }
   return <Redirect to="/" />;
-  // history.push("/");
+
 };
 
 export default LK;

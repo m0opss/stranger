@@ -17,7 +17,8 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
     (state) => state.user.transaction_history
   );
   const token = useSelector((state) => state.auth.token);
-  const max = 3000;
+  const balance = useSelector((state) => state.user.balance);
+  const max = balance;
   const [open, setOpen] = React.useState(false);
   const [alertMsg, setAlertMsg] = React.useState();
   const [severity, setSeverity] = React.useState();

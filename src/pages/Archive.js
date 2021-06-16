@@ -107,7 +107,7 @@ const Archive = ({}) => {
         <div className="archive-background__item archive-background__item_3"></div>
         <div className="archive-background__item archive-background__item_4"></div>
         <div className="archive-background__item archive-background__item_5"></div>
-        {isMobile ? <></> : <BackArr />}
+        {isMobile ? <></> : <BackArr link={'/lk'}/>}
         <div className="archive-page__content">
           <h1>Архив</h1>
 

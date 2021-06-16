@@ -126,7 +126,6 @@
     margin-bottom: 20px;
     @media screen and (max-width: 767px) {
       margin-bottom: 13px;
-
     }
     .ant-input-group-addon {
       font-weight: 500;
@@ -156,7 +155,7 @@
       outline: none;
       @media screen and (max-width: 767px) {
         height: 36px;
-        
+
         font-size: 12px;
         line-height: 15px;
         padding-left: 30px;
@@ -231,21 +230,19 @@
     }
   }
   .donate-block__btn {
-    background: #17ca9b;
     margin-top: 32px;
     border-radius: 50px;
     width: 320px;
     height: 59.61px;
     display: flex;
+    background: #dadada;
     align-items: center;
     justify-content: center;
     color: white;
     font-size: 20px;
     cursor: pointer;
     line-height: 24px;
-    &:hover {
-      background: #17af87;
-    }
+
     @media screen and (max-width: 767px) {
       height: 47px;
       font-size: 18px;
@@ -253,6 +250,12 @@
     }
     @media screen and (max-width: 567px) {
       width: 243px;
+    }
+  }
+  .donate-block__btn_active {
+    background: #17ca9b;
+    &:hover {
+      background: #17af87;
     }
   }
 }

@@ -38,7 +38,7 @@ const LKNavPanel = ({ buttons, activeTab, setActiveTab, isAdmin, title }) => (
   </div>
 );
 
-const BalanceBlock = ({ balance }) => (
+const BalanceBlock = ({ balance, topAm, botAm }) => (
   <div className="lk-nav__block balance-card">
     <p className="balance-card__title">Баланс</p>
     <p className="balance-card__balance">{balance}₽</p>
@@ -48,11 +48,11 @@ const BalanceBlock = ({ balance }) => (
     <div className="balance-card__arrow-block">
       <div className="balance-card__down-block">
         <img src={lkDown} />
-        <p>0₽</p>
+        <p>{botAm}₽</p>
       </div>
       <div className="balance-card__up-block">
         <img src={lkUp} />
-        <p>0₽</p>
+        <p>{topAm}₽</p>
       </div>
     </div>
   </div>
@@ -149,7 +149,19 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
   const balance = useSelector((state) => state.user.balance);
   const progress = useSelector((state) => state.user.progress);
   const th = useSelector((state) => state.user.transaction_history);
-  let plusSum = th.length > 0 ? th[th.length - 1].amount : 0
+  let plusSum = th.length > 0 ? th[th.length - 1].amount : 0;
+  let topAm = 0;
+  let botAm = 0;
+  if (th.length > 0) {
+    th.map((i) => {
+      if (i.type_operations == "inc") {
+        topAm += parseFloat(i.amount);
+      } else if (i.type_operations == "dec") {
+        botAm += parseFloat(i.amount);
+      }
+    });
+  }
+
   return (
     <div
       className="lk-nav"
@@ -176,11 +188,11 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
         </>
       ) : (
         <>
-          <BalanceBlock balance={balance} />
+          <BalanceBlock balance={balance} topAm={topAm} botAm={botAm} />
           <LKNavPanel
             activeTab={activeTab}
             setActiveTab={setActiveTab}
-            isMobile={isMobile} 
+            isMobile={isMobile}
             buttons={userPanel}
             title="Операции"
           />
@@ -188,7 +200,7 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
             isMobile={isMobile}
             progress={progress}
             plusSum={plusSum}
-            date={th.length > 0 ? th[th.length - 1].date.substr(0, 10) : '-'}
+            date={th.length > 0 ? th[th.length - 1].date.substr(0, 10) : "-"}
           />
         </>
       )}
