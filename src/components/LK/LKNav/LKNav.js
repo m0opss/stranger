@@ -149,7 +149,7 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
   const balance = useSelector((state) => state.user.balance);
   const progress = useSelector((state) => state.user.progress);
   const th = useSelector((state) => state.user.transaction_history);
-  let plusSum = th.length > 0 ? th[th.length - 1].amount : 0;
+  let plusSum = th.length > 0 ? th[0].amount : 0;
   let topAm = 0;
   let botAm = 0;
   if (th.length > 0) {
@@ -200,7 +200,7 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
             isMobile={isMobile}
             progress={progress}
             plusSum={plusSum}
-            date={th.length > 0 ? th[th.length - 1].date.substr(0, 10) : "-"}
+            date={th.length > 0 ? th[0].date.substr(0, 10) : "-"}
           />
         </>
       )}
