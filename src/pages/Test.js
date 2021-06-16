@@ -82,7 +82,7 @@ const Test = ({}) => {
         return res.json();
       })
       .then((re) => {
-        if (ok) setSlides(re);
+        if (ok) setSlides(re.filter((item) => !item.is_archive));
         else if (status == 401) history.push("/");
         else alert(JSON.stringify(re) + " " + status);
       });

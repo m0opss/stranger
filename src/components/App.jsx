@@ -103,6 +103,7 @@ const App = (props) => {
             )}
           </Route>
         ))}
+    
       </Switch>
     </div>
   );

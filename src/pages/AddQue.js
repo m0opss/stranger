@@ -55,7 +55,7 @@ const QueSlide = ({ id, que, saveQue }) => {
           onChange={(e) => saveQue(e.target.value, id, "decr")}
         />
         <p style={{ color: "red", fontWeight: "bold" }}>
-          Заполните все четыре вопроса!
+          Заполните все четыре ответа!
         </p>
         <div className="questions__btn-block">
           {que.answ.map((a) => (
@@ -100,6 +100,9 @@ const AddQue = (props) => {
     });
   };
 
+  const addDoc = (el) => {
+    document.querySelector("ul.slick-dots").appendChild(el);
+  };
   const addQ = () => {
     dispatch({
       type: ADD_QUE,
@@ -109,7 +112,7 @@ const AddQue = (props) => {
     a.classList.add("add");
     a.addEventListener("click", addQ);
     document.querySelector("div.add").remove();
-    document.querySelector("ul.slick-dots").appendChild(a);
+    setTimeout(() => addDoc(a), 10);
   };
   // добавление + - в dots ////////////////////////////////////////
 
@@ -117,10 +120,12 @@ const AddQue = (props) => {
     let r = document.createElement("div");
     r.textContent = "-";
     r.classList.add("remove");
+
     r.addEventListener("click", removeQ);
     let a = document.createElement("div");
     a.textContent = "+";
     a.classList.add("add");
+
     a.addEventListener("click", addQ);
     document
       .querySelector("ul.slick-dots")
@@ -129,8 +134,14 @@ const AddQue = (props) => {
   }, []);
   /////////////////////////////////////////////////////////////////
   const [ques, setQues] = useState(ques_redux);
+
+  useEffect(() => {
+    setQues(ques_redux);
+  }, [ques_redux]);
+
   const saveQue = (val, id, type, a_id) => {
     let tmp = [...ques];
+
     tmp.map((item) => {
       if (item.id == id) {
         if (type == "decr") item.descr = val;

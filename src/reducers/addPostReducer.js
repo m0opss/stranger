@@ -11,7 +11,7 @@ const defaultState = {
   text: "",
   ques: [
     {
-      id: 1,
+      id: 0,
       descr: "",
       time: 0,
       answ: [
@@ -22,7 +22,7 @@ const defaultState = {
       ],
     },
     {
-      id: 4,
+      id: 1,
       descr: "",
       time: 0,
       answ: [
