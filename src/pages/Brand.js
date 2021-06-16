@@ -5,10 +5,10 @@ import clock from "../assets/img/brandClock.svg";
 import info from "../assets/img/brandInfo.svg";
 import rub from "../assets/img/brandRub.svg";
 import ReactPlayer from "react-player";
-
+import { SET_COAST, SET_BRAND } from "../reducers/gameReducer";
 import { Link, NavLink, useParams, useRouteMatch } from "react-router-dom";
 import "./brand.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Brand = (props) => {
   const [fullWatched, setWatched] = useState(false);
@@ -25,7 +25,7 @@ const Brand = (props) => {
   let brand = data.url_brand;
   let descr = data.description;
   let price = data.coast;
-
+  const dispatch = useDispatch();
   const settings = {
     dots: true,
     focusOnSelect: true,
@@ -57,6 +57,8 @@ const Brand = (props) => {
       .then((res) => res.json())
       .then((re) => {
         setData(re);
+        dispatch({ type: SET_COAST, payload: re.coast });
+        dispatch({ type: SET_BRAND, payload: re.brand });
       });
     fetch("https://stranger-go.com/api/v1/games/list_attachments/", {
       method: "GET",

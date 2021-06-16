@@ -6,12 +6,14 @@ import authReducer from "./authReducer";
 import userReducer from "./userReducer";
 import thunk from "redux-thunk";
 import addPostReducer from "./addPostReducer";
+import gameReducer from "./gameReducer";
 
 const rootReducer = combineReducers({
   repos: reposReducer,
   auth: authReducer,
   user: userReducer,
   addPost: addPostReducer,
+  game: gameReducer,
 });
 
 export const store = createStore(

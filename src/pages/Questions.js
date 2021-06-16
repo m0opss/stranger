@@ -89,11 +89,13 @@ const Que = ({ setFinished, fetchAnsw, content, setLoose }) => {
   );
 };
 
-const WinContainer = ({ brand, isMobile }) => {
+const WinContainer = ({ isMobile }) => {
+  const coast = useSelector((state) => state.game.coast);
+  const brand = useSelector((state) => state.game.brand);
   return (
     <div className="win__container">
       <div className="win__cash">ты заработал</div>
-      <p className="win__cost">10 ₽</p>
+      <p className="win__cost">{coast}₽</p>
       <p className="win__tnx">
         Спасибо за Ваше время и внимание к {brand}, который спонсирует этот
         тест.
