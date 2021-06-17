@@ -14,13 +14,18 @@ import {
 
 import { getUserData } from "./userActions";
 
-export function handleLoginFace(handleClick) {
+export function handleLoginFace(handleClick, history) {
   return function (dispatch) {
     FB.login(function (response) {
       if (response.authResponse) {
         console.log("Welcome!  Fetching your information.... ", response);
         dispatch(
-          getSocToken("facebook", response.authResponse.accessToken, handleClick)
+          getSocToken(
+            "facebook",
+            response.authResponse.accessToken,
+            handleClick,
+            history
+          )
         );
         FB.api("/me", function (response) {
           console.log("Good to see you, " + response.name + ".");
@@ -31,23 +36,27 @@ export function handleLoginFace(handleClick) {
     });
   };
 }
-export function handleLoginVK(handleClick) {
+export function handleLoginVK(handleClick, history) {
   return function (dispatch) {
     dispatch({
       type: LOGIN_REQUEST,
     });
 
     VK.Auth.login((r) => {
-      console.log(r)
       if (r.session) {
         let username = r.session.user.first_name;
-
         dispatch({
           type: LOGIN_SUCCES,
           payload: username,
         });
 
-        dispatch(getSocToken("vk-oauth2", r.session.sid, handleClick));
+        // dispatch(getSocToken("vk-oauth2", r.session.sid, handleClick, history));
+        setTimeout(
+          dispatch(
+            getSocToken("vk-oauth2", r.session.sid, handleClick, history)
+          ),
+          1000
+        );
       } else {
         dispatch({
           type: LOGIN_FAIL,
@@ -68,15 +77,11 @@ export function onExitAccount() {
 }
 
 export const getSocToken =
-  (type, access_token, handleClick) => async (dispatch) => {
+  (type, access_token, handleClick, history) => async (dispatch) => {
     const response = await fetch(
       `https://stranger-go.com/api/v1/auth-social/${type}/?access_token=${access_token}`,
       {
         method: "GET",
-        // headers: {
-        //   Accept: "application/json",
-        //   "Content-Type": "application/json"
-        // },
       }
     );
     if (response.ok) {
@@ -86,7 +91,7 @@ export const getSocToken =
         type: SET_TOKEN,
         payload: userData.auth_token,
       });
-      dispatch(getMe(userData.auth_token));
+      dispatch(getMe(userData.auth_token, history, handleClick));
     } else {
       const err = await response.json();
       handleClick("Ошибка: " + err[Object.keys(err)[0]], "error");

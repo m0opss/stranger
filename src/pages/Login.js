@@ -49,10 +49,10 @@ const Login = ({}) => {
   };
 
   const vk_auth = () => {
-    dispatch(handleLoginVK(handleClick));
+    dispatch(handleLoginVK(handleClick, history));
   };
   const face_auth = () => {
-    dispatch(handleLoginFace(handleClick));
+    dispatch(handleLoginFace(handleClick, history));
   };
 
   return (
