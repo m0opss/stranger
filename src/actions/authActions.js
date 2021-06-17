@@ -70,7 +70,7 @@ export function onExitAccount() {
 export const getSocToken =
   (type, access_token, handleClick) => async (dispatch) => {
     const response = await fetch(
-      `https://stranger-go.com/api/v1/auth_social/${type}/?access_token=${access_token}`,
+      `https://stranger-go.com/api/v1/auth-social/${type}/?access_token=${access_token}`,
       {
         method: "GET",
         // headers: {
