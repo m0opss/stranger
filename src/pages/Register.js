@@ -15,7 +15,6 @@ import { Link, useHistory } from "react-router-dom";
 import SelectCard from "../components/SelectCard/SelectCard";
 import { handleLoginFace, handleLoginVK } from "../actions/authActions";
 
-
 import isEmail from "validator/es/lib/isEmail";
 import { useDispatch } from "react-redux";
 
@@ -246,7 +245,10 @@ const Register = ({}) => {
             <p>Зарегистрироваться</p>
             <img className="auth-form-block__reg-btn-ic" src={f_arr} />
           </div>
-          <div className="auth-form-block__soc-login">
+          <div
+            className="auth-form-block__soc-login"
+            style={{ visibility: "hidden" }}
+          >
             <p>Или войдите с помощью</p>
             <div className="auth-form-block__soc-icon">
               <a href="#">

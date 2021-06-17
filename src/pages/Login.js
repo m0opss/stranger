@@ -133,7 +133,10 @@ const Login = ({}) => {
           <Link to="/reset" className="reset-btn">
             Забыли пароль?
           </Link>
-          <div className="auth-form-block__soc-login">
+          <div
+            className="auth-form-block__soc-login"
+            style={{ visibility: "hidden" }}
+          >
             <p>Или войдите с помощью</p>
             <div className="auth-form-block__soc-icon">
               <a href="#">

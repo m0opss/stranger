@@ -140,7 +140,7 @@ const AddPost = (props) => {
             ).then((res) => {
               if (res.ok) handleClick("Изображение загружено!", "success");
               else {
-                handleClick("неподдерживаемый формат изображения", "error");
+                handleClick("Неподдерживаемый формат изображения", "error");
               }
             });
           });
