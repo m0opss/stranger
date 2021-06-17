@@ -20,7 +20,7 @@ export function handleLoginFace(handleClick) {
       if (response.authResponse) {
         console.log("Welcome!  Fetching your information.... ", response);
         dispatch(
-          getSocToken("facebook", response.access_token, handleClick)
+          getSocToken("facebook", response.authResponse.accessToken, handleClick)
         );
         FB.api("/me", function (response) {
           console.log("Good to see you, " + response.name + ".");
@@ -38,6 +38,7 @@ export function handleLoginVK(handleClick) {
     });
 
     VK.Auth.login((r) => {
+      console.log(r)
       if (r.session) {
         let username = r.session.user.first_name;
 
@@ -54,7 +55,7 @@ export function handleLoginVK(handleClick) {
           payload: new Error("Ошибка авторизации"),
         });
       }
-    }, 4);
+    });
   };
 }
 
