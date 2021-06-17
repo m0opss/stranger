@@ -13,6 +13,8 @@ import MuiAlert from "@material-ui/lab/Alert";
 import "./register.scss";
 import { Link, useHistory } from "react-router-dom";
 import SelectCard from "../components/SelectCard/SelectCard";
+import { handleLoginFace, handleLoginVK } from "../actions/authActions";
+
 
 import isEmail from "validator/es/lib/isEmail";
 import { useDispatch } from "react-redux";
@@ -120,6 +122,14 @@ const Register = ({}) => {
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
   const [checked, setChecked] = useState(false);
+
+  const vk_auth = () => {
+    dispatch(handleLoginVK(handleClick));
+  };
+  const face_auth = () => {
+    dispatch(handleLoginFace(handleClick));
+  };
+
   return (
     <div className="page-auth register">
       <div className="page-auth__background page-auth__background_1"></div>
@@ -240,14 +250,14 @@ const Register = ({}) => {
             <p>Или войдите с помощью</p>
             <div className="auth-form-block__soc-icon">
               <a href="#">
-                <img src={face} />
+                <img src={face} onClick={face_auth} />
               </a>
               <a href="#">
-                <img src={vk} />
+                <img src={vk} onClick={vk_auth} />
               </a>
-              <a href="#">
+              {/* <a href="#">
                 <img src={inst} />
-              </a>
+              </a> */}
             </div>
           </div>
         </div>

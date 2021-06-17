@@ -142,9 +142,9 @@ const Login = ({}) => {
               <a href="#">
                 <img src={vk} onClick={vk_auth} />
               </a>
-              <a href="#">
+              {/* <a href="#">
                 <img src={inst} />
-              </a>
+              </a> */}
             </div>
           </div>
           {/* <div className="auth-form-block__policy">

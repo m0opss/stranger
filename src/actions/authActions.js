@@ -20,7 +20,7 @@ export function handleLoginFace(handleClick) {
       if (response.authResponse) {
         console.log("Welcome!  Fetching your information.... ", response);
         dispatch(
-          getSocToken("FacebookOAuth2", response.access_token, handleClick)
+          getSocToken("facebook", response.access_token, handleClick)
         );
         FB.api("/me", function (response) {
           console.log("Good to see you, " + response.name + ".");
@@ -46,7 +46,7 @@ export function handleLoginVK(handleClick) {
           payload: username,
         });
 
-        dispatch(getSocToken("VKOAuth2", r.session.sid, handleClick));
+        dispatch(getSocToken("vk-oauth2", r.session.sid, handleClick));
       } else {
         dispatch({
           type: LOGIN_FAIL,
