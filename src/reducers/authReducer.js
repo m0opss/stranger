@@ -22,12 +22,28 @@ const defaultState = {
   uid: "",
   error: "",
   isBlock: false,
+  error: "", // добавили для сохранения текста ошибки
+  isFetching: false, // добавили для реакции на статус "загружаю" или нет
 };
 
 export default function authReducer(state = defaultState, action) {
   switch (action.type) {
+    case LOGIN_REQUEST:
+      return { ...state, isFetching: true, error: "" };
+
     case LOGIN_SUCCES:
-      return { ...state, name: action.payload, error: "" };
+      return {
+        ...state,
+        isFetching: false,
+        email: action.payload,
+      };
+
+    case LOGIN_FAIL:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload.message,
+      };
     case SET_TOKEN:
       return { ...state, token: action.payload };
     case SET_AUTH:

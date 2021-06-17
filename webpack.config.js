@@ -10,7 +10,7 @@ module.exports = {
     filename: "static/[name].[hash].js",
   },
   devServer: {
-    port: 3333,
+    port: 80,
   },
   resolve: {
     extensions: [".js", ".jsx"],

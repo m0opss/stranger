@@ -13,6 +13,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import { onLogin } from "../actions/authActions";
 import { getUserData } from "../actions/userActions";
+import { handleLoginFace, handleLoginVK } from "../actions/authActions";
 
 import "./register.scss";
 import "./login.scss";
@@ -45,6 +46,13 @@ const Login = ({}) => {
 
   const fetchData = () => {
     dispatch(onLogin({ email: login, password: pass }, history, handleClick));
+  };
+
+  const vk_auth = () => {
+    dispatch(handleLoginVK(handleClick));
+  };
+  const face_auth = () => {
+    dispatch(handleLoginFace(handleClick));
   };
 
   return (
@@ -129,10 +137,10 @@ const Login = ({}) => {
             <p>Или войдите с помощью</p>
             <div className="auth-form-block__soc-icon">
               <a href="#">
-                <img src={face} />
+                <img src={face} onClick={face_auth} />
               </a>
               <a href="#">
-                <img src={vk} />
+                <img src={vk} onClick={vk_auth} />
               </a>
               <a href="#">
                 <img src={inst} />
