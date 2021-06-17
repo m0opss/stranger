@@ -1,12 +1,17 @@
 import React from "react";
 
-import icon_qiwi from "../../assets/img/LK/lkCardQiwi.svg";
-import icon_pay from "../../assets/img/LK/lkCardPay.svg";
+// import icon_qiwi from "../../assets/img/LK/lkCardQiwi.svg";
+// import icon_pay from "../../assets/img/LK/lkCardPay.svg";
+import icon_qiwi from "../../assets/img/qiwi.svg";
+import icon_pay from "../../assets/img/ymoney.png";
 import icon_phone from "../../assets/img/LK/lkCardPhone.svg";
+import m_icon_qiwi from "../../assets/img/qiwi.svg";
+import m_icon_pay from "../../assets/img/ymoney.png";
+import m_icon_phone from "../../assets/img/LK/lkCardPhone.svg";
 
-import m_icon_qiwi from "../../assets/img/LK/lkCardQiwiM.svg";
-import m_icon_pay from "../../assets/img/LK/lkCardPayM.png";
-import m_icon_phone from "../../assets/img/LK/lkCardPhoneM.png";
+// import m_icon_qiwi from "../../assets/img/LK/lkCardQiwiM.svg";
+// import m_icon_pay from "../../assets/img/LK/lkCardPayM.png";
+// import m_icon_phone from "../../assets/img/LK/lkCardPhoneM.png";
 
 import "./selectcard.scss";
 
@@ -21,8 +26,8 @@ const SelectCard = ({ card, onClickCard, isMobile }) => {
         }}
       ></li>
       <li
-        className={`${card == "pay" ? "active" : ""}`}
-        onClick={() => onClickCard("pay")}
+        className={`${card == "ym" ? "active" : ""}`}
+        onClick={() => onClickCard("ym")}
         style={{ backgroundImage: `url(${isMobile ? m_icon_pay : icon_pay})` }}
       ></li>
       <li

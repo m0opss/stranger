@@ -35,6 +35,7 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
     }
     setOpen(false);
   };
+  // 8 9990866997
   const fetchMoney = () => {
     let ok_card;
     fetch("https://stranger-go.com/api/v1/users/me/", {
@@ -45,8 +46,8 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        withdrawal_type: card == "qiwi" ? 1 : card == "phone" ? 2 : 0,
-        withdrawal_value: "+7" + cardNum,
+        withdrawal_type: card == "qiwi" ? 1 : card == "phone" ? 2 : 3,
+        withdrawal_value: "7" + cardNum,
       }),
     })
       .then((res) => {
@@ -66,20 +67,17 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
             body: JSON.stringify({
               sum: parseFloat(sum),
             }),
-          })
-            .then((res) => {
-              status = res.status;
-              ok = res.ok;
-              return res.json();
-            })
-            .then((re) => {
-              if (ok) {
-                handleClick(re.detail, "success");
-              } else {
-                console.log(123);
-                handleClick("Ошибка: " + re.detail, "error");
-              }
-            });
+          }).then((res) => {
+            status = res.status;
+            if (status == 204) {
+              handleClick("Деньги успешно переведены", "success");
+            } else {
+              handleClick(
+                "Ошибка при переводе денег. Попробуйте позже",
+                "error"
+              );
+            }
+          });
         } else {
           handleClick(re.detail, "error");
         }
