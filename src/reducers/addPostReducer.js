@@ -8,6 +8,7 @@ const defaultState = {
   brLink: "",
   time: "",
   price: "",
+  remains: '',
   text: "",
   ques: [
     {

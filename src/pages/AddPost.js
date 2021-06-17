@@ -91,7 +91,7 @@ const AddPost = (props) => {
       description: post_t.text,
       duration: parseFloat(post_t.time),
       coast: parseFloat(post_t.price),
-      remains: 5000,
+      remains: parseFloat(post_t.remains),
       logo: slides[0].data,
       is_published: true,
       is_archive: isArchive,
@@ -166,7 +166,7 @@ const AddPost = (props) => {
               time: q.time,
               answers: tmp,
             };
-      
+
             fetch(`https://stranger-go.com/api/v1/questions/`, {
               method: "POST",
               headers: {
@@ -231,7 +231,7 @@ const AddPost = (props) => {
         <div className="archive-background__item archive-background__item_3"></div>
         <div className="archive-background__item archive-background__item_4"></div>
         <div className="archive-background__item archive-background__item_5"></div>
-        {isMobile ? <></> : <BackArr link={'/addPosts'}/>}
+        {isMobile ? <></> : <BackArr link={"/addPosts"} />}
         <div className="brand-page__content">
           <div className="brand-page__info">
             <input
@@ -241,7 +241,16 @@ const AddPost = (props) => {
               defaultValue={post_t.brName}
               onChange={(e) => savePostField({ brName: e.target.value })}
             />
-            <div className="brand-page__row">
+            <div className="brand-page__row" style={{ marginBottom: "20px" }}>
+              <input
+                type="text"
+                className="brand-page__row-input"
+                placeholder="Сумма"
+                defaultValue={post_t.remains}
+                onChange={(e) => savePostField({ remains: e.target.value })}
+              />
+            </div>
+            <div className="brand-page__row" style={{ marginBottom: "20px" }}>
               <div className="brand-page__brand">
                 <img src={info} />
                 <input
@@ -273,6 +282,7 @@ const AddPost = (props) => {
                 />
               </div>
             </div>
+
             <div className="brand-page__descr">
               <textarea
                 type="text"
@@ -291,6 +301,15 @@ const AddPost = (props) => {
               defaultValue={post_t.brName}
               onChange={(e) => savePostField({ brName: e.target.value })}
             />
+            <div className="brand-page__row">
+              <input
+                type="text"
+                className="brand-page__row-input"
+                placeholder="Сумма"
+                defaultValue={post_t.remains}
+                onChange={(e) => savePostField({ remains: e.target.value })}
+              />
+            </div>
             <div className="brand-page__row">
               <div className="brand-page__brand">
                 <img src={info} />
