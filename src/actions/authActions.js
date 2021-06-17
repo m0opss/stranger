@@ -18,7 +18,10 @@ export function handleLoginFace(handleClick) {
   return function (dispatch) {
     FB.login(function (response) {
       if (response.authResponse) {
-        console.log("Welcome!  Fetching your information.... ");
+        console.log("Welcome!  Fetching your information.... ", response);
+        dispatch(
+          getSocToken("FacebookOAuth2", response.access_token, handleClick)
+        );
         FB.api("/me", function (response) {
           console.log("Good to see you, " + response.name + ".");
         });
