@@ -69,6 +69,18 @@
     }
   }
 }
+.brand-page__row_top {
+  margin-bottom: 20px;
+  .brand-page__row-input {
+    height: 60px;
+    max-width: 6 00px;
+    border: none;
+    border-bottom: 1px solid #c4c4c4;
+    outline: none;
+    margin-bottom: 0px;
+    margin-left: 40px;
+  }
+}
 .add-post .brand-page__slider-item img {
   padding: 0;
   height: auto;
@@ -81,7 +93,7 @@
   border: none;
   border-bottom: 1px solid #c4c4c4;
   outline: none;
-  margin-bottom: 50px;
+  // margin-bottom: 50px;
 }
 .brand-page__row-input {
   max-width: 50px;
@@ -95,7 +107,7 @@
 }
 .brand-page__descr-input {
   width: 100%;
-  min-height: 340px;
+  min-height: 400px;
   padding: 10px;
 }
 .add-post .brand-page__slider-item_add {

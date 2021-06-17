@@ -234,14 +234,14 @@ const AddPost = (props) => {
         {isMobile ? <></> : <BackArr link={"/addPosts"} />}
         <div className="brand-page__content">
           <div className="brand-page__info">
-            <input
-              type="text"
-              className="brand-page__name-input"
-              placeholder="Бренд"
-              defaultValue={post_t.brName}
-              onChange={(e) => savePostField({ brName: e.target.value })}
-            />
-            <div className="brand-page__row" style={{ marginBottom: "20px" }}>
+            <div className="brand-page__row_top">
+              <input
+                type="text"
+                className="brand-page__name-input"
+                placeholder="Бренд"
+                defaultValue={post_t.brName}
+                onChange={(e) => savePostField({ brName: e.target.value })}
+              />
               <input
                 type="text"
                 className="brand-page__row-input"
@@ -250,7 +250,7 @@ const AddPost = (props) => {
                 onChange={(e) => savePostField({ remains: e.target.value })}
               />
             </div>
-            <div className="brand-page__row" style={{ marginBottom: "20px" }}>
+            <div className="brand-page__row">
               <div className="brand-page__brand">
                 <img src={info} />
                 <input
@@ -294,14 +294,14 @@ const AddPost = (props) => {
             </div>
           </div>
           <div className="brand-page__info_m">
-            <input
-              type="text"
-              className="brand-page__name-input"
-              placeholder="Бренд"
-              defaultValue={post_t.brName}
-              onChange={(e) => savePostField({ brName: e.target.value })}
-            />
-            <div className="brand-page__row">
+            <div className="brand-page__row_top">
+              <input
+                type="text"
+                className="brand-page__name-input"
+                placeholder="Бренд"
+                defaultValue={post_t.brName}
+                onChange={(e) => savePostField({ brName: e.target.value })}
+              />
               <input
                 type="text"
                 className="brand-page__row-input"
