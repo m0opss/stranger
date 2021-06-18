@@ -503,6 +503,8 @@
   .questions__save {
     top: 76px;
     cursor: pointer;
+    width: 30px;
+    height: 30px;
     &:hover {
       .check-sign {
         background: #dadada;
