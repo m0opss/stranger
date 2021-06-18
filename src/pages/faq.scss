@@ -154,7 +154,7 @@
       }
     }
     @media screen and (max-width: 480px) {
-      width: 55%;
+      width: 65%;
       margin-top: 30px;
       // flex-direction: column;
       .ant-collapse-item {
@@ -194,6 +194,9 @@
       }
       .ant-collapse-header {
       }
+    }
+    @media screen and (max-width: 370px) {
+      width: 80%;
     }
   }
 }

@@ -198,7 +198,7 @@ const Register = ({}) => {
               type="password"
               className="auth-form-block__input"
             />
-            {isMobile ? (
+            {/* {isMobile ? (
               <div className="auth-form-block__select-card-block">
                 <p>Способ вывода денег</p>
                 <div className="auth-form-block__select-card-wrapper">
@@ -207,7 +207,7 @@ const Register = ({}) => {
               </div>
             ) : (
               <></>
-            )}
+            )} */}
             <Input
               value={passAlso}
               setValue={setPassAlso}

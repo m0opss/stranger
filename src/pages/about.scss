@@ -39,13 +39,16 @@
             color: rgba(0, 0, 0, 0.7);
           }
         }
-        @media screen and (max-width: 370px) {
+        @media screen and (max-width: 330px) {
             width: 100%;
         }
       }
     }
     @media screen and (max-width: 480px) {
-      width: 57%;
+      width: 65%;
+    }
+    @media screen and (max-width: 370px) {
+      width: 80%;
     }
   }
 }
