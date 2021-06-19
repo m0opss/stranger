@@ -3,12 +3,15 @@ import { Link } from "react-router-dom";
 
 import Container from "../components/Containers/Container";
 import play from "../assets/img/rulesPlay.svg";
+import all from "../assets/img/all.png";
 import alien from "../assets/img/alienReg.svg";
 // import alien_m from "../assets/img/rulesBG_m.svg";
 
 import "./rules.scss";
 
 const Rules = () => {
+  let isMobile = false;
+  if (window.innerWidth < 768) isMobile = true;
   return (
     <div className="page rules">
       <Container type="dark">
@@ -27,9 +30,9 @@ const Rules = () => {
               <img src={play} />
             </Link>
           </div>
-        <div className="main-block__alien">
-          <img src={alien} className="" />
-        </div>
+          <div className="main-block__alien">
+            <img src={isMobile ? all : alien} className="" />
+          </div>
         </div>
       </Container>
     </div>

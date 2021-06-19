@@ -4,8 +4,9 @@ import Header from "../components/Header/Header";
 import TestSlide from "../components/TestSlide/TestSlide";
 import Slider from "react-slick";
 import alien from "../assets/img/alien.svg";
-import { useSelector } from "react-redux";
-
+import pkHelp from "../assets/img/pkHelp.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { SET_FIRST_TIME } from "../reducers/userReducer";
 import "swiper/swiper.scss";
 import "./test.scss";
 import { useHistory } from "react-router";
@@ -35,7 +36,8 @@ function SamplePrevArrow(props) {
 }
 
 const Test = ({}) => {
-  console.log(settings);
+  const first_time = useSelector((state) => state.user.first_time);
+
   const [slides, setSlides] = useState([]);
   const settings = {
     className: `center ${slides.length < 3 ? "centered-slide" : ""}`,
@@ -62,6 +64,24 @@ const Test = ({}) => {
       },
     ],
   };
+  const dispatch = useDispatch();
+
+  function positionHelp(el, set_el) {
+    const { top, left, width, height } = el.getBoundingClientRect();
+    set_el.style.left = left + width / 2 - 80 + "px";
+    set_el.style.top = top + height / 2 + "px";
+  }
+
+  useEffect(() => {
+    if (first_time && document.querySelector(".slick-current") != null) {
+      const el = document.querySelector(".slick-current");
+      const set_el = document.querySelector("img.helped-container__img");
+
+      setTimeout(() => positionHelp(el, set_el), 500);
+
+      // setTimeout(() => dispatch({ type: SET_FIRST_TIME }), 5000);
+    }
+  });
 
   const token = useSelector((state) => state.auth.token);
   let isMobile = false;
@@ -84,21 +104,34 @@ const Test = ({}) => {
       })
       .then((re) => {
         if (ok) {
-          let res = []
-          re.map(item => {
-            if(!item.is_archive && parseFloat(item.remains) > parseFloat(item.coast)) {
-              res = [...res, item]
+          let res = [];
+          re.map((item) => {
+            if (
+              !item.is_archive &&
+              parseFloat(item.remains) > parseFloat(item.coast)
+            ) {
+              res = [...res, item];
             }
-          })
+          });
           setSlides(res);
         } else if (status == 401) history.push("/");
         else alert(JSON.stringify(re) + " " + status);
       });
   }, []);
-  console.log(123123213, slides);
+
   return (
     <div className="page archive-page test-page ">
       <Header />
+      {first_time ? (
+        <div
+          className="helped-container"
+          onClick={() => dispatch({ type: SET_FIRST_TIME })}
+        >
+          <img className="helped-container__img" src={pkHelp} />
+        </div>
+      ) : (
+        <></>
+      )}
       <div className="test-content">
         <Slider {...settings}>
           {slides.map((s) => (

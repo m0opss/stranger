@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/img/logo.svg";
 import logonMobile from "../../assets/img/logonMobile.svg";
+import mMenuRub from "../../assets/img/mMenuRub.svg";
 import alienMobile from "../../assets/img/alienMobile.png";
 import { Menu, Dropdown } from "antd";
 import { useDispatch, useSelector } from "react-redux";
@@ -14,6 +15,7 @@ const Header = () => {
   const [innerHeader, setInnerHeader] = useState(false);
   const isAuth = useSelector((state) => state.auth.isAuth);
   const email = useSelector((state) => state.auth.email);
+  const balance = useSelector((state) => state.user.balance);
   const isAdmin = useSelector((state) => state.auth.isAdmin);
   const { pathname } = useLocation();
 
@@ -133,6 +135,14 @@ const Header = () => {
               <img src={logo} alt="" />
             </Link>
           </li>
+          {isAuth && !isAdmin ? (
+            <div className="menu-balance">
+              <img src={mMenuRub} alt="" />
+              <p>{balance}</p>
+            </div>
+          ) : (
+            <></>
+          )}
           <li>
             <NavLink exact to="/">
               Главная
