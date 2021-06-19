@@ -128,7 +128,7 @@ const Questions = (props) => {
   const [alertMsg, setAlertMsg] = React.useState();
   const [severity, setSeverity] = React.useState();
 
-  const fetchData = (setData, token, history, setFinish = null) => {
+  const fetchData = (setData, token, history, printNumbers, setFinish = null) => {
     (async () => {
       const rawResponse = await fetch(
         "https://stranger-go.com/api/v1/games/question/",
@@ -144,10 +144,11 @@ const Questions = (props) => {
       } else if (rawResponse.status == 200) {
         const content = await rawResponse.json();
         setData(content);
+        printNumbers()
       } else {
         const content = await rawResponse.json();
         handleClick(content[Object.keys(content)[0]], "error");
-        history.push("/test");
+        setTimeout(() => history.push("/test"), 2000);
       }
     })();
   };
@@ -164,7 +165,7 @@ const Questions = (props) => {
     setOpen(false);
   };
   const token = useSelector((state) => state.auth.token);
-  const [timing, setTiming] = useState();
+  const [timing, setTiming] = useState(null);
   const [finished, setFinished] = useState(false);
   const [loose, setLoose] = useState(false);
   const [cnt, setCnt] = useState(0);
@@ -172,9 +173,16 @@ const Questions = (props) => {
   const history = useHistory();
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
+
   useEffect(() => {
-    printNumbers(3, 0, setTiming);
-    fetchData(setContent, token, history, setFinished);
+    // printNumbers(3, 0, setTiming);
+    fetchData(
+      setContent,
+      token,
+      history,
+      () => printNumbers(3, 0, setTiming),
+      setFinished
+    );
   }, []);
 
   const fetchAnsw = (id_q, id_a) => {
@@ -250,7 +258,7 @@ const Questions = (props) => {
             <img src={loose_bg} />
           </div>
         ))}
-        {timing != 0 ? (
+        {timing != 0 && timing != null ? (
           <>
             <div className=" questions-page__bg-item_1"></div>
             <div className=" questions-page__bg-item_2"></div>

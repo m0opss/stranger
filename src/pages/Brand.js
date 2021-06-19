@@ -34,11 +34,7 @@ const Brand = (props) => {
     speed: 500,
     afterChange: (current) => setSlideN(current),
   };
-  useEffect(() => {
-    if (Object.keys(data).length > 0) {
-      setTimeout(() => setTimed(true), data.duration * 60 * 1000);
-    }
-  }, [data]);
+
   useEffect(() => {
     if (slides.length == slideN + 1) {
       setWatched(true);
@@ -102,11 +98,10 @@ const Brand = (props) => {
               </div>
             </div>
             <div className="brand-page__descr">{descr}</div>
-            {fullWatched && timed ? (
+            {fullWatched ? (
               <Link
                 to={`/brand/${id}/q`}
                 className={`btn brand-page__btn brand-page__btn_active`}
-                style={{ marginBottom: 0 }}
               >
                 ответить на вопросы
               </Link>
@@ -114,21 +109,20 @@ const Brand = (props) => {
               <div className={`btn brand-page__btn`}>ответить на вопросы</div>
             )}
 
-            {fullWatched ? (
-              <></>
-            ) : (
-              <p className="brand-page__warning">
-                Играть можно начать только после просмотра презентации/видео
-                ролика
-              </p>
-            )}
+            <p
+              className="brand-page__warning"
+              style={fullWatched ? { visibility: "hidden" } : {}}
+            >
+              Играть можно начать только после просмотра презентации/видео
+              ролика
+            </p>
           </div>
           <div className="brand-page__info_m">
             <h2>{name}</h2>
             <div className="brand-page__row">
               <div className="brand-page__brand">
                 <img src={info} />
-                {brand}
+                <a href={brand}>{name}</a>
               </div>
               <div className="brand-page__time">
                 <img src={clock} />
@@ -165,7 +159,6 @@ const Brand = (props) => {
               <Link
                 to={`/brand/${id}/q`}
                 className={`btn brand-page__btn brand-page__btn_active`}
-                style={{ marginBottom: 0 }}
               >
                 играть
               </Link>
@@ -173,13 +166,12 @@ const Brand = (props) => {
               <div className={`btn brand-page__btn`}>играть</div>
             )}
 
-            {fullWatched ? (
-              <></>
-            ) : (
-              <p className="brand-page__warning">
-                Играть можно начать только после просмотра презентации
-              </p>
-            )}
+            <p
+              className="brand-page__warning"
+              style={fullWatched ? { visibility: "hidden" } : {}}
+            >
+              Играть можно начать только после просмотра презентации
+            </p>
           </div>
         </div>
       </div>

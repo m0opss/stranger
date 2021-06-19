@@ -50,7 +50,7 @@
     padding-left: 40px;
     padding-right: 30px;
     .brand-page__slider {
-      width: 500px;
+      width: 450px;
     }
     .brand-page__info {
       width: 450px;
@@ -102,6 +102,9 @@
     align-items: center;
     img {
       margin-right: 20px;
+      @media screen and (max-width: 585px) {
+        margin-right: 10px;
+      }
     }
   }
 }
@@ -227,9 +230,10 @@
   @media screen and (max-width: 585px) {
     .brand-page__row {
       font-weight: 600;
-      font-size: 16px;
-      line-height: 20px;
+      font-size: 10px;
+      line-height: 15px;
       letter-spacing: 0.25px;
+      margin-bottom: 10px;
       img {
         width: 25px;
         height: 25px;
@@ -280,16 +284,16 @@
       // padding: 40px 5px 100px 90px;
     }
     @media screen and (max-width: 1550px) {
-      height: 597px;
+      height: 500px;
     }
     @media screen and (max-width: 1260px) {
-      height: 500px;
+      height: 450px;
     }
     @media screen and (max-width: 585px) {
       height: 340px;
     }
   }
-  @media screen and (max-width: 1260px) {
+  @media screen and (max-width: 767px) {
     .slick-prev,
     .slick-next {
       &::before {

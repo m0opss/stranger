@@ -54,7 +54,7 @@
     .slick-slide.slick-active {
       visibility: visible;
       opacity: 1;
-      filter: blur(3px);
+      filter: blur(10px);
       width: 421px !important;
       z-index: 2;
       @media screen and (max-width: 1185px) {
@@ -222,6 +222,7 @@
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  padding-bottom: 0;
   .brands-list {
     display: flex;
     flex-wrap: wrap;

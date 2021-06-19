@@ -12,6 +12,9 @@
     margin-top: 20px;
     margin-bottom: 20px;
     width: 80%;
+    @media screen and (max-width: 560px) { 
+      width: 100%;
+    }
   }
   .donate-block__title_m {
     margin-bottom: 20px;

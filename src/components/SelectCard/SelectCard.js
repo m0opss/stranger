@@ -3,10 +3,9 @@ import React from "react";
 // import icon_qiwi from "../../assets/img/LK/lkCardQiwi.svg";
 // import icon_pay from "../../assets/img/LK/lkCardPay.svg";
 import icon_qiwi from "../../assets/img/qiwi.svg";
-import icon_pay from "../../assets/img/ymoney.png";
+import icon_pay from "../../assets/img/io.svg";
 import icon_phone from "../../assets/img/LK/lkCardPhone.svg";
 import m_icon_qiwi from "../../assets/img/qiwi.svg";
-import m_icon_pay from "../../assets/img/ymoney.png";
 import m_icon_phone from "../../assets/img/LK/lkCardPhone.svg";
 
 // import m_icon_qiwi from "../../assets/img/LK/lkCardQiwiM.svg";
@@ -28,7 +27,7 @@ const SelectCard = ({ card, onClickCard, isMobile }) => {
       <li
         className={`${card == "ym" ? "active" : ""}`}
         onClick={() => onClickCard("ym")}
-        style={{ backgroundImage: `url(${isMobile ? m_icon_pay : icon_pay})` }}
+        style={{ backgroundImage: `url(${icon_pay})`, backgroundSize: '40%' }}
       ></li>
       <li
         className={`${card == "phone" ? "active" : ""}`}

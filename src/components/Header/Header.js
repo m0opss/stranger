@@ -20,7 +20,7 @@ const Header = () => {
     setMenuOpen(!menuOpen);
   };
   const onExitClick = () => {
-    localStorage.removeItem('token')
+    localStorage.removeItem("token");
     dispatch(onExitAccount());
   };
 
@@ -82,7 +82,8 @@ const Header = () => {
                 >
                   <img className="header__profile-img" src={alienMobile} />
                   <p className="header__profile-name">
-                    {email} <DownOutlined style={{ marginLeft: "10px" }} />
+                    {email.substr(0, email.search("@"))}{" "}
+                    <DownOutlined style={{ marginLeft: "10px" }} />
                   </p>
                 </a>
               </Dropdown>
