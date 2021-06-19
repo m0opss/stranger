@@ -25,7 +25,7 @@ const SummInputBlock = ({ sum, setSum, max }) => {
   const [overflow, setOverflow] = useState(false);
 
   useEffect(() => {
-    if (parseFloat(sum) > max) {
+    if (parseFloat(sum) > max || parseFloat(sum) < 200) {
       setOverflow(true);
     } else {
       setOverflow(false);
@@ -64,7 +64,7 @@ const DonateBlock = ({
     setCard(kind);
   };
   let active = false;
-  if (max >= 200 && cardNum != ""  && cardNum.length == 10 && sum != '') {
+  if (max >= 200 && cardNum != "" && cardNum.length == 10 && sum != "") {
     active = true;
   }
   let isMobile = false;
@@ -103,7 +103,9 @@ const DonateBlock = ({
           : "* Только что заработанные деньги можно вывести через 2 часа"}
       </p> */}
       <div
-        className={`btn donate-block__btn ${active ? 'donate-block__btn_active' : ''}`}
+        className={`btn donate-block__btn ${
+          active ? "donate-block__btn_active" : ""
+        }`}
         onClick={active ? fetchMoney : () => {}}
       >
         перевести

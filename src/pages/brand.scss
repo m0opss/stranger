@@ -37,7 +37,7 @@
   }
   @media screen and (max-width: 1550px) {
     padding-left: 60px;
-    padding-right: 60px;
+    padding-right: 80px;
     // align-items: flex-end;
     .brand-page__info {
       min-width: 500px;
@@ -48,24 +48,24 @@
   }
   @media screen and (max-width: 1260px) {
     padding-left: 40px;
-    padding-right: 30px;
+    padding-right: 70px;
     .brand-page__slider {
-      width: 450px;
+      width: 380px;
     }
     .brand-page__info {
       width: 450px;
       min-width: unset;
     }
   }
-  @media screen and (max-width: 1090px) {
-    padding-right: 10px;
-    .brand-page__info {
-      width: 400px;
-    }
-    .brand-page__slider {
-      width: 450px;
-    }
-  }
+  // @media screen and (max-width: 1090px) {
+  //   padding-right: 10px;
+  //   .brand-page__info {
+  //     width: 400px;
+  //   }
+  //   .brand-page__slider {
+  //     width: 450px;
+  //   }
+  // }
   @media screen and (max-width: 1000px) {
     flex-direction: column;
     padding-left: 40px;
@@ -82,7 +82,7 @@
   @media screen and (max-width: 585px) {
     padding-left: 25px;
     padding-right: 25px;
-    margin-top: 20px;
+    margin-top: 0px;
   }
 }
 .brand-page__row {
@@ -181,6 +181,10 @@
     color: white;
   }
   transition: 0.5s;
+  @media screen and (max-width: 1260px) {
+    font-size: 21px;
+    height: 66px;
+  }
   @media screen and (max-width: 1090px) {
     font-size: 28px;
   }
@@ -253,10 +257,21 @@
     display: none;
   }
   .slick-prev {
-    left: -60px;
+    left: -70px;
   }
   .slick-next {
-    right: -25px;
+    right: -70px;
+
+    transform: rotate(180deg) translateY(27px);
+  }
+  .slick-next,
+  .slick-prev {
+    height: 55px;
+    width: 55px;
+    @media screen and (max-width: 1260px) {
+      height: 35px;
+      width: 35px;
+    }
   }
 
   .slick-dots {
@@ -287,18 +302,16 @@
       height: 500px;
     }
     @media screen and (max-width: 1260px) {
-      height: 450px;
+      height: 380px;
     }
     @media screen and (max-width: 585px) {
-      height: 340px;
+      height: 320px;
     }
   }
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1000px) {
     .slick-prev,
     .slick-next {
-      &::before {
-        display: none;
-      }
+      display: none !important;
     }
   }
 }

@@ -62,7 +62,7 @@ const Test = ({}) => {
       },
     ],
   };
-  console.log(settings);
+
   const token = useSelector((state) => state.auth.token);
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;

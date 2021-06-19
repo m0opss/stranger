@@ -8,7 +8,16 @@ import "./testslide.scss";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const TestSlide = ({ img, name, time, price, id, progress, ...props }) => {
+const TestSlide = ({
+  img,
+  name,
+  time,
+  price,
+  id,
+  progress,
+  isAuth,
+  ...props
+}) => {
   const token = useSelector((state) => state.auth.token);
   const startGame = () => {
     fetch("https://stranger-go.com/api/v1/games/", {
@@ -48,7 +57,7 @@ const TestSlide = ({ img, name, time, price, id, progress, ...props }) => {
         ) : (
           <Link
             className="test-slide__play"
-            to={`/brand/${id}`}
+            to={isAuth ? `/brand/${id}` : "/register"}
             onClick={startGame}
           >
             <img src={start} />

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import logo from "../../assets/img/logo.svg";
 import logonMobile from "../../assets/img/logonMobile.svg";
 import alienMobile from "../../assets/img/alienMobile.png";
@@ -11,10 +11,20 @@ import "./header.scss";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [innerHeader, setInnerHeader] = useState(false);
   const isAuth = useSelector((state) => state.auth.isAuth);
   const email = useSelector((state) => state.auth.email);
   const isAdmin = useSelector((state) => state.auth.isAdmin);
+  const { pathname } = useLocation();
 
+  useEffect(() => {
+    if (
+      (pathname == "/transfer" || pathname == "/lk") &&
+      window.innerWidth < 1086
+    ) {
+      setInnerHeader(true);
+    }
+  }, []);
   const dispatch = useDispatch();
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -39,9 +49,17 @@ const Header = () => {
   return (
     <header className="header">
       <div className="container">
-        <Link to="/" className="header__logo">
-          <img src={logo} alt="" />
-        </Link>
+        {innerHeader && isAdmin ? (
+          <div className="header__name">Admin</div>
+        ) : innerHeader && !isAdmin ? (
+          <div className="header__name">
+            Привет, {email.substr(0, email.search("@"))}
+          </div>
+        ) : (
+          <Link to="/" className="header__logo">
+            <img src={logo} alt="" />
+          </Link>
+        )}
         <div className="header__block">
           <nav className="header__nav">
             <ul>

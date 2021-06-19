@@ -4,7 +4,8 @@ import Slider from "react-slick";
 import clock from "../assets/img/brandClock.svg";
 import info from "../assets/img/brandInfo.svg";
 import rub from "../assets/img/brandRub.svg";
-import ReactPlayer from "react-player";
+import bransSlideArrBack from "../assets/img/bransSlideArrBack.svg";
+
 import { SET_COAST, SET_BRAND } from "../reducers/gameReducer";
 import { Link, NavLink, useParams, useRouteMatch } from "react-router-dom";
 import "./brand.scss";
@@ -32,6 +33,8 @@ const Brand = (props) => {
     infinite: false,
     slidesToShow: 1,
     speed: 500,
+    nextArrow: <img src={bransSlideArrBack}  />,
+    prevArrow: <img src={bransSlideArrBack}  />,
     afterChange: (current) => setSlideN(current),
   };
 
@@ -86,7 +89,9 @@ const Brand = (props) => {
             <div className="brand-page__row">
               <div className="brand-page__brand">
                 <img src={info} />
-                <a href={brand}>{name}</a>
+                <a target="_blank" href={brand}>
+                  {name}
+                </a>
               </div>
               <div className="brand-page__time">
                 <img src={clock} />
@@ -122,7 +127,9 @@ const Brand = (props) => {
             <div className="brand-page__row">
               <div className="brand-page__brand">
                 <img src={info} />
-                <a href={brand}>{name}</a>
+                <a target="_blank" href={brand}>
+                  {name}
+                </a>
               </div>
               <div className="brand-page__time">
                 <img src={clock} />
@@ -168,7 +175,7 @@ const Brand = (props) => {
 
             <p
               className="brand-page__warning"
-              style={fullWatched ? { visibility: "hidden" } : {}}
+              style={fullWatched ? { display: "none" } : {}}
             >
               Играть можно начать только после просмотра презентации
             </p>

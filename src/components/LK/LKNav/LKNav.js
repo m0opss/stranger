@@ -149,15 +149,15 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
   const balance = useSelector((state) => state.user.balance);
   const progress = useSelector((state) => state.user.progress);
   const th = useSelector((state) => state.user.transaction_history);
-  let plusSum = th.length > 0 ? th[0].amount : 0;
   let topAm = 0;
   let botAm = 0;
+
   if (th.length > 0) {
     th.map((i) => {
-      if (i.type_operations == "inc") {
-        topAm += parseFloat(i.amount);
-      } else if (i.type_operations == "dec") {
-        botAm += parseFloat(i.amount);
+      if (i.type_operations == "inc" && topAm == 0) {
+        topAm = parseFloat(i.amount);
+      } else if (i.type_operations == "dec" && botAm == 0) {
+        botAm = parseFloat(i.amount);
       }
     });
   }
@@ -199,7 +199,7 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
           <LKProgress
             isMobile={isMobile}
             progress={progress}
-            plusSum={plusSum}
+            plusSum={topAm}
             date={th.length > 0 ? th[0].date.substr(0, 10) : "-"}
           />
         </>

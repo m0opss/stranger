@@ -39,10 +39,7 @@ const Main = () => {
           {isAdmin ? (
             <></>
           ) : (
-            <Link
-              to={isAuth ? "/test" : "/login"}
-              className="btn main-block__btn"
-            >
+            <Link to={"/test"} className="btn main-block__btn">
               НАЧАТЬ
             </Link>
           )}
