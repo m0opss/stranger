@@ -7,16 +7,25 @@ import lkHelpSum from "../../../../assets/img/LK/lkHelpSum.svg";
 import SelectCard from "../../../SelectCard/SelectCard";
 import "./lkdonate.scss";
 
-const CardInputBlock = ({ cardNum, setCardNum, card }) => {
+const CardInputBlock = ({ cardNum, setCardNum, type, val }) => {
   return (
     <div className="donate-block__input-card-block">
-      <p>Номер телефона</p>
-      <Input
-        addonBefore="+7"
-        value={cardNum}
-        type="tel"
-        onChange={(e) => setCardNum(e.target.value)}
-      />
+      <p>Номер телефона</p>{" "}
+      {type == 5 ? (
+        <Input
+          addonBefore="+7"
+          value={cardNum}
+          type="tel"
+          onChange={(e) => setCardNum(e.target.value)}
+        />
+      ) : (
+        <Input
+          addonBefore="+7"
+          value={val.substr(1, val.length - 1)}
+          type="tel"
+          disabled
+        />
+      )}
     </div>
   );
 };
@@ -64,12 +73,23 @@ const DonateBlock = ({
     setCard(kind);
   };
   let active = false;
-  if (max >= 200 && cardNum != "" && cardNum.length == 10 && sum != "") {
-    active = true;
-  }
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
   const balance = useSelector((state) => state.user.balance);
+  const type_c = useSelector((state) => state.auth.withdrawal_type);
+  const val_c = useSelector((state) => state.auth.withdrawal_value);
+
+  useEffect(() => {
+    if (max >= 200 && sum != "") {
+      console.log(cardNum != "" && type_c == 5 && cardNum.length == 10, 211);
+      if (
+        (cardNum != "" && type_c == 5 && cardNum.length == 10) ||
+        type_c != 5
+      ) {
+        active = true;
+      }
+    }
+  });
 
   return (
     <div className="lk-content__block donate-block">
@@ -94,7 +114,12 @@ const DonateBlock = ({
       <div className="donate-block__select-card">
         <SelectCard onClickCard={onClickCard} card={card} isMobile={isMobile} />
       </div>
-      <CardInputBlock cardNum={cardNum} setCardNum={setCardNum} />
+      <CardInputBlock
+        cardNum={cardNum}
+        setCardNum={setCardNum}
+        type={type_c}
+        val={val_c}
+      />
       <SummInputBlock sum={sum} setSum={setSum} max={max} />
 
       {/* <p className="donate-block__small-text">
@@ -106,7 +131,7 @@ const DonateBlock = ({
         className={`btn donate-block__btn ${
           active ? "donate-block__btn_active" : ""
         }`}
-        onClick={active ? fetchMoney : () => {}}
+        onClick={active ? () => fetchMoney(type_c) : () => {}}
       >
         перевести
       </div>

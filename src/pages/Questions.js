@@ -202,7 +202,7 @@ const Questions = (props) => {
       body: JSON.stringify({ question: id_q, answer: id_a }),
     }).then((re) => {
       if (re.status == 200) {
-        fetchData(setContent, token, history, setFinished);
+        fetchData(setContent, token, history, ()=> {}, setFinished);
       } else {
         setFinished(true);
         setLoose(true);
@@ -293,7 +293,6 @@ const Questions = (props) => {
                   </li>
                 </ul>
               </div>
-              {/* <span>{timing}</span> */}
             </div>
           </>
         ) : finished && loose ? (

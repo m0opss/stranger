@@ -131,11 +131,22 @@ const Test = ({}) => {
   if (window.innerWidth < 768) isMobile = true;
   const history = useHistory();
   useEffect(() => {
+    document.addEventListener("keydown", function (event) {
+      if (event.code == "ArrowLeft") {
+        document.querySelector(".slick-prev").click();
+      }
+      if (event.code == "ArrowRight") {
+        document.querySelector(".slick-next").click();
+      }
+    });
+  }, []);
+
+  useEffect(() => {
     let ok, status;
     fetch("https://stranger-go.com/api/v1/posts/all_post/", {
       method: "GET",
       headers: {
-        // Authorization: `Token ${token}`,
+        Authorization: `Token ${token}`,
         Accept: "application/json",
         "Content-Type": "application/json",
       },

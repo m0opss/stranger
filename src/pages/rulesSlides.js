@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import Container from "../components/Containers/Container";
 
@@ -30,7 +30,7 @@ function SamplePrevArrow(props) {
 
 const RulesSlides = ({}) => {
   const [step, setStep] = useState(0);
-
+  
   const settings = {
     dots: true,
     // focusOnSelect: true,
@@ -41,10 +41,22 @@ const RulesSlides = ({}) => {
     prevArrow: <SamplePrevArrow />,
     afterChange: (current) => setStep(current),
   };
+
+  useEffect(() => {
+    document.addEventListener("keydown", function (event) {
+      if (event.code == "ArrowLeft") {
+        document.querySelector(".slick-prev").click();
+      }
+      if (event.code == "ArrowRight") {
+        document.querySelector(".slick-next").click();
+      }
+    });
+  }, []);
+
   return (
     <div className="page rules rules-slides">
       <Container type="dark">
-      <div className="rules-bg__item_1"></div>
+        <div className="rules-bg__item_1"></div>
         <div className="rules-bg__item_2"></div>
         <div className="rules-bg__item_3"></div>
         <div className="rules-slides__slider-container">

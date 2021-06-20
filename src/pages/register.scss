@@ -1,15 +1,15 @@
 .page-auth {
   background-image: url("../assets/img/regPage1.png");
   background-position: bottom;
-  @media screen and (min-width: 767px) and (max-height: 940px) {
-    background-position: center 55%;
-  }
-  @media screen and (max-width: 1200px) {
-    background-position: 0 0;
-  }
-  @media screen and (max-width: 767px) {
-    background-image: none;
-  }
+  // @media screen and (min-width: 767px) and (max-height: 940px) {
+  //   background-position: center 55%;
+  // }
+  // @media screen and (max-width: 1200px) {
+  //   background-position: 0 0;
+  // }
+  // @media screen and (max-width: 767px) {
+  //   background-image: none;
+  // }
 
   overflow-x: hidden;
   min-height: 100vh;
@@ -63,12 +63,14 @@
     border-right: 20px solid transparent;
     border-bottom: 34px solid #0fdab3;
     transform: rotate(-45deg);
-    right: 60px;
-    top: 200px;
-    display: none;
+    right: 260px;
+    top: 190px;
+    // display: none;
     z-index: 2;
     @media screen and (max-width: 767px) {
       display: block;
+      right: 60px;
+      top: 200px;
     }
   }
   .page-auth__background_4 {
@@ -112,9 +114,17 @@
         width: 125px;
       }
     }
+    .page-auth__alien-block {
+      background-size: cover;
+    }
     @media screen and (max-width: 1525px) {
       max-width: 1170px;
+      min-height: 66vh;
+      .page-auth__alien-block {
+        min-height: 661px;
+      }
     }
+
     @media screen and (max-width: 1200px) {
       flex-direction: column-reverse;
       max-width: 768px;
@@ -126,6 +136,11 @@
       }
       .page-auth__alien-block {
         padding-top: 7px;
+      }
+    }
+    @media screen and (max-height: 803px) {
+      .page-auth__alien-block {
+        min-height: 620px;
       }
     }
     @media screen and (max-width: 767px) {

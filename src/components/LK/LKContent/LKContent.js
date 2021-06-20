@@ -36,52 +36,74 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
     setOpen(false);
   };
   // 8 9990866997
-  const fetchMoney = () => {
+  const fetchMoney = (_type) => {
     let ok_card;
-    fetch("https://stranger-go.com/api/v1/users/me/", {
-      method: "PATCH",
-      headers: {
-        Authorization: `Token ${token}`,
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        withdrawal_type: card == "qiwi" ? 1 : card == "phone" ? 2 : 3,
-        withdrawal_value: "7" + cardNum,
-      }),
-    })
-      .then((res) => {
-        ok_card = res.ok;
-        return res.json();
+    if (_type == 5) {
+      fetch("https://stranger-go.com/api/v1/users/me/", {
+        method: "PATCH",
+        headers: {
+          Authorization: `Token ${token}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          withdrawal_type: card == "qiwi" ? 1 : card == "phone" ? 2 : 3,
+          withdrawal_value: "7" + cardNum,
+        }),
       })
-      .then((re) => {
-        if (ok_card) {
-          let status, ok;
-          fetch("https://stranger-go.com/api/v1/users/get_money/", {
-            method: "POST",
-            headers: {
-              Authorization: `Token ${token}`,
-              Accept: "application/json",
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              sum: parseFloat(sum),
-            }),
-          }).then((res) => {
-            status = res.status;
-            if (status == 204) {
-              handleClick("Деньги успешно переведены", "success");
-            } else {
-              handleClick(
-                "Ошибка при переводе денег. Попробуйте позже",
-                "error"
-              );
-            }
-          });
+        .then((res) => {
+          ok_card = res.ok;
+          return res.json();
+        })
+        .then((re) => {
+          if (ok_card) {
+            let status, ok;
+            fetch("https://stranger-go.com/api/v1/users/get_money/", {
+              method: "POST",
+              headers: {
+                Authorization: `Token ${token}`,
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                sum: parseFloat(sum),
+              }),
+            }).then((res) => {
+              status = res.status;
+              if (status == 204) {
+                handleClick("Деньги успешно переведены", "success");
+              } else {
+                handleClick(
+                  "Ошибка при переводе денег. Попробуйте позже",
+                  "error"
+                );
+              }
+            });
+          } else {
+            handleClick(re.detail, "error");
+          }
+        });
+    } else {
+      let status, ok;
+      fetch("https://stranger-go.com/api/v1/users/get_money/", {
+        method: "POST",
+        headers: {
+          Authorization: `Token ${token}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          sum: parseFloat(sum),
+        }),
+      }).then((res) => {
+        status = res.status;
+        if (status == 204) {
+          handleClick("Деньги успешно переведены", "success");
         } else {
-          handleClick(re.detail, "error");
+          handleClick("Ошибка при переводе денег. Попробуйте позже", "error");
         }
       });
+    }
   };
   return (
     <>
@@ -205,8 +227,6 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
       method: "POST",
       headers: {
         Authorization: `Token ${token}`,
-
-        // "Content-Type": "text/html; charset=utf-8",
       },
       body: formData,
     })
@@ -217,7 +237,7 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
           "data:attachment/csv;charset=utf-8," + encodeURIComponent(re);
         var downloadAnchorNode = document.createElement("a");
         downloadAnchorNode.setAttribute("href", dataStr);
-        downloadAnchorNode.setAttribute("download", "stat.csv");
+        downloadAnchorNode.setAttribute("download", "Статистика.csv");
         document.body.appendChild(downloadAnchorNode); // required for firefox
         downloadAnchorNode.click();
         downloadAnchorNode.remove();

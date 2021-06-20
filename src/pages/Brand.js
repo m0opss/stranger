@@ -27,7 +27,7 @@ const Brand = (props) => {
   const first_time_brand = useSelector((state) => state.user.first_time_brand);
   useEffect(() => {
     setTimeout(() => dispatch({ type: SET_FIRST_TIME_BRAND }), 5000);
-  })
+  });
 
   let name = data.brand;
   let time = data.duration;
@@ -50,6 +50,23 @@ const Brand = (props) => {
       setWatched(true);
     }
   });
+
+  useEffect(() => {
+    document.addEventListener("keydown", function (event) {
+      if (
+        (event.code == "ShiftLeft" || event.code == "ShiftRight") &&
+        document.querySelector(".brand-page__btn_active")
+      ) {
+        document.querySelector(".brand-page__btn_active").click();
+      }
+      if (event.code == "ArrowLeft") {
+        document.querySelector(".slick-prev").click();
+      }
+      if (event.code == "ArrowRight") {
+        document.querySelector(".slick-next").click();
+      }
+    });
+  }, []);
 
   useEffect(() => {
     fetch(`https://stranger-go.com/api/v1/posts/${id}/`, {

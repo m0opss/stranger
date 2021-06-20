@@ -103,7 +103,7 @@ const WatchBlock = ({ type, data, loadCsv, blockUser }) => {
                   key={i}
                   date={el.date}
                   brand={el.brand}
-                  progress={el.progress}
+                  progress={parseFloat(el.progress).toFixed(2)}
                   amount={el.amount != undefined ? el.amount : el.remains}
                 />
               ))
@@ -112,7 +112,7 @@ const WatchBlock = ({ type, data, loadCsv, blockUser }) => {
                 key={i}
                 date={el.date}
                 brand={el.brand}
-                progress={el.progress}
+                progress={parseFloat(el.progress).toFixed(2)}
                 amount={el.amount != undefined ? el.amount : el.remains}
               />
             ))}

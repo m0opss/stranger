@@ -8,6 +8,7 @@ import BackArr from "../components/BackArr/BackArr";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import { useDispatch, useSelector } from "react-redux";
+import { Modal } from "antd";
 import { Link, NavLink, useParams, useRouteMatch } from "react-router-dom";
 
 import "./addpost.scss";
@@ -196,6 +197,20 @@ const AddPost = (props) => {
   const savePostField = (val) => {
     setPost_t({ ...post_t, ...val });
   };
+
+  const [visible, setVisible] = React.useState(false);
+  const [modalVal, setModalVal] = React.useState("");
+
+  const showModal = () => {
+    setVisible(true);
+  };
+
+  const handleOk = () => {
+    setVisible(false);
+  };
+  const handleCancel = () => {
+    setVisible(false);
+  };
   const savePostRedux = (val) => {
     handleClick("Пост успешно сохранен!", "success");
     // dispatch(savePost(post_t));
@@ -205,6 +220,22 @@ const AddPost = (props) => {
     <div className="page brand-page archive-page add-post">
       <Header />
       {/* Snackbar ================================*/}
+      <Modal
+        visible={visible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        okText="Сохранить"
+        className="add-post"
+      >
+        <textarea
+          className="mobile-descr"
+          cols="4"
+          rows="10"
+          value={post_t.text}
+          onChange={(e) => savePostField({ text: e.target.value })}
+          placeholder="Описание...."
+        />
+      </Modal>
       <Snackbar
         open={open}
         autoHideDuration={3000}
@@ -342,6 +373,9 @@ const AddPost = (props) => {
                 />
               </div>
             </div>
+            <p className="brand-page__add-description" onClick={showModal}>
+              Добавить описание
+            </p>
           </div>
           <div className="brand-page__slider">
             <input
@@ -395,10 +429,16 @@ const AddPost = (props) => {
           <Link to="addQue" className={`btn brand-page__btn`}>
             вопросы
           </Link>
-          <div className={`btn brand-page__btn`} onClick={savePostRedux}>
+          <div
+            className={`btn brand-page__btn`}
+            onClick={full ? () => fetchPost(true) : () => {}}
+          >
             сохранить
           </div>
-          <div className={`btn brand-page__btn`} onClick={fetchPost}>
+          <div
+            className={`btn brand-page__btn`}
+            onClick={full ? () => fetchPost(false) : () => {}}
+          >
             готово
           </div>
         </div>

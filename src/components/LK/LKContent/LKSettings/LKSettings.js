@@ -354,7 +354,7 @@ const SettingsBlock = ({ isAdmin, isMobile, setActiveTab }) => {
           <>
             <p className="settings-block__title">Настройки аккаунта</p>
             <p className="settings-block__descr">
-              Здесь вы можете изменить свой пароль в игре
+              Здесь вы можете изменить свой пароль
             </p>
             <ChangePassBlock
               isAdmin={isAdmin}

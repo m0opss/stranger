@@ -156,6 +156,9 @@
       visibility: hidden;
       opacity: 0;
       transition: 0.5s;
+      .test-slide__brand-logo {
+        transform: translate(25%, -72%);
+      }
     }
     .slick-slide.slick-active {
       visibility: visible;
@@ -183,9 +186,7 @@
       z-index: 3;
       .test-slide {
         height: 560px;
-        .test-slide__brand-logo {
-          transform: translate(25%, -72%);
-        }
+        
       }
       @media screen and (max-width: 1185px) {
         width: auto !important;
