@@ -4,33 +4,77 @@ import { Modal, Button } from "antd";
 import Container from "../components/Containers/Container";
 import Input from "../components/AuthInput/Input";
 import alien from "../assets/img/alien.png";
-
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 import "./advertisers.scss";
 import MainFooter from "../components/MainFooter/MainFooter";
 
 const Advertisers = () => {
-  const [visible, setVisible] = React.useState(false);
+  const [visibleM, setVisibleM] = React.useState(false);
   const [modalVal, setModalVal] = React.useState("");
+  const [modalValid, setModalValid] = React.useState(true);
 
-  const showModal = () => {
-    setVisible(true);
+  const showModalM = () => {
+    setVisibleM(true);
   };
 
   const handleOk = () => {
-    setVisible(false);
+    if (modalVal == "") {
+      setModalValid(false);
+    } else {
+      setModalValid(true);
+      setVisibleM(false);
+      handleClick('Заявка успешно отправлена!', 'success')
+    }
   };
   const handleCancel = () => {
-    setVisible(false);
+    setVisibleM(false);
   };
+  const [open, setOpen] = React.useState(false);
+  const [alertMsg, setAlertMsg] = React.useState();
+  const [severity, setSeverity] = React.useState();
+
+  const handleClick = (msg, severity) => {
+    setAlertMsg(msg);
+    setSeverity(severity);
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+  ///////////////////////////////////////////
+
   return (
     <div className="page advertisers-page">
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleClose}
+          severity={severity}
+        >
+          {alertMsg}
+        </MuiAlert>
+      </Snackbar>
       <Modal
         title="Заявка"
-        visible={visible}
+        visible={visibleM}
         onOk={handleOk}
         onCancel={handleCancel}
-        okText='Отправить'
-        cancelText='Отмена'
+        okText="Отправить"
+        cancelText="Отмена"
       >
         <p>
           Для того, чтобы связаться с нами, оставьте вашу заявку с номером
@@ -39,10 +83,11 @@ const Advertisers = () => {
         <Input
           value={modalVal}
           setValue={setModalVal}
-          id={'1'}
+          id={"1"}
           label=""
           placeholder="Телефон или Email"
-          isValidated={true}
+          isValidated={modalValid}
+          helperText={"Проверьте правильность данных"}
           className="modal-input"
         />
       </Modal>
@@ -56,7 +101,7 @@ const Advertisers = () => {
           <div className="main-block__img-container">
             <img src={alien} />
           </div>
-          <div className="btn main-block__btn" onClick={showModal}>
+          <div className="btn main-block__btn" onClick={showModalM}>
             ОТПРАВИТЬ
           </div>
         </div>

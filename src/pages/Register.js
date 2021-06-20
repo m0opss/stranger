@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header/Header";
 import Input from "../components/AuthInput/Input";
 import { Modal, Button } from "antd";
@@ -27,7 +27,16 @@ const Register = ({}) => {
   const [passAlso_correct, setPassAlso_correct] = useState(true);
   const dispatch = useDispatch();
   const history = useHistory();
-
+  useEffect(() => {
+    document.addEventListener("keydown", function (event) {
+      if (
+        (event.code == "ShiftLeft" || event.code == "ShiftRight") &&
+        document.querySelector(".auth-form-block__reg-btn")
+      ) {
+        document.querySelector(".auth-form-block__reg-btn").click();
+      }
+    });
+  }, []);
   const validate = () => {
     let flag = true;
 

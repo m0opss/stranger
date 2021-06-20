@@ -20,6 +20,7 @@ function printNumbers(from, to, func) {
     current--;
   }, 1000);
 }
+
 function printNumbersQue(from, to, func, perc, func2) {
   let current = from;
 
@@ -150,7 +151,7 @@ const Questions = (props) => {
       } else if (rawResponse.status == 200) {
         const content = await rawResponse.json();
         setData(content);
-        printNumbers();
+        // printNumbers();
       } else {
         const content = await rawResponse.json();
         handleClick(content[Object.keys(content)[0]], "error");
@@ -189,6 +190,7 @@ const Questions = (props) => {
       () => printNumbers(3, 0, setTiming),
       setFinished
     );
+    printNumbers(3, 0, setTiming);
   }, []);
 
   const fetchAnsw = (id_q, id_a) => {
@@ -202,7 +204,7 @@ const Questions = (props) => {
       body: JSON.stringify({ question: id_q, answer: id_a }),
     }).then((re) => {
       if (re.status == 200) {
-        fetchData(setContent, token, history, ()=> {}, setFinished);
+        fetchData(setContent, token, history, () => {}, setFinished);
       } else {
         setFinished(true);
         setLoose(true);
@@ -264,17 +266,17 @@ const Questions = (props) => {
             <img src={loose_bg} />
           </div>
         ))}
-        {timing != 0 && timing != null ? (
+        {timing != 0 ? (
           <>
-            <div className="questions-page__bg-item_1"></div>
-            <div className="questions-page__bg-item_2"></div>
-            <div className="questions-page__bg-item_3"></div>
-            <div className="questions-page__bg-item_4"></div>
-            <div className="questions-page__bg-item_5"></div>
-            <div className="questions-page__bg-item_6"></div>
-            <div className="questions-page__bg-item_7"></div>
-            <div className="questions-page__bg-item_8"></div>
-            <div className="questions-page__bg-item_9"></div>
+            <div className="questions-page__bg_rtg questions-page__bg-item_1"></div>
+            <div className="questions-page__bg_rtg questions-page__bg-item_2"></div>
+            <div className="questions-page__bg_rtg questions-page__bg-item_3"></div>
+            <div className="questions-page__bg_rtg questions-page__bg-item_4"></div>
+            <div className="questions-page__bg_rtg questions-page__bg-item_5"></div>
+            <div className="questions-page__bg_rtg questions-page__bg-item_6"></div>
+            <div className="questions-page__bg_rtg questions-page__bg-item_7"></div>
+            <div className="questions-page__bg_rtg questions-page__bg-item_8"></div>
+            <div className="questions-page__bg_rtg questions-page__bg-item_9"></div>
             <div className="questions-page__countdown">
               <p> Поехали!</p>
               <div className="questions-page__countdown-counter">
@@ -301,9 +303,9 @@ const Questions = (props) => {
           <WinContainer isMobile={isMobile} />
         ) : (
           <>
-            <div className=" questions-page__bg-item_1"></div>
-            <div className=" questions-page__bg-item_3"></div>
-            <div className=" questions-page__bg-item_6"></div>
+            <div className="questions-page__bg_rtg questions-page__bg-item_1"></div>
+            <div className="questions-page__bg_rtg questions-page__bg-item_3"></div>
+            <div className="questions-page__bg_rtg questions-page__bg-item_6"></div>
 
             <Que
               isMobile={isMobile}

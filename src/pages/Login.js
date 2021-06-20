@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header/Header";
 import Input from "../components/AuthInput/Input";
 import { Link, useHistory } from "react-router-dom";
@@ -34,7 +34,16 @@ const Login = ({}) => {
     setSeverity(severity);
     setOpen(true);
   }
-
+  useEffect(() => {
+    document.addEventListener("keydown", function (event) {
+      if (
+        (event.code == "ShiftLeft" || event.code == "ShiftRight") &&
+        document.querySelector(".auth-form-block__reg-btn")
+      ) {
+        document.querySelector(".auth-form-block__reg-btn").click();
+      }
+    });
+  }, []);
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
       return;

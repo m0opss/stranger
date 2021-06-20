@@ -97,7 +97,12 @@ const Test = ({}) => {
 
       setTimeout(() => dispatch({ type: SET_FIRST_TIME }), 5000);
     }
-    if (!first_time && first_time_second && !isMobile) {
+    if (
+      !first_time &&
+      first_time_second &&
+      !isMobile &&
+      document.querySelector(".slick-current") != null
+    ) {
       const el =
         document.querySelector(".slick-current").firstChild.firstChild
           .childNodes[2].childNodes[1];
@@ -105,7 +110,7 @@ const Test = ({}) => {
 
       setTimeout(() => positionHelpSec(el, set_el), 500);
 
-      setTimeout(() => dispatch({ type: SET_FIRST_TIME_SECOND }), 4000);
+      setTimeout(() => dispatch({ type: SET_FIRST_TIME_SECOND }), 3000);
     }
     if (
       first_time &&

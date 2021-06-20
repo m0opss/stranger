@@ -133,7 +133,6 @@
     display: none;
   }
   .center.centered-slide .slick-slide.slick-active.slick-current {
-    // margin: auto;
   }
   .center {
     .slick-list {
@@ -156,13 +155,6 @@
       visibility: hidden;
       opacity: 0;
       transition: 0.5s;
-      .test-slide__brand-logo {
-        transform: translate(25%, -72%);
-      }
-    }
-    .slick-slide.slick-active {
-      visibility: visible;
-      opacity: 1;
       filter: blur(10px);
       width: 421px !important;
       z-index: 2;
@@ -175,7 +167,16 @@
           height: 560px;
         }
       }
+      .test-slide__brand-logo {
+        transform: translate(25%, -92%);
+      }
     }
+
+    .slick-slide.slick-active {
+      visibility: visible;
+      opacity: 1;
+    }
+
     .slick-slide.slick-active.slick-current {
       visibility: visible;
       opacity: 1;
@@ -186,7 +187,6 @@
       z-index: 3;
       .test-slide {
         height: 560px;
-        
       }
       @media screen and (max-width: 1185px) {
         width: auto !important;
