@@ -37,6 +37,7 @@ import ResetPass from "../pages/ResetPass";
 import ResetPassConfirm from "../pages/ResetPassConfirm";
 import Settings from "../pages/LK/Settings";
 import History from "../pages/LK/History";
+import Temp from "../pages/Temp";
 
 const App = (props) => {
   // const dispatch = useDispatch();
@@ -68,6 +69,7 @@ const App = (props) => {
     { path: "/reset-confirm", Component: ResetPassConfirm },
     { path: "/settings", Component: Settings },
     { path: "/history", Component: History },
+    { path: "/temp", Component: Temp },
   ];
   const dispatch = useDispatch();
   const { search } = useLocation();

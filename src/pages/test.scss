@@ -1,12 +1,9 @@
-
 .test-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-  .test-timer {
-    
-  }
+
   .helped-container {
     height: 100vh;
     width: 100%;
@@ -157,35 +154,34 @@
     }
     .slick-slide {
       visibility: hidden;
-      opacity: 0;
-      transition: 0.5s;
+      // opacity: 0;
       filter: blur(10px);
       width: 421px !important;
       z-index: 2;
+      margin-left: 25px;
+      margin-right: 25px;
+      transition: 1s;
       @media screen and (max-width: 1185px) {
         width: auto !important;
         margin-left: auto;
         margin-right: auto;
         filter: unset;
         .test-slide {
-          height: 560px;
         }
       }
       .test-slide__brand-logo {
         transform: translate(25%, -92%);
       }
     }
-
+    .slick-slide.slick-cloned {
+      // opacity: 0;
+    }
     .slick-slide.slick-active {
       visibility: visible;
       opacity: 1;
     }
 
     .slick-slide.slick-active.slick-current {
-      visibility: visible;
-      opacity: 1;
-      margin-left: 50px;
-      margin-right: 50px;
       width: 580px !important;
       filter: unset;
       z-index: 3;

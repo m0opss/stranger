@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header/Header";
 import TestSlide from "../components/TestSlide/TestSlide";
 import Slider from "react-slick";
+import Swiper from "react-id-swiper";
 import alien from "../assets/img/alien.svg";
 import pkHelp from "../assets/img/pkHelp.svg";
 import pkHelpM from "../assets/img/pkHelpM.svg";
@@ -45,12 +46,22 @@ const Test = ({}) => {
   );
 
   const [slides, setSlides] = useState([]);
+  const params = {
+    slidesPerView: 1,
+    spaceBetween: 30,
+    // centeredSlides: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  };
 
   const settings = {
     className: `center ${slides.length < 3 ? "centered-slide" : ""}`,
     dots: true,
     centerMode: true,
-    infinite: false,
+    // fade: true,
+    // infinite: false,
     centerPadding: "100px",
     slidesToShow: slides.length > 3 ? 3 : slides.length > 2 ? 2 : 1,
     speed: 500,
@@ -227,6 +238,7 @@ const Test = ({}) => {
       ) : (
         <></>
       )}
+
       <div className="test-content">
         <Slider {...settings}>
           {slides.map((s, ind) => (
@@ -281,7 +293,6 @@ const Test = ({}) => {
           </div>
         </div>
       </div>
-      
     </div>
   );
 };
