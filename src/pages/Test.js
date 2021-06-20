@@ -5,8 +5,10 @@ import TestSlide from "../components/TestSlide/TestSlide";
 import Slider from "react-slick";
 import alien from "../assets/img/alien.svg";
 import pkHelp from "../assets/img/pkHelp.svg";
+import pkHelpM from "../assets/img/pkHelpM.svg";
+import pkHelpSec from "../assets/img/pkHelpSec.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { SET_FIRST_TIME } from "../reducers/userReducer";
+import { SET_FIRST_TIME, SET_FIRST_TIME_SECOND } from "../reducers/userReducer";
 import "swiper/swiper.scss";
 import "./test.scss";
 import { useHistory } from "react-router";
@@ -36,7 +38,11 @@ function SamplePrevArrow(props) {
 }
 
 const Test = ({}) => {
+  const isAuth = useSelector((state) => state.auth.isAuth);
   const first_time = useSelector((state) => state.user.first_time);
+  const first_time_second = useSelector(
+    (state) => state.user.first_time_second
+  );
 
   const [slides, setSlides] = useState([]);
   const settings = {
@@ -72,14 +78,51 @@ const Test = ({}) => {
     set_el.style.top = top + height / 2 + "px";
   }
 
+  function positionHelpSec(el, set_el) {
+    const { top, left } = el.getBoundingClientRect();
+    set_el.style.left = left + "px";
+    set_el.style.top = top + "px";
+  }
+
   useEffect(() => {
-    if (first_time && document.querySelector(".slick-current") != null) {
+    if (
+      first_time &&
+      document.querySelector(".slick-current") != null &&
+      !isMobile
+    ) {
       const el = document.querySelector(".slick-current");
       const set_el = document.querySelector("img.helped-container__img");
 
       setTimeout(() => positionHelp(el, set_el), 500);
 
-      // setTimeout(() => dispatch({ type: SET_FIRST_TIME }), 5000);
+      setTimeout(() => dispatch({ type: SET_FIRST_TIME }), 5000);
+    }
+    if (!first_time && first_time_second && !isMobile) {
+      const el =
+        document.querySelector(".slick-current").firstChild.firstChild
+          .childNodes[2].childNodes[1];
+      const set_el = document.querySelector("img.helped-container__img_second");
+
+      setTimeout(() => positionHelpSec(el, set_el), 500);
+
+      setTimeout(() => dispatch({ type: SET_FIRST_TIME_SECOND }), 4000);
+    }
+    if (
+      first_time &&
+      document.querySelector(".slick-current") != null &&
+      isMobile
+    ) {
+      const set_el = document.querySelector("img.helped-container__img_m");
+      set_el.style.left = 50 + "vw";
+      set_el.style.top = 50 + "vh";
+      setTimeout(() => dispatch({ type: SET_FIRST_TIME }), 5000);
+    }
+    if (!first_time && first_time_second && isMobile) {
+      const el = document.querySelector("#firstCard");
+      const set_el = document.querySelector("img.helped-container__img_second");
+      console.log(el.clientLeft);
+      setTimeout(() => positionHelpSec(el, set_el), 500);
+      setTimeout(() => dispatch({ type: SET_FIRST_TIME_SECOND }), 4000);
     }
   });
 
@@ -122,22 +165,45 @@ const Test = ({}) => {
   return (
     <div className="page archive-page test-page ">
       <Header />
-      {first_time ? (
+      {first_time && !isMobile ? (
         <div
           className="helped-container"
           onClick={() => dispatch({ type: SET_FIRST_TIME })}
         >
           <img className="helped-container__img" src={pkHelp} />
         </div>
+      ) : !first_time && first_time_second && !isMobile ? (
+        <div
+          className="helped-container"
+          onClick={() => dispatch({ type: SET_FIRST_TIME_SECOND })}
+        >
+          <img className="helped-container__img_second" src={pkHelpSec} />
+        </div>
+      ) : first_time && isMobile ? (
+        <div
+          className="helped-container"
+          onClick={() => dispatch({ type: SET_FIRST_TIME })}
+        >
+          <img className="helped-container__img_m" src={pkHelpM} />
+        </div>
+      ) : !first_time && first_time_second && isMobile ? (
+        <div
+          className="helped-container"
+          onClick={() => dispatch({ type: SET_FIRST_TIME_SECOND })}
+        >
+          <img className="helped-container__img_second" src={pkHelpSec} />
+        </div>
       ) : (
         <></>
       )}
       <div className="test-content">
         <Slider {...settings}>
-          {slides.map((s) => (
+          {slides.map((s, ind) => (
             <TestSlide
               id={s.id}
               key={s.id}
+              isAuth={isAuth}
+              ind={ind}
               img={s.logo}
               name={s.brand}
               time={s.duration}
@@ -166,15 +232,17 @@ const Test = ({}) => {
             <></>
           )}
           <div className="brands-list">
-            {slides.map((s) => (
+            {slides.map((s, ind) => (
               <div className="brands-list__item" key={s.id}>
                 <TestSlide
                   id={s.id}
                   key={s.id}
+                  ind={ind}
                   img={s.logo}
                   name={s.brand}
                   time={s.duration}
                   progress={s.progress}
+                  isAuth={isAuth}
                   price={s.coast}
                 />
               </div>

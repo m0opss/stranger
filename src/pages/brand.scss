@@ -1,5 +1,26 @@
 .brand-page {
   min-height: 100vh;
+  .helped-container {
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+    position: absolute;
+    border-radius: 20px;
+    .helped-container__img {
+      position: fixed;
+      animation: slides forwards linear 4s;
+      left: 25%;
+      top: 50%;
+      width: 120px;
+      height: 120px;
+      @media screen and (max-width: 767px) {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  }
+
   .archive-background {
     position: absolute;
     min-height: calc(100vh - 95px);

@@ -4,9 +4,11 @@ import Slider from "react-slick";
 import clock from "../assets/img/brandClock.svg";
 import info from "../assets/img/brandInfo.svg";
 import rub from "../assets/img/brandRub.svg";
+import pkHelp from "../assets/img/pkHelp.svg";
 import bransSlideArrBack from "../assets/img/bransSlideArrBack.svg";
 
 import { SET_COAST, SET_BRAND } from "../reducers/gameReducer";
+import { SET_FIRST_TIME_BRAND } from "../reducers/userReducer";
 import { Link, NavLink, useParams, useRouteMatch } from "react-router-dom";
 import "./brand.scss";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,22 +21,27 @@ const Brand = (props) => {
   const [data, setData] = useState({});
   const { params } = useRouteMatch();
   const token = useSelector((state) => state.auth.token);
+  const dispatch = useDispatch();
   const id = params.id;
+
+  const first_time_brand = useSelector((state) => state.user.first_time_brand);
+  useEffect(() => {
+    setTimeout(() => dispatch({ type: SET_FIRST_TIME_BRAND }), 5000);
+  })
 
   let name = data.brand;
   let time = data.duration;
   let brand = data.url_brand;
   let descr = data.description;
   let price = data.coast;
-  const dispatch = useDispatch();
   const settings = {
     dots: true,
     focusOnSelect: true,
     infinite: false,
     slidesToShow: 1,
     speed: 500,
-    nextArrow: <img src={bransSlideArrBack}  />,
-    prevArrow: <img src={bransSlideArrBack}  />,
+    nextArrow: <img src={bransSlideArrBack} />,
+    prevArrow: <img src={bransSlideArrBack} />,
     afterChange: (current) => setSlideN(current),
   };
 
@@ -145,6 +152,16 @@ const Brand = (props) => {
             <Slider {...settings}>
               {slides.map((i) => (
                 <div className="brand-page__slider-item" key={i.id}>
+                  {first_time_brand ? (
+                    <div
+                      className="helped-container"
+                      onClick={() => dispatch({ type: SET_FIRST_TIME_BRAND })}
+                    >
+                      <img className="helped-container__img" src={pkHelp} />
+                    </div>
+                  ) : (
+                    <></>
+                  )}
                   {i.type_attachment == "vi" ? (
                     <video
                       src={`https://stranger-go.com${i.file_attachment}`}

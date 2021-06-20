@@ -16,6 +16,7 @@ const TestSlide = ({
   id,
   progress,
   isAuth,
+  ind,
   ...props
 }) => {
   const token = useSelector((state) => state.auth.token);
@@ -51,12 +52,17 @@ const TestSlide = ({
           </div>
         </div>
         {progress == 100 ? (
-          <div className="test-slide__play" style={{ opacity: ".5" }}>
+          <div
+            className="test-slide__play"
+            style={{ opacity: ".5" }}
+            id={ind == 0 ? "firstCard" : ""}
+          >
             <img src={start} />
           </div>
         ) : (
           <Link
             className="test-slide__play"
+            id={ind == 0 ? "firstCard" : ""}
             to={isAuth ? `/brand/${id}` : "/register"}
             onClick={startGame}
           >
