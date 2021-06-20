@@ -49,13 +49,16 @@
       z-index: unset;
     }
     @media screen and (max-width: 767px) {
-      padding-top: 35px;
+      padding-top: 8vh;
       min-height: calc(100vh - 67px);
     }
     @media screen and (max-width: 610px) {
     }
     @media screen and (max-width: 520px) {
-      padding-top: 45px;
+      padding-top: 11vh;
+      @media (max-height: 579px) {
+        padding-top: 8vh;
+      }
     }
   }
   .main-block__img-container {
@@ -87,7 +90,7 @@
       z-index: 2;
       &:hover {
         img {
-          opacity: .6;
+          opacity: 0.6;
         }
       }
     }
@@ -128,10 +131,26 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: -230px;
+    margin-top: -205px;
     z-index: 1;
     img {
       margin-left: -55px;
+      width: 96vh;
+    }
+    @media screen and (min-width: 767px) {
+      @media screen and (max-height: 980px) {
+        margin-top: -130px;
+        img {
+          width: 73vh;
+          margin-left: -36px;
+        }
+      }
+      @media screen and (max-height: 935px) {
+       margin-top: -177px;
+      }
+      @media screen and (max-height: 867px) {
+       margin-top: -207px;
+      }
     }
     @media screen and (max-width: 840px) {
       img {
@@ -143,29 +162,22 @@
       bottom: -205px;
       width: 670px;
       position: absolute;
-      // @media screen and (max-height: 720px) {
-      //   width: 600px;
-      // }
-      // @media screen and (max-height: 686px) {
-      //   width: 550px;
-      // }
-      // @media screen and (max-height: 656px) {
-      //   bottom: -55px;
-      //   width: 500px;
-      // }
-      // @media screen and (max-height: 627px) {
-      //   bottom: -55px;
-      //   width: 450px;
-      // }
-    }
-    @media screen and (max-width: 593px) {
       img {
-        // margin-left: -35px;
+        margin-left: -9px;
       }
     }
-    @media screen and (max-width: 520px) {
+    @media screen and (max-width: 767px) {
       img {
-        margin-left: -20px;
+        width: 53vh;
+      }
+      @media (min-height: 722px) {
+        bottom: -240px;
+      }
+      @media (max-height: 622px) {
+        bottom: -150px;
+        img {
+          width: 45vh;
+        }
       }
     }
   }

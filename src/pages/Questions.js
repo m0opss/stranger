@@ -128,7 +128,13 @@ const Questions = (props) => {
   const [alertMsg, setAlertMsg] = React.useState();
   const [severity, setSeverity] = React.useState();
 
-  const fetchData = (setData, token, history, printNumbers, setFinish = null) => {
+  const fetchData = (
+    setData,
+    token,
+    history,
+    printNumbers,
+    setFinish = null
+  ) => {
     (async () => {
       const rawResponse = await fetch(
         "https://stranger-go.com/api/v1/games/question/",
@@ -144,7 +150,7 @@ const Questions = (props) => {
       } else if (rawResponse.status == 200) {
         const content = await rawResponse.json();
         setData(content);
-        printNumbers()
+        printNumbers();
       } else {
         const content = await rawResponse.json();
         handleClick(content[Object.keys(content)[0]], "error");
@@ -260,17 +266,28 @@ const Questions = (props) => {
         ))}
         {timing != 0 && timing != null ? (
           <>
-            <div className=" questions-page__bg-item_1"></div>
-            <div className=" questions-page__bg-item_2"></div>
-            <div className=" questions-page__bg-item_3"></div>
-            <div className=" questions-page__bg-item_4"></div>
-            <div className=" questions-page__bg-item_5"></div>
-            <div className=" questions-page__bg-item_6"></div>
-            <div className=" questions-page__bg-item_7"></div>
-            <div className=" questions-page__bg-item_8"></div>
-            <div className=" questions-page__bg-item_9"></div>
+            <div className="questions-page__bg-item_1"></div>
+            <div className="questions-page__bg-item_2"></div>
+            <div className="questions-page__bg-item_3"></div>
+            <div className="questions-page__bg-item_4"></div>
+            <div className="questions-page__bg-item_5"></div>
+            <div className="questions-page__bg-item_6"></div>
+            <div className="questions-page__bg-item_7"></div>
+            <div className="questions-page__bg-item_8"></div>
+            <div className="questions-page__bg-item_9"></div>
             <div className="questions-page__countdown">
-              <p> Поехали!</p>
+              <p> Поехали!</p>э
+              <ul>
+                <li>
+                  <span>3</span>
+                </li>
+                <li>
+                  <span>2</span>
+                </li>
+                <li>
+                  <span>1</span>
+                </li>
+              </ul>
               <span>{timing}</span>
             </div>
           </>
