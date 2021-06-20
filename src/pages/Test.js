@@ -45,19 +45,18 @@ const Test = ({}) => {
   );
 
   const [slides, setSlides] = useState([]);
-  
+
   const settings = {
     className: `center ${slides.length < 3 ? "centered-slide" : ""}`,
     dots: true,
     centerMode: true,
     infinite: false,
-    // centerPadding: "100px",
-    // slidesToShow: 3,
+    centerPadding: "100px",
     slidesToShow: slides.length > 3 ? 3 : slides.length > 2 ? 2 : 1,
     speed: 500,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
-    initialSlide: 1,
+    initialSlide: 0,
     responsive: [
       {
         breakpoint: 1310,
@@ -125,10 +124,17 @@ const Test = ({}) => {
       set_el.style.top = 50 + "vh";
       setTimeout(() => dispatch({ type: SET_FIRST_TIME }), 5000);
     }
-    if (!first_time && first_time_second && isMobile) {
-      const el = document.querySelector("#firstCard");
+    if (
+      !first_time &&
+      first_time_second &&
+      isMobile &&
+      document.querySelector(".brands-list__item") != null
+    ) {
+      const el =
+        document.querySelector(".brands-list__item").childNodes[0].childNodes[2]
+          .childNodes[1];
       const set_el = document.querySelector("img.helped-container__img_second");
-      console.log(el.clientLeft);
+
       setTimeout(() => positionHelpSec(el, set_el), 500);
       setTimeout(() => dispatch({ type: SET_FIRST_TIME_SECOND }), 4000);
     }
@@ -275,6 +281,7 @@ const Test = ({}) => {
           </div>
         </div>
       </div>
+      
     </div>
   );
 };

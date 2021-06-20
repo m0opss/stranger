@@ -55,14 +55,14 @@ const TestSlide = ({
           <div
             className="test-slide__play"
             style={{ opacity: ".5" }}
-            id={ind == 0 ? "firstCard" : ""}
+            id={ind == 1 ? "firstCard" : ""}
           >
             <img src={start} />
           </div>
         ) : (
           <Link
             className="test-slide__play"
-            id={ind == 0 ? "firstCard" : ""}
+            id={ind == 1 ? "firstCard" : ""}
             to={isAuth ? `/brand/${id}` : "/register"}
             onClick={startGame}
           >

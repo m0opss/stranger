@@ -282,16 +282,15 @@ const Questions = (props) => {
               <div className="questions-page__countdown-counter">
                 <ul>
                   <li>
-                    <span>3</span>
-                  </li>
-                  <li>
-                    <span>2</span>
-                  </li>
-                  <li>
-                    <span>1</span>
-                  </li>
-                  <li>
-                    <span>0</span>
+                    <div>
+                      <p>{timing}</p>
+                    </div>
+                    <div>
+                      <p>{timing}</p>
+                    </div>
+                    <div>
+                      <p>{timing}</p>
+                    </div>
                   </li>
                 </ul>
               </div>
