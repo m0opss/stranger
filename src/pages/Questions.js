@@ -276,19 +276,24 @@ const Questions = (props) => {
             <div className="questions-page__bg-item_8"></div>
             <div className="questions-page__bg-item_9"></div>
             <div className="questions-page__countdown">
-              <p> Поехали!</p>э
-              <ul>
-                <li>
-                  <span>3</span>
-                </li>
-                <li>
-                  <span>2</span>
-                </li>
-                <li>
-                  <span>1</span>
-                </li>
-              </ul>
-              <span>{timing}</span>
+              <p> Поехали!</p>
+              <div className="questions-page__countdown-counter">
+                <ul>
+                  <li>
+                    <span>3</span>
+                  </li>
+                  <li>
+                    <span>2</span>
+                  </li>
+                  <li>
+                    <span>1</span>
+                  </li>
+                  <li>
+                    <span>0</span>
+                  </li>
+                </ul>
+              </div>
+              {/* <span>{timing}</span> */}
             </div>
           </>
         ) : finished && loose ? (

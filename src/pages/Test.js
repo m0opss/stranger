@@ -135,7 +135,7 @@ const Test = ({}) => {
     fetch("https://stranger-go.com/api/v1/posts/all_post/", {
       method: "GET",
       headers: {
-        Authorization: `Token ${token}`,
+        // Authorization: `Token ${token}`,
         Accept: "application/json",
         "Content-Type": "application/json",
       },

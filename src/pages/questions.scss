@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  overflow: hidden;
   .questions-page__content {
     width: 100%;
     min-height: 80vh;
@@ -387,6 +387,22 @@
     display: flex;
     flex-direction: column;
     position: relative;
+    .questions-page__countdown-counter {
+      height: 250px;
+      overflow: hidden;
+      width: 100%;
+    }
+    ul {
+      -webkit-animation-name: change;
+      -webkit-animation-duration: 6s;
+      -webkit-animation-iteration-count: 1;
+      animation-name: change;
+      animation-duration: 6s;
+      animation-iteration-count: 1;
+      li {
+        list-style: none;
+      }
+    }
     p {
       font-size: 40px;
     }
@@ -405,6 +421,115 @@
         font-size: 120px;
       }
     }
+  }
+}
+@-webkit-keyframes change {
+  0%,
+  12.66%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  16.66%,
+  29.32% {
+    transform: translate3d(0, -25%, 0);
+  }
+  33.32%,
+  45.98% {
+    transform: translate3d(0, -50%, 0);
+  }
+  49.98%,
+  62.64% {
+    transform: translate3d(0, -75%, 0);
+  }
+  66.64%,
+  79.3% {
+    transform: translate3d(0, -50%, 0);
+  }
+  83.3%,
+  95.96% {
+    transform: translate3d(0, -25%, 0);
+  }
+}
+@-o-keyframes change {
+  0%,
+  12.66%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  16.66%,
+  29.32% {
+    transform: translate3d(0, -25%, 0);
+  }
+  33.32%,
+  45.98% {
+    transform: translate3d(0, -50%, 0);
+  }
+  49.98%,
+  62.64% {
+    transform: translate3d(0, -75%, 0);
+  }
+  66.64%,
+  79.3% {
+    transform: translate3d(0, -50%, 0);
+  }
+  83.3%,
+  95.96% {
+    transform: translate3d(0, -25%, 0);
+  }
+}
+@-moz-keyframes change {
+  0%,
+  12.66%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  16.66%,
+  29.32% {
+    transform: translate3d(0, -25%, 0);
+  }
+  33.32%,
+  45.98% {
+    transform: translate3d(0, -50%, 0);
+  }
+  49.98%,
+  62.64% {
+    transform: translate3d(0, -75%, 0);
+  }
+  66.64%,
+  79.3% {
+    transform: translate3d(0, -50%, 0);
+  }
+  83.3%,
+  95.96% {
+    transform: translate3d(0, -25%, 0);
+  }
+}
+
+@keyframes change {
+  0%,
+  12.66%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  16.66%,
+  29.32% {
+    transform: translate3d(0, -25%, 0);
+  }
+  33.32%,
+  45.98% {
+    transform: translate3d(0, -50%, 0);
+  }
+  49.98%,
+  62.64% {
+    transform: translate3d(0, -75%, 0);
+  }
+  66.64%,
+  79.3% {
+    transform: translate3d(0, -50%, 0);
+  }
+  83.3%,
+  95.96% {
+    transform: translate3d(0, -25%, 0);
   }
 }
 
@@ -573,6 +698,9 @@
     color: #ffffff;
     min-height: 72px;
     margin-bottom: 200px;
+    @media screen and (max-height: 820px) {
+      margin-bottom: 150px;
+    }
     @media screen and (max-width: 767px) {
       margin-bottom: 100px;
     }
