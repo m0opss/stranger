@@ -35,6 +35,8 @@ import { getMe } from "../actions/authActions";
 import Advertisers from "../pages/Advertisers";
 import ResetPass from "../pages/ResetPass";
 import ResetPassConfirm from "../pages/ResetPassConfirm";
+import Settings from "../pages/LK/Settings";
+import History from "../pages/LK/History";
 
 const App = (props) => {
   // const dispatch = useDispatch();
@@ -64,6 +66,8 @@ const App = (props) => {
     { path: "/advertisers", Component: Advertisers },
     { path: "/reset", Component: ResetPass },
     { path: "/reset-confirm", Component: ResetPassConfirm },
+    { path: "/settings", Component: Settings },
+    { path: "/history", Component: History },
   ];
   const dispatch = useDispatch();
   const { search } = useLocation();
@@ -103,7 +107,6 @@ const App = (props) => {
             )}
           </Route>
         ))}
-    
       </Switch>
     </div>
   );

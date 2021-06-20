@@ -45,16 +45,19 @@ const Test = ({}) => {
   );
 
   const [slides, setSlides] = useState([]);
+  
   const settings = {
     className: `center ${slides.length < 3 ? "centered-slide" : ""}`,
     dots: true,
     centerMode: true,
-    infinite: true,
-    centerPadding: "100px",
+    infinite: false,
+    // centerPadding: "100px",
+    // slidesToShow: 3,
     slidesToShow: slides.length > 3 ? 3 : slides.length > 2 ? 2 : 1,
     speed: 500,
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    initialSlide: 1,
     responsive: [
       {
         breakpoint: 1310,
@@ -150,11 +153,17 @@ const Test = ({}) => {
     let ok, status;
     fetch("https://stranger-go.com/api/v1/posts/all_post/", {
       method: "GET",
-      headers: {
-        Authorization: `Token ${token}`,
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
+      headers:
+        token != ""
+          ? {
+              Authorization: `Token ${token}`,
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            }
+          : {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
     })
       .then((res) => {
         status = res.status;

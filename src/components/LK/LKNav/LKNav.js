@@ -100,15 +100,20 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
       name: "Перевести",
       img: arr,
       type: isMobile ? `arr-m` : "arr",
-      link: "transfer",
+      link: "/transfer",
     },
     {
       name: "История транзакций",
       img: rub,
       type: isMobile ? `history-m` : "history",
-      link: "#history",
+      link: "/history",
     },
-    { name: "Настройки", img: sett, type: "set", link: "" },
+    {
+      name: "Настройки",
+      img: sett,
+      type: isMobile ? "set-m" : "set",
+      link: "/settings",
+    },
   ];
   const adminPanel_1 = [
     {

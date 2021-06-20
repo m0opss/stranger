@@ -126,20 +126,7 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
         </MuiAlert>
       </Snackbar>
       {isMobile ? (
-        <>
-          <HistoryBlock type="mobile" data={transaction_history} />
-          {activeTab != "set" ? (
-            <></>
-          ) : (
-            <div className="lk-content">
-              <SettingsBlock
-                setActiveTab={setActiveTab}
-                isMobile={isMobile}
-                isAdmin={false}
-              />
-            </div>
-          )}
-        </>
+        <></>
       ) : (
         <div className="lk-content">
           {activeTab == "arr" ? (

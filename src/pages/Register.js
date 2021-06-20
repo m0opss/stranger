@@ -240,7 +240,13 @@ const Register = ({}) => {
               <a target="_blank" href="/static/assets/docs/policy.pdf">
                 Политику конфиденциальности
               </a>{" "}
-              и{" "}
+              {isMobile ? (
+                <>
+                  <br />и<br />
+                </>
+              ) : (
+                "и"
+              )}{" "}
               <a target="_blank" href="/static/assets/docs/ofer.pdf">
                 Договор Оферты
               </a>

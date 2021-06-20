@@ -115,7 +115,7 @@
       }
     }
     .page-auth__alien-block {
-      background-size: cover;
+      background-size: 115%;
     }
     @media screen and (max-width: 1525px) {
       max-width: 1170px;
@@ -404,7 +404,7 @@
 }
 
 .auth-form-block__policy {
-  font-size: 16px;
+  font-size: 12px;
   margin-top: 20px;
   line-height: 150%;
   text-align: center;
@@ -435,11 +435,9 @@
     }
   }
   @media screen and (max-width: 1200px) {
-    font-size: 15px;
     margin-top: 12px;
   }
   @media screen and (max-width: 767px) {
-    font-size: 12px;
     line-height: 150%;
     margin-left: 0;
     max-width: 320px;

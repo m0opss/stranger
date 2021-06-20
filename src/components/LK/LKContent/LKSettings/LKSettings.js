@@ -111,7 +111,7 @@ const ChangePassBlock = ({
           >
             <span></span>
           </div>
-        ) : !isAdmin && isMobile ? (
+        ) : !isAdmin && isMobile && setActiveTab ? (
           <div
             className="settings-block__close-btn"
             onClick={() => setActiveTab("")}
