@@ -74,7 +74,6 @@ const AddPost = (props) => {
   };
 
   useEffect(() => {
-    console.log(123);
     if (
       post_t.brName != "" &&
       post_t.brLink != "" &&
@@ -217,6 +216,7 @@ const AddPost = (props) => {
   };
 
   const savePostField = (val) => {
+    savePostRedux(val)
     setPost_t({ ...post_t, ...val });
   };
 
@@ -234,8 +234,7 @@ const AddPost = (props) => {
     setVisible(false);
   };
   const savePostRedux = (val) => {
-    handleClick("Пост успешно сохранен!", "success");
-    // dispatch(savePost(post_t));
+    dispatch(savePost(post_t));
   };
 
   return (
