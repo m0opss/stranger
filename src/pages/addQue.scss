@@ -56,10 +56,11 @@
   }
   .questions__container {
     display: block;
+    padding-top: 5vh;
     .questions__btn-block {
-      margin-top: 150px;
+      margin-top: 15vh;
       @media screen and (max-width: 681px) {
-        margin-top: 50px;
+        margin-top: 6px;
       }
       .questions__btn-wrapper {
         display: flex;
