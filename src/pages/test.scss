@@ -128,8 +128,8 @@
   @media screen and (max-width: 1586px) {
     max-width: 1322px;
   }
-  @media screen and (max-width: 1400px) {
-    max-width: 1122px;
+  @media screen and (max-width: 1350px) {
+    max-width: 1200px;
   }
   @media screen and (max-width: 767px) {
     display: none;
@@ -256,6 +256,10 @@
       height: 421px;
       border-radius: 20px;
       transition: 0.3s ease;
+			&-prev,
+      &-next {
+				filter: blur(10px);
+			}
       &-active,
       &-prev,
       &-next {
@@ -275,7 +279,7 @@
         }
       }
       .test-slide__brand-logo {
-        transform: translate(25%, -92%);
+        // transform: translate(25%, -92%);
       }
     }
     &-container {

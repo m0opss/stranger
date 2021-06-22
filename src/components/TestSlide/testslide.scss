@@ -10,19 +10,15 @@
   justify-content: flex-end;
   // transform: perspective(900px) rotate3d(0, -2, 3, -19deg);
   .test-slide__brand-logo {
-    position: relative;
-    // width: 100%;
-    height: 100%;
-    
+    position: absolute;
+    top: -20%;
+    right: -7%;
+    height: 50%;
     transition: 1s;
     img {
-      position: absolute;
-      top: 0;
-      right: 0;
-      padding: 0px;
-      height: 150%;
+      height: 100%;
       @media screen and (max-width: 1586px) {
-        height: 177%;
+        // height: 177%;
       }
     }
   }
