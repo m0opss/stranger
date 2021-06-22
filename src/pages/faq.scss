@@ -112,10 +112,17 @@
           color: #5f6367;
           margin-left: 65px;
           margin-bottom: 10px;
+          @media screen and (max-width: 1550px) {
+            font-size: 26px;
+          }
+          @media screen and (max-width: 1350px) {
+            font-size: 22px;
+          }
         }
       }
       .ant-collapse-item {
         border-bottom: unset;
+        margin-left: 10px;
       }
       .ant-collapse-header {
         font-weight: bold;
@@ -131,6 +138,12 @@
         color: #737373;
         &:hover {
           color: #5f6367;
+        }
+        @media screen and (max-width: 1550px) {
+          font-size: 29px;
+        }
+        @media screen and (max-width: 1350px) {
+          font-size: 26px;
         }
       }
       @media screen and (max-width: 1140px) {

@@ -11,7 +11,7 @@ const MainFooter = () => {
         <div className="footer__first-line">
           <div className="footer__contacts ">
             <p className="footer__title">Контакты</p>
-            <a className="footer__text">+7-ХХХ-ХХХ-ХХХХ</a>
+            <a className="footer__text" href='tel:+79031177887'>+7-(903)-117-7887</a>
           </div>
           <div className="footer__social">
             <p className="footer__title">Присоединяйся к нам</p>
