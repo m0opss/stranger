@@ -184,8 +184,8 @@
   }
   .slick-arrow.slick-next {
     right: -60px;
-    @media screen and (max-width: 1551px) {
-      right: -25px;
+    @media screen and (max-width: 1260px) {
+      right: -35px;
     }
   }
 }
