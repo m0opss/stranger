@@ -5,7 +5,7 @@ import clock from "../../assets/img/testClock.svg";
 import rub from "../../assets/img/testRub.svg";
 
 import "./testslide.scss";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const TestSlide = ({
@@ -17,9 +17,11 @@ const TestSlide = ({
   progress,
   isAuth,
   ind,
+  handleClick,
   ...props
 }) => {
   const token = useSelector((state) => state.auth.token);
+  const history = useHistory();
   const startGame = () => {
     fetch("https://stranger-go.com/api/v1/games/", {
       method: "POST",
@@ -31,6 +33,16 @@ const TestSlide = ({
       body: JSON.stringify({
         post: id,
       }),
+    }).then((res) => {
+      if (res.ok) {
+        if (isAuth) {
+          history.push(`/brand/${id}`);
+        } else {
+          history.push("/register");
+        }
+      } else {
+        res.json().then((r) => handleClick(r[Object.keys(r)[0]], "error"));
+      }
     });
   };
 
@@ -60,14 +72,14 @@ const TestSlide = ({
             <img src={start} />
           </div>
         ) : (
-          <Link
+          <div
             className="test-slide__play"
             id={ind == 1 ? "firstCard" : ""}
-            to={isAuth ? `/brand/${id}` : "/register"}
+            // to={"}
             onClick={startGame}
           >
             <img src={start} />
-          </Link>
+          </div>
         )}
       </div>
       <div className="test-slide__progress">

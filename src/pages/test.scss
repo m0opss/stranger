@@ -241,13 +241,13 @@
     user-select: none !important;
   }
   .swiper-container {
-    padding: 80px 55px;
-		@media screen and (max-width: 1400px) {
-			padding: 80px 35px;
-		}
-		@media screen and (max-width: 1400px) {
-			padding: 80px 15px;
-		}
+    padding: 120px 55px;
+    @media screen and (max-width: 1400px) {
+      padding: 80px 35px;
+    }
+    @media screen and (max-width: 1400px) {
+      padding: 80px 15px;
+    }
   }
   .swiper {
     &-slide {
@@ -256,10 +256,10 @@
       height: 421px;
       border-radius: 20px;
       transition: 0.3s ease;
-			&-prev,
+      &-prev,
       &-next {
-				filter: blur(10px);
-			}
+        filter: blur(10px);
+      }
       &-active,
       &-prev,
       &-next {
@@ -267,14 +267,13 @@
         height: 520px;
         @media screen and (max-width: 1805px) {
           height: 420px;
-					.test-slide {
-						padding-bottom: 80px;
-					}
+          .test-slide {
+            padding-bottom: 80px;
+          }
         }
         @media screen and (max-width: 1586px) {
           height: 358px;
         }
-        
       }
       .test-slide__brand-logo {
         // transform: translate(25%, -92%);
@@ -331,8 +330,14 @@
       margin: 0 8px;
       border-radius: 50%;
       cursor: pointer;
+      &:hover {
+        background: #b0b0b0;
+      }
       &-active {
         background-color: #17ca9b;
+        &:hover {
+          background: #17af87;
+        }
       }
     }
   }

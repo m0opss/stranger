@@ -120,7 +120,11 @@
     .test-slide__play {
       width: 30%;
       margin-left: 50px;
+      cursor: pointer;
       // display: none;
+      &:hover {
+        opacity: 0.7;
+      }
       @media screen and (max-width: 1805px) {
         width: 20%;
       }

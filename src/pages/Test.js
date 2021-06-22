@@ -11,6 +11,8 @@ import pkHelpSec from "../assets/img/pkHelpSec.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_FIRST_TIME, SET_FIRST_TIME_SECOND } from "../reducers/userReducer";
 import "swiper/swiper.scss";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 import "./test.scss";
 import { useHistory } from "react-router";
 
@@ -52,43 +54,7 @@ const Test = ({}) => {
   const [slides, setSlides] = useState([]);
 
   const swiperRef = useRef(null);
-  // const params = {
-  // 	slidesPerView: 1,
-  // 	spaceBetween: 30,
-  // 	// centeredSlides: true,
-  // 	pagination: {
-  // 		el: '.swiper-pagination',
-  // 		clickable: true,
-  // 	},
-  // };
 
-  // const settings = {
-  //   className: `center ${slides.length < 3 ? "centered-slide" : ""}`,
-  //   dots: true,
-  //   centerMode: true,
-  //   // fade: true,
-  //   // infinite: false,
-  //   centerPadding: "100px",
-  //   slidesToShow: slides.length > 3 ? 3 : slides.length > 2 ? 2 : 1,
-  //   speed: 500,
-  //   nextArrow: <SampleNextArrow />,
-  //   prevArrow: <SamplePrevArrow />,
-  //   initialSlide: 0,
-  //   responsive: [
-  //     {
-  //       breakpoint: 1310,
-  //       settings: {
-  //         centerPadding: "50px",
-  //       },
-  //     },
-  //     {
-  //       breakpoint: 1185,
-  //       settings: {
-  //         slidesToShow: 1,
-  //       },
-  //     },
-  //   ],
-  // };
   const swiperSettings = {
     slidesPerView: "auto",
     effect: "coverflow",
@@ -117,10 +83,20 @@ const Test = ({}) => {
           depth: 165,
           modifier: 3, // Effect multipler
           slideShadows: false, // Enables slides shadows
-          rotate: 0
+          rotate: 0,
         },
       },
       1400: {
+        spaceBetween: 34,
+        coverflowEffect: {
+          rotate: 0, // Slide rotate in degrees
+          stretch: -35, // Stretch space between slides (in px)
+          depth: 125, // Depth offset in px (slides translate in Z axis)
+          modifier: 3, // Effect multipler
+          slideShadows: false, // Enables slides shadows
+        },
+      },
+      1920: {
         spaceBetween: 34,
         coverflowEffect: {
           rotate: 0, // Slide rotate in degrees
@@ -206,10 +182,10 @@ const Test = ({}) => {
   useEffect(() => {
     document.addEventListener("keydown", function (event) {
       if (event.code == "ArrowLeft") {
-        document.querySelector(".slick-prev").click();
+        document.querySelector(".swiper-button-prev").click();
       }
       if (event.code == "ArrowRight") {
-        document.querySelector(".slick-next").click();
+        document.querySelector(".swiper-button-next").click();
       }
     });
   }, []);
@@ -251,6 +227,24 @@ const Test = ({}) => {
         else alert(JSON.stringify(re) + " " + status);
       });
   }, []);
+
+  const [open, setOpen] = React.useState(false);
+  const [alertMsg, setAlertMsg] = React.useState();
+  const [severity, setSeverity] = React.useState();
+
+  const handleClick = (msg, severity) => {
+    setAlertMsg(msg);
+    setSeverity(severity);
+    console.log(msg);
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
 
   return (
     <div className="page archive-page test-page ">
@@ -298,6 +292,7 @@ const Test = ({}) => {
                 <div className="swiper-slide" key={s.id}>
                   <TestSlide
                     id={s.id}
+                    handleClick={handleClick}
                     isAuth={isAuth}
                     ind={ind}
                     img={s.logo}
@@ -341,6 +336,7 @@ const Test = ({}) => {
                     id={s.id}
                     key={s.id}
                     ind={ind}
+                    handleClick={handleClick}
                     img={s.logo}
                     name={s.brand}
                     time={s.duration}
@@ -354,6 +350,24 @@ const Test = ({}) => {
           )}
         </div>
       </div>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleClose}
+          severity={severity}
+        >
+          {alertMsg}
+        </MuiAlert>
+      </Snackbar>
     </div>
   );
 };
