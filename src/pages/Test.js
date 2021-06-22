@@ -115,6 +115,9 @@ const Test = ({}) => {
         coverflowEffect: {
           stretch: -29,
           depth: 165,
+          modifier: 3, // Effect multipler
+          slideShadows: false, // Enables slides shadows
+          rotate: 0
         },
       },
       1400: {
