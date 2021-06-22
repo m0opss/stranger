@@ -278,7 +278,7 @@ const Questions = (props) => {
             <div className="questions-page__bg_rtg questions-page__bg-item_8"></div>
             <div className="questions-page__bg_rtg questions-page__bg-item_9"></div>
             <div className="questions-page__countdown">
-              <p> Поехали!</p>
+              <p className='run'>Поехали!</p>
               <div className="questions-page__countdown-counter">
                 <ul>
                   <li>
