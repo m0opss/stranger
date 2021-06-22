@@ -111,24 +111,39 @@
 .brand-page__row {
   display: flex;
   font-weight: 600;
-  font-size: 30.4452px;
+  font-size: 25.4452px;
   line-height: 37px;
   letter-spacing: 0.475706px;
   color: rgba(0, 0, 0, 0.9);
-  width: 100%;
+  width: 95%;
   justify-content: space-between;
   margin-bottom: 50px;
-  .brand-page__brand,
-  .brand-page__time,
-  .brand-page__price {
-    display: flex;
-    align-items: center;
+  .brand-page__brand {
+    width: 49%;
     img {
       margin-right: 20px;
       @media screen and (max-width: 585px) {
         margin-right: 10px;
       }
     }
+  }
+  .brand-page__time,
+  .brand-page__price {
+    white-space: nowrap;
+    img {
+      margin-right: 15px;
+      @media screen and (max-width: 585px) {
+        margin-right: 7px;
+      }
+    }
+  }
+  .brand-page__brand,
+  .brand-page__time,
+  .brand-page__price {
+    display: flex;
+    margin: 5px;
+    text-align: center;
+    align-items: center;
   }
 }
 .brand-page__info {
@@ -167,10 +182,10 @@
       font-size: 34px;
     }
     .brand-page__row {
-      font-size: 24px;
+      font-size: 22px;
     }
     .brand-page__descr {
-      font-size: 22px;
+      font-size: 20px;
     }
   }
   @media screen and (max-width: 1090px) {

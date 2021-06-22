@@ -274,12 +274,13 @@
         @media screen and (max-width: 1586px) {
           height: 358px;
         }
-        @media screen and (max-width: 1400px) {
-
-        }
+        
       }
       .test-slide__brand-logo {
         // transform: translate(25%, -92%);
+      }
+      @media screen and (max-width: 1000px) {
+        width: 70%;
       }
     }
     &-container {

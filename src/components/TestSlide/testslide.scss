@@ -150,15 +150,15 @@
   @media screen and (max-width: 767px) {
     width: 100%;
     min-width: 158px;
-    max-height: 158px;
+    height: 158px;
 
-    padding: 20px 15px 40px 15px;
+    padding: 20px 15px 25px 15px;
     .test-slide__brand-logo {
       position: absolute;
-      height: 97px;
+      height: 77px;
       right: -20px;
-      top: -40px;
-      width: 97px;
+      top: -32px;
+      width: 77px;
       img {
         height: auto;
       }

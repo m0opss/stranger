@@ -102,12 +102,12 @@ const Test = ({}) => {
     loop: true,
     breakpoints: {
       768: {
-        spaceBetween: 10,
+        spaceBetween: 50,
         coverflowEffect: {
           rotate: 0,
           stretch: -24,
           depth: 165,
-          modifier: 3,
+          modifier: 1,
           slideShadows: false,
         },
       },
@@ -146,10 +146,10 @@ const Test = ({}) => {
   useEffect(() => {
     if (
       first_time &&
-      document.querySelector(".slick-current") != null &&
+      document.querySelector(".swiper-slide-active") != null &&
       !isMobile
     ) {
-      const el = document.querySelector(".slick-current");
+      const el = document.querySelector(".swiper-slide-active");
       const set_el = document.querySelector("img.helped-container__img");
 
       setTimeout(() => positionHelp(el, set_el), 500);
@@ -160,11 +160,10 @@ const Test = ({}) => {
       !first_time &&
       first_time_second &&
       !isMobile &&
-      document.querySelector(".slick-current") != null
+      document.querySelector(".swiper-slide-active") != null
     ) {
-      const el =
-        document.querySelector(".slick-current").firstChild.firstChild
-          .childNodes[2].childNodes[1];
+      const el = document.querySelector(".swiper-slide-active").firstChild
+        .childNodes[2].childNodes[1];
       const set_el = document.querySelector("img.helped-container__img_second");
 
       setTimeout(() => positionHelpSec(el, set_el), 500);
@@ -173,7 +172,7 @@ const Test = ({}) => {
     }
     if (
       first_time &&
-      document.querySelector(".slick-current") != null &&
+      document.querySelector(".brands-list__item") != null &&
       isMobile
     ) {
       const set_el = document.querySelector("img.helped-container__img_m");
