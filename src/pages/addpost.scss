@@ -43,7 +43,7 @@
   width: 100%;
   .brand-page__btn {
     height: 50px;
-    background-color: black;
+    background-color: rgba(0, 0, 0, 0.658);
     font-weight: normal;
     font-size: 16px;
     line-height: 20px;
@@ -57,6 +57,9 @@
     :nth-child(2) {
       margin: 0 2px;
     }
+  }
+  .brand-page__btn_active {
+    background-color: black;
   }
 
   @media screen and (max-width: 856px) {
@@ -111,11 +114,23 @@
     margin-left: 40px;
   }
 }
-.add-post .brand-page__slider-item img {
-  padding: 0;
-  height: auto;
-  position: static;
-  margin: auto;
+.add-post .brand-page__slider .slick-next {
+  transform: unset;
+}
+.add-post .brand-page__slider-item {
+  position: relative;
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    padding: 15px;
+    // height: auto;
+    position: static;
+    // margin: auto;
+  }
 }
 .brand-page__name-input {
   height: 60px;
@@ -123,7 +138,6 @@
   border: none;
   border-bottom: 1px solid #c4c4c4;
   outline: none;
-
 }
 .brand-page__row-input {
   max-width: 50px;

@@ -100,7 +100,6 @@ export const getSocToken =
 
 export const getMe = (token, history, handleClick) => async (dispatch) => {
   dispatch(getUserData(token));
-
   const response = await fetch("https://stranger-go.com/api/v1/users/me/", {
     method: "GET",
     headers: {
@@ -110,7 +109,6 @@ export const getMe = (token, history, handleClick) => async (dispatch) => {
     },
   });
   if (response.ok) {
-    if (history != undefined) history.push("/");
     const userData = await response.json();
     dispatch({
       type: SET_TOKEN,
@@ -140,6 +138,9 @@ export const getMe = (token, history, handleClick) => async (dispatch) => {
       type: SET_BLOCK,
       payload: userData.is_block,
     });
+    if (history != undefined) {
+      history.push("/");
+    }
   } else {
     const err = await response.json();
     if (handleClick != undefined)

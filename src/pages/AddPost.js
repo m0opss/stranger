@@ -12,6 +12,7 @@ import { Modal } from "antd";
 import { Link, NavLink, useParams, useRouteMatch } from "react-router-dom";
 
 import "./addpost.scss";
+import { Button, notification, Divider, Space } from "antd";
 import { savePost } from "../actions/addPostActions";
 
 const AddPost = (props) => {
@@ -20,10 +21,29 @@ const AddPost = (props) => {
   const [alertMsg, setAlertMsg] = React.useState();
   const [severity, setSeverity] = React.useState();
 
+  const openNotification = (msg, placement, severity) => {
+    if (severity == "error") {
+      notification.error({
+        description: msg,
+        placement,
+      });
+    } else if (severity == "success") {
+      notification.success({
+        description: msg,
+        placement,
+      });
+    } else {
+      notification.info({
+        description: msg,
+        placement,
+      });
+    }
+  };
   const handleClick = (msg, severity) => {
-    setAlertMsg(msg);
-    setSeverity(severity);
-    setOpen(true);
+    openNotification(msg, "bottomRight", severity);
+    // setAlertMsg(msg);
+    // setSeverity(severity);
+    // setOpen(true);
   };
 
   const handleClose = (event, reason) => {
@@ -54,6 +74,7 @@ const AddPost = (props) => {
   };
 
   useEffect(() => {
+    console.log(123);
     if (
       post_t.brName != "" &&
       post_t.brLink != "" &&
@@ -86,6 +107,10 @@ const AddPost = (props) => {
 
   const fetchPost = (isArchive) => {
     let ok;
+    if (slides.length == 0) {
+      handleClick("Загрузите изображение!", "error");
+      return;
+    }
     let body = {
       brand: post_t.brName,
       url_brand: `http://${post_t.brLink}`,
@@ -97,10 +122,6 @@ const AddPost = (props) => {
       is_published: true,
       is_archive: isArchive,
     };
-    if (slides.length == 0) {
-      handleClick("Загрузите изображение!", "error");
-      return;
-    }
     // Создаем пост ///////////////////////////////////////////////
     fetch("https://stranger-go.com/api/v1/posts/", {
       method: "POST",
@@ -189,7 +210,8 @@ const AddPost = (props) => {
               });
           });
         } else {
-          handleClick("Неправильно заполнены поля", "error");
+          handleClick(res[Object.keys(res)[0]], "error");
+          // handleClick("Неправильно заполнены поля", "error");
         }
       });
   };
@@ -430,13 +452,17 @@ const AddPost = (props) => {
             вопросы
           </Link>
           <div
-            className={`btn brand-page__btn`}
+            className={`btn brand-page__btn ${
+              full ? "brand-page__btn_active" : ""
+            }`}
             onClick={full ? () => fetchPost(true) : () => {}}
           >
             сохранить
           </div>
           <div
-            className={`btn brand-page__btn`}
+            className={`btn brand-page__btn ${
+              full ? "brand-page__btn_active" : ""
+            }`}
             onClick={full ? () => fetchPost(false) : () => {}}
           >
             готово
