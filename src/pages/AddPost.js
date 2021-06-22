@@ -137,6 +137,7 @@ const AddPost = (props) => {
       })
       .then((res) => {
         if (ok) {
+          handleClick("Пост успешно добавлен!", "success");
           slides.map((s) => {
             let media = {
               type_attachment: s.type,
@@ -165,7 +166,8 @@ const AddPost = (props) => {
               }
             });
           });
-          post.ques.map((q) => {
+
+          post.ques.map((q, ind) => {
             let tmp = [];
 
             if (q.descr != "")
@@ -196,17 +198,16 @@ const AddPost = (props) => {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify(media),
-            })
-              .then((res) => {
-                if (res.ok) handleClick("Пост успешно добавлен!", "success");
-                else {
-                  return res.json();
-                }
-              })
-              .then((res) => {
-                // console.log(res.non_field_errors[0]);
-                handleClick("Ответов должно быть 4", "error");
-              });
+            }).then((res) => {
+              if (res.ok)
+                handleClick(`Вопрос ${ind + 1}: успешно добавлен!`, "success");
+              else {
+                handleClick(
+                  `Вопрос ${ind + 1}: ответов должно быть 4!`,
+                  "error"
+                );
+              }
+            });
           });
         } else {
           handleClick(res[Object.keys(res)[0]], "error");
@@ -216,7 +217,7 @@ const AddPost = (props) => {
   };
 
   const savePostField = (val) => {
-    savePostRedux(val)
+    savePostRedux(val);
     setPost_t({ ...post_t, ...val });
   };
 
