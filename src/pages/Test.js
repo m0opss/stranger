@@ -68,12 +68,12 @@ const Test = ({}) => {
     loop: true,
     breakpoints: {
       768: {
-        spaceBetween: 50,
+        // spaceBetween: 50,
         coverflowEffect: {
           rotate: 0,
           stretch: -24,
           depth: 165,
-          modifier: 1,
+          modifier: 3,
           slideShadows: false,
         },
       },
@@ -87,20 +87,10 @@ const Test = ({}) => {
         },
       },
       1400: {
-        spaceBetween: 34,
+        // spaceBetween: 34,
         coverflowEffect: {
           rotate: 0, // Slide rotate in degrees
-          stretch: -35, // Stretch space between slides (in px)
-          depth: 125, // Depth offset in px (slides translate in Z axis)
-          modifier: 3, // Effect multipler
-          slideShadows: false, // Enables slides shadows
-        },
-      },
-      1920: {
-        spaceBetween: 34,
-        coverflowEffect: {
-          rotate: 0, // Slide rotate in degrees
-          stretch: -35, // Stretch space between slides (in px)
+          stretch: -42, // Stretch space between slides (in px)
           depth: 125, // Depth offset in px (slides translate in Z axis)
           modifier: 3, // Effect multipler
           slideShadows: false, // Enables slides shadows

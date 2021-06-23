@@ -131,6 +131,9 @@
   @media screen and (max-width: 1350px) {
     max-width: 1200px;
   }
+  @media screen and (max-width: 1230px) {
+    max-width: 1100px;
+  }
   @media screen and (max-width: 767px) {
     display: none;
   }
@@ -242,10 +245,10 @@
   }
   .swiper-container {
     padding: 120px 55px;
-    @media screen and (max-width: 1400px) {
-      padding: 80px 35px;
+    @media screen and (max-width: 1586px) {
+      padding: 80px 60px;
     }
-    @media screen and (max-width: 1400px) {
+    @media screen and (max-width: 1230px) {
       padding: 80px 15px;
     }
   }
@@ -278,8 +281,8 @@
       .test-slide__brand-logo {
         // transform: translate(25%, -92%);
       }
-      @media screen and (max-width: 1000px) {
-        width: 70%;
+      @media screen and (max-width: 991px) {
+        width: 50%;
       }
     }
     &-container {

@@ -2,6 +2,11 @@ import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import Container from "../components/Containers/Container";
 
+import v1 from "../assets/video/1.mov";
+import v2 from "../assets/video/2.mov";
+import v3 from "../assets/video/3.mov";
+import v4 from "../assets/video/4.mov";
+
 import "./rilesSlides.scss";
 
 function SampleNextArrow(props) {
@@ -30,7 +35,7 @@ function SamplePrevArrow(props) {
 
 const RulesSlides = ({}) => {
   const [step, setStep] = useState(0);
-  
+
   const settings = {
     dots: true,
     // focusOnSelect: true,
@@ -63,16 +68,24 @@ const RulesSlides = ({}) => {
           <p>{step + 1} ШАГ</p>
           <Slider {...settings}>
             <div className="rules-slide">
-              <div className="rules-slide__img-container"></div>
+              <div className="rules-slide__img-container">
+                <video src={v1} controls />
+              </div>
             </div>
             <div className="rules-slide">
-              <div className="rules-slide__img-container"></div>
+              <div className="rules-slide__img-container">
+                <video src={v2} controls />
+              </div>
             </div>
             <div className="rules-slide">
-              <div className="rules-slide__img-container"></div>
+              <div className="rules-slide__img-container">
+                <video src={v3} controls />
+              </div>
             </div>
             <div className="rules-slide">
-              <div className="rules-slide__img-container"></div>
+              <div className="rules-slide__img-container">
+                <video src={v4} controls />
+              </div>
             </div>
           </Slider>
         </div>

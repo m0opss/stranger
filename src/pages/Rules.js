@@ -5,7 +5,7 @@ import Container from "../components/Containers/Container";
 import play from "../assets/img/rulesPlay.svg";
 import all from "../assets/img/all.png";
 import alien from "../assets/img/alienReg.svg";
-// import alien_m from "../assets/img/rulesBG_m.svg";
+
 
 import "./rules.scss";
 
