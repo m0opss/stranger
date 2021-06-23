@@ -6,6 +6,8 @@
   background-color: black;
   border-radius: 20px;
   display: flex;
+  // overflow: hidden;
+  z-index: 2;
   flex-direction: column;
   justify-content: flex-end;
   // transform: perspective(900px) rotate3d(0, -2, 3, -19deg);
@@ -39,7 +41,7 @@
     }
   }
   .test-slide__progress {
-    width: 100%;
+    width: calc(100% + 1px);
     position: absolute;
     bottom: -1px;
     left: 0px;
@@ -64,12 +66,12 @@
       position: absolute;
       height: 1000px;
       transform: rotate(35deg);
-      z-index: 2;
+      // z-index: 2;
       // border-radius: 0 0 20px 20px;
     }
     .test-slide__progress_field {
       border-radius: 0 0 0 20px;
-      left: 0;
+      left: -5px;
       // box-shadow: 0px 13px 13px rgb(0 0 0 / 25%)
     }
     .test-slide__progress_space {
@@ -98,6 +100,7 @@
     line-height: 37px;
     letter-spacing: 0.475706px;
     color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 20px;
 
     & > div {
       display: flex;
@@ -121,11 +124,15 @@
     .test-slide__price {
       margin-left: 20px;
     }
+    .test-slide__play,
+    .test-slide__play img {
+      z-index: 3;
+    }
     .test-slide__play {
       width: 30%;
       margin-left: 50px;
       cursor: pointer;
-      // display: none;
+
       &:hover {
         opacity: 0.7;
       }

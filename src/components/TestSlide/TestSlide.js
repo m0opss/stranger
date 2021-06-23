@@ -22,8 +22,8 @@ const TestSlide = ({
 }) => {
   const token = useSelector((state) => state.auth.token);
   const history = useHistory();
+
   const startGame = () => {
-    console.log(isAuth);
     if (isAuth) {
       fetch("https://stranger-go.com/api/v1/games/", {
         method: "POST",
@@ -47,7 +47,6 @@ const TestSlide = ({
     }
   };
 
-
   return (
     <div className="test-slide" onClick={() => console.log(id)}>
       <div className="test-slide__brand-logo">
@@ -70,20 +69,19 @@ const TestSlide = ({
             className="test-slide__play"
             style={{ opacity: ".5" }}
             id={ind == 1 ? "firstCard" : ""}
-            onClick={()=> console.log(progress)}
           >
             <img src={start} />
           </div>
         ) : (
-          <div
+          <a
             className="test-slide__play"
             id={ind == 1 ? "firstCard" : ""}
             // to={"}
-            onClick={startGame}
-            style={{zIndex: '3'}}
+            onClick={() => startGame()}
+            // style={{zIndex: '3'}}
           >
-            <img src={start} onClick={startGame} />
-          </div>
+            <img src={start} />
+          </a>
         )}
       </div>
       <div className="test-slide__progress">

@@ -5,6 +5,16 @@
   margin: auto;
   width: 500px;
   margin-top: 50px;
+
+  @media screen and (max-height: 880px) {
+    width: 400px;
+  }
+  @media screen and (max-height: 778px) {
+    width: 350px;
+  }
+  @media screen and (max-height: 710px) {
+    margin-top: 30px;
+  }
   & > p {
     margin-bottom: 40px;
     width: 100%;
@@ -80,7 +90,8 @@
 
   .rules-slide__img-container {
     background: #dadada;
-    // height: 566px;
+    // height: 566px;\
+    height: 100%;
     border-radius: 10px;
     display: flex;
     align-items: center;
