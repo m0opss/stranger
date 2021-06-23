@@ -63,7 +63,7 @@
     .test-slide__progress_space {
       position: absolute;
       height: 1000px;
-      transform: rotate(30deg);
+      transform: rotate(35deg);
       z-index: 2;
       // border-radius: 0 0 20px 20px;
     }
@@ -112,6 +112,10 @@
       white-space: nowrap;
       img {
         margin-right: 10px;
+        @media screen and(min-width:768px) and (max-width: 860px) {
+          // font-size: 13px;
+          height: 35px;
+        }
       }
     }
     .test-slide__price {
@@ -141,14 +145,14 @@
       }
     }
     @media screen and (max-width: 1805px) {
-      font-size: 24px;
+      font-size: 22px;
     }
     @media screen and (max-width: 1612px) {
-      font-size: 18px;
+      font-size: 16px;
     }
-    // @media screen and (max-width: 1612px) {
-    //   font-size: 22px;
-    // }
+    @media screen and (max-width: 834px) {
+      font-size: 13px;
+    }
   }
 
   @media screen and (max-width: 767px) {

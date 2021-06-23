@@ -24,7 +24,27 @@ const Advertisers = () => {
     } else {
       setModalValid(true);
       setVisibleM(false);
-      handleClick('Заявка успешно отправлена!', 'success')
+      (async () => {
+        const rawResponse = await fetch(
+          "https://stranger-go.com/api/v1/adversiters/",
+          {
+            method: "POST",
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              contact_data: modalVal,
+            }),
+          }
+        );
+        if (rawResponse.ok) {
+          handleClick("Заявка успешно отправлена!", "success");
+        } else {
+          const err = await rawResponse.json();
+          handleClick(err[Object.keys(err)[0]], "error");
+        }
+      })();
     }
   };
   const handleCancel = () => {

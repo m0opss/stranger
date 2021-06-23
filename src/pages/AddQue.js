@@ -127,10 +127,12 @@ const AddQue = (props) => {
     a.classList.add("add");
 
     a.addEventListener("click", addQ);
-    document
-      .querySelector("ul.slick-dots")
-      .insertBefore(r, document.querySelector("li.slick-active"));
-    document.querySelector("ul.slick-dots").appendChild(a);
+    if (document.querySelector("ul.slick-dots") != null) {
+      document
+        .querySelector("ul.slick-dots")
+        .insertBefore(r, document.querySelector("li.slick-active"));
+      document.querySelector("ul.slick-dots").appendChild(a);
+    }
   }, []);
   /////////////////////////////////////////////////////////////////
   const [ques, setQues] = useState(ques_redux);

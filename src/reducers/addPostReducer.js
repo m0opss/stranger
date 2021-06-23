@@ -14,7 +14,7 @@ const defaultState = {
     {
       id: 0,
       descr: "",
-      time: 0,
+      time: 10,
       answ: [
         { id: 11, text: "", is_correct: false },
         { id: 12, text: "", is_correct: false },
@@ -25,7 +25,7 @@ const defaultState = {
     {
       id: 1,
       descr: "",
-      time: 0,
+      time: 10,
       answ: [
         { id: 41, text: "", is_correct: false },
         { id: 42, text: "", is_correct: false },
@@ -36,7 +36,7 @@ const defaultState = {
     {
       id: 2,
       descr: "",
-      time: 0,
+      time: 10,
       answ: [
         { id: 21, text: "", is_correct: false },
         { id: 22, text: "", is_correct: false },
@@ -64,7 +64,7 @@ export default function addPostReducer(state = defaultState, action) {
           {
             id: state.ques.length,
             descr: "",
-            time: 0,
+            time: 10,
             answ: [
               {
                 id: parseFloat(String(state.ques.length) + "1"),

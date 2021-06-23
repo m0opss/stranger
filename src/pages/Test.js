@@ -225,7 +225,7 @@ const Test = ({}) => {
   const handleClick = (msg, severity) => {
     setAlertMsg(msg);
     setSeverity(severity);
-    console.log(msg);
+    console.log(123, msg);
     setOpen(true);
   };
 

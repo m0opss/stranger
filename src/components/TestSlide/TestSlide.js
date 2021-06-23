@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import start from "../../assets/img/testStartBrand.svg";
 import clock from "../../assets/img/testClock.svg";
@@ -23,28 +23,30 @@ const TestSlide = ({
   const token = useSelector((state) => state.auth.token);
   const history = useHistory();
   const startGame = () => {
-    fetch("https://stranger-go.com/api/v1/games/", {
-      method: "POST",
-      headers: {
-        Authorization: `Token ${token}`,
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        post: id,
-      }),
-    }).then((res) => {
-      if (res.ok) {
-        if (isAuth) {
+    console.log(isAuth);
+    if (isAuth) {
+      fetch("https://stranger-go.com/api/v1/games/", {
+        method: "POST",
+        headers: {
+          Authorization: `Token ${token}`,
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          post: id,
+        }),
+      }).then((res) => {
+        if (res.ok) {
           history.push(`/brand/${id}`);
         } else {
-          history.push("/register");
+          res.json().then((r) => handleClick(r[Object.keys(r)[0]], "error"));
         }
-      } else {
-        res.json().then((r) => handleClick(r[Object.keys(r)[0]], "error"));
-      }
-    });
+      });
+    } else {
+      history.push("/register");
+    }
   };
+
 
   return (
     <div className="test-slide" onClick={() => console.log(id)}>
@@ -68,6 +70,7 @@ const TestSlide = ({
             className="test-slide__play"
             style={{ opacity: ".5" }}
             id={ind == 1 ? "firstCard" : ""}
+            onClick={()=> console.log(progress)}
           >
             <img src={start} />
           </div>
@@ -77,8 +80,9 @@ const TestSlide = ({
             id={ind == 1 ? "firstCard" : ""}
             // to={"}
             onClick={startGame}
+            style={{zIndex: '3'}}
           >
-            <img src={start} />
+            <img src={start} onClick={startGame} />
           </div>
         )}
       </div>

@@ -4,15 +4,15 @@
     input {
       border: 1px solid #dadada;
       background: #17ca9b;
+      color: white;
       width: 25px;
       text-align: center;
-      &:nth-child(1){
+      &:nth-child(1) {
         margin-right: 5px;
       }
-      &:nth-child(2){
+      &:nth-child(2) {
         margin-left: 5px;
         width: 40px;
-      
       }
     }
   }

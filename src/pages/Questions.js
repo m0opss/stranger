@@ -42,6 +42,7 @@ const Que = ({ setFinished, fetchAnsw, content, setLoose }) => {
   const min = Math.floor(time / 60);
 
   useEffect(() => {
+    // setTime(content.time);
     printNumbersQue(time, 0, setTime, percent, setPercent);
   }, []);
 
@@ -278,7 +279,7 @@ const Questions = (props) => {
             <div className="questions-page__bg_rtg questions-page__bg-item_8"></div>
             <div className="questions-page__bg_rtg questions-page__bg-item_9"></div>
             <div className="questions-page__countdown">
-              <p className='run'>Поехали!</p>
+              <p className="run">Поехали!</p>
               <div className="questions-page__countdown-counter">
                 <ul>
                   <li>
