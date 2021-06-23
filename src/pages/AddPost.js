@@ -110,6 +110,14 @@ const AddPost = (props) => {
       handleClick("Загрузите изображение!", "error");
       return;
     }
+    if (
+      parseFloat(post_t.remains) <=
+      parseFloat(post_t.price) + parseFloat(post_t.price) * 0.05
+    ) {
+      handleClick("Остаток не должен быть меньше суммы выплаты + 5%", "error");
+      return;
+    }
+
     let body = {
       brand: post_t.brName,
       url_brand: `http://${post_t.brLink}`,
