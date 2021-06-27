@@ -178,7 +178,7 @@ const Questions = (props) => {
           },
         }
       );
-      if (rawResponse.status == 204) {
+      if (rawResponse.status == 204 || rawResponse.status == 208) {
         setFinish(true);
       } else if (rawResponse.status == 200) {
         const content = await rawResponse.json();

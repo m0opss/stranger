@@ -11,7 +11,13 @@ import MuiAlert from "@material-ui/lab/Alert";
 
 const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
   const [sum, setSum] = useState("");
-  const [card, setCard] = useState("qiwi");
+  const type_c = useSelector((state) => state.auth.withdrawal_type);
+  const [card, setCard] = useState();
+
+  useEffect(() => {
+    setCard(type_c);
+  }, []);
+  
   const [cardNum, setCardNum] = useState("");
   const transaction_history = useSelector(
     (state) => state.user.transaction_history
@@ -47,7 +53,7 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          withdrawal_type: card == "qiwi" ? 1 : card == "phone" ? 2 : 3,
+          withdrawal_type: card,
           withdrawal_value: "7" + cardNum,
         }),
       })

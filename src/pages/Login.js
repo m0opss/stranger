@@ -71,7 +71,7 @@ const Login = ({}) => {
   };
 
   return (
-    <div className="page-auth login">
+    <div className="page-auth register login">
       <div className="page-auth__background page-auth__background_1"></div>
       <div className="page-auth__background page-auth__background_2"></div>
       <div className="page-auth__background page-auth__background_2_m"></div>

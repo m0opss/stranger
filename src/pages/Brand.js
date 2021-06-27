@@ -17,41 +17,6 @@ import { Link, NavLink, useParams, useRouteMatch } from "react-router-dom";
 import "./brand.scss";
 import { useDispatch, useSelector } from "react-redux";
 
-// function SampleNextArrow({ onClick }) {
-//   // const { className, style, onClick } = props;
-//   return (
-//     <button className="swiper-button-next" onClick={onClick}>
-//       {/* className={className} style={{ ...style }} onClick={onClick} */}
-//       <div className="arrow-info arrow-info_next">
-//         <div className="arrow-info-top"></div>
-//         <div className="arrow-info-bottom"></div>
-//       </div>
-//     </button>
-//   );
-// }
-function SampleNextArrow({ onClick }) {
-  // const { className, style, onClick } = props;
-  return (
-    <div className="arrow-info arrow-info_next">
-      <div className="arrow-info-top"></div>
-      <div className="arrow-info-bottom"></div>
-    </div>
-  );
-}
-
-function SamplePrevArrow({ onClick }) {
-  // const { className, style, onClick } = props;
-  return (
-    <button className="swiper-button-prev" onClick={onClick}>
-      {/*className={className} style={{ ...style }}  onClick={onClick} */}
-      <div className="arrow-info arrow-info_prev">
-        <div className="arrow-info-top"></div>
-        <div className="arrow-info-bottom"></div>
-      </div>
-    </button>
-  );
-}
-
 const Brand = (props) => {
   const [fullWatched, setWatched] = useState(false);
   const [timed, setTimed] = useState(false);
@@ -79,10 +44,16 @@ const Brand = (props) => {
     infinite: false,
     slidesToShow: 1,
     speed: 500,
-    nextArrow: <img src={bransSlideArrBack} />,
-    prevArrow: <img src={bransSlideArrBack} />,
-    // nextArrow: <SampleNextArrow />,
-    // prevArrow: <SamplePrevArrow />,
+    nextArrow: (
+      <div className="asdasd">
+        <div className="slick-arrow-next-custom"></div>
+      </div>
+    ),
+    prevArrow: (
+      <div className="asdasd">
+        <div className="slick-arrow-prev-custom"></div>
+      </div>
+    ),
     afterChange: (current) => setSlideN(current),
   };
 

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Input, Select } from "antd";
-import { SettingOutlined } from "@ant-design/icons";
-import lkHelpSum from "../../../../assets/img/LK/lkHelpSum.svg";
+import { SET_TYPE } from "../../../../reducers/authReducer";
 
 import SelectCard from "../../../SelectCard/SelectCard";
 import "./lkdonate.scss";
@@ -60,34 +59,43 @@ const SummInputBlock = ({ sum, setSum, max }) => {
 };
 
 const DonateBlock = ({
-  setCard,
-  card,
   setSum,
+  card,
+  setCard,
   fetchMoney,
   sum,
   max,
   cardNum,
   setCardNum,
 }) => {
-  const onClickCard = (kind) => {
-    setCard(kind);
-  };
-  let active = false;
+  const [active, setActive] = useState(false);
+
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
   const balance = useSelector((state) => state.user.balance);
   const type_c = useSelector((state) => state.auth.withdrawal_type);
   const val_c = useSelector((state) => state.auth.withdrawal_value);
 
+  const dispatch = useDispatch();
+
+  console.log(1, card);
+  const onClickCard = (kind) => {
+    console.log(kind);
+    setCard(kind);
+    // dispatch({ type: SET_TYPE, payload: kind });
+  };
   useEffect(() => {
-    if (max >= 200 && sum != "") {
-      console.log(cardNum != "" && type_c == 5 && cardNum.length == 10, 211);
+    if (sum >= 200 && sum != "" && sum <= max) {
       if (
         (cardNum != "" && type_c == 5 && cardNum.length == 10) ||
         type_c != 5
       ) {
-        active = true;
+        setActive(true);
+      } else {
+        setActive(false);
       }
+    } else {
+      setActive(false);
     }
   });
 
@@ -112,7 +120,12 @@ const DonateBlock = ({
       </div>
       {isMobile ? <></> : <p>Транзакция</p>}
       <div className="donate-block__select-card">
-        <SelectCard onClickCard={onClickCard} card={card} isMobile={isMobile} />
+        <SelectCard
+          onClickCard={onClickCard}
+          card={card}
+          isMobile={isMobile}
+          type_c={type_c}
+        />
       </div>
       <CardInputBlock
         cardNum={cardNum}

@@ -91,7 +91,7 @@
     flex-direction: column;
     padding-left: 40px;
     padding-right: 40px;
-    margin-top: 45px;
+    margin-top: 0;
     .brand-page__slider {
       width: 100%;
     }
@@ -243,12 +243,12 @@
   @media screen and (max-width: 1000px) {
     display: block;
     .brand-page__row {
-      margin-bottom: 20px;
+      margin-bottom: 1px;
     }
     .brand-page__btn {
       margin: auto;
-      margin-top: 55px;
-      margin-bottom: 20px;
+      margin-top: 30px;
+      margin-bottom: 10px;
       height: 45px;
       width: 200px;
       font-weight: 600;
@@ -265,7 +265,7 @@
       line-height: 15px;
       text-align: center;
       max-width: 200px;
-      margin-bottom: 30px;
+      margin-bottom: 0;
       color: rgba(0, 0, 0, 0.5);
     }
   }
@@ -290,9 +290,21 @@
   .slick-next:before {
     color: #000;
     font-size: 50px;
+    display: none;
   }
-  .slick-prev.slick-disabled:before,
-  .slick-next.slick-disabled:before {
+
+  .slick-arrow-next-custom,
+  .slick-arrow-prev-custom {
+    width: 55px;
+    height: 55px;
+    background-image: url("../assets/img/leftArr.png");
+    &:hover {
+      background-image: url("../assets//img/bransSlideArrBack.svg");
+    }
+  }
+
+  .slick-prev.slick-disabled .slick-arrow-prev-custom,
+  .slick-next.slick-disabled .slick-arrow-next-custom {
     display: none;
   }
   .slick-prev {
