@@ -774,7 +774,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
   flex-direction: column;
+  @media screen and (min-width: 768px) {
+    .settings-block__close-btn span,
+    .settings-block__close-btn span::before,
+    .settings-block__close-btn span::after {
+      background-color: black;
+    }
+  }
   .win__cost {
     font-style: normal;
     font-weight: 500;

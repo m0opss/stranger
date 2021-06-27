@@ -122,11 +122,9 @@ const DonateBlock = ({
       />
       <SummInputBlock sum={sum} setSum={setSum} max={max} />
 
-      {/* <p className="donate-block__small-text">
-        {isMobile
-          ? " Вывести деньги из кошелька можно только через 2 часа с момента зачисления на него"
-          : "* Только что заработанные деньги можно вывести через 2 часа"}
-      </p> */}
+      <p className="donate-block__small-text">
+        Минимальная сумма для перевода 200 рублей
+      </p>
       <div
         className={`btn donate-block__btn ${
           active ? "donate-block__btn_active" : ""

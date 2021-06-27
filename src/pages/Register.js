@@ -55,7 +55,8 @@ const Register = ({}) => {
       setPass_correct(true);
       setPassAlso_correct(true);
     }
-    if (pass.length < 5) {
+
+    if (pass.length < 8 || pass.search(/\d/) == -1) {
       setPass_correct(false);
       flag = false;
     } else {
@@ -203,7 +204,7 @@ const Register = ({}) => {
               setValue={setPass}
               id="pass"
               label="Пароль"
-              helperText="Пароль не удовлетворяет требованиям"
+              helperText="Пароль должен состоять не менее чем из 8 символов, иметь как минимум 1 цифру, не быть похожим на email"
               isValidated={pass_correct}
               placeholder="введите пароль"
               type="password"

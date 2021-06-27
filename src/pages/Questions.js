@@ -34,7 +34,7 @@ function printNumbersQue(from, to, func, perc, func2) {
   }, 1000);
 }
 
-const Que = ({ setFinished, fetchAnsw, content, setLoose }) => {
+const Que = ({ setFinished, fetchAnsw, content, setLoose, cnt }) => {
   const [time, setTime] = useState(content.time);
   const [percent, setPercent] = useState(0);
 
@@ -70,7 +70,7 @@ const Que = ({ setFinished, fetchAnsw, content, setLoose }) => {
           format={() => `${min}:${sec}`}
         />
       </div>
-      <h2 className="questions__que">Вопрос {content.id}</h2>
+      <h2 className="questions__que">Вопрос {cnt}</h2>
       <p className="questions__descr">{content.text}</p>
       <div className="questions__btn-block">
         {content.answers ? (
@@ -94,11 +94,12 @@ const Que = ({ setFinished, fetchAnsw, content, setLoose }) => {
 const WinContainer = ({ isAuth }) => {
   const coast = useSelector((state) => state.game.coast);
   const brand = useSelector((state) => state.game.brand);
+  const progress = useSelector((state) => state.game.game_progress);
   return (
     <div className="win__container">
       <div className="win__cash">ты заработал</div>
-      <p className="win__cost">{coast}₽</p>
-      {isAuth ? (
+      <p className="win__cost">{progress == 100 ? 0 : coast}₽</p>
+      {isAuth && progress != 100 ? (
         <>
           <p className="win__tnx">
             Спасибо за Ваше время и внимание к {brand}, который спонсирует этот
@@ -106,6 +107,16 @@ const WinContainer = ({ isAuth }) => {
           </p>
           <Link to="/test" className="win__btn">
             продолжить
+          </Link>
+        </>
+      ) : isAuth && progress == 100 ? (
+        <>
+          <p className="win__tnx">
+            Вы уже получали награду за этот тест! Пожалуйста, прочитайте
+            правила.
+          </p>
+          <Link to="/rules" className="win__btn">
+            Правила
           </Link>
         </>
       ) : (
@@ -124,7 +135,13 @@ const WinContainer = ({ isAuth }) => {
 };
 const LooseContainer = ({ brand, isMobile }) => {
   return (
-    <div className="win__container">
+    <div className="questions__container win__container">
+      <Link
+        to="/test"
+        className="settings-block__close-btn card-close questions__close"
+      >
+        <span></span>
+      </Link>
       <div className="win__cash">ты заработал</div>
       <p className="win__cost">0 ₽</p>
       <p className="win__no">{isMobile ? "О НЕЕЕТ" : "Попробуй ещё раз!"}</p>
@@ -191,7 +208,7 @@ const Questions = (props) => {
   const isAuth = useSelector((state) => state.auth.isAuth);
   const [finished, setFinished] = useState(false);
   const [loose, setLoose] = useState(false);
-  const [cnt, setCnt] = useState(0);
+  const [cnt, setCnt] = useState(1);
   const [content, setContent] = useState({});
   const history = useHistory();
   let isMobile = false;
@@ -210,6 +227,7 @@ const Questions = (props) => {
   }, []);
 
   const fetchAnsw = (id_q, id_a) => {
+    setCnt((cnt) => cnt + 1);
     fetch("https://stranger-go.com/api/v1/games/check_answer/", {
       method: "POST",
       headers: {
@@ -321,7 +339,6 @@ const Questions = (props) => {
             <div className="questions-page__bg_rtg questions-page__bg-item_1"></div>
             <div className="questions-page__bg_rtg questions-page__bg-item_3"></div>
             <div className="questions-page__bg_rtg questions-page__bg-item_6"></div>
-
             <Que
               isMobile={isMobile}
               finished={finished}

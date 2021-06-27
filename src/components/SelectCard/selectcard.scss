@@ -10,7 +10,7 @@
     width: 84px;
     height: 56px;
     background: #ffffff;
-    border: 0.8px solid rgba(218, 218, 218, 0.6);;
+    border: 0.8px solid rgba(218, 218, 218, 0.6);
     box-sizing: border-box;
     border-radius: 5px;
     display: flex;
@@ -18,18 +18,22 @@
     align-items: center;
     background-repeat: no-repeat;
     background-position: center;
+    background-size: contain;
     &:hover {
       background: #dadada;
       border: none;
       background-repeat: no-repeat;
       background-position: center;
+      background-size: contain;
     }
   }
   li.active {
-    border: none;
-    background: #dadada;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-repeat: no-repeat;
     background-position: center;
+    background-size: contain;
     box-shadow: inset 0.622222px 0.622222px 1.24444px rgba(0, 0, 0, 0.25);
     border-radius: 5px;
   }

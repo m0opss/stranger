@@ -175,8 +175,8 @@ const Test = ({}) => {
           .childNodes[1];
       const set_el = document.querySelector("img.helped-container__img_second");
 
-      setTimeout(() => positionHelpSec(el, set_el), 500);
-      setTimeout(() => dispatch({ type: SET_FIRST_TIME_SECOND }), 4000);
+      setTimeout(() => positionHelpSec(el, set_el), 100);
+      setTimeout(() => dispatch({ type: SET_FIRST_TIME_SECOND }), 3000);
     }
   });
 

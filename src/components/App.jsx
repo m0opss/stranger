@@ -57,7 +57,7 @@ const App = (props) => {
     { path: "/register", Component: Register },
     { path: "/login", Component: Login },
     { path: "/rules", Component: Rules },
-    { path: "/rules-slides", Component: RulesSlides },
+    { path: "/rules/rules-slides", Component: RulesSlides },
     { path: "/test", Component: Test },
     { path: "/brand/:id", Component: Brand },
     { path: "/brand/:id/q", Component: Questions },
@@ -75,11 +75,13 @@ const App = (props) => {
   const { search } = useLocation();
   useEffect(() => {
     const params = new URLSearchParams(search);
+    if (params.get("next") != null) {
+      history.push("/login");
+    }
 
     if (params.get("uid") != null) {
       dispatch({ type: SET_TOKEN, payload: params.get("token") });
       dispatch({ type: SET_UID, payload: params.get("uid") });
-
       history.push("/reset-confirm");
     }
   }, []);
@@ -99,20 +101,40 @@ const App = (props) => {
   return (
     <div className="app">
       <Switch>
-        {routes.map(({ path, Component }) => (
-          <Route key={path} exact path={path}>
-            {({ match }) => (
-              <CSSTransition
-                timeout={1000}
-                // classNames="page"
-                unmountOnExit
-                in={match != null}
-              >
-                <Component {...props} />
-              </CSSTransition>
-            )}
-          </Route>
-        ))}
+        {routes.map(({ path, Component }) => {
+          if (path == "/rules/rules-slides") {
+            console.log(path);
+            return (
+              <Route key={path} path={path}>
+                {({ match }) => (
+                  <CSSTransition
+                    timeout={1000}
+                    // classNames="page"
+                    unmountOnExit
+                    in={match != null}
+                  >
+                    <Component {...props} />
+                  </CSSTransition>
+                )}
+              </Route>
+            );
+          } else {
+            return (
+              <Route key={path} exact path={path}>
+                {({ match }) => (
+                  <CSSTransition
+                    timeout={1000}
+                    // classNames="page"
+                    unmountOnExit
+                    in={match != null}
+                  >
+                    <Component {...props} />
+                  </CSSTransition>
+                )}
+              </Route>
+            );
+          }
+        })}
       </Switch>
     </div>
   );

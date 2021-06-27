@@ -17,6 +17,41 @@ import { Link, NavLink, useParams, useRouteMatch } from "react-router-dom";
 import "./brand.scss";
 import { useDispatch, useSelector } from "react-redux";
 
+// function SampleNextArrow({ onClick }) {
+//   // const { className, style, onClick } = props;
+//   return (
+//     <button className="swiper-button-next" onClick={onClick}>
+//       {/* className={className} style={{ ...style }} onClick={onClick} */}
+//       <div className="arrow-info arrow-info_next">
+//         <div className="arrow-info-top"></div>
+//         <div className="arrow-info-bottom"></div>
+//       </div>
+//     </button>
+//   );
+// }
+function SampleNextArrow({ onClick }) {
+  // const { className, style, onClick } = props;
+  return (
+    <div className="arrow-info arrow-info_next">
+      <div className="arrow-info-top"></div>
+      <div className="arrow-info-bottom"></div>
+    </div>
+  );
+}
+
+function SamplePrevArrow({ onClick }) {
+  // const { className, style, onClick } = props;
+  return (
+    <button className="swiper-button-prev" onClick={onClick}>
+      {/*className={className} style={{ ...style }}  onClick={onClick} */}
+      <div className="arrow-info arrow-info_prev">
+        <div className="arrow-info-top"></div>
+        <div className="arrow-info-bottom"></div>
+      </div>
+    </button>
+  );
+}
+
 const Brand = (props) => {
   const [fullWatched, setWatched] = useState(false);
   const [timed, setTimed] = useState(false);
@@ -25,8 +60,8 @@ const Brand = (props) => {
   const [data, setData] = useState({});
   const { params } = useRouteMatch();
   const token = useSelector((state) => state.auth.token);
-  const dispatch = useDispatch();
   const id = params.id;
+  const dispatch = useDispatch();
 
   const first_time_brand = useSelector((state) => state.user.first_time_brand);
   useEffect(() => {
@@ -46,11 +81,13 @@ const Brand = (props) => {
     speed: 500,
     nextArrow: <img src={bransSlideArrBack} />,
     prevArrow: <img src={bransSlideArrBack} />,
+    // nextArrow: <SampleNextArrow />,
+    // prevArrow: <SamplePrevArrow />,
     afterChange: (current) => setSlideN(current),
   };
 
   useEffect(() => {
-    if (slides.length == slideN + 1) {
+    if (slides.length == slideN + 2) {
       setWatched(true);
     }
   });
@@ -84,7 +121,6 @@ const Brand = (props) => {
       .then((res) => res.json())
       .then((re) => {
         setData(re);
-        console.log(1231321, re);
         dispatch({ type: SET_COAST, payload: re.coast });
         dispatch({ type: SET_BRAND, payload: re.brand });
         // dispatch({ type: SET_BRAND, payload: re.brand });
@@ -148,8 +184,7 @@ const Brand = (props) => {
               className="brand-page__warning"
               style={fullWatched ? { visibility: "hidden" } : {}}
             >
-              Играть можно начать только после просмотра презентации/видео
-              ролика
+              Играй после просмотра рекламы
             </p>
           </div>
           <div className="brand-page__info_m">
@@ -173,7 +208,7 @@ const Brand = (props) => {
           </div>
           <div className="brand-page__slider">
             <Slider {...settings}>
-              {slides.map((i) => (
+              {slides.slice(1, slides.length).map((i) => (
                 <div className="brand-page__slider-item" key={i.id}>
                   {first_time_brand ? (
                     <div

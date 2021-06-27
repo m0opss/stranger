@@ -76,7 +76,7 @@ const Header = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink exact to="/rules">
+                <NavLink to="/rules">
                   Правила
                 </NavLink>
               </li>
@@ -136,10 +136,10 @@ const Header = () => {
             </Link>
           </li>
           {isAuth && !isAdmin ? (
-            <div className="menu-balance">
+            <Link className="menu-balance" to="/lk">
               <img src={mMenuRub} alt="" />
               <p>{balance}</p>
-            </div>
+            </Link>
           ) : (
             <></>
           )}
@@ -173,8 +173,13 @@ const Header = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink exact to="/lk">
+              Личный кабинет
+            </NavLink>
+          </li>
+          <li>
             <NavLink exact to="/advertisers">
-              Рекламодателям
+              <span style={{ color: "#17ca9b" }}>Рекламодателям</span>
             </NavLink>
           </li>
           <div className="header__burger-menu-logon">
@@ -187,7 +192,11 @@ const Header = () => {
                   <Link to="lk">
                     <p className="header__profile-name">{email}</p>
                   </Link>
-                  <p className="header__profile-exit" onClick={onExitClick}>
+                  <p
+                    className="header__profile-exit"
+                    onClick={onExitClick}
+                    style={{ color: "red" }}
+                  >
                     выйти
                   </p>
                 </div>

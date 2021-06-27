@@ -12,7 +12,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
     width: 80%;
-    @media screen and (max-width: 560px) { 
+    @media screen and (max-width: 560px) {
       width: 100%;
     }
   }
@@ -35,35 +35,6 @@
     padding: 50px 108px;
     margin-bottom: 10px;
     position: relative;
-    // .donate-block__main-banner_bg-el_1,
-    // .donate-block__main-banner_bg-el_2,
-    // .donate-block__main-banner_bg-el_3,
-    // .donate-block__main-banner_bg-el_4,
-    // .donate-block__main-banner_bg-el_5 {
-    //   position: absolute;
-    // }
-    // .donate-block__main-banner_bg-el_1 {
-    //   top: 16px;
-    //   left: 25px;
-    //   border-left: 20px solid transparent;
-    //   border-right: 20px solid transparent;
-    //   border-bottom: 30px solid #afb1b1;
-    //   transform: rotate(15deg);
-    // }
-    // .donate-block__main-banner_bg-el_2 {
-    //   width: 150px;
-    //   height: 150px;
-    //   border-radius: 20px;
-    //   background: linear-gradient(90deg, #FFBC37 42.34%, transparent 42.34%) 0 0;
-    //   background-repeat: no-repeat;
-    //   background-size: 50% 50%;
-    // }
-    // .donate-block__main-banner_bg-el_3 {
-    // }
-    // .donate-block__main-banner_bg-el_4 {
-    // }
-    // .donate-block__main-banner_bg-el_5 {
-    // }
 
     .donate-block__balance-title {
       font-weight: 500;
@@ -224,7 +195,8 @@
     line-height: 17px;
     color: rgba(0, 0, 0, 0.5);
     white-space: nowrap;
-
+    width: 100%;
+    text-align: left;
     @media screen and (max-width: 767px) {
       font-size: 8px;
       line-height: 10px;
