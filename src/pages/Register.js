@@ -16,7 +16,7 @@ import SelectCard from "../components/SelectCard/SelectCard";
 import { handleLoginFace, handleLoginVK } from "../actions/authActions";
 
 import isEmail from "validator/es/lib/isEmail";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Register = ({}) => {
   const [login, setLogin] = useState("");
@@ -26,6 +26,7 @@ const Register = ({}) => {
   const [passAlso, setPassAlso] = useState("");
   const [passAlso_correct, setPassAlso_correct] = useState(true);
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token);
   const history = useHistory();
   useEffect(() => {
     document.addEventListener("keydown", function (event) {
@@ -114,6 +115,7 @@ const Register = ({}) => {
               email: login,
               password: pass,
               re_password: passAlso,
+              auth_token: token,
             }),
           }
         );

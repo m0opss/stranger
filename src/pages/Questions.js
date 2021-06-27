@@ -91,20 +91,34 @@ const Que = ({ setFinished, fetchAnsw, content, setLoose }) => {
   );
 };
 
-const WinContainer = ({ isMobile }) => {
+const WinContainer = ({ isAuth }) => {
   const coast = useSelector((state) => state.game.coast);
   const brand = useSelector((state) => state.game.brand);
   return (
     <div className="win__container">
       <div className="win__cash">ты заработал</div>
       <p className="win__cost">{coast}₽</p>
-      <p className="win__tnx">
-        Спасибо за Ваше время и внимание к {brand}, который спонсирует этот
-        тест.
-      </p>
-      <Link to="/test" className="win__btn">
-        продолжить
-      </Link>
+      {isAuth ? (
+        <>
+          <p className="win__tnx">
+            Спасибо за Ваше время и внимание к {brand}, который спонсирует этот
+            тест.
+          </p>
+          <Link to="/test" className="win__btn">
+            продолжить
+          </Link>
+        </>
+      ) : (
+        <>
+          <p className="win__tnx">
+            Для вывода заработанных средств, пожалуйста, войдите в систему или
+            зарегистрируйтесь
+          </p>
+          <Link to="/register" className="win__btn">
+            Зарегистрироваться
+          </Link>
+        </>
+      )}
     </div>
   );
 };
@@ -172,8 +186,9 @@ const Questions = (props) => {
     }
     setOpen(false);
   };
-  const token = useSelector((state) => state.auth.token);
   const [timing, setTiming] = useState(null);
+  const token = useSelector((state) => state.auth.token);
+  const isAuth = useSelector((state) => state.auth.isAuth);
   const [finished, setFinished] = useState(false);
   const [loose, setLoose] = useState(false);
   const [cnt, setCnt] = useState(0);
@@ -300,7 +315,7 @@ const Questions = (props) => {
         ) : finished && loose ? (
           <LooseContainer isMobile={isMobile} />
         ) : finished && !loose ? (
-          <WinContainer isMobile={isMobile} />
+          <WinContainer isAuth={isAuth} />
         ) : (
           <>
             <div className="questions-page__bg_rtg questions-page__bg-item_1"></div>

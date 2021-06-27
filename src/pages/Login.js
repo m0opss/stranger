@@ -54,7 +54,13 @@ const Login = ({}) => {
   if (window.innerWidth < 768) isMobile = true;
 
   const fetchData = () => {
-    dispatch(onLogin({ email: login, password: pass }, history, handleClick));
+    dispatch(
+      onLogin(
+        { email: login, password: pass, auth_token: token },
+        history,
+        handleClick
+      )
+    );
   };
 
   const vk_auth = () => {

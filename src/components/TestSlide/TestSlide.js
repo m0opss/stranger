@@ -15,38 +15,10 @@ const TestSlide = ({
   price,
   id,
   progress,
-  isAuth,
   ind,
-  handleClick,
+  startGame,
   ...props
 }) => {
-  const token = useSelector((state) => state.auth.token);
-  const history = useHistory();
-
-  const startGame = () => {
-    if (isAuth) {
-      fetch("https://stranger-go.com/api/v1/games/", {
-        method: "POST",
-        headers: {
-          Authorization: `Token ${token}`,
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          post: id,
-        }),
-      }).then((res) => {
-        if (res.ok) {
-          history.push(`/brand/${id}`);
-        } else {
-          res.json().then((r) => handleClick(r[Object.keys(r)[0]], "error"));
-        }
-      });
-    } else {
-      history.push("/register");
-    }
-  };
-
   return (
     <div className="test-slide" onClick={() => console.log(id)}>
       <div className="test-slide__brand-logo">
@@ -64,25 +36,14 @@ const TestSlide = ({
             {price}
           </div>
         </div>
-        {progress == 100 ? (
-          <div
-            className="test-slide__play"
-            style={{ opacity: ".5" }}
-            id={ind == 1 ? "firstCard" : ""}
-          >
-            <img src={start} />
-          </div>
-        ) : (
-          <a
-            className="test-slide__play"
-            id={ind == 1 ? "firstCard" : ""}
-            // to={"}
-            onClick={() => startGame()}
-            // style={{zIndex: '3'}}
-          >
-            <img src={start} />
-          </a>
-        )}
+
+        <a
+          className="test-slide__play"
+          id={ind == 1 ? "firstCard" : ""}
+          onClick={() => startGame(id, progress)}
+        >
+          <img src={start} />
+        </a>
       </div>
       <div className="test-slide__progress">
         <div

@@ -16,6 +16,15 @@ import MuiAlert from "@material-ui/lab/Alert";
 import "./test.scss";
 import { useHistory } from "react-router";
 
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Slide from "@material-ui/core/Slide";
+import { SET_GAME_PROGRESS } from "../reducers/gameReducer";
+
 // поменял в package.json версию swiper с 6.7.0 на 5.3.8
 
 function SampleNextArrow({ onClick }) {
@@ -30,6 +39,10 @@ function SampleNextArrow({ onClick }) {
     </button>
   );
 }
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 function SamplePrevArrow({ onClick }) {
   // const { className, style, onClick } = props;
@@ -46,12 +59,15 @@ function SamplePrevArrow({ onClick }) {
 
 const Test = ({}) => {
   const isAuth = useSelector((state) => state.auth.isAuth);
+  const зкщпкуыы = useSelector((state) => state.auth.isAuth);
   const first_time = useSelector((state) => state.user.first_time);
   const first_time_second = useSelector(
     (state) => state.user.first_time_second
   );
-
+  const token = useSelector((state) => state.auth.token);
+  // const history = useHistory();
   const [slides, setSlides] = useState([]);
+  const dispatch = useDispatch();
 
   const swiperRef = useRef(null);
 
@@ -98,7 +114,6 @@ const Test = ({}) => {
       },
     },
   };
-  const dispatch = useDispatch();
 
   function positionHelp(el, set_el) {
     const { top, left, width, height } = el.getBoundingClientRect();
@@ -165,7 +180,7 @@ const Test = ({}) => {
     }
   });
 
-  const token = useSelector((state) => state.auth.token);
+  // const token = useSelector((state) => state.auth.token);
   let isMobile = false;
   if (window.innerWidth < 768) isMobile = true;
   const history = useHistory();
@@ -219,13 +234,16 @@ const Test = ({}) => {
   }, []);
 
   const [open, setOpen] = React.useState(false);
+  const [openModal, setOpenModal] = React.useState(false);
+  const [openId, setOpenId] = React.useState();
+  const [modalText, setModalText] = React.useState("");
+
   const [alertMsg, setAlertMsg] = React.useState();
   const [severity, setSeverity] = React.useState();
 
   const handleClick = (msg, severity) => {
     setAlertMsg(msg);
     setSeverity(severity);
-    console.log(123, msg);
     setOpen(true);
   };
 
@@ -234,6 +252,54 @@ const Test = ({}) => {
       return;
     }
     setOpen(false);
+  };
+
+  const showModal = (id) => {
+    setOpenModal(true);
+    setOpenId(id);
+  };
+
+  const fetchDataGame = (id) => {
+    fetch("https://stranger-go.com/api/v1/games/", {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${token}`,
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        post: id,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        history.push(`/brand/${id}`);
+      } else {
+        res.json().then((r) => handleClick(r[Object.keys(r)[0]], "error"));
+      }
+    });
+  };
+  const startGame = (id, progress) => {
+    if (isAuth) {
+      dispatch({ type: SET_GAME_PROGRESS, payload: progress });
+      if (progress == 100) {
+        setModalText(
+          "Вы уже получали вознаграждение за этот тест. Повторное прохождение не принесет вам выгоды!"
+        );
+        showModal(id);
+      } else {
+        fetchDataGame(id);
+      }
+    } else {
+      setModalText(
+        "Не авторизованные пользователи не могут вывести заработанные средства. Пожалуйста, войдите в систему или зарегистрируйтесь."
+      );
+      showModal(id);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+    fetchDataGame(openId);
   };
 
   return (
@@ -282,14 +348,13 @@ const Test = ({}) => {
                 <div className="swiper-slide" key={s.id}>
                   <TestSlide
                     id={s.id}
-                    handleClick={handleClick}
-                    isAuth={isAuth}
                     ind={ind}
                     img={s.logo}
                     name={s.brand}
                     time={s.duration}
                     progress={s.progress}
                     price={s.coast}
+                    startGame={startGame}
                   />
                 </div>
               ))}
@@ -324,15 +389,13 @@ const Test = ({}) => {
                 <div className="brands-list__item" key={s.id}>
                   <TestSlide
                     id={s.id}
-                    key={s.id}
                     ind={ind}
-                    handleClick={handleClick}
                     img={s.logo}
                     name={s.brand}
                     time={s.duration}
                     progress={s.progress}
-                    isAuth={isAuth}
                     price={s.coast}
+                    startGame={startGame}
                   />
                 </div>
               ))}
@@ -358,6 +421,30 @@ const Test = ({}) => {
           {alertMsg}
         </MuiAlert>
       </Snackbar>
+      <div>
+        <Dialog
+          open={openModal}
+          TransitionComponent={Transition}
+          keepMounted
+          onClose={handleCloseModal}
+          aria-labelledby="alert-dialog-slide-title"
+          aria-describedby="alert-dialog-slide-description"
+        >
+          <DialogTitle id="alert-dialog-slide-title">
+            {"Предупреждение"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-slide-description">
+              {modalText}
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseModal} color="primary">
+              Ок
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
     </div>
   );
 };

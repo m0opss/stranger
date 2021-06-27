@@ -7,7 +7,11 @@ import rub from "../assets/img/brandRub.svg";
 import pkHelp from "../assets/img/pkHelp.svg";
 import bransSlideArrBack from "../assets/img/bransSlideArrBack.svg";
 
-import { SET_COAST, SET_BRAND } from "../reducers/gameReducer";
+import {
+  SET_COAST,
+  SET_BRAND,
+  SET_GAME_PROGRESS,
+} from "../reducers/gameReducer";
 import { SET_FIRST_TIME_BRAND } from "../reducers/userReducer";
 import { Link, NavLink, useParams, useRouteMatch } from "react-router-dom";
 import "./brand.scss";
@@ -80,8 +84,10 @@ const Brand = (props) => {
       .then((res) => res.json())
       .then((re) => {
         setData(re);
+        console.log(1231321, re);
         dispatch({ type: SET_COAST, payload: re.coast });
         dispatch({ type: SET_BRAND, payload: re.brand });
+        // dispatch({ type: SET_BRAND, payload: re.brand });
       });
     fetch("https://stranger-go.com/api/v1/games/list_attachments/", {
       method: "GET",

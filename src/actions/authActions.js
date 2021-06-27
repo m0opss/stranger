@@ -176,3 +176,28 @@ export const onLogin =
       // alert("Ошибка HTTP: " + rawResponse.status + " " + JSON.stringify(err));
     }
   };
+
+export const getTokenAnon = () => async (dispatch) => {
+  const rawResponse = await fetch(
+    "https://stranger-go.com/api/v1/token/anonymity/",
+    {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    }
+  );
+  if (rawResponse.ok) {
+    const content = await rawResponse.json();
+    // localStorage.setItem("token", content.auth_token);
+    dispatch({
+      type: SET_TOKEN,
+      payload: content.auth_token,
+    });
+  } else {
+    const err = await rawResponse.json();
+    handleClick("Ошибка: " + err[Object.keys(err)[0]], "error");
+    // alert("Ошибка HTTP: " + rawResponse.status + " " + JSON.stringify(err));
+  }
+};

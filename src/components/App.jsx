@@ -31,7 +31,7 @@ import AddPost from "../pages/AddPost";
 import RulesSlides from "../pages/RulesSlides";
 import FAQ from "../pages/FAQ";
 import AddQue from "../pages/AddQue";
-import { getMe } from "../actions/authActions";
+import { getMe, getTokenAnon } from "../actions/authActions";
 import Advertisers from "../pages/Advertisers";
 import ResetPass from "../pages/ResetPass";
 import ResetPassConfirm from "../pages/ResetPassConfirm";
@@ -75,6 +75,7 @@ const App = (props) => {
   const { search } = useLocation();
   useEffect(() => {
     const params = new URLSearchParams(search);
+
     if (params.get("uid") != null) {
       dispatch({ type: SET_TOKEN, payload: params.get("token") });
       dispatch({ type: SET_UID, payload: params.get("uid") });
@@ -82,6 +83,7 @@ const App = (props) => {
       history.push("/reset-confirm");
     }
   }, []);
+
   useEffect(() => {
     if (
       localStorage.getItem("token") != undefined &&
@@ -89,6 +91,8 @@ const App = (props) => {
     ) {
       dispatch(getMe(localStorage.getItem("token")));
       dispatch({ type: SET_TOKEN, payload: localStorage.getItem("token") });
+    } else {
+      dispatch(getTokenAnon());
     }
   }, []);
 
