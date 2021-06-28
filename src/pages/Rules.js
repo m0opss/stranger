@@ -24,7 +24,7 @@ const Rules = () => {
             <p>
               <b>Рад приветствовать тебя в “Strangers”.</b> <br />
               <br />
-              Начни зарабатовать на просмотре рекламы в виде игры.
+              Начни зарабатывать на просмотре рекламы в виде игры.
             </p>
             <Link to="/rules/rules-slides" className="main-block__img-play">
               <img src={play} />
