@@ -59,7 +59,7 @@ const ChangePassBlock = ({
   const fetchData = () => {
     (async () => {
       const rawResponse = await fetch(
-        "https://stranger-go.com/api/v1/users/set_password/",
+        "/api/v1/users/set_password/",
         {
           method: "POST",
           headers: {
@@ -202,7 +202,7 @@ const AddBlock = ({ setActiveblock, token }) => {
   const fetchData = () => {
     (async () => {
       const rawResponse = await fetch(
-        "https://stranger-go.com/api/v1/users/create_user/",
+        "/api/v1/users/create_user/",
         {
           method: "POST",
           headers: {

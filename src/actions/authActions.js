@@ -79,7 +79,7 @@ export function onExitAccount() {
 export const getSocToken =
   (type, access_token, handleClick, history) => async (dispatch) => {
     const response = await fetch(
-      `https://stranger-go.com/api/v1/auth-social/${type}/?access_token=${access_token}`,
+      `/api/v1/auth-social/${type}/?access_token=${access_token}`,
       {
         method: "GET",
       }
@@ -100,7 +100,7 @@ export const getSocToken =
 
 export const getMe = (token, history, handleClick) => async (dispatch) => {
   dispatch(getUserData(token));
-  const response = await fetch("https://stranger-go.com/api/v1/users/me/", {
+  const response = await fetch("/api/v1/users/me/", {
     method: "GET",
     headers: {
       Accept: "application/json",
@@ -152,7 +152,7 @@ export const getMe = (token, history, handleClick) => async (dispatch) => {
 export const onLogin =
   (credentials, history, handleClick) => async (dispatch) => {
     const rawResponse = await fetch(
-      "https://stranger-go.com/api/v1/token/login/",
+      "/api/v1/token/login/",
       {
         method: "POST",
         headers: {
@@ -179,7 +179,7 @@ export const onLogin =
 
 export const getTokenAnon = () => async (dispatch) => {
   const rawResponse = await fetch(
-    "https://stranger-go.com/api/v1/token/anonymity/",
+    "/api/v1/token/anonymity/",
     {
       method: "GET",
       headers: {

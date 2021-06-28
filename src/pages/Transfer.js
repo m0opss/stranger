@@ -16,7 +16,7 @@ const Transfer = ({}) => {
   const fetchMoney = (_type) => {
     let ok_card;
     if (_type == 5) {
-      fetch("https://stranger-go.com/api/v1/users/me/", {
+      fetch("/api/v1/users/me/", {
         method: "PATCH",
         headers: {
           Authorization: `Token ${token}`,
@@ -35,7 +35,7 @@ const Transfer = ({}) => {
         .then((re) => {
           if (ok_card) {
             let status, ok;
-            fetch("https://stranger-go.com/api/v1/users/get_money/", {
+            fetch("/api/v1/users/get_money/", {
               method: "POST",
               headers: {
                 Authorization: `Token ${token}`,
@@ -62,7 +62,7 @@ const Transfer = ({}) => {
         });
     } else {
       let status, ok;
-      fetch("https://stranger-go.com/api/v1/users/get_money/", {
+      fetch("/api/v1/users/get_money/", {
         method: "POST",
         headers: {
           Authorization: `Token ${token}`,

@@ -45,7 +45,7 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
   const fetchMoney = (_type) => {
     let ok_card;
     if (_type == 5) {
-      fetch("https://stranger-go.com/api/v1/users/me/", {
+      fetch("/api/v1/users/me/", {
         method: "PATCH",
         headers: {
           Authorization: `Token ${token}`,
@@ -64,7 +64,7 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
         .then((re) => {
           if (ok_card) {
             let status, ok;
-            fetch("https://stranger-go.com/api/v1/users/get_money/", {
+            fetch("/api/v1/users/get_money/", {
               method: "POST",
               headers: {
                 Authorization: `Token ${token}`,
@@ -91,7 +91,7 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
         });
     } else {
       let status, ok;
-      fetch("https://stranger-go.com/api/v1/users/get_money/", {
+      fetch("/api/v1/users/get_money/", {
         method: "POST",
         headers: {
           Authorization: `Token ${token}`,
@@ -169,7 +169,7 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
   const [dataS, setDataS] = useState([]);
   const [dataH, setDataH] = useState([]);
   useEffect(() => {
-    fetch("https://stranger-go.com/api/v1/users/", {
+    fetch("/api/v1/users/", {
       method: "GET",
       headers: {
         Authorization: `Token ${token}`,
@@ -183,7 +183,7 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
         data.sort((a, b) => (a.id > b.id ? 1 : -1));
         setUsers(data);
       });
-    fetch("https://stranger-go.com/api/v1/users/post_statistics/", {
+    fetch("/api/v1/users/post_statistics/", {
       method: "POST",
       headers: {
         Authorization: `Token ${token}`,
@@ -196,7 +196,7 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
       .then((re) => {
         setDataS(re);
       });
-    fetch("https://stranger-go.com/api/v1/users/post_transaction/", {
+    fetch("/api/v1/users/post_transaction/", {
       method: "POST",
       headers: {
         Authorization: `Token ${token}`,
@@ -216,7 +216,7 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
   const loadCsv = (type) => {
     const formData = new FormData();
     formData.append("download", 1);
-    fetch(`https://stranger-go.com/api/v1/users/${type}/`, {
+    fetch(`/api/v1/users/${type}/`, {
       method: "POST",
       headers: {
         Authorization: `Token ${token}`,
@@ -238,7 +238,7 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
   };
 
   const blockUser = (id) => {
-    fetch("https://stranger-go.com/api/v1/users/set_block_user/", {
+    fetch("/api/v1/users/set_block_user/", {
       method: "POST",
       headers: {
         Authorization: `Token ${token}`,
@@ -250,7 +250,7 @@ const LKContentAdmin = ({ activeTab, setActiveTab, isMobile }) => {
       }),
     }).then((re) => {
       if (re.ok)
-        fetch("https://stranger-go.com/api/v1/users/", {
+        fetch("/api/v1/users/", {
           method: "GET",
           headers: {
             Authorization: `Token ${token}`,

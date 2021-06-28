@@ -65,7 +65,7 @@ const Test = ({}) => {
   };
   useEffect(() => {
     let ok, status;
-    fetch("https://stranger-go.com/api/v1/posts/all_post/", {
+    fetch("/api/v1/posts/all_post/", {
       method: "GET",
       headers:
         token != ""

@@ -197,7 +197,7 @@ const Test = ({}) => {
 
   useEffect(() => {
     let ok, status;
-    fetch("https://stranger-go.com/api/v1/posts/all_post/", {
+    fetch("/api/v1/posts/all_post/", {
       method: "GET",
       headers:
         token != ""
@@ -260,7 +260,7 @@ const Test = ({}) => {
   };
 
   const fetchDataGame = (id) => {
-    fetch("https://stranger-go.com/api/v1/games/", {
+    fetch("/api/v1/games/", {
       method: "POST",
       headers: {
         Authorization: `Token ${token}`,

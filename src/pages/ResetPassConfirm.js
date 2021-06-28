@@ -39,7 +39,7 @@ const ResetPassConfirm = ({}) => {
   const fetchData = () => {
     (async () => {
       const rawResponse = await fetch(
-        "https://stranger-go.com/api/v1/users/reset_password_confirm/",
+        "/api/v1/users/reset_password_confirm/",
         {
           method: "POST",
           headers: {

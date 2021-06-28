@@ -170,7 +170,7 @@ const Questions = (props) => {
   ) => {
     (async () => {
       const rawResponse = await fetch(
-        "https://stranger-go.com/api/v1/games/question/",
+        "/api/v1/games/question/",
         {
           method: "GET",
           headers: {
@@ -228,7 +228,7 @@ const Questions = (props) => {
 
   const fetchAnsw = (id_q, id_a) => {
     setCnt((cnt) => cnt + 1);
-    fetch("https://stranger-go.com/api/v1/games/check_answer/", {
+    fetch("/api/v1/games/check_answer/", {
       method: "POST",
       headers: {
         Authorization: `Token ${token}`,

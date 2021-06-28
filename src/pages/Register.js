@@ -105,7 +105,7 @@ const Register = ({}) => {
     if (validate()) {
       (async () => {
         const rawResponse = await fetch(
-          "https://stranger-go.com/api/v1/users/",
+          "/api/v1/users/",
           {
             method: "POST",
             headers: {

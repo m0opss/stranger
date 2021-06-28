@@ -6,7 +6,7 @@ import {
 
 export const getUserData = (token) => async (dispatch) => {
   const rawResponse = await fetch(
-    "https://stranger-go.com/api/v1/users/balance/",
+    "/api/v1/users/balance/",
     {
       method: "GET",
       headers: {
