@@ -17,7 +17,7 @@ const Archive = ({}) => {
 
   const removeBrand = (id) => {
     setBrands((brands) => brands.filter((i) => i.id != id));
-    fetch(`/api/v1/posts/${id}/`, {
+    fetch(`https://stranger-go.com/api/v1/posts/${id}/`, {
       method: "DELETE",
       headers: {
         Authorization: `Token ${token}`,
@@ -46,7 +46,7 @@ const Archive = ({}) => {
   };
 
   const pubBrand = (id) => {
-    fetch(`/api/v1/posts/${id}/`, {
+    fetch(`https://stranger-go.com/api/v1/posts/${id}/`, {
       method: "PATCH",
       headers: {
         Authorization: `Token ${token}`,
@@ -66,7 +66,7 @@ const Archive = ({}) => {
   };
 
   useEffect(() => {
-    fetch("/api/v1/posts/", {
+    fetch("https://stranger-go.com/api/v1/posts/", {
       method: "GET",
       headers: {
         Authorization: `Token ${token}`,

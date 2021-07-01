@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import Slider from "react-slick";
 import Container from "../components/Containers/Container";
 
-import v1 from "../assets/video/1.mov";
-import v2 from "../assets/video/2.mov";
-import v3 from "../assets/video/3.mov";
-import v4 from "../assets/video/4.mov";
+import v1 from "../assets/rules/1.png";
+import v2 from "../assets/rules/2.png";
+import v3 from "../assets/rules/3.png";
+import v4 from "../assets/rules/4.png";
 
 import "./rilesSlides.scss";
 
@@ -26,7 +26,7 @@ function SamplePrevArrow(props) {
   return (
     <div className={className} style={{ ...style }} onClick={onClick}>
       <div className="arrow-info arrow-info_prev">
-        <div className="arrow-info-top"></div>
+        <div className="arrow-info-top"></div>img
         <div className="arrow-info-bottom"></div>
       </div>
     </div>
@@ -69,22 +69,22 @@ const RulesSlides = ({}) => {
           <Slider {...settings}>
             <div className="rules-slide">
               <div className="rules-slide__img-container">
-                <video src={v1} controls />
+                <img src={v1} />
               </div>
             </div>
             <div className="rules-slide">
               <div className="rules-slide__img-container">
-                <video src={v2} controls />
+                <img src={v2} />
               </div>
             </div>
             <div className="rules-slide">
               <div className="rules-slide__img-container">
-                <video src={v3} controls />
+                <img src={v3} />
               </div>
             </div>
             <div className="rules-slide">
               <div className="rules-slide__img-container">
-                <video src={v4} controls />
+                <img src={v4} />
               </div>
             </div>
           </Slider>

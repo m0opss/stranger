@@ -105,7 +105,7 @@ const Register = ({}) => {
     if (validate()) {
       (async () => {
         const rawResponse = await fetch(
-          "/api/v1/users/",
+          "https://stranger-go.com/api/v1/users/",
           {
             method: "POST",
             headers: {
@@ -173,6 +173,9 @@ const Register = ({}) => {
           <img src={alien_m} />
         </div>
         <div className="page-auth__alien-block">
+          <div className="page-auth__alien-block-bg page-auth__alien-block-bg_1"></div>
+          <div className="page-auth__alien-block-bg page-auth__alien-block-bg_2"></div>
+          <div className="page-auth__alien-block-bg page-auth__alien-block-bg_3"></div>
           <p className="page-auth__alien-row_1">
             Уже есть аккаунт? <Link to="/login">Войти</Link>
           </p>

@@ -58,41 +58,52 @@ const BalanceBlock = ({ balance, topAm, botAm }) => (
   </div>
 );
 
-const LKProgress = ({ isMobile, progress, date, plusSum }) => (
-  <div className="lk-nav__block progress-card">
-    <div className="progress-card__text-info">
-      <p className="progress-card__title">Прогресс игры</p>
-      <div className="progress-card__text-block">
-        <p className="progress-card__text_accent">{plusSum}₽</p>
-        <p className="progress-card__text">заработано</p>
+const LKProgress = ({ isMobile, progress, date, plusSum }) => {
+  const [val, setVal] = useState(0);
+  
+  useEffect(() => {
+    let timerId = setInterval(() => setVal((val) => val + 1), 30);
+    setTimeout(() => {
+      clearInterval(timerId);
+    }, 30 * progress);
+  }, []);
+
+  return (
+    <div className="lk-nav__block progress-card">
+      <div className="progress-card__text-info">
+        <p className="progress-card__title">Прогресс игры</p>
+        <div className="progress-card__text-block">
+          <p className="progress-card__text_accent">{plusSum}₽</p>
+          <p className="progress-card__text">заработано</p>
+        </div>
+        <div className="progress-card__text-block">
+          <p className="progress-card__text_accent">{date}</p>
+          <p className="progress-card__text">последний раз</p>
+        </div>
       </div>
-      <div className="progress-card__text-block">
-        <p className="progress-card__text_accent">{date}</p>
-        <p className="progress-card__text">последний раз</p>
+      <div className="progress-card__circle-info">
+        <Progress
+          type="circle"
+          percent={val}
+          width={isMobile ? 120 : 210}
+          strokeWidth={`${isMobile ? "8" : "7"}`}
+          trailColor="#E1E1E1"
+          strokeColor={
+            isMobile
+              ? {
+                  "2.8%": "#05BA97",
+                  "97.2%": "#007B4C",
+                }
+              : {
+                  "0%": "#17CA9B",
+                  "100%": "#17CA9B",
+                }
+          }
+        />
       </div>
     </div>
-    <div className="progress-card__circle-info">
-      <Progress
-        type="circle"
-        percent={progress}
-        width={isMobile ? 120 : 210}
-        strokeWidth={`${isMobile ? "8" : "7"}`}
-        trailColor="#E1E1E1"
-        strokeColor={
-          isMobile
-            ? {
-                "2.8%": "#05BA97",
-                "97.2%": "#007B4C",
-              }
-            : {
-                "0%": "#17CA9B",
-                "100%": "#17CA9B",
-              }
-        }
-      />
-    </div>
-  </div>
-);
+  );
+};
 
 const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
   const userPanel = [

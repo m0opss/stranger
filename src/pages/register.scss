@@ -176,15 +176,53 @@
 .page-auth__alien-block {
   width: 50%;
   min-height: 697px;
-  background-image: url("../assets/img/authBG.png");
+  background-image: url("../assets/img/authBGG.png");
   background-repeat: no-repeat;
   background-position: center 0;
   border-radius: 10px 0 0 10px;
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow: hidden;
   align-items: center;
   padding-top: 50px;
+  .page-auth__alien-block-bg {
+    position: absolute;
+  }
+  .page-auth__alien-block-bg_1 {
+    animation: moved infinite 6s linear;
+    width: 162px;
+    height: 162px;
+    border-radius: 50%;
+    background-color: #dbe0e8;
+    box-shadow: -4px 4px 10px rgba(183, 183, 183, 0.9);
+    bottom: 10%;
+    right: -10px;
+    @media screen and (max-width: 1526px) {
+      width: 130px;
+      height: 130px;
+    }
+  }
+  .page-auth__alien-block-bg_2 {
+    animation: movedBackTo infinite 7s linear;
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background-color: #dbe0e8;
+    box-shadow: -4px 4px 10px rgba(183, 183, 183, 0.9);
+    top: 5%;
+    right: -3px;
+  }
+  .page-auth__alien-block-bg_3 {
+    animation: movedBack infinite 5s linear;
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    background-color: #dbe0e8;
+    box-shadow: 4px 4px 10px rgba(183, 183, 183, 0.9);
+    bottom: 10%;
+    left: 5px;
+  }
   .page-auth__alien-row_1 {
     font-weight: normal;
     font-size: 20px;
@@ -233,12 +271,15 @@
   @media screen and (max-width: 1200px) {
     background-image: unset;
     min-height: unset;
+
     .page-auth__alien-row_2,
     .page-auth__alien-row_3,
     img {
       display: none;
     }
-
+    .page-auth__alien-block-bg {
+      display: none;
+    }
     .page-auth__alien-row_1 {
       font-size: 15px;
     }
@@ -442,5 +483,48 @@
     margin-left: 0;
     max-width: 320px;
     margin: auto;
+  }
+}
+
+@keyframes moved {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(20px, -20px);
+  }
+  50% {
+    transform: translate(-20, -20px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes movedBack {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-20px, 20px);
+  }
+  50% {
+    transform: translate(20, 20px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes movedBackTo {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-10px, -20px);
+  }
+  50% {
+    transform: translate(10, 30px);
+  }
+  100% {
+    transform: translate(0, 0);
   }
 }

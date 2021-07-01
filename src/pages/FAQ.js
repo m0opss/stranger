@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import Container from "../components/Containers/Container";
 import { Link } from "react-router-dom";
+import BackArr from "../components/BackArr/BackArr";
 
 import alien from "../assets/img/alien.svg";
 import steps_1 from "../assets/img/dataSec.svg";
@@ -14,6 +15,7 @@ import { Collapse } from "antd";
 const { Panel } = Collapse;
 
 import "./faq.scss";
+import { isMobile } from "react-device-detect";
 
 const StepsItem = ({ title, img, setCard }) => (
   <div className="wtf-block__steps-item step-card" onClick={setCard}>
@@ -94,12 +96,15 @@ const FAQ = ({}) => {
         {card != 0 ? (
           <div className="wtf-block">
             <div className="wtf-block__steps">
-              <StepsItem
-                title={cardsData[card].title}
-                img={cardsData[card].img}
-                setCard={() => setCard(0)}
-              />
-
+              {isMobile ? (
+                <></>
+              ) : (
+                <StepsItem
+                  title={cardsData[card].title}
+                  img={cardsData[card].img}
+                  setCard={() => setCard(0)}
+                />
+              )}
               <Collapse bordered={false} className="faq__collapse" accordion>
                 {Object.keys(cardsData[card].qw).map((q) => (
                   <Panel
@@ -113,6 +118,15 @@ const FAQ = ({}) => {
                   </Panel>
                 ))}
               </Collapse>
+              {isMobile ? (
+                <BackArr
+                  type="faq"
+                  func={() => setCard(0)}
+                  className="faq__back"
+                />
+              ) : (
+                <></>
+              )}
             </div>
           </div>
         ) : (

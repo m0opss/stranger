@@ -7,7 +7,8 @@ import { Link, NavLink, useHistory, useParams } from "react-router-dom";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import "./questions.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getUserData } from "../actions/userActions";
 
 function printNumbers(from, to, func) {
   let current = from;
@@ -95,8 +96,21 @@ const WinContainer = ({ isAuth }) => {
   const coast = useSelector((state) => state.game.coast);
   const brand = useSelector((state) => state.game.brand);
   const progress = useSelector((state) => state.game.game_progress);
+  const token = useSelector((state) => state.auth.token);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUserData(token));
+  }, []);
+
   return (
-    <div className="win__container">
+    <div className="questions__container win__container">
+      <Link
+        to="/test"
+        className="settings-block__close-btn card-close questions__close"
+      >
+        <span></span>
+      </Link>
       <div className="win__cash">ты заработал</div>
       <p className="win__cost">{progress == 100 ? 0 : coast}₽</p>
       {isAuth && progress != 100 ? (
@@ -135,7 +149,7 @@ const WinContainer = ({ isAuth }) => {
 };
 const LooseContainer = ({ brand, isMobile }) => {
   return (
-    <div className="questions__container win__container">
+    <div className="questions__container win__container loose__container">
       <Link
         to="/test"
         className="settings-block__close-btn card-close questions__close"
@@ -149,6 +163,13 @@ const LooseContainer = ({ brand, isMobile }) => {
         Ты не правильно ответил на вопросы. Попробуй просмотреть рекламу ещё
         раз.
       </p>
+      {isMobile ? (
+        <></>
+      ) : (
+        <Link className="loose__link" to="/rules">
+          Правила игры
+        </Link>
+      )}
       {/* <Link to="/test" className="win__btn">
         продолжить
       </Link> */}
@@ -170,7 +191,7 @@ const Questions = (props) => {
   ) => {
     (async () => {
       const rawResponse = await fetch(
-        "/api/v1/games/question/",
+        "https://stranger-go.com/api/v1/games/question/",
         {
           method: "GET",
           headers: {
@@ -228,7 +249,7 @@ const Questions = (props) => {
 
   const fetchAnsw = (id_q, id_a) => {
     setCnt((cnt) => cnt + 1);
-    fetch("/api/v1/games/check_answer/", {
+    fetch("https://stranger-go.com/api/v1/games/check_answer/", {
       method: "POST",
       headers: {
         Authorization: `Token ${token}`,

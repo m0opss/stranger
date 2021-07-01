@@ -3,7 +3,12 @@
   flex-direction: column;
   align-items: center;
   min-height: 100vh;
-
+  .add-page__title {
+    text-align: center;
+    @media screen and (min-width: 767px) {
+      margin-bottom: 70px;
+    }
+  }
   .helped-container {
     height: 100vh;
     width: 100%;
@@ -208,12 +213,17 @@
 }
 
 .test-page__mobile-content {
-  display: none;
+  // display: none;
   width: 100%;
   flex-direction: column;
   align-items: center;
   padding: 20px;
   padding-bottom: 0;
+  .add-page__alien {
+    img {
+      margin: auto;
+    }
+  }
   .brands-list {
     display: flex;
     flex-wrap: wrap;
@@ -287,7 +297,10 @@
         // transform: translate(25%, -92%);
       }
       @media screen and (max-width: 991px) {
-        width: 50%;
+        height: 360px;
+      }
+      @media screen and (max-width: 891px) {
+        width: 45%;
       }
     }
     &-container {

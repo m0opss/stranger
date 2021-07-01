@@ -4,13 +4,21 @@ import { useHistory } from "react-router";
 import back_arr from "../../assets/img/backArr.svg";
 import "./backarr.scss";
 
-const BackArr = ({ link }) => {
+const BackArr = ({ link, className, type, func }) => {
   const history = useHistory();
+
   const onBackClick = () => {
-    history.push(link);
+    if (type == "faq") {
+      func();
+    } else {
+      history.push(link);
+    }
   };
   return (
-    <div className="back-btn btn" onClick={onBackClick}>
+    <div
+      className={`back-btn btn ${className ? className : ""}`}
+      onClick={onBackClick}
+    >
       <img src={back_arr} />
     </div>
   );

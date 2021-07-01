@@ -130,7 +130,7 @@ const AddPost = (props) => {
       is_archive: isArchive,
     };
     // Создаем пост ///////////////////////////////////////////////
-    fetch("/api/v1/posts/", {
+    fetch("https://stranger-go.com/api/v1/posts/", {
       method: "POST",
       headers: {
         Authorization: `Token ${token}`,
@@ -157,7 +157,7 @@ const AddPost = (props) => {
             }
             // Загружаем изображение .///////////////////////////////////
             fetch(
-              `/api/v1/posts/${res.id}/add_attachment/`,
+              `https://stranger-go.com/api/v1/posts/${res.id}/add_attachment/`,
               {
                 method: "POST",
                 headers: {
@@ -198,7 +198,7 @@ const AddPost = (props) => {
               answers: tmp,
             };
 
-            fetch(`/api/v1/questions/`, {
+            fetch(`https://stranger-go.com/api/v1/questions/`, {
               method: "POST",
               headers: {
                 Authorization: `Token ${token}`,

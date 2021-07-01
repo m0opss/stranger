@@ -26,7 +26,7 @@ const Advertisers = () => {
       setVisibleM(false);
       (async () => {
         const rawResponse = await fetch(
-          "/api/v1/adversiters/",
+          "https://stranger-go.com/api/v1/adversiters/",
           {
             method: "POST",
             headers: {

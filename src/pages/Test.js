@@ -24,6 +24,7 @@ import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Slide from "@material-ui/core/Slide";
 import { SET_GAME_PROGRESS } from "../reducers/gameReducer";
+import { isMobile } from "react-device-detect";
 
 // поменял в package.json версию swiper с 6.7.0 на 5.3.8
 
@@ -59,7 +60,7 @@ function SamplePrevArrow({ onClick }) {
 
 const Test = ({}) => {
   const isAuth = useSelector((state) => state.auth.isAuth);
-  const зкщпкуыы = useSelector((state) => state.auth.isAuth);
+  // const зкщпкуыы = useSelector((state) => state.auth.isAuth);
   const first_time = useSelector((state) => state.user.first_time);
   const first_time_second = useSelector(
     (state) => state.user.first_time_second
@@ -87,7 +88,17 @@ const Test = ({}) => {
         // spaceBetween: 50,
         coverflowEffect: {
           rotate: 0,
-          stretch: -24,
+          stretch: -10,
+          depth: 165,
+          modifier: 3,
+          slideShadows: false,
+        },
+      },
+      849: {
+        // spaceBetween: 50,
+        coverflowEffect: {
+          rotate: 0,
+          stretch: -10,
           depth: 165,
           modifier: 3,
           slideShadows: false,
@@ -126,66 +137,18 @@ const Test = ({}) => {
     set_el.style.left = left + "px";
     set_el.style.top = top + "px";
   }
+  const [v, setV] = useState(false);
+  const firstFunc = () => {
+    console.log(123123);
+    setV(true);
+  };
 
   useEffect(() => {
-    if (
-      first_time &&
-      document.querySelector(".swiper-slide-active") != null &&
-      !isMobile
-    ) {
-      const el = document.querySelector(".swiper-slide-active");
-      const set_el = document.querySelector("img.helped-container__img");
-
-      setTimeout(() => positionHelp(el, set_el), 500);
-
-      setTimeout(() => dispatch({ type: SET_FIRST_TIME }), 5000);
-    }
-    if (
-      !first_time &&
-      first_time_second &&
-      !isMobile &&
-      document.querySelector(".swiper-slide-active") != null
-    ) {
-      const el = document.querySelector(".swiper-slide-active").firstChild
-        .childNodes[2].childNodes[1];
-      const set_el = document.querySelector("img.helped-container__img_second");
-
-      setTimeout(() => positionHelpSec(el, set_el), 500);
-
-      setTimeout(() => dispatch({ type: SET_FIRST_TIME_SECOND }), 3000);
-    }
-    if (
-      first_time &&
-      document.querySelector(".brands-list__item") != null &&
-      isMobile
-    ) {
-      const set_el = document.querySelector("img.helped-container__img_m");
-      set_el.style.left = 50 + "vw";
-      set_el.style.top = 50 + "vh";
-      setTimeout(() => dispatch({ type: SET_FIRST_TIME }), 5000);
-    }
-    if (
-      !first_time &&
-      first_time_second &&
-      isMobile &&
-      document.querySelector(".brands-list__item") != null
-    ) {
-      const el =
-        document.querySelector(".brands-list__item").childNodes[0].childNodes[2]
-          .childNodes[1];
-      const set_el = document.querySelector("img.helped-container__img_second");
-
-      setTimeout(() => positionHelpSec(el, set_el), 100);
-      setTimeout(() => dispatch({ type: SET_FIRST_TIME_SECOND }), 3000);
-    }
-  });
-
-  // const token = useSelector((state) => state.auth.token);
-  let isMobile = false;
-  if (window.innerWidth < 768) isMobile = true;
-  const history = useHistory();
-  useEffect(() => {
+    dispatch({ type: SET_FIRST_TIME, payload: true });
+    setTimeout(() => setV(true), 1000);
     document.addEventListener("keydown", function (event) {
+      dispatch({ type: SET_FIRST_TIME, payload: false });
+      dispatch({ type: SET_FIRST_TIME_SECOND });
       if (event.code == "ArrowLeft") {
         document.querySelector(".swiper-button-prev").click();
       }
@@ -196,8 +159,78 @@ const Test = ({}) => {
   }, []);
 
   useEffect(() => {
+    if (v) {
+      if (
+        first_time &&
+        document.querySelector(".swiper-slide-active") != null &&
+        !isMobile
+      ) {
+        const el = document.querySelector(".swiper-slide-active");
+        const set_el = document.querySelector("img.helped-container__img");
+
+        setTimeout(() => positionHelp(el, set_el), 500);
+
+        setTimeout(
+          () => dispatch({ type: SET_FIRST_TIME, payload: true }),
+          5000
+        );
+      }
+      if (
+        !first_time &&
+        first_time_second &&
+        !isMobile &&
+        document.querySelector(".swiper-slide-active") != null
+      ) {
+        const el = document.querySelector(".swiper-slide-active").firstChild
+          .childNodes[2].childNodes[1];
+        const set_el = document.querySelector(
+          "img.helped-container__img_second"
+        );
+
+        setTimeout(() => positionHelpSec(el, set_el), 500);
+
+        setTimeout(() => dispatch({ type: SET_FIRST_TIME_SECOND }), 3000);
+      }
+      if (
+        first_time &&
+        document.querySelector(".brands-list__item") != null &&
+        isMobile
+      ) {
+        const set_el = document.querySelector("img.helped-container__img_m");
+        set_el.style.left = 50 + "vw";
+        set_el.style.top = 50 + "vh";
+        setTimeout(
+          () => dispatch({ type: SET_FIRST_TIME, payload: true }),
+          5000
+        );
+      }
+      if (
+        !first_time &&
+        first_time_second &&
+        isMobile &&
+        document.querySelector(".brands-list__item") != null
+      ) {
+        const el =
+          document.querySelector(".brands-list__item").childNodes[0]
+            .childNodes[2].childNodes[1];
+        const set_el = document.querySelector(
+          "img.helped-container__img_second"
+        );
+
+        setTimeout(() => positionHelpSec(el, set_el), 100);
+        setTimeout(() => dispatch({ type: SET_FIRST_TIME_SECOND }), 3000);
+      }
+    }
+  });
+
+  // const token = useSelector((state) => state.auth.token);
+  // let isMobile = false;
+  // if (window.innerWidth < 768) isMobile = true;
+  const history = useHistory();
+
+  useEffect(() => {
     let ok, status;
-    fetch("/api/v1/posts/all_post/", {
+    fetch("https://stranger-go.com/api/v1/posts/all_post/", {
       method: "GET",
       headers:
         token != ""
@@ -260,7 +293,7 @@ const Test = ({}) => {
   };
 
   const fetchDataGame = (id) => {
-    fetch("/api/v1/games/", {
+    fetch("https://stranger-go.com/api/v1/games/", {
       method: "POST",
       headers: {
         Authorization: `Token ${token}`,

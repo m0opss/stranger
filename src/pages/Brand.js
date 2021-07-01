@@ -81,7 +81,7 @@ const Brand = (props) => {
   }, []);
 
   useEffect(() => {
-    fetch(`/api/v1/posts/${id}/`, {
+    fetch(`https://stranger-go.com/api/v1/posts/${id}/`, {
       method: "GET",
       headers: {
         Authorization: `Token ${token}`,
@@ -96,7 +96,7 @@ const Brand = (props) => {
         dispatch({ type: SET_BRAND, payload: re.brand });
         // dispatch({ type: SET_BRAND, payload: re.brand });
       });
-    fetch("/api/v1/games/list_attachments/", {
+    fetch("https://stranger-go.com/api/v1/games/list_attachments/", {
       method: "GET",
       headers: {
         Authorization: `Token ${token}`,
@@ -199,7 +199,7 @@ const Brand = (props) => {
                       controls
                     />
                   ) : i.type_attachment == "im" ? (
-                    <img src={`/${i.file_attachment}`} />
+                    <img src={`https://stranger-go.com${i.file_attachment}`} />
                   ) : (
                     <></>
                   )}

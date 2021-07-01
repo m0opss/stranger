@@ -6,14 +6,19 @@ import {
 
 export const getUserData = (token) => async (dispatch) => {
   const rawResponse = await fetch(
-    "/api/v1/users/balance/",
+    "https://stranger-go.com/api/v1/users/balance/",
     {
       method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Token ${token}`,
-      },
+      headers: token
+        ? {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Token ${token}`,
+          }
+        : {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
     }
   );
 
@@ -31,9 +36,8 @@ export const getUserData = (token) => async (dispatch) => {
       type: SET_PROGRESS,
       payload: userData.progress,
     });
-
   } else {
     const err = await rawResponse.json();
-    alert("Ошибка HTTP: " + rawResponse.status + " " + JSON.stringify(err));
+    // alert("Ошибка HTTP: " + err[Object.keys(err)[0]]);
   }
 };

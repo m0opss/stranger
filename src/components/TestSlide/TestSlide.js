@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import start from "../../assets/img/testStartBrand.svg";
 import clock from "../../assets/img/testClock.svg";
@@ -19,6 +19,15 @@ const TestSlide = ({
   startGame,
   ...props
 }) => {
+  const [val, setVal] = useState(0);
+
+  useEffect(() => {
+    let timerId = setInterval(() => setVal((val) => val + 1), 30);
+    setTimeout(() => {
+      clearInterval(timerId);
+    }, 30 * progress);
+  }, []);
+
   return (
     <div className="test-slide" onClick={() => console.log(id)}>
       <div className="test-slide__brand-logo">
@@ -49,31 +58,31 @@ const TestSlide = ({
         <div
           className="test-slide__progress_field"
           style={
-            progress < 30
+            val < 30
               ? {
                   backgroundColor: "#ef5c68",
-                  width: `${progress}%`,
+                  width: `${val}%`,
                 }
-              : progress >= 30 && progress < 80
-              ? { backgroundColor: "#ffc720", width: `${progress}%` }
-              : progress == 100
+              : val >= 30 && val < 80
+              ? { backgroundColor: "#ffc720", width: `${val}%` }
+              : val == 100
               ? {
                   backgroundColor: "#17CA9B",
-                  width: `${progress}%`,
+                  width: `${val}%`,
                   borderRadius: "0 0 20px 20px",
                 }
-              : { backgroundColor: "#17CA9B", width: `${progress}%` }
+              : { backgroundColor: "#17CA9B", width: `${val}%` }
           }
         ></div>
         <div
           className="test-slide__progress_space"
           style={
-            progress == 0
+            val == 0
               ? { width: "100%", borderRadius: "0 0 20px 20px" }
-              : { width: `${100 - progress}%` }
+              : { width: `${100 - val}%` }
           }
         ></div>
-        <p>{progress}%</p>
+        <p>{val}%</p>
       </div>
     </div>
   );

@@ -59,7 +59,7 @@ const ChangePassBlock = ({
   const fetchData = () => {
     (async () => {
       const rawResponse = await fetch(
-        "/api/v1/users/set_password/",
+        "https://stranger-go.com/api/v1/users/set_password/",
         {
           method: "POST",
           headers: {
@@ -75,8 +75,11 @@ const ChangePassBlock = ({
         }
       );
       if (rawResponse.ok) {
-        const content = await rawResponse.json();
+        // const content = await rawResponse.json();
         handleClick("Пароль успешно изменен", "success");
+        set_old_pass("");
+        set_new_pass("");
+        set_also_pass("");
       } else {
         const err = await rawResponse.json();
         handleClick(err[Object.keys(err)[0]], "error");
@@ -202,7 +205,7 @@ const AddBlock = ({ setActiveblock, token }) => {
   const fetchData = () => {
     (async () => {
       const rawResponse = await fetch(
-        "/api/v1/users/create_user/",
+        "https://stranger-go.com/api/v1/users/create_user/",
         {
           method: "POST",
           headers: {
@@ -219,8 +222,8 @@ const AddBlock = ({ setActiveblock, token }) => {
       );
       if (rawResponse.ok) {
         const content = await rawResponse.json();
-        console.log(content);
         handleClick("Пользователь добавлен.ID: " + content.id, "success");
+        console.log(content);
       } else {
         const err = await rawResponse.json();
         handleClick(err[Object.keys(err)[0]], "error");
@@ -295,7 +298,7 @@ const AddBlock = ({ setActiveblock, token }) => {
             placeholder="пароль"
             type="password"
           />
-          {isAddAdmin ? (
+          {/* {isAddAdmin ? (
             <SettingsBlockInput
               icon={icon_pass}
               value={code}
@@ -305,7 +308,7 @@ const AddBlock = ({ setActiveblock, token }) => {
             />
           ) : (
             <></>
-          )}
+          )} */}
         </div>
       </div>
       <div
