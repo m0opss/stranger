@@ -137,16 +137,16 @@ const Test = ({}) => {
     set_el.style.left = left + "px";
     set_el.style.top = top + "px";
   }
-  const [v, setV] = useState(false);
   const firstFunc = () => {
     console.log(123123);
     setV(true);
   };
+  const [v, setV] = useState(false);
 
   useEffect(() => {
     dispatch({ type: SET_FIRST_TIME, payload: true });
-    setTimeout(() => setV(true), 1000);
-    document.addEventListener("keydown", function (event) {
+    setTimeout(() => setV(true), 2000);
+    const listener = function (event) {
       dispatch({ type: SET_FIRST_TIME, payload: false });
       dispatch({ type: SET_FIRST_TIME_SECOND });
       if (event.code == "ArrowLeft") {
@@ -155,7 +155,27 @@ const Test = ({}) => {
       if (event.code == "ArrowRight") {
         document.querySelector(".swiper-button-next").click();
       }
-    });
+    };
+    const listener1 = function (event) {
+      dispatch({ type: SET_FIRST_TIME, payload: false });
+      dispatch({ type: SET_FIRST_TIME_SECOND });
+      document.removeEventListener("mousedown", listener1, false);
+    };
+    const listener2 = function (event) {
+      dispatch({ type: SET_FIRST_TIME, payload: false });
+      dispatch({ type: SET_FIRST_TIME_SECOND });
+      document.removeEventListener("mousedown", listener2, false);
+    };
+
+    document.addEventListener("keydown", listener);
+    document.addEventListener("mousedown", listener1);
+    document.addEventListener("touchstart", listener2);
+
+    // document.addEventListener("touchstart", function (event) {
+    //   dispatch({ type: SET_FIRST_TIME, payload: false });
+    //   dispatch({ type: SET_FIRST_TIME_SECOND });
+    //   document.removeEventListener("touchstart", listener, false);
+    // });
   }, []);
 
   useEffect(() => {
@@ -171,7 +191,7 @@ const Test = ({}) => {
         setTimeout(() => positionHelp(el, set_el), 500);
 
         setTimeout(
-          () => dispatch({ type: SET_FIRST_TIME, payload: true }),
+          () => dispatch({ type: SET_FIRST_TIME, payload: false }),
           5000
         );
       }
@@ -200,7 +220,7 @@ const Test = ({}) => {
         set_el.style.left = 50 + "vw";
         set_el.style.top = 50 + "vh";
         setTimeout(
-          () => dispatch({ type: SET_FIRST_TIME, payload: true }),
+          () => dispatch({ type: SET_FIRST_TIME, payload: false }),
           5000
         );
       }
@@ -338,34 +358,39 @@ const Test = ({}) => {
   return (
     <div className="page archive-page test-page ">
       <Header />
-      {first_time && !isMobile ? (
-        <div
-          className="helped-container"
-          onClick={() => dispatch({ type: SET_FIRST_TIME })}
-        >
-          <img className="helped-container__img" src={pkHelp} />
-        </div>
-      ) : !first_time && first_time_second && !isMobile ? (
-        <div
-          className="helped-container"
-          onClick={() => dispatch({ type: SET_FIRST_TIME_SECOND })}
-        >
-          <img className="helped-container__img_second" src={pkHelpSec} />
-        </div>
-      ) : first_time && isMobile ? (
-        <div
-          className="helped-container"
-          onClick={() => dispatch({ type: SET_FIRST_TIME })}
-        >
-          <img className="helped-container__img_m" src={pkHelpM} />
-        </div>
-      ) : !first_time && first_time_second && isMobile ? (
-        <div
-          className="helped-container"
-          onClick={() => dispatch({ type: SET_FIRST_TIME_SECOND })}
-        >
-          <img className="helped-container__img_second" src={pkHelpSec} />
-        </div>
+
+      {v ? (
+        first_time && !isMobile ? (
+          <div
+            className="helped-container"
+            onClick={() => dispatch({ type: SET_FIRST_TIME })}
+          >
+            <img className="helped-container__img" src={pkHelp} />
+          </div>
+        ) : !first_time && first_time_second && !isMobile ? (
+          <div
+            className="helped-container"
+            onClick={() => dispatch({ type: SET_FIRST_TIME_SECOND })}
+          >
+            <img className="helped-container__img_second" src={pkHelpSec} />
+          </div>
+        ) : first_time && isMobile ? (
+          <div
+            className="helped-container"
+            onClick={() => dispatch({ type: SET_FIRST_TIME })}
+          >
+            <img className="helped-container__img_m" src={pkHelpM} />
+          </div>
+        ) : !first_time && first_time_second && isMobile ? (
+          <div
+            className="helped-container"
+            onClick={() => dispatch({ type: SET_FIRST_TIME_SECOND })}
+          >
+            <img className="helped-container__img_second" src={pkHelpSec} />
+          </div>
+        ) : (
+          <></>
+        )
       ) : (
         <></>
       )}

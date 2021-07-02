@@ -8,6 +8,8 @@ import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import "./advertisers.scss";
 import MainFooter from "../components/MainFooter/MainFooter";
+import isEmail from "validator/es/lib/isemail";
+import isMobilePhone from "validator/es/lib/isMobilePhone";
 
 const Advertisers = () => {
   const [visibleM, setVisibleM] = React.useState(false);
@@ -19,14 +21,15 @@ const Advertisers = () => {
   };
 
   const handleOk = () => {
-    if (modalVal == "") {
+
+    if (!isEmail(modalVal) && !isMobilePhone(modalVal, "ru-RU")) {
       setModalValid(false);
     } else {
       setModalValid(true);
       setVisibleM(false);
       (async () => {
         const rawResponse = await fetch(
-          "https://stranger-go.com/api/v1/adversiters/",
+          "https://stranger-go.com/api/v1/advertisers/",
           {
             method: "POST",
             headers: {

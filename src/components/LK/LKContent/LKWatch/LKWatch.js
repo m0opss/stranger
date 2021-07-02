@@ -6,7 +6,7 @@ const WatchRow = ({ brand, date, progress, amount }) => (
   <div className="watch-block__row">
     <p className="watch-block__row-brand">{brand}</p>
     <p className="watch-block__row-date">
-      {date == null || date == "" ? "-" : date}
+      {date == null || date == "" ? "-" : date.slice(0, 10)}
     </p>
     <p className="watch-block__row-exe">{progress}</p>
     <p className="watch-block__row-sum">{amount}</p>
@@ -95,9 +95,9 @@ const WatchBlock = ({ type, data, loadCsv, blockUser }) => {
           amount={"Выплаты,₽"}
         />
 
-        {data.length > 5
+        {data.length > 10
           ? data
-              .slice(data.length - 6, data.length - 1)
+              .slice(0, 10)
               .map((el, i) => (
                 <WatchRow
                   key={i}

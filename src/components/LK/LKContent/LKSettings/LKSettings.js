@@ -222,6 +222,8 @@ const AddBlock = ({ setActiveblock, token }) => {
       );
       if (rawResponse.ok) {
         const content = await rawResponse.json();
+        set_log("");
+        set_pass("");
         handleClick("Пользователь добавлен.ID: " + content.id, "success");
         console.log(content);
       } else {

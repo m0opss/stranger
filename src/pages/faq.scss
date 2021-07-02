@@ -1,6 +1,6 @@
 .faq-page {
   .main-container {
-    background-position: center 74%;
+    background-position: center 73%;
     @media screen and (max-width: 1140px) {
       // background-position: center 120%;
     }
@@ -72,6 +72,7 @@
     .faq__back {
       margin-left: 0;
       margin-top: 30px;
+      margin-bottom: 20px;
     }
     .step-card {
       cursor: pointer;
