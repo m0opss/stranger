@@ -17,7 +17,7 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
   useEffect(() => {
     setCard(type_c);
   }, []);
-  
+
   const [cardNum, setCardNum] = useState("");
   const transaction_history = useSelector(
     (state) => state.user.transaction_history
@@ -79,10 +79,14 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
               if (status == 204) {
                 handleClick("Деньги успешно переведены", "success");
               } else {
-                handleClick(
-                  "Ошибка при переводе денег. Попробуйте позже",
-                  "error"
-                );
+                res.json().then((err) => {
+                  console.log(ErrorEvent);
+                  handleClick(
+                    err[Object.keys(err)[0]],
+                    // "Ошибка при переводе денег. Попробуйте позже",
+                    "error"
+                  );
+                });
               }
             });
           } else {
@@ -106,7 +110,15 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
         if (status == 204) {
           handleClick("Деньги успешно переведены", "success");
         } else {
-          handleClick("Ошибка при переводе денег. Попробуйте позже", "error");
+          res.json().then((err) => {
+            console.log(ErrorEvent);
+            handleClick(
+              err[Object.keys(err)[0]],
+              // "Ошибка при переводе денег. Попробуйте позже",
+              "error"
+            );
+          });
+          // handleClick("Ошибка при переводе денег. Попробуйте позже", "error");
         }
       });
     }

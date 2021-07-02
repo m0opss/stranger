@@ -191,8 +191,7 @@ const Test = ({}) => {
       ) {
         const el = document.querySelector(".swiper-slide-active");
         const set_el = document.querySelector("img.helped-container__img");
-        console.log(1, el);
-        setTimeout(() => positionHelp(el, set_el), 500);
+        if (set_el != null) setTimeout(() => positionHelp(el, set_el), 500);
 
         setTimeout(
           () => dispatch({ type: SET_FIRST_TIME, payload: false }),
@@ -212,7 +211,7 @@ const Test = ({}) => {
         const set_el = document.querySelector(
           "img.helped-container__img_second"
         );
-        setTimeout(() => positionHelpSec(el, set_el), 600);
+        if (set_el != null) setTimeout(() => positionHelpSec(el, set_el), 600);
         setTimeout(
           () => dispatch({ type: SET_FIRST_TIME_SECOND, payload: false }),
           3000
@@ -224,8 +223,10 @@ const Test = ({}) => {
         isMobile
       ) {
         const set_el = document.querySelector("img.helped-container__img_m");
-        set_el.style.left = 50 + "vw";
-        set_el.style.top = 50 + "vh";
+        if (set_el != null) {
+          set_el.style.left = 50 + "vw";
+          set_el.style.top = 50 + "vh";
+        }
         setTimeout(() => setFT(false), 5000);
         setTimeout(
           () => dispatch({ type: SET_FIRST_TIME, payload: false }),
@@ -244,8 +245,9 @@ const Test = ({}) => {
         const set_el = document.querySelector(
           "img.helped-container__img_second"
         );
-        console.log(4, set_el);
-        setTimeout(() => positionHelpSec(el, set_el), 600);
+        if (set_el != null) {
+          setTimeout(() => positionHelpSec(el, set_el), 600);
+        }
         setTimeout(
           () => dispatch({ type: SET_FIRST_TIME_SECOND, payload: false }),
           3000
