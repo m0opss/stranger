@@ -8,7 +8,7 @@ import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import "./advertisers.scss";
 import MainFooter from "../components/MainFooter/MainFooter";
-import isEmail from "validator/es/lib/isemail";
+import isEmail from "validator/es/lib/isEmail";
 import isMobilePhone from "validator/es/lib/isMobilePhone";
 
 const Advertisers = () => {
