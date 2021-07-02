@@ -133,22 +133,23 @@ const Test = ({}) => {
   }
 
   function positionHelpSec(el, set_el) {
+    console.log(22, el, set_el);
     const { top, left } = el.getBoundingClientRect();
     set_el.style.left = left + "px";
     set_el.style.top = top + "px";
   }
-  const firstFunc = () => {
-    console.log(123123);
-    setV(true);
-  };
+
   const [v, setV] = useState(false);
+  const [ft, setFT] = useState(false);
 
   useEffect(() => {
-    dispatch({ type: SET_FIRST_TIME, payload: true });
     setTimeout(() => setV(true), 2000);
+    setTimeout(() => setFT(first_time), 2000);
+    // dispatch({ type: SET_FIRST_TIME, payload: true });
+
     const listener = function (event) {
       dispatch({ type: SET_FIRST_TIME, payload: false });
-      dispatch({ type: SET_FIRST_TIME_SECOND });
+      dispatch({ type: SET_FIRST_TIME_SECOND, payload: false });
       if (event.code == "ArrowLeft") {
         document.querySelector(".swiper-button-prev").click();
       }
@@ -158,12 +159,12 @@ const Test = ({}) => {
     };
     const listener1 = function (event) {
       dispatch({ type: SET_FIRST_TIME, payload: false });
-      dispatch({ type: SET_FIRST_TIME_SECOND });
+      dispatch({ type: SET_FIRST_TIME_SECOND, payload: false });
       document.removeEventListener("mousedown", listener1, false);
     };
     const listener2 = function (event) {
       dispatch({ type: SET_FIRST_TIME, payload: false });
-      dispatch({ type: SET_FIRST_TIME_SECOND });
+      dispatch({ type: SET_FIRST_TIME_SECOND, payload: false });
       document.removeEventListener("mousedown", listener2, false);
     };
 
@@ -180,52 +181,59 @@ const Test = ({}) => {
 
   useEffect(() => {
     if (v) {
+      if (first_time_second == null) {
+        dispatch({ type: SET_FIRST_TIME_SECOND, payload: true });
+      }
       if (
-        first_time &&
+        ft &&
         document.querySelector(".swiper-slide-active") != null &&
         !isMobile
       ) {
         const el = document.querySelector(".swiper-slide-active");
         const set_el = document.querySelector("img.helped-container__img");
-
+        console.log(1, el);
         setTimeout(() => positionHelp(el, set_el), 500);
 
         setTimeout(
           () => dispatch({ type: SET_FIRST_TIME, payload: false }),
           5000
         );
+        setTimeout(() => setFT(false), 5000);
       }
       if (
-        !first_time &&
+        !ft &&
         first_time_second &&
         !isMobile &&
         document.querySelector(".swiper-slide-active") != null
       ) {
-        const el = document.querySelector(".swiper-slide-active").firstChild
-          .childNodes[2].childNodes[1];
+        const el = document
+          .querySelector(".swiper-slide-active")
+          .firstChild.childNodes[2].querySelector("a.test-slide__play");
         const set_el = document.querySelector(
           "img.helped-container__img_second"
         );
-
-        setTimeout(() => positionHelpSec(el, set_el), 500);
-
-        setTimeout(() => dispatch({ type: SET_FIRST_TIME_SECOND }), 3000);
+        setTimeout(() => positionHelpSec(el, set_el), 600);
+        setTimeout(
+          () => dispatch({ type: SET_FIRST_TIME_SECOND, payload: false }),
+          3000
+        );
       }
       if (
-        first_time &&
+        ft &&
         document.querySelector(".brands-list__item") != null &&
         isMobile
       ) {
         const set_el = document.querySelector("img.helped-container__img_m");
         set_el.style.left = 50 + "vw";
         set_el.style.top = 50 + "vh";
+        setTimeout(() => setFT(false), 5000);
         setTimeout(
           () => dispatch({ type: SET_FIRST_TIME, payload: false }),
           5000
         );
       }
       if (
-        !first_time &&
+        !ft &&
         first_time_second &&
         isMobile &&
         document.querySelector(".brands-list__item") != null
@@ -236,9 +244,12 @@ const Test = ({}) => {
         const set_el = document.querySelector(
           "img.helped-container__img_second"
         );
-
-        setTimeout(() => positionHelpSec(el, set_el), 100);
-        setTimeout(() => dispatch({ type: SET_FIRST_TIME_SECOND }), 3000);
+        console.log(4, set_el);
+        setTimeout(() => positionHelpSec(el, set_el), 600);
+        setTimeout(
+          () => dispatch({ type: SET_FIRST_TIME_SECOND, payload: false }),
+          3000
+        );
       }
     }
   });

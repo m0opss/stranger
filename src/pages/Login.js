@@ -102,6 +102,9 @@ const Login = ({}) => {
           <img src={alien_m} />
         </div>
         <div className="page-auth__alien-block">
+          <div className="page-auth__alien-block-bg page-auth__alien-block-bg_1"></div>
+          <div className="page-auth__alien-block-bg page-auth__alien-block-bg_2"></div>
+          <div className="page-auth__alien-block-bg page-auth__alien-block-bg_3"></div>
           <p className="page-auth__alien-row_1">
             Еще нет аккаунта? <Link to="/register">Зарегистрироваться</Link>
           </p>

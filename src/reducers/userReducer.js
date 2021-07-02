@@ -9,7 +9,7 @@ export const SET_FIRST_TIME_SECOND = "SET_FIRST_TIME_SECOND";
 const defaultState = {
   cardNum: "",
   phone: "",
-  first_time: false,
+  first_time: true,
   first_time_brand: true,
   first_time_second: null,
   balance: 0,
@@ -31,12 +31,11 @@ export default function userReducer(state = defaultState, action) {
       return {
         ...state,
         first_time: action.payload,
-        first_time_second: true,
       };
     case SET_FIRST_TIME_BRAND:
       return { ...state, first_time_brand: false };
     case SET_FIRST_TIME_SECOND:
-      return { ...state, first_time_second: false };
+      return { ...state, first_time_second: action.payload };
 
     default:
       return state;
