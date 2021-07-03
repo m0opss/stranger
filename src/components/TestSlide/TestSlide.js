@@ -22,10 +22,14 @@ const TestSlide = ({
   const [val, setVal] = useState(0);
 
   useEffect(() => {
-    let timerId = setInterval(() => setVal((val) => val + 1), 30);
-    setTimeout(() => {
-      clearInterval(timerId);
-    }, 30 * progress);
+    setInterval(
+      () =>
+        setVal((val) => {
+          if (val < progress) return val + 1;
+          else return val;
+        }),
+      50
+    );
   }, []);
 
   return (

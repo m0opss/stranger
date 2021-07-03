@@ -778,6 +778,10 @@
       text-align: center;
       border-radius: 144.777px;
       color: rgba(0, 0, 0, 0.9);
+      p {
+        width: 80%;
+        overflow: hidden;
+      }
       &:nth-child(1),
       &:nth-child(2) {
         margin-bottom: 30px;

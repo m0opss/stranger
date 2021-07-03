@@ -17,6 +17,7 @@ const Header = () => {
   const email = useSelector((state) => state.auth.email);
   const balance = useSelector((state) => state.user.balance);
   const isAdmin = useSelector((state) => state.auth.isAdmin);
+  const token = useSelector((state) => state.auth.token);
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -33,7 +34,8 @@ const Header = () => {
   };
   const onExitClick = () => {
     localStorage.removeItem("token");
-    dispatch(onExitAccount());
+
+    dispatch(onExitAccount(token));
   };
 
   const menu = (
@@ -76,9 +78,7 @@ const Header = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/rules">
-                  Правила
-                </NavLink>
+                <NavLink to="/rules">Правила</NavLink>
               </li>
               <li>
                 <NavLink exact to="/faq">

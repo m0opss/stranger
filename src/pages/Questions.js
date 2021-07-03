@@ -81,7 +81,7 @@ const Que = ({ setFinished, fetchAnsw, content, setLoose, cnt }) => {
               className="questions__btn btn"
               onClick={() => fetchAnsw(content.id, a.id)}
             >
-              {a.text}
+              <p>{a.text}</p>
             </div>
           ))
         ) : (

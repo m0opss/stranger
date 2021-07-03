@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { getUserData } from "../actions/userActions";
 import Header from "../components/Header/Header";
@@ -11,11 +11,17 @@ import "./transfer.scss";
 
 const Transfer = ({}) => {
   const [sum, setSum] = useState("");
-  const [card, setCard] = useState("qiwi");
+  const [card, setCard] = useState();
   const [cardNum, setCardNum] = useState("");
   const token = useSelector((state) => state.auth.token);
   const balance = useSelector((state) => state.user.balance);
   const max = balance;
+  const type_c = useSelector((state) => state.auth.withdrawal_type);
+  console.log(123123, type_c);
+
+  useEffect(() => {
+    setCard(type_c);
+  }, [type_c]);
 
   const [open, setOpen] = React.useState(false);
   const [alertMsg, setAlertMsg] = React.useState();

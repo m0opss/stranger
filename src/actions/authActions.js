@@ -68,11 +68,42 @@ export function handleLoginVK(handleClick, history) {
   };
 }
 
-export function onExitAccount() {
+export function onExitAccount(token) {
   return function (dispatch) {
     dispatch({
-      type: ON_EXIT,
+      type: SET_AUTH,
+      payload: false,
     });
+    dispatch({
+      type: SET_ADMIN,
+      payload: false,
+    });
+    dispatch({
+      type: SET_TOKEN,
+      payload: "",
+    });
+    dispatch({
+      type: SET_TYPE,
+      payload: 0,
+    });
+    dispatch({
+      type: SET_EMAIL,
+      payload: "",
+    });
+    dispatch({
+      type: SET_VALUE,
+      payload: "",
+    });
+    dispatch({
+      type: SET_BLOCK,
+      payload: false,
+    });
+    dispatch({
+      type: SET_BLOCK,
+      payload: false,
+    });
+
+    dispatch(onLogout(token));
   };
 }
 
@@ -176,6 +207,27 @@ export const onLogin =
       // alert("Ошибка HTTP: " + rawResponse.status + " " + JSON.stringify(err));
     }
   };
+export const onLogout = (token) => async (dispatch) => {
+  const rawResponse = await fetch(
+    "https://stranger-go.com/api/v1/token/logout/",
+    {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Token ${token}`,
+      },
+    }
+  );
+  if (rawResponse.ok) {
+    dispatch(getTokenAnon());
+  } else {
+    const err = await rawResponse.json();
+    console.log(err);
+    // handleClick("Ошибка: " + err[Object.keys(err)[0]], "error");
+    // alert("Ошибка HTTP: " + rawResponse.status + " " + JSON.stringify(err));
+  }
+};
 
 export const getTokenAnon = () => async (dispatch) => {
   const rawResponse = await fetch(
