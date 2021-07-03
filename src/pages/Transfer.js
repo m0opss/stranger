@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import { getUserData } from "../actions/userActions";
 import Header from "../components/Header/Header";
 
 import DonateBlock from "../components/LK/LKContent/LKDonate/LKDonateBlock";
@@ -49,11 +50,25 @@ const Transfer = ({}) => {
               status = res.status;
               if (status == 204) {
                 handleClick("Деньги успешно переведены", "success");
+                dispatch(getUserData(token));
               } else {
-                handleClick(
-                  "Ошибка при переводе денег. Попробуйте позже",
-                  "error"
-                );
+                res
+                  .json()
+                  .then((err) => {
+                    console.log(123123);
+                    handleClick(
+                      err[Object.keys(err)[0]],
+                      // "Ошибка при переводе денег. Попробуйте позже",
+                      "error"
+                    );
+                  })
+                  .catch(() => {
+                    console.log(123123);
+                    handleClick(
+                      "Ошибка при переводе денег. Попробуйте позже",
+                      "error"
+                    );
+                  });
               }
             });
           } else {
@@ -75,9 +90,26 @@ const Transfer = ({}) => {
       }).then((res) => {
         status = res.status;
         if (status == 204) {
+          dispatch(getUserData(token));
           handleClick("Деньги успешно переведены", "success");
         } else {
-          handleClick("Ошибка при переводе денег. Попробуйте позже", "error");
+          res
+            .json()
+            .then((err) => {
+              console.log(123123);
+              handleClick(
+                err[Object.keys(err)[0]],
+                // "Ошибка при переводе денег. Попробуйте позже",
+                "error"
+              );
+            })
+            .catch(() => {
+              console.log(123123);
+              handleClick(
+                "Ошибка при переводе денег. Попробуйте позже",
+                "error"
+              );
+            });
         }
       });
     }

@@ -87,15 +87,15 @@ const App = (props) => {
   }, []);
 
   useEffect(() => {
-    // if (
-    //   localStorage.getItem("token") != undefined &&
-    //   localStorage.getItem("token") != ""
-    // ) {
-    //   dispatch(getMe(localStorage.getItem("token")));
-    //   dispatch({ type: SET_TOKEN, payload: localStorage.getItem("token") });
-    // } else {
+    if (
+      localStorage.getItem("token") != undefined &&
+      localStorage.getItem("token") != ""
+    ) {
+      dispatch(getMe(localStorage.getItem("token")));
+      dispatch({ type: SET_TOKEN, payload: localStorage.getItem("token") });
+    } else {
       dispatch(getTokenAnon());
-    // }
+    }
   }, []);
 
   return (

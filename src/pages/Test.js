@@ -192,7 +192,8 @@ const Test = ({}) => {
       ) {
         const el = document.querySelector(".swiper-slide-active");
         const set_el = document.querySelector("img.helped-container__img");
-        if (set_el != null) setTimeout(() => positionHelp(el, set_el), 500);
+        if (set_el != null && el != null)
+          setTimeout(() => positionHelp(el, set_el), 500);
 
         setTimeout(
           () => dispatch({ type: SET_FIRST_TIME, payload: false }),
@@ -212,7 +213,8 @@ const Test = ({}) => {
         const set_el = document.querySelector(
           "img.helped-container__img_second"
         );
-        if (set_el != null) setTimeout(() => positionHelpSec(el, set_el), 600);
+        if (set_el != null && el != null)
+          setTimeout(() => positionHelpSec(el, set_el), 600);
         setTimeout(
           () => dispatch({ type: SET_FIRST_TIME_SECOND, payload: false }),
           3000
@@ -247,7 +249,7 @@ const Test = ({}) => {
         const set_el = document.querySelector(
           "img.helped-container__img_second"
         );
-        if (set_el != null) {
+        if (set_el != null && el != null) {
           setTimeout(() => positionHelpSec(el, set_el), 600);
         }
         setTimeout(
@@ -462,17 +464,17 @@ const Test = ({}) => {
                 <div className="brands-list__item" key={s.id}>
                   {/* <div className="ratio-inner ratio-4-3">
                     <div className="test-slide__wrapper"> */}
-                      <TestSlide
-                        id={s.id}
-                        ind={ind}
-                        img={s.logo}
-                        name={s.brand}
-                        time={s.duration}
-                        progress={s.progress}
-                        price={s.coast}
-                        startGame={startGame}
-                      />
-                    </div>
+                  <TestSlide
+                    id={s.id}
+                    ind={ind}
+                    img={s.logo}
+                    name={s.brand}
+                    time={s.duration}
+                    progress={s.progress}
+                    price={s.coast}
+                    startGame={startGame}
+                  />
+                </div>
                 //   </div>
                 // </div>
               ))}

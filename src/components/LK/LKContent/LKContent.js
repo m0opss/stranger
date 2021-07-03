@@ -78,15 +78,25 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
               status = res.status;
               if (status == 204) {
                 handleClick("Деньги успешно переведены", "success");
+                dispatch(getUserData(token));
               } else {
-                res.json().then((err) => {
-                  console.log(ErrorEvent);
-                  handleClick(
-                    err[Object.keys(err)[0]],
-                    // "Ошибка при переводе денег. Попробуйте позже",
-                    "error"
-                  );
-                });
+                res
+                  .json()
+                  .then((err) => {
+                    console.log(123123);
+                    handleClick(
+                      err[Object.keys(err)[0]],
+                      // "Ошибка при переводе денег. Попробуйте позже",
+                      "error"
+                    );
+                  })
+                  .catch(() => {
+                    console.log(123123);
+                    handleClick(
+                      "Ошибка при переводе денег. Попробуйте позже",
+                      "error"
+                    );
+                  });
               }
             });
           } else {
@@ -109,16 +119,25 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
         status = res.status;
         if (status == 204) {
           handleClick("Деньги успешно переведены", "success");
+          dispatch(getUserData(token));
         } else {
-          res.json().then((err) => {
-            console.log(ErrorEvent);
-            handleClick(
-              err[Object.keys(err)[0]],
-              // "Ошибка при переводе денег. Попробуйте позже",
-              "error"
-            );
-          });
-          // handleClick("Ошибка при переводе денег. Попробуйте позже", "error");
+          res
+            .json()
+            .then((err) => {
+              console.log(123123);
+              handleClick(
+                err[Object.keys(err)[0]],
+                // "Ошибка при переводе денег. Попробуйте позже",
+                "error"
+              );
+            })
+            .catch(() => {
+              console.log(123123);
+              handleClick(
+                "Ошибка при переводе денег. Попробуйте позже",
+                "error"
+              );
+            });
         }
       });
     }

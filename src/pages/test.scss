@@ -5,6 +5,11 @@
   min-height: 100vh;
   .add-page__title {
     text-align: center;
+    color: white;
+    z-index: 1;
+    @media screen and (min-width: 1085px) {
+      color: black;
+    }
     @media screen and (min-width: 767px) {
       margin-bottom: 70px;
     }
@@ -35,8 +40,17 @@
   .archive-background {
     // display: none;
     position: absolute;
-    @media screen and (max-width: 1280px) {
+    @media screen and (max-width: 1085px) {
       display: block;
+      .archive-background__item_main {
+        width: 164%;
+        position: absolute;
+        height: 490px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.95);
+        top: -242px;
+        transform: translateX(-19%);
+      }
     }
   }
 }
@@ -273,6 +287,9 @@
   //   padding-top: 75%;
   // }
 
+  @media screen and (min-width: 1085px) {
+    padding-top: 40px;
+  }
   @media screen and (max-width: 1280px) {
     display: flex;
     .add-page__alien {
