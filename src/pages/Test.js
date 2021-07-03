@@ -127,6 +127,7 @@ const Test = ({}) => {
   };
 
   function positionHelp(el, set_el) {
+    console.log(11, el, set_el);
     const { top, left, width, height } = el.getBoundingClientRect();
     set_el.style.left = left + width / 2 - 80 + "px";
     set_el.style.top = top + height / 2 + "px";
@@ -224,6 +225,7 @@ const Test = ({}) => {
       ) {
         const set_el = document.querySelector("img.helped-container__img_m");
         if (set_el != null) {
+          console.log(33, set_el);
           set_el.style.left = 50 + "vw";
           set_el.style.top = 50 + "vh";
         }
@@ -458,17 +460,21 @@ const Test = ({}) => {
             <div className="brands-list">
               {slides.map((s, ind) => (
                 <div className="brands-list__item" key={s.id}>
-                  <TestSlide
-                    id={s.id}
-                    ind={ind}
-                    img={s.logo}
-                    name={s.brand}
-                    time={s.duration}
-                    progress={s.progress}
-                    price={s.coast}
-                    startGame={startGame}
-                  />
-                </div>
+                  {/* <div className="ratio-inner ratio-4-3">
+                    <div className="test-slide__wrapper"> */}
+                      <TestSlide
+                        id={s.id}
+                        ind={ind}
+                        img={s.logo}
+                        name={s.brand}
+                        time={s.duration}
+                        progress={s.progress}
+                        price={s.coast}
+                        startGame={startGame}
+                      />
+                    </div>
+                //   </div>
+                // </div>
               ))}
             </div>
           )}

@@ -902,6 +902,9 @@
     text-align: center;
     text-decoration-line: underline;
     color: #000000;
+    &:hover {
+      color: #737373;
+    }
   }
   .win__btn {
     display: flex;
@@ -918,7 +921,7 @@
     color: #ffffff;
     cursor: pointer;
     &:hover {
-      color: #dadada;
+      background: #11bb8e;
     }
   }
   .win__no {

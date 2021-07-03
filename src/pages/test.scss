@@ -232,14 +232,47 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    @media screen and (min-width: 570px) {
+      justify-content: space-evenly;
+    }
   }
   .brands-list__item {
-    width: 45%;
     margin-bottom: 25px;
+    width: 45%;
+    height: calc((100vw - 40px) * 0.45);
     &:nth-child(2n) {
       margin-top: 20px;
     }
+    .test-slide {
+      height: 100%;
+    }
+    @media screen and (min-width: 570px) {
+      height: calc((100vw - 40px) * 0.35);
+      width: 35%;
+      .test-slide .test-slide__brand-logo {
+        height: 99px;
+        right: -12px;
+        top: -22px;
+        width: 100px;
+      }
+    }
+    // .test-slide__wrapper {
+    //   position: absolute;
+    //   top: 0;
+    //   right: 0;
+    //   bottom: 0;
+    //   left: 0;
+    // }
   }
+  // .ratio-inner {
+  //   position: relative;
+  //   height: 0;
+  //   border: none;
+  // }
+  // .ratio-4-3 {
+  //   padding-top: 75%;
+  // }
+
   @media screen and (max-width: 1280px) {
     display: flex;
     .add-page__alien {
