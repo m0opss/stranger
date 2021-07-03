@@ -4,7 +4,7 @@ import icon_qiwi from "../../assets/img/LK/qiwi.png";
 import icon_pay from "../../assets/img/LK/io.png";
 import icon_phone from "../../assets/img/LK/phone.svg";
 import m_icon_qiwi from "../../assets/img/LK/qiwi.png";
-import m_icon_phone from "../../assets/img/LK/lkCardPhone.svg";
+import m_icon_phone from "../../assets/img/LK/phone.svg";
 
 import "./selectcard.scss";
 

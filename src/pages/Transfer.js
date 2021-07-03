@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { getUserData } from "../actions/userActions";
 import Header from "../components/Header/Header";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
 
 import DonateBlock from "../components/LK/LKContent/LKDonate/LKDonateBlock";
 
@@ -11,9 +13,26 @@ const Transfer = ({}) => {
   const [sum, setSum] = useState("");
   const [card, setCard] = useState("qiwi");
   const [cardNum, setCardNum] = useState("");
-
+  const token = useSelector((state) => state.auth.token);
   const balance = useSelector((state) => state.user.balance);
   const max = balance;
+
+  const [open, setOpen] = React.useState(false);
+  const [alertMsg, setAlertMsg] = React.useState();
+  const [severity, setSeverity] = React.useState();
+
+  const handleClick = (msg, severity) => {
+    setAlertMsg(msg);
+    setSeverity(severity);
+    setOpen(true);
+  };
+  const handleClose = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpen(false);
+  };
+
   const fetchMoney = (_type) => {
     let ok_card;
     if (_type == 5) {
@@ -129,6 +148,24 @@ const Transfer = ({}) => {
           fetchMoney={fetchMoney}
         />
       </div>
+      <Snackbar
+        open={open}
+        autoHideDuration={3000}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "right",
+        }}
+      >
+        <MuiAlert
+          elevation={6}
+          variant="filled"
+          onClose={handleClose}
+          severity={severity}
+        >
+          {alertMsg}
+        </MuiAlert>
+      </Snackbar>
     </div>
   );
 };
