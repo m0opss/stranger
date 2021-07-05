@@ -12,6 +12,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 import "./register.scss";
 import "./login.scss";
 import { useDispatch, useSelector } from "react-redux";
+import { getTokenAnon } from "../actions/authActions";
 
 const ResetPassConfirm = ({}) => {
   const [pass, setPass] = useState("");
