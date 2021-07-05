@@ -83,15 +83,17 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
                 res
                   .json()
                   .then((err) => {
-                    console.log(123123);
-                    handleClick(
-                      err[Object.keys(err)[0]],
-                      // "Ошибка при переводе денег. Попробуйте позже",
-                      "error"
-                    );
+                    if (Object.keys(err).length > 0) {
+                      handleClick(
+                        err[Object.keys(err)[0]],
+                        // "Ошибка при переводе денег. Попробуйте позже",
+                        "error"
+                      );
+                    } else {
+                      handleClick("Ошибка при переводе денег. ", "error");
+                    }
                   })
                   .catch(() => {
-                    console.log(123123);
                     handleClick(
                       "Ошибка при переводе денег. Попробуйте позже",
                       "error"
@@ -100,7 +102,7 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
               }
             });
           } else {
-            handleClick(re.detail, "error");
+            handleClick(re[Object.keys(re)[0]], "error");
           }
         });
     } else {

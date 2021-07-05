@@ -81,6 +81,7 @@ const App = (props) => {
 
     if (params.get("uid") != null) {
       dispatch({ type: SET_TOKEN, payload: params.get("token") });
+      localStorage.setItem("token", params.get("token"));
       dispatch({ type: SET_UID, payload: params.get("uid") });
       history.push("/reset-confirm");
     }

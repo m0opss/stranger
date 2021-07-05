@@ -17,7 +17,8 @@ const ResetPassConfirm = ({}) => {
   const [pass, setPass] = useState("");
 
   const history = useHistory();
-  const token = useSelector((state) => state.auth.token);
+  // const token = useSelector((state) => state.auth.token);
+  const token = localStorage.getItem("token");
   const uid = useSelector((state) => state.auth.uid);
   const [open, setOpen] = React.useState(false);
   const [alertMsg, setAlertMsg] = React.useState();
@@ -55,7 +56,7 @@ const ResetPassConfirm = ({}) => {
       );
       if (rawResponse.ok) {
         handleClick(`Пароль успешно изменен!`, "success");
-        history.push('/')
+        history.push("/");
       } else {
         const err = await rawResponse.json();
         handleClick(err[Object.keys(err)[0]], "error");
