@@ -58,6 +58,7 @@ const ResetPassConfirm = ({}) => {
         handleClick(`Пароль успешно изменен!`, "success");
         dispatch(getTokenAnon());
         localStorage.removeItem("token");
+        console.log('reseted!')
         history.push("/");
       } else {
         const err = await rawResponse.json();
