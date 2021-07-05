@@ -104,6 +104,38 @@ const AddPost = (props) => {
     document.querySelector("input[type=file]").value = "";
   };
 
+  const fetchAttachment = async (id, formData) => {
+    const res = await fetch(
+      `https://stranger-go.com/api/v1/posts/${id}/add_attachment/`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Token ${token}`,
+        },
+        body: formData,
+      }
+    );
+    if (res.ok) {
+      if (res.ok) handleClick("Изображение загружено!", "success");
+    } else {
+      handleClick("Неподдерживаемый формат изображения", "error");
+    }
+  };
+
+  const createAttachment = async (id) => {
+    for (let s of slides) {
+      let media = {
+        type_attachment: s.type,
+        file_attachment: s.data,
+      };
+      const formData = new FormData();
+      for (let k in media) {
+        formData.append(k, media[k]);
+      }
+      await fetchAttachment(id, formData);
+    }
+  };
+
   const fetchPost = (isArchive) => {
     let ok;
     if (slides.length == 0) {
@@ -146,34 +178,36 @@ const AddPost = (props) => {
       .then((res) => {
         if (ok) {
           handleClick("Пост успешно добавлен!", "success");
-          slides.map((s) => {
-            let media = {
-              type_attachment: s.type,
-              file_attachment: s.data,
-            };
-            const formData = new FormData();
-            for (let k in media) {
-              formData.append(k, media[k]);
-            }
-            // Загружаем изображение .///////////////////////////////////
-            fetch(
-              `https://stranger-go.com/api/v1/posts/${res.id}/add_attachment/`,
-              {
-                method: "POST",
-                headers: {
-                  Authorization: `Token ${token}`,
-                  // Accept: "application/json",
-                  // "Content-Type": "multipart/form-data",
-                },
-                body: formData,
-              }
-            ).then((res) => {
-              if (res.ok) handleClick("Изображение загружено!", "success");
-              else {
-                handleClick("Неподдерживаемый формат изображения", "error");
-              }
-            });
-          });
+          createAttachment(res.id);
+          // slides.map((s) => {
+          //   let media = {
+          //     type_attachment: s.type,
+          //     file_attachment: s.data,
+          //   };
+          //   const formData = new FormData();
+          //   for (let k in media) {
+          //     formData.append(k, media[k]);
+          //   }
+          //   fetchAttachment(s.id, formData);
+          //   // Загружаем изображение .///////////////////////////////////
+          //   // fetch(
+          //   //   `https://stranger-go.com/api/v1/posts/${res.id}/add_attachment/`,
+          //   //   {
+          //   //     method: "POST",
+          //   //     headers: {
+          //   //       Authorization: `Token ${token}`,
+          //   //       // Accept: "application/json",
+          //   //       // "Content-Type": "multipart/form-data",
+          //   //     },
+          //   //     body: formData,
+          //   //   }
+          //   // ).then((res) => {
+          //   //   if (res.ok) handleClick("Изображение загружено!", "success");
+          //   //   else {
+          //   //     handleClick("Неподдерживаемый формат изображения", "error");
+          //   //   }
+          //   // });
+          // });
 
           post.ques.map((q, ind) => {
             let tmp = [];

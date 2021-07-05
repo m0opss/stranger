@@ -180,7 +180,7 @@ const Brand = (props) => {
           <div className="brand-page__slider">
             <Slider {...settings}>
               {slides.slice(1, slides.length).map((i) => (
-                <div className="brand-page__slider-item" key={i.id}>
+                <div className="brand-page__slider-item" id={i.id} key={i.id}>
                   {first_time_brand ? (
                     <div
                       className="helped-container"

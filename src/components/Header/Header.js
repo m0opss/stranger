@@ -163,20 +163,22 @@ const Header = () => {
             </li>
           )}
           <li>
-            <NavLink exact to="/rules">
-              Правила
-            </NavLink>
+            <NavLink to="/rules">Правила</NavLink>
           </li>
           <li>
             <NavLink exact to="/faq">
               Вопросы
             </NavLink>
           </li>
-          <li>
-            <NavLink exact to="/lk">
-              Личный кабинет
-            </NavLink>
-          </li>
+          {isAuth ? (
+            <li>
+              <NavLink exact to="/lk">
+                Личный кабинет
+              </NavLink>
+            </li>
+          ) : (
+            <></>
+          )}
           <li>
             <NavLink exact to="/advertisers">
               <span style={{ color: "#17ca9b" }}>Рекламодателям</span>

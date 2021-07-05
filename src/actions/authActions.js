@@ -102,7 +102,7 @@ export function onExitAccount(token) {
       type: SET_BLOCK,
       payload: false,
     });
-
+    localStorage.removeItem("token");
     dispatch(onLogout(token));
   };
 }
