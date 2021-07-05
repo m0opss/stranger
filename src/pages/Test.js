@@ -413,31 +413,49 @@ const Test = ({}) => {
       )}
 
       <div className="test-content">
-        {slides.length > 0 && !isMobile && (
-          <>
-            <SamplePrevArrow
-              onClick={() => swiperRef.current?.swiper.slidePrev()}
-            />
-            <Swiper {...swiperSettings} ref={swiperRef}>
-              {slides.map((s, ind) => (
-                <div className="swiper-slide" key={s.id}>
-                  <TestSlide
-                    id={s.id}
-                    ind={ind}
-                    img={s.logo}
-                    name={s.brand}
-                    time={s.duration}
-                    progress={s.progress}
-                    price={s.coast}
-                    startGame={startGame}
-                  />
-                </div>
-              ))}
-            </Swiper>
-            <SampleNextArrow
-              onClick={() => swiperRef.current?.swiper.slideNext()}
-            />
-          </>
+        {slides.length == 1 && !isMobile ? (
+          <div className="test-solo-slide">
+            {slides.map((s, ind) => (
+              <TestSlide
+                id={s.id}
+                ind={ind}
+                img={s.logo}
+                name={s.brand}
+                time={s.duration}
+                progress={s.progress}
+                price={s.coast}
+                startGame={startGame}
+              />
+            ))}
+          </div>
+        ) : (
+          slides.length > 0 &&
+          !isMobile && (
+            <>
+              <SamplePrevArrow
+                onClick={() => swiperRef.current?.swiper.slidePrev()}
+              />
+              <Swiper {...swiperSettings} ref={swiperRef}>
+                {slides.map((s, ind) => (
+                  <div className="swiper-slide" key={s.id}>
+                    <TestSlide
+                      id={s.id}
+                      ind={ind}
+                      img={s.logo}
+                      name={s.brand}
+                      time={s.duration}
+                      progress={s.progress}
+                      price={s.coast}
+                      startGame={startGame}
+                    />
+                  </div>
+                ))}
+              </Swiper>
+              <SampleNextArrow
+                onClick={() => swiperRef.current?.swiper.slideNext()}
+              />
+            </>
+          )
         )}
       </div>
       <div className="archive-background">

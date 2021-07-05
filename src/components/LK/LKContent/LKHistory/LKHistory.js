@@ -28,12 +28,15 @@ const HistoryBlock = ({ type, data }) => (
             date={item.date.substr(0, 10)}
             card={item.account_number.substr(0, 9)}
             sum={
-              item.type_operations == "inc" ? "+" + item.amount : "-" + item.amount
+              item.type_operations == "inc"
+                ? "+" + item.amount
+                : "-" + item.amount
             }
           />
         ))
       ) : (
         <></>
+        // <p>Не произведено ни одного вывода средств</p>
       )}
     </div>
   </div>

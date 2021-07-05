@@ -52,7 +52,6 @@ const TestSlide = ({
 
         <a
           className="test-slide__play"
-          id={ind == 1 ? "firstCard" : ""}
           onClick={() => startGame(id, progress)}
         >
           <img src={start} />
