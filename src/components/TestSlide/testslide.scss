@@ -125,6 +125,7 @@
       align-items: center;
       white-space: nowrap;
       img {
+        height: 40px;
         margin-right: 10px;
         @media screen and(min-width:768px) and (max-width: 860px) {
           // font-size: 13px;

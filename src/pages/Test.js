@@ -69,8 +69,16 @@ const Test = ({}) => {
   // const history = useHistory();
   const [slides, setSlides] = useState([]);
   const dispatch = useDispatch();
-
   const swiperRef = useRef(null);
+
+  // useEffect(() => {
+  //   if (swiperRef.current) {
+  //     console.log("reborn!");
+
+  //   }
+  //   // setTimeout(() => {
+  //   // });
+  // });
 
   const swiperSettings = {
     slidesPerView: "auto",
@@ -372,6 +380,31 @@ const Test = ({}) => {
     fetchDataGame(openId);
   };
 
+  // setTimeout(() => {
+  //   swiperRef.current.swiper.loopDestroy();
+  //   swiperRef.current.swiper.loopCreate();
+  // });
+  const prevClick = () => {
+    console.log("prev");
+    // swiperRef.current.swiper.loopDestroy();
+    // swiperRef.current.swiper.loopCreate();
+    // setTimeout(() => {
+    //   swiperRef.current.swiper.loopDestroy();
+    //   swiperRef.current.swiper.loopCreate();
+    // });
+    swiperRef.current?.swiper.slidePrev();
+  };
+  const nextClick = () => {
+    console.log("next");
+    // setTimeout(() => {
+    //   swiperRef.current.swiper.loopDestroy();
+    //   swiperRef.current.swiper.loopCreate();
+    // });
+    // swiperRef.current.swiper.loopDestroy();
+    // swiperRef.current.swiper.loopCreate();
+    swiperRef.current?.swiper.slideNext();
+  };
+
   return (
     <div className="page archive-page test-page ">
       <Header />
@@ -432,28 +465,25 @@ const Test = ({}) => {
           slides.length > 0 &&
           !isMobile && (
             <>
-              <SamplePrevArrow
-                onClick={() => swiperRef.current?.swiper.slidePrev()}
-              />
+              <SamplePrevArrow onClick={prevClick} />
               <Swiper {...swiperSettings} ref={swiperRef}>
-                {slides.map((s, ind) => (
-                  <div className="swiper-slide" key={s.id}>
-                    <TestSlide
-                      id={s.id}
-                      ind={ind}
-                      img={s.logo}
-                      name={s.brand}
-                      time={s.duration}
-                      progress={s.progress}
-                      price={s.coast}
-                      startGame={startGame}
-                    />
-                  </div>
-                ))}
+                {slides.every((s) => true) &&
+                  slides.map((s, ind) => (
+                    <div className="swiper-slide" key={s.id}>
+                      <TestSlide
+                        id={s.id}
+                        ind={ind}
+                        img={s.logo}
+                        name={s.brand}
+                        time={s.duration}
+                        progress={s.progress}
+                        price={s.coast}
+                        startGame={startGame}
+                      />
+                    </div>
+                  ))}
               </Swiper>
-              <SampleNextArrow
-                onClick={() => swiperRef.current?.swiper.slideNext()}
-              />
+              <SampleNextArrow onClick={nextClick} />
             </>
           )
         )}
