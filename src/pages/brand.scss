@@ -146,6 +146,27 @@
   .brand-page__time {
     margin-right: 15px;
   }
+  @media screen and (max-width: 896px) {
+    font-size: 18px;
+    line-height: 25px;
+    .brand-page__brand,
+    .brand-page__time,
+    .brand-page__price {
+      img {
+        height: 30px;
+      }
+    }
+  }
+  @media screen and (max-width: 662px) {
+    font-size: 16px;
+    .brand-page__brand,
+    .brand-page__time,
+    .brand-page__price {
+      img {
+        height: 25px;
+      }
+    }
+  }
 }
 .brand-page__info {
   display: flex;
@@ -355,6 +376,9 @@
     }
     @media screen and (max-width: 1260px) {
       height: 380px;
+    }
+    @media screen and (max-width: 1000px) {
+      background: none;
     }
     @media screen and (max-width: 585px) {
       height: 320px;

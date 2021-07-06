@@ -29,9 +29,6 @@ const Brand = (props) => {
   const dispatch = useDispatch();
 
   const first_time_brand = useSelector((state) => state.user.first_time_brand);
-  useEffect(() => {
-    setTimeout(() => dispatch({ type: SET_FIRST_TIME_BRAND }), 5000);
-  });
 
   let name = data.brand;
   let time = data.duration;
@@ -110,6 +107,24 @@ const Brand = (props) => {
       });
   }, []);
 
+  useEffect(() => {
+    setTimeout(() => dispatch({ type: SET_FIRST_TIME_BRAND }), 5000);
+  });
+
+  useEffect(() => {
+    const listener = function (event, type) {
+      dispatch({ type: SET_FIRST_TIME_BRAND });
+      document.removeEventListener(type, listener, false);
+    };
+    document.addEventListener("keydown", (event) => listener(event, "keydown"));
+    document.addEventListener("mousedown", (event) =>
+      listener(event, "mousedown")
+    );
+    document.addEventListener("touchstart", (event) =>
+      listener(event, "touchstart")
+    );
+  }, []);
+
   return (
     <div className="page archive-page brand-page">
       <Header />
@@ -179,32 +194,35 @@ const Brand = (props) => {
           </div>
           <div className="brand-page__slider">
             <Slider {...settings}>
-              {slides.slice(1, slides.length).map((i) => (
-                <div className="brand-page__slider-item" id={i.id} key={i.id}>
-                  {first_time_brand ? (
-                    <div
-                      className="helped-container"
-                      onClick={() => dispatch({ type: SET_FIRST_TIME_BRAND })}
-                    >
-                      <img className="helped-container__img" src={pkHelp} />
-                    </div>
-                  ) : (
-                    <></>
-                  )}
-                  {i.type_attachment == "vi" ? (
-                    <video
-                      src={`https://stranger-go.com${i.file_attachment}`}
-                      height="100%"
-                      width="100%"
-                      controls
-                    />
-                  ) : i.type_attachment == "im" ? (
-                    <img src={`https://stranger-go.com${i.file_attachment}`} />
-                  ) : (
-                    <></>
-                  )}
-                </div>
-              ))}
+              {slides.length > 0 &&
+                slides.slice(1, slides.length).map((i) => (
+                  <div className="brand-page__slider-item" id={i.id} key={i.id}>
+                    {first_time_brand ? (
+                      <div
+                        className="helped-container"
+                        onClick={() => dispatch({ type: SET_FIRST_TIME_BRAND })}
+                      >
+                        <img className="helped-container__img" src={pkHelp} />
+                      </div>
+                    ) : (
+                      <></>
+                    )}
+                    {i.type_attachment == "vi" ? (
+                      <video
+                        src={`https://stranger-go.com${i.file_attachment}`}
+                        height="100%"
+                        width="100%"
+                        controls
+                      />
+                    ) : i.type_attachment == "im" ? (
+                      <img
+                        src={`https://stranger-go.com${i.file_attachment}`}
+                      />
+                    ) : (
+                      <></>
+                    )}
+                  </div>
+                ))}
             </Slider>
           </div>
           <div className="brand-page__info_m">
