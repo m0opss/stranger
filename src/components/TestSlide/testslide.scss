@@ -230,6 +230,15 @@
       }
     }
   }
+  @media screen and (max-width: 550px) {
+    .test-slide__brand-logo {
+      top: -32px;
+      right: -11px;
+    }
+    .test-slide__name {
+      font-size: 14px;
+    }
+  }
   @media screen and (max-width: 374px) {
     min-width: 131px;
     .test-slide__brand-logo {
