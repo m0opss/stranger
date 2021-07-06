@@ -230,4 +230,18 @@
       }
     }
   }
+  @media screen and (max-width: 374px) {
+    min-width: 131px;
+    .test-slide__brand-logo {
+      height: 50px;
+      top: -27px;
+    }
+    .test-slide__name {
+      line-height: 13px;
+      font-size: 9px;
+    }
+    .test-slide__row {
+      margin-bottom: 1px;
+    }
+  }
 }
