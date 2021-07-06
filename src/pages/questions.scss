@@ -779,8 +779,9 @@
       border-radius: 144.777px;
       color: rgba(0, 0, 0, 0.9);
       p {
-        width: 87%;
+        width: 89%;
         overflow: hidden;
+        white-space: nowrap;
       }
       &:nth-child(1),
       &:nth-child(2) {
@@ -794,7 +795,7 @@
     }
     @media screen and (max-width: 1553px) {
       justify-content: space-around;
-      width: 78%;
+      width: 88%;
       .questions__btn-wrapper {
         width: 45%;
       }

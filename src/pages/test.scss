@@ -7,7 +7,7 @@
     text-align: center;
     color: white;
     z-index: 1;
-    @media screen and (min-width: 1366px) {
+    @media screen and (min-width: 1367px) {
       color: black;
     }
     @media screen and (min-width: 767px) {
@@ -42,10 +42,23 @@
       }
     }
   }
+
   .archive-background {
     // display: none;
     position: absolute;
-    @media screen and (max-width: 1366px) {
+    @media screen and (max-width: 1366px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+      display: block;
+      .archive-background__item_main {
+        width: 164%;
+        position: absolute;
+        height: 530px;
+        border-radius: 50%;
+        background: rgba(0, 0, 0, 0.95);
+        top: -242px;
+        transform: translateX(-19%);
+      }
+    }
+    @media screen and (max-width: 1024px) {
       display: block;
       .archive-background__item_main {
         width: 164%;
