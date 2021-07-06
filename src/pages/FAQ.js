@@ -133,37 +133,15 @@ const FAQ = ({}) => {
           <div className="wtf-block">
             <div className="wtf-block__steps">
               <>
-                {Object.keys(cardsData).map((item) => (
+                {Object.keys(cardsData).map((item, ind) => (
                   <StepsItem
+                    key={ind}
                     title={cardsData[item].title}
                     img={cardsData[item].img}
                     i={item}
                     setCard={() => setCard(item)}
                   />
                 ))}
-                {/* <StepsItem
-                  title="Выбери рекламу"
-                  img={steps_1}
-                  setCard={() => setCard(1)}
-                />
-                <StepsItem
-                  title="Посмотри рекламу"
-                  img={steps_2}
-                  i={2}
-                  setCard={() => setCard(2)}
-                />
-                <StepsItem
-                  title="Пройди тест"
-                  img={steps_3}
-                  i={3}
-                  setCard={() => setCard(3)}
-                />
-                <StepsItem
-                  title="Получи деньги"
-                  img={steps_4}
-                  i={4}
-                  setCard={() => setCard(4)}
-                /> */}
               </>
             </div>
           </div>

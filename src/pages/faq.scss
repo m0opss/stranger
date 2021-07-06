@@ -1,9 +1,29 @@
 .faq-page {
   .main-container {
     background-position: center 73%;
-    @media screen and (max-width: 1140px) {
-      // background-position: center 120%;
+    @media screen and (max-width: 1449px) {
+      .dark-container .main-background__circle2 {
+        right: -240px;
+        top: 150px;
+      }
+      .dark-container .main-background__circle1 {
+        left: -140px;
+        z-index: 2;
+        top: 150px;
+      }
+      .dark-container .main-background__circle3 {
+        display: none;
+      }
+      .dark-container .main-background__circle5 {
+        top: 400px;
+        left: -10px;
+      }
+      .dark-container .main-background__rect2 {
+        top: 200px;
+        left: 17%;
+      }
     }
+    background: none;
     @media screen and (max-width: 767px) {
       background: rgba(0, 0, 0, 0.9);
     }
@@ -16,11 +36,21 @@
     .main-background__circle7 {
       display: none;
     }
+    .main-background__rect2 {
+      // animation: ;
+    }
   }
   .faq-page__content {
-    margin-top: 55px;
+    // margin-top: 55px;
+    z-index: 1;
     padding-left: 200px;
     padding-right: 200px;
+    background: url("../assets//img/faqBG.svg");
+    background-size: 104%;
+    background-position: 95% 100%;
+    background-repeat: no-repeat;
+    padding-bottom: 70px;
+    // height: 50vh;
     a {
       margin-bottom: 50px;
       img {
@@ -40,15 +70,24 @@
       @media screen and (max-width: 1124px) {
         font-size: 34px;
       }
+      @media screen and (max-width: 829px) {
+        font-size: 25px;
+        line-height: 25px;
+      }
       @media screen and (max-width: 767px) {
         font-size: 18px;
         line-height: 125.34%;
       }
     }
+    @media screen and (max-width: 1023px) {
+      background-position: 95% 0%;
+    }
     @media screen and (max-width: 767px) {
+      background: none;
       padding-left: 30px;
       padding-right: 30px;
       margin-top: 20px;
+      padding-bottom: 16px;
     }
     .faq-page__descr {
       display: none;
@@ -66,6 +105,8 @@
   }
 
   .wtf-block {
+    margin-top: 6vh;
+    z-index: 1;
     .wtf-block__steps {
       justify-content: center;
     }
@@ -88,9 +129,10 @@
         background: #f7f5f5;
       }
     }
+
     .faq__collapse {
       width: 70%;
-      margin-top: 70px;
+      margin-top: 10px;
       background-color: transparent;
       .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {
         display: flex;
@@ -126,6 +168,9 @@
           @media screen and (max-width: 1350px) {
             font-size: 22px;
           }
+          @media screen and (max-width: 768px) {
+            font-size: 17px;
+          }
         }
       }
       .ant-collapse-item {
@@ -153,19 +198,47 @@
         @media screen and (max-width: 1350px) {
           font-size: 26px;
         }
+        @media screen and (max-width: 768px) {
+          font-size: 17px;
+          line-height: 35px;
+        }
       }
       @media screen and (max-width: 1140px) {
         width: 95%;
       }
-      // @media screen and (max-width: 767px) {
-      //   width: 95%;
-      // }
+      @media screen and (max-width: 767px) {
+        margin-top: 5px;
+      }
     }
-
+    @media screen and (max-width: 1280px) {
+      .step-card {
+        height: 360px;
+      }
+    }
+    @media screen and (max-width: 1140px) {
+      .wtf-block__steps {
+        flex-wrap: nowrap;
+      }
+      .step-card {
+        height: 260px;
+        padding: 30px;
+        .step-card__img-container {
+          max-height: 120px;
+        }
+        p {
+          font-size: 15px;
+        }
+      }
+    }
     @media screen and (max-width: 767px) {
       display: flex;
+      margin-top: 4vh;
+      .wtf-block__steps {
+        flex-wrap: wrap;
+      }
       .step-card {
-        height: 330px;
+        width: 31%;
+        height: 245px;
         .step-card__img-container {
           margin-top: 0;
           img {
@@ -218,6 +291,22 @@
     }
     @media screen and (max-width: 370px) {
       width: 80%;
+    }
+  }
+  @keyframes mainBackground__translate_TR-BL {
+    0% {
+      transform: translate(0, 30);
+    }
+    100% {
+      transform: translate(-40px, 40px);
+    }
+  }
+  @keyframes mainBackground__translate_TL-BR {
+    0% {
+      transform: translate(-30, 0);
+    }
+    100% {
+      transform: translate(20px, 25px);
     }
   }
 }

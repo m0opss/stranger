@@ -239,6 +239,7 @@
 
 .brand-page__info_m {
   width: 100%;
+  z-index: 1;
   display: none;
   @media screen and (max-width: 1000px) {
     display: block;
