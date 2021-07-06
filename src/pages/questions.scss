@@ -779,7 +779,7 @@
       border-radius: 144.777px;
       color: rgba(0, 0, 0, 0.9);
       p {
-        width: 89%;
+        width: 93%;
         overflow: hidden;
         white-space: nowrap;
       }
@@ -804,6 +804,11 @@
         font-size: 21px;
       }
     }
+    @media screen and (max-width: 838px) {
+      .questions__btn {
+        font-size: 18px;
+      }
+    }
     @media screen and (max-width: 767px) {
       flex-direction: column;
       width: 100%;
@@ -814,7 +819,8 @@
       .questions__btn {
         height: 49px;
         font-weight: 500;
-        font-size: 22px;
+        width: 53%;
+        font-size: 16px;
         line-height: 22px;
         text-align: center;
         color: rgba(0, 0, 0, 0.9);
