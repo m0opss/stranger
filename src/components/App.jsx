@@ -77,6 +77,8 @@ const App = (props) => {
     const params = new URLSearchParams(search);
     if (params.get("next") != null) {
       history.push("/login");
+      localStorage.removeItem("token");
+      dispatch(getTokenAnon());
     }
 
     if (params.get("uid") != null) {
