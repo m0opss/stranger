@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getUserData } from "../actions/userActions";
 import Header from "../components/Header/Header";
 import Snackbar from "@material-ui/core/Snackbar";
@@ -18,7 +18,7 @@ const Transfer = ({}) => {
   const max = balance;
   const type_c = useSelector((state) => state.auth.withdrawal_type);
   console.log(123123, type_c);
-
+  const dispatch = useDispatch()
   useEffect(() => {
     setCard(type_c);
   }, [type_c]);

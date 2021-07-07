@@ -5,9 +5,10 @@ import HistoryBlock from "./LKHistory/LKHistory";
 import WatchBlock from "./LKWatch/LKWatch";
 import DonateBlock from "./LKDonate/LKDonateBlock";
 import SettingsBlock from "./LKSettings/LKSettings";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+import { getUserData } from "../../../actions/userActions";
 
 const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
   const [sum, setSum] = useState("");
@@ -28,7 +29,7 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
   const [open, setOpen] = React.useState(false);
   const [alertMsg, setAlertMsg] = React.useState();
   const [severity, setSeverity] = React.useState();
-
+  const dispatch = useDispatch()
   const handleClick = (msg, severity) => {
     setAlertMsg(msg);
     setSeverity(severity);
@@ -54,7 +55,7 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
         },
         body: JSON.stringify({
           withdrawal_type: card,
-          withdrawal_value: "7" + cardNum,
+          withdrawal_value: "7" + cardNum.replace(/[\(\)\- ]/g, ""),
         }),
       })
         .then((res) => {

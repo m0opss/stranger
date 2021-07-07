@@ -87,7 +87,9 @@ const DonateBlock = ({
   useEffect(() => {
     if (sum >= 200 && sum != "" && sum <= max) {
       if (
-        (cardNum != "" && type_c == 5 && cardNum.length == 10) ||
+        (cardNum != "" &&
+          type_c == 5 &&
+          cardNum.replace(/[\(\)\- ]/g, "").length == 10) ||
         type_c != 5
       ) {
         setActive(true);
