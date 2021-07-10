@@ -1,6 +1,13 @@
 .faq-page {
+  background: rgba(0, 0, 0, 0.9);
+  @media screen and (max-width: 767px) {
+    background: white;
+  }
   .main-container {
     background-position: center 73%;
+    .main-background__rect2 {
+      // border-bottom-color: #dadada;
+    }
     @media screen and (max-width: 1449px) {
       .dark-container .main-background__circle2 {
         right: -240px;
@@ -13,6 +20,9 @@
       }
       .dark-container .main-background__circle3 {
         display: none;
+      }
+      .dark-container .main-background__circle4 {
+        top: 240px;
       }
       .dark-container .main-background__circle5 {
         top: 400px;
@@ -31,7 +41,6 @@
     .main-background__rect5,
     .main-background__rect3,
     .main-background__rect4,
-    .main-background__circle4,
     .main-background__circle6,
     .main-background__circle7 {
       display: none;
@@ -45,7 +54,6 @@
     z-index: 1;
     padding-left: 200px;
     padding-right: 200px;
-    background: url("../assets//img/faqBG.svg");
     background-size: 104%;
     background-position: 95% 100%;
     background-repeat: no-repeat;
@@ -56,7 +64,9 @@
       img {
         margin: auto;
         width: 183px;
-        height: 195px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        // height: 195px;
       }
     }
     .faq-page__title {
@@ -78,6 +88,9 @@
         font-size: 18px;
         line-height: 125.34%;
       }
+    }
+    @media screen and (max-height: 877px) {
+      padding-bottom: 0;
     }
     @media screen and (max-width: 1023px) {
       background-position: 95% 0%;
@@ -107,6 +120,13 @@
   .wtf-block {
     margin-top: 6vh;
     z-index: 1;
+    @media screen and (max-height: 953px) {
+    }
+    @media screen and (max-height: 745px) and (max-width: 1140px) and (min-width: 481px) {
+      .step-card {
+        height: 240px !important;
+      }
+    }
     .wtf-block__steps {
       justify-content: center;
     }
@@ -124,6 +144,7 @@
         line-height: 125.34%;
         text-align: center;
         color: #000000;
+        min-height: 36px;
       }
       &:hover {
         background: #f7f5f5;
@@ -131,7 +152,7 @@
     }
 
     .faq__collapse {
-      width: 95%; 
+      width: 95%;
       margin-top: 10px;
       background-color: transparent;
       .ant-collapse-item > .ant-collapse-header .ant-collapse-arrow {

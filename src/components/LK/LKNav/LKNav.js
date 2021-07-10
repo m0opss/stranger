@@ -4,9 +4,9 @@ import sett from "../../../assets/img/LK/lkBtnSettings.svg";
 import arr from "../../../assets/img/LK/lkBtnArrow.svg";
 import rub from "../../../assets/img/LK/lkBtnRub.svg";
 
-import plus from "../../../assets/img/LK/lkBtnPlus.svg";
-import box from "../../../assets/img/LK/lkBtnBox.svg";
-import watch from "../../../assets/img/LK/lkBtnWatch.svg";
+import plus from "../../../assets/img/LK/plus.svg";
+import box from "../../../assets/img/LK/box.svg";
+import watch from "../../../assets/img/LK/play.svg";
 import icon_log from "../../../assets/img/LK/inputIconLog.svg";
 
 import lkDown from "../../../assets/img/LK/lkDown.svg";

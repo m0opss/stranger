@@ -35,14 +35,14 @@ const Login = ({}) => {
     setOpen(true);
   }
   useEffect(() => {
-    document.addEventListener("keydown", function (event) {
-      if (
-        (event.code == "ShiftLeft" || event.code == "ShiftRight") &&
-        document.querySelector(".auth-form-block__reg-btn")
-      ) {
-        document.querySelector(".auth-form-block__reg-btn").click();
-      }
-    });
+    // document.addEventListener("keydown", function (event) {
+    //   if (
+    //     (event.code == "ShiftLeft" || event.code == "ShiftRight") &&
+    //     document.querySelector(".auth-form-block__reg-btn")
+    //   ) {
+    //     document.querySelector(".auth-form-block__reg-btn").click();
+    //   }
+    // });
   }, []);
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -72,11 +72,11 @@ const Login = ({}) => {
 
   return (
     <div className="page-auth register login">
-      <div className="page-auth__background page-auth__background_1"></div>
-      <div className="page-auth__background page-auth__background_2"></div>
-      <div className="page-auth__background page-auth__background_2_m"></div>
+      {/* <div className="page-auth__background page-auth__background_1"></div>
+      <div className="page-auth__background page-auth__background_2"></div> */}
+      {/* <div className="page-auth__background page-auth__background_2_m"></div> */}
       <div className="page-auth__background page-auth__background_3"></div>
-      <div className="page-auth__background page-auth__background_4"></div>
+      {/* <div className="page-auth__background page-auth__background_4"></div> */}
       <Header />
       <Snackbar
         open={open}

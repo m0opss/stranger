@@ -6,8 +6,13 @@
   position: sticky;
   display: flex;
   align-items: center;
-  background-color: #fff;
-
+  background-color: white;
+  .menu-fone {
+    position: absolute;
+    height: 300vh;
+    // background: red;
+    width: 100vw;
+  }
   // animation: headerAnima 1s backwards;
   & > .container {
     display: flex;

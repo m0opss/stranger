@@ -29,7 +29,7 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
   const [open, setOpen] = React.useState(false);
   const [alertMsg, setAlertMsg] = React.useState();
   const [severity, setSeverity] = React.useState();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleClick = (msg, severity) => {
     setAlertMsg(msg);
     setSeverity(severity);
@@ -127,15 +127,9 @@ const LKContentUser = ({ activeTab, setActiveTab, isMobile }) => {
           res
             .json()
             .then((err) => {
-              console.log(123123);
-              handleClick(
-                err[Object.keys(err)[0]],
-                // "Ошибка при переводе денег. Попробуйте позже",
-                "error"
-              );
+              handleClick(err[Object.keys(err)[0]], "error");
             })
             .catch(() => {
-              console.log(123123);
               handleClick(
                 "Ошибка при переводе денег. Попробуйте позже",
                 "error"

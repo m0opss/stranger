@@ -5,12 +5,19 @@
   min-height: 100vh;
   .add-page__title {
     text-align: center;
-    color: white;
+    color: #000000;
+    font-size: 25px;
     z-index: 1;
+    text-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+    margin-top: 50px;
     @media screen and (min-width: 1367px) {
-      color: black;
+      // color: black;
     }
     @media screen and (min-width: 767px) {
+      margin-bottom: 70px;
+      // margin-top: 50px;
+    }
+    @media screen and (max-width: 767px) {
       margin-bottom: 70px;
     }
   }
@@ -278,7 +285,7 @@
     }
   }
   .brands-list__item {
-    margin-bottom: 25px;
+    margin-bottom: 50px;
     width: 45%;
     height: calc((100vw - 40px) * 0.45);
     &:nth-child(2n) {

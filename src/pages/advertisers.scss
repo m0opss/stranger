@@ -10,6 +10,9 @@
     .main-background__circle7 {
       display: none;
     }
+    .main-background__circle2 {
+      top: 330px;
+    }
 
     @media screen and (min-width: 768px) and (max-height: 1016px) {
       background-position: center 55%;
@@ -52,6 +55,50 @@
       }
     }
     margin-bottom: 20px;
+  }
+  @media screen and (max-height: 925px) {
+    .footer {
+      margin-top: 25px;
+      .container {
+        height: 92%;
+      }
+    }
+  }
+  @media screen and (max-height: 875px) {
+    .main-block .main-block__feedback {
+      margin-top: 15px;
+      font-size: 18px;
+    }
+  }
+  @media screen and (max-height: 867px) {
+    .main-block {
+      padding-top: 25px;
+      margin-top: 10px;
+    }
+  }
+  @media screen and (max-height: 830px) {
+    .main-block .main-block__btn {
+      width: 436px;
+      height: 67px;
+      font-size: 28px;
+    }
+    .main-block .main-block__img-container {
+      height: 180px;
+      img {
+        height: 180px;
+      }
+    }
+  }
+  @media screen and (max-height: 775px) {
+    .main-block {
+      p {
+        font-size: 31px;
+      }
+      .main-block__feedback {
+        margin-top: 10px;
+        font-size: 15px;
+      }
+    }
   }
 }
 .ant-modal-footer .ant-btn-primary {

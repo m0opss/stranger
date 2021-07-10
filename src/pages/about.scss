@@ -44,7 +44,7 @@
         }
       }
     }
-    @media screen and (max-height: 780px) {
+    @media screen and (max-height: 780px) and (min-width: 481px) {
       margin-top: 0px;
       .wtf-block__steps .step-card {
         margin-top: 10px;

@@ -103,9 +103,36 @@
       margin-top: 8vh;
     }
   }
-  @media screen and (max-height: 792px) {
+  @media screen and (max-height: 884px) {
+    .brand-page__info .brand-page__descr {
+      font-size: 19px;
+    }
+  }
+  @media screen and (max-height: 807px) {
+    margin-top: 15px;
+  }
+  @media screen and (max-height: 792px) and (min-width: 1261px) {
     .brand-page__slider {
       margin-top: 4vh;
+    }
+    .brand-page__info h2 {
+      font-size: 38px;
+    }
+  }
+  @media screen and (max-height: 747px) {
+    .brand-page__row {
+      margin-bottom: 25px;
+      font-size: 20px;
+    }
+  }
+  @media screen and (max-height: 723px) {
+    .brand-page__info .brand-page__descr {
+      margin-bottom: 30px;
+    }
+  }
+  @media screen and (max-height: 715px) and (min-width: 550px) {
+    .brand-page__slider .brand-page__slider-item {
+      height: 440px;
     }
   }
   @media screen and (max-height: 699px) {

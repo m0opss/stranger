@@ -124,10 +124,14 @@ const Header = () => {
             )}
           </nav>
         </div>
+        {menuOpen ? (
+          <div className="menu-fone" onClick={toggleMenu}></div>
+        ) : (
+          <></>
+        )}
         <div className="header__burger" onClick={toggleMenu}>
           <span></span>
         </div>
-
         <ul
           className={`header__burger-menu ${menuOpen ? "menu-open" : ""}`}
           onFocus={onfocusheader}

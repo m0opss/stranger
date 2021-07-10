@@ -4,7 +4,7 @@ import Container from "../components/Containers/Container";
 import { Link } from "react-router-dom";
 import BackArr from "../components/BackArr/BackArr";
 
-import alien from "../assets/img/alien.svg";
+import alien from "../assets/img/alien.png";
 import steps_1 from "../assets/img/dataSec.svg";
 import steps_2 from "../assets/img/reklama.svg";
 import steps_3 from "../assets/img/qw.svg";

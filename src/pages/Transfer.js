@@ -17,8 +17,8 @@ const Transfer = ({}) => {
   const balance = useSelector((state) => state.user.balance);
   const max = balance;
   const type_c = useSelector((state) => state.auth.withdrawal_type);
-  console.log(123123, type_c);
-  const dispatch = useDispatch()
+
+  const dispatch = useDispatch();
   useEffect(() => {
     setCard(type_c);
   }, [type_c]);
@@ -91,7 +91,6 @@ const Transfer = ({}) => {
                     }
                   })
                   .catch(() => {
-                    console.log(123123);
                     handleClick(
                       "Ошибка при переводе денег. Попробуйте позже",
                       "error"
@@ -124,7 +123,6 @@ const Transfer = ({}) => {
           res
             .json()
             .then((err) => {
-              console.log(123123);
               handleClick(
                 err[Object.keys(err)[0]],
                 // "Ошибка при переводе денег. Попробуйте позже",
@@ -132,7 +130,6 @@ const Transfer = ({}) => {
               );
             })
             .catch(() => {
-              console.log(123123);
               handleClick(
                 "Ошибка при переводе денег. Попробуйте позже",
                 "error"

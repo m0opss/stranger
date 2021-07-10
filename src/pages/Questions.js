@@ -3,6 +3,7 @@ import Header from "../components/Header/Header";
 import { Progress } from "antd";
 import win_bg from "../assets/img/WinRub.svg";
 import loose_bg from "../assets/img/Loose.svg";
+import loose_bg_gr from "../assets/img/Loose_gr.svg";
 import { Link, NavLink, useHistory, useParams } from "react-router-dom";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
@@ -68,6 +69,7 @@ const Que = ({ setFinished, fetchAnsw, content, setLoose, cnt }) => {
           percent={percent}
           strokeWidth={8}
           strokeColor={"#FCD876"}
+          // trailColor={"#17CA9B"}
           format={() => `${min}:${sec}`}
         />
       </div>
@@ -158,18 +160,16 @@ const LooseContainer = ({ brand, isMobile }) => {
       </Link>
       <div className="win__cash">ты заработал</div>
       <p className="win__cost">0 ₽</p>
-      <p className="win__no">{isMobile ? "О НЕЕЕТ" : "Попробуй ещё раз!"}</p>
+      <p className="win__no">{isMobile ? "О НЕЕЕТ!" : "Попробуй ещё раз!"}</p>
       <p className="win__tnx">
         Ты не правильно ответил на вопросы. Попробуй просмотреть рекламу ещё
         раз.
       </p>
-      {isMobile ? (
-        <></>
-      ) : (
-        <Link className="loose__link" to="/rules">
-          Правила игры
-        </Link>
-      )}
+
+      <Link className="loose__link" to="/rules">
+        Правила игры
+      </Link>
+
       {/* <Link to="/test" className="win__btn">
         продолжить
       </Link> */}
@@ -313,12 +313,12 @@ const Questions = (props) => {
             <img src={win_bg} />
           </div>
         ))}
-        {[...Array(7).keys()].map((i) => (
+        {[...Array(9).keys()].map((i) => (
           <div
             key={`cl${i}`}
             className={`questions-page__bg questions-page__bg_c-loose questions-page__bg_cl${i}`}
           >
-            <img src={loose_bg} />
+            <img src={i % 2 ? loose_bg : loose_bg_gr} />
           </div>
         ))}
         {timing != 0 ? (

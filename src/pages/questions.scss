@@ -4,6 +4,7 @@
   flex-direction: column;
   align-items: center;
   overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.9);
   .questions-page__content {
     width: 100%;
     min-height: 80vh;
@@ -368,27 +369,41 @@
     width: 64px;
     height: 64px;
     @media screen and (max-width: 767px) {
-      bottom: 26%;
+      bottom: 28%;
       top: unset;
     }
+  }
+  .questions-page__bg_cl6,
+  .questions-page__bg_cl7 {
+    // top: 200px;
+    bottom: 80%;
+    width: 64px;
+    height: 64px;
+  }
+  .questions-page__bg_cl8,
+  .questions-page__bg_cl9 {
+    // top: 200px;
+    bottom: 80%;
+    width: 64px;
+    height: 64px;
   }
 
   .questions-page__bg_cl0 {
     left: -3%;
     @media screen and (max-width: 767px) {
-      left: -22%;
+      left: -40px;
     }
   }
   .questions-page__bg_cl1 {
     right: -3%;
     @media screen and (max-width: 767px) {
-      right: -22%;
+      right: -65px;
     }
   }
   .questions-page__bg_cl2 {
     left: 9%;
     @media screen and (max-width: 767px) {
-      left: -9%;
+      left: -35px;
     }
   }
   .questions-page__bg_cl3 {
@@ -400,13 +415,13 @@
   .questions-page__bg_cl4 {
     left: 6%;
     @media screen and (max-width: 767px) {
-      left: 6%;
+      left: -9px;
     }
   }
   .questions-page__bg_cl5 {
     right: 6%;
     @media screen and (max-width: 767px) {
-      right: 6%;
+      right: -6%;
     }
   }
   .questions-page__bg_cl6 {
@@ -416,8 +431,35 @@
     left: 26px;
     @media screen and (max-width: 767px) {
       top: unset;
-      bottom: 32%;
+      bottom: 50%;
       left: 50%;
+    }
+  }
+  .questions-page__bg_cl7 {
+    display: none;
+    @media screen and (max-width: 767px) {
+      display: block;
+      top: unset;
+      bottom: 45%;
+      left: 69%;
+    }
+  }
+  .questions-page__bg_cl8 {
+    display: none;
+    @media screen and (max-width: 767px) {
+      display: block;
+      top: unset;
+      bottom: 45%;
+      left: 29%;
+    }
+  }
+  .questions-page__bg_cl9 {
+    display: none;
+    @media screen and (max-width: 767px) {
+      display: block;
+      top: unset;
+      bottom: 45%;
+      left: 69%;
     }
   }
 
@@ -426,13 +468,12 @@
   .questions-page__countdown {
     width: 100%;
     height: 250px;
-    // position: absolute;
     bottom: 0;
     display: flex;
     margin: auto;
     font-weight: bold;
     text-align: center;
-    color: #000000;
+    color: white;
     display: flex;
     flex-direction: column;
 
@@ -567,39 +608,7 @@
   display: none;
 }
 .green-bg {
-  background: url("../assets/img/que.png");
-  background-repeat: no-repeat;
-  background-position: center -143px;
-  background-size: revert;
-
-  @media screen and (max-width: 1090px) {
-    // background-position: center -170px;
-  }
-  @media screen and (max-width: 767px) {
-    background-size: 208% 89%;
-    background-position: center -135%;
-    @media (max-height: 825px) {
-      background-position: center -65%;
-    }
-    @media (max-height: 790px) {
-      background-position: center -55%;
-    }
-    @media (max-height: 765px) {
-      background-position: center -45%;
-    }
-    @media (max-height: 720px) {
-      background-position: center -63%;
-    }
-    @media (max-height: 676px) {
-      background-position: center -55%;
-    }
-    @media (max-height: 643px) {
-      background-position: center -31%;
-    }
-    @media (max-height: 611px) {
-      background-position: center 0%;
-    }
-  }
+  background: #1a1a1a;
 }
 .green-bg.green-bg_win {
   @media screen and (max-width: 767px) {
@@ -615,24 +624,7 @@
   }
 }
 .green-bg.green-bg_loose {
-  background: url("../assets/img/proval.png");
-  background-repeat: no-repeat;
-  background-position: center 35%;
-  background-size: revert;
   @media screen and (max-width: 767px) {
-    background: url("../assets/img/que.png");
-    background-repeat: no-repeat;
-    background-position: center -28%;
-    background-size: 208% 78%;
-    @media (max-height: 796px) {
-      background-size: 208% 82%;
-    }
-    @media (max-height: 670px) {
-      background-size: 208% 85%;
-    }
-    @media (max-height: 588px) {
-      background-size: 208% 88%;
-    }
   }
   .questions-page__bg_c-win,
   .questions-page__bg_r-win {
@@ -654,7 +646,14 @@
   flex-direction: column;
   align-items: center;
   padding-top: 40px;
+  .ant-progress-circle {
+    background: #17ca9b;
 
+    border-radius: 50%;
+  }
+  // .ant-progress-inner {
+  //   background: #17ca9b;
+  // }
   .ant-progress-text {
     color: white !important;
     font-weight: 600;
@@ -787,7 +786,7 @@
       line-height: 44px;
       text-align: center;
       border-radius: 144.777px;
-      color: rgba(0, 0, 0, 0.9);
+      color: #dadada;
       p {
         width: 93%;
         overflow: hidden;
@@ -801,6 +800,7 @@
       &:hover {
         border: none;
         background: #fcd876;
+        color: black;
       }
     }
     @media screen and (max-width: 1553px) {
@@ -833,7 +833,7 @@
         font-size: 16px;
         line-height: 22px;
         text-align: center;
-        color: rgba(0, 0, 0, 0.9);
+        color: #dadada;
 
         margin-bottom: 30px;
       }
@@ -883,7 +883,7 @@
     font-size: 150px;
     line-height: 145%;
     text-align: center;
-    color: #060505;
+    color: #dadada;
     margin-bottom: 8vh;
     font-family: Roboto;
     z-index: 4;
@@ -894,7 +894,7 @@
     line-height: 37px;
     text-align: center;
     max-width: 695px;
-    color: rgba(0, 0, 0, 0.5);
+    color: #dadada;
     margin-bottom: 4vh;
   }
   .win__cash {
@@ -902,13 +902,13 @@
     border-radius: 60px;
     height: 69px;
     width: 546px;
-    background: black;
+    background: #323232;
     font-weight: 600;
     font-size: 30px;
     line-height: 37px;
     text-align: center;
     letter-spacing: 0.205865px;
-    color: #ffffff;
+    color: #dadada;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -916,7 +916,7 @@
     margin-top: 1vh;
     margin-bottom: 0;
   }
-  .loose__link {
+  .questions__container {
     font-weight: 500;
     font-size: 22px;
     line-height: 37px;
@@ -925,6 +925,16 @@
     color: #000000;
     &:hover {
       color: #737373;
+    }
+  }
+  .loose__link {
+    color: white;
+    font-size: 20px;
+    line-height: 24px;
+    text-align: center;
+    text-decoration-line: underline;
+    &:hover {
+      color: #dadada;
     }
   }
   .win__btn {
@@ -950,7 +960,7 @@
     font-size: 35px;
     line-height: 61px;
     text-align: center;
-    color: #323232;
+    color: #e3e3e3;
     max-width: 405px;
     margin-bottom: 20px;
   }
@@ -985,7 +995,7 @@
       line-height: 121%;
       color: rgba(255, 255, 255, 0.85);
       width: 261px;
-      margin-top: 5vh;
+      margin-top: 11vh;
       margin-bottom: 5px;
       height: 33px;
     }
@@ -993,12 +1003,13 @@
       font-weight: 500;
       font-size: 90px;
       line-height: 145%;
-      margin-bottom: 130px;
+      margin-bottom: 100px;
     }
     .win__tnx {
       font-size: 12px;
       line-height: 15px;
       margin-bottom: 40px;
+      max-width: 267px;
     }
     .win__btn {
       width: 220px;
@@ -1018,44 +1029,44 @@
 
 @keyframes moved {
   0% {
-    transform: translate(0, 0);
+    transform: translate(0, 0) scale(0.8);
   }
   25% {
-    transform: translate(20px, -20px);
+    transform: translate(20px, -20px) scale(0.8);
   }
   50% {
-    transform: translate(-20, -20px);
+    transform: translate(-20, -20px) scale(0.8);
   }
   100% {
-    transform: translate(0, 0);
+    transform: translate(0, 0) scale(0.8);
   }
 }
 @keyframes movedBack {
   0% {
-    transform: translate(0, 0);
+    transform: translate(0, 0) scale(0.8);
   }
   25% {
-    transform: translate(-20px, 20px);
+    transform: translate(-20px, 20px) scale(0.8);
   }
   50% {
-    transform: translate(20, 20px);
+    transform: translate(20, 20px) scale(0.8);
   }
   100% {
-    transform: translate(0, 0);
+    transform: translate(0, 0) scale(0.8);
   }
 }
 @keyframes movedBackTo {
   0% {
-    transform: translate(0, 0);
+    transform: translate(0, 0) scale(0.8);
   }
   25% {
-    transform: translate(-10px, -20px);
+    transform: translate(-10px, -20px) scale(0.8);
   }
   50% {
-    transform: translate(10, 30px);
+    transform: translate(10, 30px) scale(0.8);
   }
   100% {
-    transform: translate(0, 0);
+    transform: translate(0, 0) scale(0.8);
   }
 }
 

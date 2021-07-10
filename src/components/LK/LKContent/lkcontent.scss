@@ -1,5 +1,5 @@
 .lk-content {
-  margin-top: 8px;
+  margin-top: 19px;
   width: 725px;
   margin-left: 121px;
   position: relative;
@@ -8,7 +8,7 @@
     padding: 49px 135px 33px 135px;
     margin-left: auto;
     margin-right: auto;
-    border-radius: 20px;
+    border-radius: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,7 +41,7 @@
     height: 100%;
     background: rgba(0, 0, 0, 0.36);
     .lk-content__block {
-      border-radius: 20px;
+      border-radius: 10px;
       padding-left: 20px;
       padding-right: 20px;
       // width: 80%;

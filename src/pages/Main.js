@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 import Container from "../components/Containers/Container";
 import alien from "../assets/img/alien.png";
@@ -25,7 +25,7 @@ const StepsItem = ({ title, img, i }) => (
 const Main = () => {
   const isAuth = useSelector((state) => state.auth.isAuth);
   const isAdmin = useSelector((state) => state.auth.isAdmin);
-
+  const history = useHistory();
   return (
     <div className="page">
       <Container type="dark">
@@ -34,7 +34,7 @@ const Main = () => {
             MASTER THE GAME, <span>BECOME STRANGERS</span>
           </p>
           <div className="main-block__img-container">
-            <img src={alien} />
+            <img src={alien} onClick={() => history.push("/test")} />
           </div>
           {isAdmin ? (
             <></>

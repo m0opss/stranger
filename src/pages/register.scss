@@ -135,7 +135,14 @@
     }
     .page-auth__alien-block {
       background-size: 115%;
+      @media screen and (max-height: 808px) {
+        min-height: 620px !important;
+      }
+      @media screen and (max-height: 768px) {
+        min-height: 500px !important;
+      }
     }
+
     @media screen and (max-width: 1525px) {
       max-width: 1170px;
       min-height: 66vh;
@@ -148,7 +155,7 @@
       flex-direction: column-reverse;
       max-width: 768px;
       .page-auth__alien-block {
-        min-height: unset;
+        min-height: unset !important;
       }
       .page-auth__alien-block,
       .page-auth__form-block {
@@ -336,8 +343,8 @@
   @media screen and (max-width: 767px) {
     margin-bottom: 20px !important;
     h1 {
-      max-width: 244px;
-      font-size: 36px;
+      // max-width: 244px;
+      font-size: 25px;
       line-height: 44px;
       margin-left: 0;
       margin-bottom: 47px;

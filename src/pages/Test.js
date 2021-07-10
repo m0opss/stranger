@@ -135,14 +135,12 @@ const Test = ({}) => {
   };
 
   function positionHelp(el, set_el) {
-    console.log(11, el, set_el);
     const { top, left, width, height } = el.getBoundingClientRect();
     set_el.style.left = left + width / 2 - 80 + "px";
     set_el.style.top = top + height / 2 + "px";
   }
 
   function positionHelpSec(el, set_el) {
-    console.log(22, el, set_el);
     const { top, left } = el.getBoundingClientRect();
     set_el.style.left = left + "px";
     set_el.style.top = top + "px";
@@ -227,7 +225,6 @@ const Test = ({}) => {
       ) {
         const set_el = document.querySelector("img.helped-container__img_m");
         if (set_el != null) {
-          console.log(33, set_el);
           set_el.style.left = 50 + "vw";
           set_el.style.top = 50 + "vh";
         }
@@ -378,13 +375,13 @@ const Test = ({}) => {
   // });
   const prevClick = () => {
     console.log("prev");
+    swiperRef.current?.swiper.slidePrev();
     // swiperRef.current.swiper.loopDestroy();
     // swiperRef.current.swiper.loopCreate();
     // setTimeout(() => {
     //   swiperRef.current.swiper.loopDestroy();
     //   swiperRef.current.swiper.loopCreate();
     // });
-    swiperRef.current?.swiper.slidePrev();
   };
   const nextClick = () => {
     console.log("next");
@@ -481,20 +478,9 @@ const Test = ({}) => {
         )}
       </div>
       <div className="archive-background">
-        <div className="archive-background__item archive-background__item_main"></div>
-        <div className="archive-background__item archive-background__item_1"></div>
-        <div className="archive-background__item archive-background__item_2"></div>
-        <div className="archive-background__item archive-background__item_3"></div>
-        <div className="archive-background__item archive-background__item_4"></div>
-        <div className="archive-background__item archive-background__item_5"></div>
         <div className="test-page__mobile-content">
           {isMobile ? (
-            <>
-              <div className="add-page__alien">
-                <img src={alien} />
-              </div>
-              <h1 className="add-page__title">выбери рекламу</h1>
-            </>
+            <h1 className="add-page__title">Выбери рекламу</h1>
           ) : (
             <></>
           )}

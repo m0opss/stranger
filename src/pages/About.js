@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import alien from "../assets/img/alien.svg";
+import alien from "../assets/img/alien.png";
 import steps_1 from "../assets/img/steps_1.png";
 import steps_2 from "../assets/img/steps_2.png";
 import steps_3 from "../assets/img/steps_3.png";
