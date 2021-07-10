@@ -95,7 +95,10 @@ const FAQ = ({}) => {
 
         {card != 0 ? (
           <div className="wtf-block">
-            <div className="wtf-block__steps">
+            <div
+              className="wtf-block__steps"
+              style={isMobile ? { flexWrap: "wrap" } : {}}
+            >
               {isMobile ? (
                 <></>
               ) : (

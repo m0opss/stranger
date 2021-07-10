@@ -11,7 +11,11 @@ const HistoryRow = ({ date, card, sum }) => (
 );
 
 const HistoryBlock = ({ type, data }) => (
-  <div className="lk-content__block history-block">
+  <div
+    className={`lk-content__block history-block  ${
+      type == "mobile" ? "watch-block" : ""
+    }`}
+  >
     <a name="history" className="history-block__title">
       История транзакций
     </a>
@@ -28,9 +32,7 @@ const HistoryBlock = ({ type, data }) => (
             date={item.date.substr(0, 10)}
             card={item.account_number.substr(0, 9)}
             sum={
-              item.type_operations == "inc"
-                ? "+" + item.amount
-                : "-" + item.amount
+              item.type_operations == "inc" ? "+" + item.amount : item.amount
             }
           />
         ))

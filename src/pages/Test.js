@@ -157,29 +157,21 @@ const Test = ({}) => {
     // dispatch({ type: SET_FIRST_TIME, payload: true });
 
     const listener = function (event) {
-      dispatch({ type: SET_FIRST_TIME, payload: false });
-      dispatch({ type: SET_FIRST_TIME_SECOND, payload: false });
-      if (event.code == "ArrowLeft") {
+      if (
+        event.code == "ArrowLeft" &&
+        document.querySelector(".swiper-button-prev")
+      ) {
         document.querySelector(".swiper-button-prev").click();
       }
-      if (event.code == "ArrowRight") {
+      if (
+        event.code == "ArrowRight" &&
+        document.querySelector(".swiper-button-next")
+      ) {
         document.querySelector(".swiper-button-next").click();
       }
     };
-    const listener1 = function (event) {
-      dispatch({ type: SET_FIRST_TIME, payload: false });
-      dispatch({ type: SET_FIRST_TIME_SECOND, payload: false });
-      document.removeEventListener("mousedown", listener1, false);
-    };
-    const listener2 = function (event) {
-      dispatch({ type: SET_FIRST_TIME, payload: false });
-      dispatch({ type: SET_FIRST_TIME_SECOND, payload: false });
-      document.removeEventListener("mousedown", listener2, false);
-    };
 
     document.addEventListener("keydown", listener);
-    document.addEventListener("mousedown", listener1);
-    document.addEventListener("touchstart", listener2);
 
     // document.addEventListener("touchstart", function (event) {
     //   dispatch({ type: SET_FIRST_TIME, payload: false });
@@ -409,7 +401,7 @@ const Test = ({}) => {
     <div className="page archive-page test-page ">
       <Header />
 
-      {v ? (
+      {/* {v ? (
         first_time && !isMobile ? (
           <div
             className="helped-container"
@@ -443,7 +435,7 @@ const Test = ({}) => {
         )
       ) : (
         <></>
-      )}
+      )} */}
 
       <div className="test-content">
         {slides.length == 1 && !isMobile ? (

@@ -11,9 +11,12 @@
 .lk-nav__block {
   width: 560px;
   height: 263px;
-  border-radius: 20px;
+  border-radius: 10px;
   @media screen and (max-height: 939px) {
     height: 253px;
+  }
+  @media screen and (max-height: 923px) {
+    height: 238px;
   }
   @media screen and (max-width: 1508px) {
     width: 470px;
@@ -39,6 +42,9 @@
   }
   @media screen and (max-height: 974px) {
     margin-top: 15px;
+  }
+  @media screen and (max-height: 923px) {
+    margin-top: 5px;
   }
   @media screen and (max-width: 767px) {
     margin-top: 30px;

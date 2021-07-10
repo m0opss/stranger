@@ -28,13 +28,12 @@ const Brand = (props) => {
   const id = params.id;
   const dispatch = useDispatch();
 
-  const first_time_brand = useSelector((state) => state.user.first_time_brand);
-
   let name = data.brand;
   let time = data.duration;
   let brand = data.url_brand;
   let descr = data.description;
   let price = data.coast;
+
   const settings = {
     dots: true,
     focusOnSelect: true,
@@ -61,19 +60,31 @@ const Brand = (props) => {
   });
 
   useEffect(() => {
-    document.addEventListener("keydown", function (event) {
+    document.querySelector(".slick-slider")&&document.querySelector(".slick-slider").focus();
+    document.querySelector(".slick-list")&&document.querySelector(".slick-list").focus();
+    document.querySelector(".slick-track")&&document.querySelector(".slick-track").focus();
+    document.querySelector(".slick-slide")&&document.querySelector(".slick-slide").focus();
+
+    document.querySelector(".slick-initialized").click();
+    document.addEventListener("keyup", function (event) {
       if (
         (event.code == "ShiftLeft" || event.code == "ShiftRight") &&
         document.querySelector(".brand-page__btn_active")
       ) {
         document.querySelector(".brand-page__btn_active").click();
       }
-      if (event.code == "ArrowLeft") {
-        document.querySelector(".slick-prev").click();
-      }
-      if (event.code == "ArrowRight") {
-        document.querySelector(".slick-next").click();
-      }
+      // if (
+      //   event.code == "ArrowLeft" &&
+      //   document.querySelector(".slick-arrow-prev-custom")
+      // ) {
+      //   document.querySelector(".slick-arrow-prev-custom").click();
+      // }
+      // if (
+      //   event.code == "ArrowRight" &&
+      //   document.querySelector(".slick-arrow-next-custom")
+      // ) {
+      //   document.querySelector(".slick-arrow-next-custom").click();
+      // }
     });
   }, []);
 
@@ -107,23 +118,6 @@ const Brand = (props) => {
       });
   }, []);
 
-  useEffect(() => {
-    setTimeout(() => dispatch({ type: SET_FIRST_TIME_BRAND }), 5000);
-  });
-
-  useEffect(() => {
-    const listener = function (event, type) {
-      dispatch({ type: SET_FIRST_TIME_BRAND });
-      document.removeEventListener(type, listener, false);
-    };
-    document.addEventListener("keydown", (event) => listener(event, "keydown"));
-    document.addEventListener("mousedown", (event) =>
-      listener(event, "mousedown")
-    );
-    document.addEventListener("touchstart", (event) =>
-      listener(event, "touchstart")
-    );
-  }, []);
 
   return (
     <div className="page archive-page brand-page">
@@ -197,7 +191,7 @@ const Brand = (props) => {
               {slides.length > 0 &&
                 slides.slice(1, slides.length).map((i) => (
                   <div className="brand-page__slider-item" id={i.id} key={i.id}>
-                    {first_time_brand ? (
+                    {/* {first_time_brand ? (
                       <div
                         className="helped-container"
                         onClick={() => dispatch({ type: SET_FIRST_TIME_BRAND })}
@@ -206,7 +200,7 @@ const Brand = (props) => {
                       </div>
                     ) : (
                       <></>
-                    )}
+                    )} */}
                     {i.type_attachment == "vi" ? (
                       <video
                         src={`https://stranger-go.com${i.file_attachment}`}

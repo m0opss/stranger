@@ -37,7 +37,7 @@ const LK = () => {
     return (
       <div
         className="page lk-page"
-        style={isAdmin && isMobile ? { background: "#FBFBFB" } : {}}
+        style={isMobile ? { background: "#FBFBFB" } : {}}
       >
         <Header />
         <div

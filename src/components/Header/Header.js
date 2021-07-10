@@ -37,7 +37,9 @@ const Header = () => {
 
     dispatch(onExitAccount(token));
   };
-
+  const onfocusheader = () => {
+    console.log(123);
+  };
   const menu = (
     <Menu>
       <Menu.Item key="0">
@@ -126,7 +128,10 @@ const Header = () => {
           <span></span>
         </div>
 
-        <ul className={`header__burger-menu ${menuOpen ? "menu-open" : ""}`}>
+        <ul
+          className={`header__burger-menu ${menuOpen ? "menu-open" : ""}`}
+          onFocus={onfocusheader}
+        >
           <li className="header__close-menu-btn" onClick={toggleMenu}>
             <span></span>
           </li>
@@ -192,7 +197,9 @@ const Header = () => {
                 </Link>
                 <div className="header__profile-text-block">
                   <Link to="lk">
-                    <p className="header__profile-name">{email}</p>
+                    <p className="header__profile-name">
+                      {email.substr(0, email.search("@"))}
+                    </p>
                   </Link>
                   <p
                     className="header__profile-exit"

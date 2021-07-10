@@ -40,8 +40,14 @@
           }
         }
         @media screen and (max-width: 330px) {
-            width: 100%;
+          width: 100%;
         }
+      }
+    }
+    @media screen and (max-height: 780px) {
+      margin-top: 0px;
+      .wtf-block__steps .step-card {
+        margin-top: 10px;
       }
     }
     @media screen and (max-width: 480px) {
@@ -49,6 +55,11 @@
     }
     @media screen and (max-width: 370px) {
       width: 80%;
+    }
+  }
+  @media screen and (max-height: 695px) {
+    .faq-page__content {
+      margin-top: 5px;
     }
   }
 }

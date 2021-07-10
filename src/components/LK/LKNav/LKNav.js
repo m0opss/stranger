@@ -60,7 +60,6 @@ const BalanceBlock = ({ balance, topAm, botAm }) => (
 
 const LKProgress = ({ isMobile, progress, date, plusSum }) => {
   const [val, setVal] = useState(0);
-  
 
   useEffect(() => {
     setInterval(
@@ -119,7 +118,7 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
       link: "/transfer",
     },
     {
-      name: "История транзакций",
+      name: "История",
       img: rub,
       type: isMobile ? `history-m` : "history",
       link: "/history",
@@ -148,7 +147,7 @@ const LKNav = ({ activeTab, setActiveTab, isAdmin, isMobile }) => {
   ];
   const adminPanel_2 = [
     {
-      name: "История транзакций",
+      name: "История",
       img: rub,
       type: isMobile ? `history-m` : "history",
       link: "#history",

@@ -1,6 +1,6 @@
 .page-auth {
   background-image: url("../assets/img/regPage1.png");
-  background-position: bottom;
+  background-position: 80%;
   // @media screen and (min-width: 767px) and (max-height: 940px) {
   //   background-position: center 55%;
   // }
@@ -12,12 +12,19 @@
   // }
 
   overflow-x: hidden;
-  min-height: 100vh;
+  height: 100vh;
+
   // background-size: cover;
   background-repeat: no-repeat;
   position: relative;
   .page-auth__background {
     position: absolute;
+  }
+  .page-auth__background_1,
+  .page-auth__background_2,
+  .page-auth__background_3,
+  .page-auth__background_4 {
+    animation: movedAuth infinite 7s linear;
   }
   .page-auth__background_1 {
     width: 526px;
@@ -29,6 +36,9 @@
     @media screen and (max-width: 1500px) {
       left: -455px;
     }
+    @media screen and (max-width: 1200px) {
+      height: 300px;
+    }
     @media screen and (max-width: 767px) {
       display: none;
     }
@@ -38,8 +48,11 @@
     border-right: 120px solid transparent;
     border-bottom: 170px solid #c4c4c4;
     transform: rotate(-83.98deg);
-    right: -70px;
+    right: -110px;
     top: 140px;
+    @media screen and (max-width: 1400px) {
+      right: -175px;
+    }
     @media screen and (max-width: 767px) {
       right: -140px;
       display: none;
@@ -54,6 +67,7 @@
     right: -60px;
     top: 160px;
     display: none;
+    animation: movedAuth infinite 7s linear;
     @media screen and (max-width: 767px) {
       display: block;
     }
@@ -80,7 +94,12 @@
     background: #edeff4;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     left: -70px;
-    top: 540px;
+    top: 390px;
+    @media screen and (max-width: 1200px) {
+      bottom: 10px;
+      top: unset;
+      left: -90px;
+    }
     @media screen and (max-width: 767px) {
       right: -140px;
     }
@@ -128,7 +147,9 @@
     @media screen and (max-width: 1200px) {
       flex-direction: column-reverse;
       max-width: 768px;
-
+      .page-auth__alien-block {
+        min-height: unset;
+      }
       .page-auth__alien-block,
       .page-auth__form-block {
         width: 80%;
@@ -140,9 +161,10 @@
     }
     @media screen and (max-height: 803px) {
       .page-auth__alien-block {
-        min-height: 620px;
+        // min-height: 620px;
       }
     }
+
     @media screen and (max-width: 767px) {
       .page-auth__background-item_m {
         display: block;
@@ -526,5 +548,15 @@
   }
   100% {
     transform: translate(0, 0);
+  }
+}
+
+@keyframes movedAuth {
+  0%,
+  100% {
+    transform: translateY(20px);
+  }
+  50% {
+    transform: translateY(-20px);
   }
 }

@@ -42,4 +42,7 @@
     height: auto;
     flex-wrap: wrap;
   }
+  @media screen and (max-height: 923px) {
+    max-height: 775px;
+  }
 }

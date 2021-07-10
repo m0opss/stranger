@@ -1,4 +1,8 @@
 .transfer-page {
+  .donate-block__input-summ-block {
+    margin-bottom: 0;
+  }
+
   .lk-content {
     padding: 0 20px;
     position: relative;
@@ -8,6 +12,8 @@
     .lk-content__block {
       padding-left: 0;
       padding-right: 0;
+    }
+    .watch-block {
     }
     .donate-block {
       .donate-block__select-card li {
