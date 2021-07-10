@@ -60,16 +60,6 @@ const Brand = (props) => {
   });
 
   useEffect(() => {
-    document.querySelector(".slick-slider") &&
-      document.querySelector(".slick-slider").focus();
-    document.querySelector(".slick-list") &&
-      document.querySelector(".slick-list").focus();
-    document.querySelector(".slick-track") &&
-      document.querySelector(".slick-track").focus();
-    document.querySelector(".slick-slide") &&
-      document.querySelector(".slick-slide").focus();
-
-    document.querySelector(".slick-initialized").click();
     document.addEventListener("keyup", function (event) {
       if (
         (event.code == "ShiftLeft" || event.code == "ShiftRight") &&
@@ -90,6 +80,25 @@ const Brand = (props) => {
       //   document.querySelector(".slick-arrow-next-custom").click();
       // }
     });
+    const f = function (event) {
+      document.addEventListener("keyup", function (event) {
+        if (
+          event.code == "ArrowLeft" &&
+          document.querySelector(".slick-arrow-prev-custom")
+        ) {
+          document.querySelector(".slick-arrow-prev-custom").click();
+          document.removeEventListener("keyup", f, false);
+        }
+        if (
+          event.code == "ArrowRight" &&
+          document.querySelector(".slick-arrow-next-custom")
+        ) {
+          document.querySelector(".slick-arrow-next-custom").click();
+          document.removeEventListener("keyup", f, false);
+        }
+      });
+    };
+    f();
   }, []);
 
   useEffect(() => {

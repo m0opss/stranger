@@ -11,6 +11,8 @@ import steps_4 from "../assets/img/steps_4.png";
 import "./main.scss";
 import MainFooter from "../components/MainFooter/MainFooter";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useState } from "react";
 
 const StepsItem = ({ title, img, i }) => (
   <div className="wtf-block__steps-item step-card">
@@ -26,10 +28,17 @@ const Main = () => {
   const isAuth = useSelector((state) => state.auth.isAuth);
   const isAdmin = useSelector((state) => state.auth.isAdmin);
   const history = useHistory();
+  const [wait, setWait] = useState(false);
+  useEffect(() => {
+    setTimeout(() => setWait(true), 1200);
+  }, []);
   return (
     <div className="page">
       <Container type="dark">
-        <div className="main-block">
+        <div
+          className="main-block"
+          style={wait ? { opacity: 1 } : { opacity: 0 }}
+        >
           <p>
             MASTER THE GAME, <span>BECOME STRANGERS</span>
           </p>
@@ -47,7 +56,10 @@ const Main = () => {
             Правила
           </Link>
         </div>
-        <div className="wtf-block">
+        <div
+          className="wtf-block"
+          style={wait ? { opacity: 1 } : { opacity: 0 }}
+        >
           <p className="wtf-block__title">ЧТО ЭТО ТАКОЕ?</p>
           <p className="wtf-block__descr">
             Революционный метод просмотра рекламы
